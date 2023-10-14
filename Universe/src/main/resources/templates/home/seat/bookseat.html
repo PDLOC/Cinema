@@ -4,7 +4,7 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="viewport" content="width=device-width">
-  <title>Universe - huy hoai</title>
+  <title>Universe</title>
   <link rel="shortcut icon" href="/assets/Images/2.png " type="image/x-icon">
 
   <!-- Font  -->
@@ -148,6 +148,94 @@
     }
 
 </style>
+
+<!-- css bookFood -->
+<style>
+	.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.food-list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.food-item {
+    width: 30%;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.food-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.food-item h3 {
+    margin-bottom: 10px;
+}
+
+.quantity-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.quantity-input .quantity {
+    width: 40px;
+    text-align: center;
+}
+
+.price {
+    margin-bottom: 10px;
+}
+
+.cart {
+    margin-top: 40px;
+}
+
+.cart h2 {
+    text-align: center;
+}
+
+.cartItems {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.cartItems li {
+    margin-bottom: 5px;
+}
+
+.total {
+    text-align: right;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.checkout {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+</style>
 <script>
   setTimeout(function () {
     $('.section').fadeToggle();
@@ -217,7 +305,8 @@
   <div class="scroll-bar">
       
     <div class="container col-9">
-        <div class="mx-auto">
+        <div id="displaySeat">
+        	<div class="mx-auto">
             <h1>Seat Booking</h1>
         </div>
         <div class="card text-center">
@@ -473,7 +562,7 @@
                         <div class="seat double" data-row="5" data-name="H4" data-couple="true">
                             <div class="mt-2">H4</div>
                         </div>
-                        <div class="seat double" data-row="5" data-name="H5" data-couple="true">
+                        <div class="seat double" data-row="5" data-name="H1" data-couple="true">
                             <div class="mt-2">H5</div>
                         </div>
                         <div class="seat double" data-row="5" data-name="H6" data-couple="true">
@@ -509,9 +598,245 @@
             </div>
 
         </div>
+        </div>
+        
+        <!-- page Food -->
+	    <div id="displayFood" class="m-auto border mt-3">
+	        <div class="bg-dark text-light">
+	            <h4>Bắp nước</h4>
+	        </div>
+	        <div class="food-list">
+	            <div class="col-sm-6 d-flex p-4">
+	                <img class="w-25" src="https://www.cgv.vn/media/concession/web/6443fd2e624be_1682177326.png"
+	                    alt="Đồ ăn">
+	                <div class="" style="text-align: left;">
+	                    <h5>JUNGLE BROWN MY COMBO</h5>
+	                    <p>1 bình Jungle Brown + 1 nước siêu lớn <br>
+	                        **Mua thêm 1 bắp ngọt chỉ với 29K tại rạp <br>
+	                        **Nhận trong ngày xem phim** <br>
+	                        ***Mẫu ly phụ thuộc vào số lượng hàng tại rạp</p>
+	                    <div class="price">Giá: $10</div>
+	                    <div class="quantity-input">
+	                        <button class="decrease-quantity"
+	                            style="width: 25px; height: 30px; border: none; background-color: red;">-</button>
+	                        <input style="margin: 5px;" type="number" class="quantity" value="0">
+	                        <button style="width: 25px; height: 30px; border: none; background-color: red;"
+	                            class="increase-quantity">+</button>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="col-sm-6 d-flex p-4">
+	                <img class="w-25" src="https://www.cgv.vn/media/concession/web/6426a4fc4b1ca_1680254204.png"
+	                    alt="Đồ ăn">
+	                <div class="" style="text-align: left;">
+	                    <h5>JUNGLE BROWN COUPL</h5>
+	                    <p>2 bình Jungle Brown + 2 nước siêu lớn + 1 bắp ngọt lớn <br>
+	                        **Nhận trong ngày xem phim** <br>
+	                        ***Mẫu ly phụ thuộc vào số lượng hàng tại rạp <br></p>
+	                    <div class="price">Giá: $15</div>
+	                    <div class="quantity-input">
+	                        <button style="width: 25px; height: 30px; border: none; background-color: red;"
+	                            class="decrease-quantity">-</button>
+	                        <input style="margin: 5px;" type="number" class="quantity" value="0">
+	                        <button style="width: 25px; height: 30px; border: none; background-color: red;"
+	                            class="increase-quantity">+</button>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="col-sm-6 d-flex p-4">
+	                <img class="w-25" src="https://www.cgv.vn/media/concession/web/64d0e5082f836_1691411720.png"
+	                    alt="Đồ ăn">
+	                <div class="p-3" style="text-align: left;">
+	                    <h5>MILO COMBO 2023</h5>
+	                    <p>1 milo lớn + 1 nước ngọt siêu lớn + 1 bắp ngọt lớn <br>
+	                        * Nhận trong ngày xem phim.<br>
+	                        ** Miễn phí đổi vị bắp Caramel<br>
+	                        *** Đổi vị phô mai phụ thu thêm tiền <br>
+	                    </p>
+	                    <div class="price">Giá: $20</div>
+	                    <div class="quantity-input">
+	                        <button style="width: 25px; height: 30px; border: none; background-color: red;"
+	                            class="decrease-quantity">-</button>
+	                        <input style="margin: 5px;" type="number" class="quantity" value="0">
+	                        <button style="width: 25px; height: 30px; border: none; background-color: red;"
+	                            class="increase-quantity">+</button>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="col-sm-6 d-flex p-4">
+	                <img class="w-25" src="https://www.cgv.vn/media/concession/web/64d315fa964c0_1691555323.png"
+	                    alt="Đồ ăn">
+	                <div class="p-3" style="text-align: left;">
+	                    <h5>BLUE BEETLE SCARAB W</h5>
+	                    <p>1 ly Blue Beetle nắp cánh + 1 nước ngọt siêu lớn + 1 bắp lớn<br>
+	                        *Nhận trong ngày xem phim<br>
+	                    </p>
+	                    <div class="price">Giá: $30</div>
+	                    <div class="quantity-input">
+	                        <button style="width: 25px; height: 30px; border: none; background-color: red;"
+	                            class="decrease-quantity">-</button>
+	                        <input style="margin: 5px;" type="number" class="quantity" value="0">
+	                        <button style="width: 25px; height: 30px; border: none; background-color: red;"
+	                            class="increase-quantity">+</button>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="col-sm-6 d-flex p-4">
+	                <img class="w-25" src="https://www.cgv.vn/media/concession/web/64e0cd409b54d_1692454209.png"
+	                    alt="Đồ ăn">
+	                <div class="p-3" style="text-align: left;">
+	                    <h5>PEANUTS COUPLE COME</h5>
+	                    <p>02 ly nhân vật Peanuts (kèm nước)<br>
+	                        * Nhận ngay trong ngày xem phim<br>
+	                        ** Thêm 39,000đ nhận ngay 1 bắp ngọt<br>
+	                        *** Mẫu ly phụ thuộc vào số lượng của rạp<br>
+	                    </p>
+	                    <div class="price">Giá: $40</div>
+	                    <div class="quantity-input">
+	                        <button style="width: 25px; height: 30px; border: none; background-color: red;"
+	                            class="decrease-quantity">-</button>
+	                        <input style="margin: 5px;" type="number" class="quantity" value="0">
+	                        <button style="width: 25px; height: 30px; border: none; background-color: red;"
+	                            class="increase-quantity">+</button>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	        <div class="cart">
+	            <ul id="cartItems"></ul>
+	        </div>
+	    </div>
         <div class="row p-0 m-0" style="color: red;background-color: black;">
+            
+        <!-- page Pay -->
+    <div id="displayPay" class="m-auto">
+        <div>
+            <h4>THANH TOÁN</h4>
+        </div>
+        <div class="row p-0 m-0">
+            <div class="col-8">
+                <div style="background-color: #bcbdc0; text-align: left; padding: 5px;">
+                    <span style="display:inline-block;">Bước 1:</span>
+                    <h5 style="display:inline-block;">GIẢM GIÁ</h5>
+                </div>
+                <div class="m-2">
+                    <div class="accordion" id="accordionPanelsStayOpenExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                                    aria-controls="panelsStayOpen-collapseOne">
+                                    Đối tác
+                                </button>
+                            </h2>
+                            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
+                                aria-labelledby="panelsStayOpen-headingOne">
+                                <div class="accordion-body">
+                                    ...
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
+                                    aria-controls="panelsStayOpen-collapseTwo">
+                                    Mã khuyến mãi
+                                </button>
+                            </h2>
+                            <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
+                                aria-labelledby="panelsStayOpen-headingTwo">
+                                <div class="accordion-body">
+                                    ...
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="background-color: #bcbdc0; text-align: left; padding: 5px;">
+                    <span style="display:inline-block;">Bước 2:</span>
+                    <h5 style="display:inline-block;">HÌNH THỨC THANH TOÁN</h5>
+                </div>
+                <div style="background-color: #fff1ce;">
+                    <div class="form-check m-2" style="text-align: left;">
+                        <input class="form-check-input mt-3" type="radio" name="flexRadioDefault"
+                            id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            <div style="display: inline-block; width: 50px;"><img style="width: 100%;"
+                                    src="https://www.cgv.vn/media/catalog/product/placeholder/default/atm_icon.png"
+                                    alt=""></div>
+                            ATM card (Thẻ nội địa)
+                        </label>
+                    </div>
+                    <div class="form-check m-2" style="text-align: left;">
+                        <input class="form-check-input mt-3" type="radio" name="flexRadioDefault"
+                            id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            <div style="display: inline-block; width: 50px;"><img style="width: 100%;"
+                                    src="https://www.cgv.vn/media/catalog/product/placeholder/default/visa-mastercard-icon.png"
+                                    alt=""></div>
+                            Thẻ quốc tế (Visa, Master, Amex, JCB) (Thẻ nội địa)
+                        </label>
+                    </div>
+                    <div class="form-check m-2" style="text-align: left;">
+                        <input class="form-check-input mt-3" type="radio" name="flexRadioDefault"
+                            id="flexRadioDefault3">
+                        <label class="form-check-label" for="flexRadioDefault3">
+                            <div style="display: inline-block; width: 50px;"><img style="width: 100%;"
+                                    src="https://www.cgv.vn/media/catalog/product/placeholder/default/momo_icon.png"
+                                    alt=""></div>
+                            MoMo - Nhập MMCGV -5K/bill, Vé 9K Bạn Mới
+                        </label>
+                    </div>
+                    <div class="form-check m-2" style="text-align: left;">
+                        <input class="form-check-input mt-3" type="radio" name="flexRadioDefault"
+                            id="flexRadioDefault4">
+                        <label class="form-check-label" for="flexRadioDefault4">
+                            <div style="display: inline-block; width: 50px;"><img style="width: 100%;"
+                                    src="https://www.cgv.vn/media/catalog/product/placeholder/default/icon-HOT-96x96.png"
+                                    alt=""></div>
+                            ZaloPay: Bạn Mới vé 14K - Bạn Thân 84K
+                        </label>
+                    </div>
+                    <div class="form-check m-2" style="text-align: left;">
+                        <input class="form-check-input mt-3" type="radio" name="flexRadioDefault"
+                            id="flexRadioDefault5">
+                        <label class="form-check-label" for="flexRadioDefault5">
+                            <div style="display: inline-block; width: 50px;"><img style="width: 100%;"
+                                    src="https://www.cgv.vn/media/catalog/product/placeholder/default/vnpay_newlogo.png"
+                                    alt=""></div>
+                            VNPAY
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="m-2 mt-0">
+                    <ul class="list-group">
+                        <li style="background-color: #fff1ce; font-weight:650;" class="list-group-item">Tổng cộng</li>
+                        <li style="background-color: #fff1ce;" class="list-group-item" id="toTalPay"> $0.00</li>
+                        <li style="background-color: #d0cece;" class="list-group-item" id="toTalPay2">$0.00</li>
+                    </ul>
+                </div>
+                <div class="m-2">
+                    <ul class="list-group">
+                        <li style="background-color: #fff1ce; font-weight:650;" class="list-group-item">Khuyến mãi</li>
+                        <li style="background-color: #d0cece;" class="list-group-item">$0.00</li>
+                    </ul>
+                </div>
+                <div class="m-2">
+                    <ul class="list-group">
+                        <li style="background-color: #e71a0f; font-weight:650; color: white;" class="list-group-item">
+                            Tổng số tiền
+                            thanh toán</li>
+                        <li style="background-color: #d0cece;" class="list-group-item" id="Pay">$0.00</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
             <div class="col-2">
-                <button style="margin-top: 20px; width: 104px;height: 85px;" class="btn btn-danger">prev</button>
+                <button id="prevButton" style="margin-top: 20px; width: 104px;height: 85px;" class="btn btn-danger">prev</button>
             </div>
             <div class="col-1">
                 <img style="width: 70px; margin-top: 10px;"
@@ -550,7 +875,7 @@
                 </div>
                 <div class="row">
                     <p class="col-4 m-0 p-0">Combo</p>
-                    <p class="col-8 m-0 p-0">$0.00</p>
+                    <p id="combo" class="col-8 m-0 p-0">$0.00</p>
                 </div>
                 <div class="row">
                     <p class="col-4 m-0 p-0">Tổng</p>
@@ -559,7 +884,7 @@
             </div><br>
             <br><br><br><br><br>
             <div class="col-2 text-center">
-                <button style="margin-top: 20px; width: 104px;height: 85px;" class="btn btn-danger">next</button>
+                <button id="nextButton" style="margin-top: 20px; width: 104px;height: 85px;" class="btn btn-danger">next</button>
             </div>
         </div>
     </div>
@@ -674,100 +999,270 @@
       </script>
 
       <script>
-         document.addEventListener('scroll',()=>{
-          const header = document.querySelector('header');
-          if(window.scrollY > 0){
-            header.classList.add('scrolled');
-          }else{
-            header.classList.remove('scrolled');
-          }
-         })
+    let combo = 0;
 
-      </script>
-      <script>
-        const film = document.getElementById('name-Film')
-    
-        // Lấy danh sách các ghế
-        const seats = document.querySelectorAll('.seat');
-    
-        // Số lượng ghế đã chọn
-        let selectedSeats = [];
-        let selectedVipSeats = [];
-        let selectedRegularSeats = [];
-        let selectedCoupleSeats = [];
-        // Giá vé
-        const regularSeatPrice = 10;
-        const vipSeatPrice = 100;
-        const coupleSeatPrice = 500;
-    
-        // Cập nhật số ghế đã chọn và tổng giá vé
-        function updateSelectedSeats() {
-            const selected = document.querySelectorAll('.seat.selected');
-            // selectedSeats = Array.from(selected).map(seat => Array.from(seats).indexOf(seat) + 1);
-            selectedSeats = Array.from(selected).map(seat => seat.getAttribute('data-name'));
-            selectedVipSeats = Array.from(selected).filter(seat => seat.getAttribute('data-vip') === 'true');
-            selectedRegularSeats = Array.from(selected).filter(seat => seat.getAttribute('data-vip') !== 'true' && seat.getAttribute('data-couple') !== 'true');
-            selectedCoupleSeats = Array.from(selected).filter(seat => seat.getAttribute('data-couple') === 'true');
-            const selectedSeatsCount = selectedSeats.length;
-            const selectedVipSeatsCount = selectedVipSeats.length;
-            const selectedRegularSeatsCount = selectedRegularSeats.length;
-            const selectedCoupleSeatsCount = selectedCoupleSeats.length;
-            //const totalPrice = selectedSeatsCount * seatPrice;
-            //const totalPrice = (selectedVipSeatsCount * vipSeatPrice) + (selectedRegularSeatsCount * regularSeatPrice);
-            const totalPrice = (selectedVipSeatsCount * vipSeatPrice) + (selectedRegularSeatsCount * regularSeatPrice) + (selectedCoupleSeatsCount * coupleSeatPrice);
-            document.getElementById('selected-seats').textContent = `${selectedSeats.join(', ')}`;
-            document.getElementById('total-price').textContent = `$${totalPrice}`;
-            film.textContent = `$${totalPrice}`;
-        }
-    
-        // Xử lý sự kiện khi người dùng chọn ghế
-        // const container = document.getElementById("card-body")
-        function selectSeat() {
+    const film = document.getElementById('name-Film')
+
+    var countSeat = [];
+
+    // Lấy danh sách các ghế
+    const seats = document.querySelectorAll('.seat');
+
+    // Số lượng ghế đã chọn
+    let selectedSeats = [];
+    let selectedVipSeats = [];
+    let selectedRegularSeats = [];
+    let selectedCoupleSeats = [];
+    // Giá vé
+    const regularSeatPrice = 10;
+    const vipSeatPrice = 100;
+    const coupleSeatPrice = 500;
+
+    // Cập nhật số ghế đã chọn và tổng giá vé
+    function updateSelectedSeats() {
+    	
+        const selected = document.querySelectorAll('.seat.selected');
+        // selectedSeats = Array.from(selected).map(seat => Array.from(seats).indexOf(seat) + 1);
+        selectedSeats = Array.from(selected).map(seat => seat.getAttribute('data-name'));
+        selectedVipSeats = Array.from(selected).filter(seat => seat.getAttribute('data-vip') === 'true');
+        selectedRegularSeats = Array.from(selected).filter(seat => seat.getAttribute('data-vip') !== 'true' && seat.getAttribute('data-couple') !== 'true');
+        selectedCoupleSeats = Array.from(selected).filter(seat => seat.getAttribute('data-couple') === 'true');
+        const selectedSeatsCount = selectedSeats.length;
+        const selectedVipSeatsCount = selectedVipSeats.length;
+        const selectedRegularSeatsCount = selectedRegularSeats.length;
+        const selectedCoupleSeatsCount = selectedCoupleSeats.length;
+        console.log(selectedSeats.length)
+        //const totalPrice = selectedSeatsCount * seatPrice;
+        //const totalPrice = (selectedVipSeatsCount * vipSeatPrice) + (selectedRegularSeatsCount * regularSeatPrice);
+        const totalPrice = (selectedVipSeatsCount * vipSeatPrice) + (selectedRegularSeatsCount * regularSeatPrice) + (selectedCoupleSeatsCount * coupleSeatPrice);
+        document.getElementById('selected-seats').textContent = `${selectedSeats.join(', ')}`;
+        document.getElementById('total-price').textContent = `$${totalPrice + combo}`;
+        document.getElementById('combo').textContent = `$${combo}`
+        film.textContent = `$${totalPrice}`;
+
+        document.getElementById("toTalPay").textContent = `$${totalPrice + combo}`;
+        document.getElementById("toTalPay2").textContent = `$${totalPrice + combo}`;
+        document.getElementById("Pay").textContent = `$${totalPrice + combo}`;
+    }
+
+
+    let selectedSeatType = null;
+
+    function selectSeat() {
+        const isVip = this.getAttribute('data-vip') === 'true';
+        const isCouple = this.getAttribute('data-couple') === 'true';
+
+        // Kiểm tra xem có ghế vip hoặc ghế đôi đã được chọn hay chưa
+        const isVipSeatSelected = selectedVipSeats.length > 0;
+        const isCoupleSeatSelected = selectedCoupleSeats.length > 0;
+
+        // Nếu người dùng chọn ghế vip
+        if (isVip) {
+            if (selectedSeatType && selectedSeatType !== 'vip') {
+                alert("Chỉ chọn một loại ghế");
+                return;
+            }
+
+            // Bỏ chọn tất cả các ghế đôi nếu có
+            if (isCoupleSeatSelected) {
+                selectedCoupleSeats.forEach(seat => seat.classList.remove('selected'));
+                selectedCoupleSeats = [];
+            }
+
+            // Bỏ chọn tất cả các ghế thường nếu có
+            if (selectedRegularSeats.length > 0) {
+                selectedRegularSeats.forEach(seat => seat.classList.remove('selected'));
+                selectedRegularSeats = [];
+            }
+
+            // Thực hiện chọn ghế vip
             this.classList.toggle('selected');
+            selectedSeatType = 'vip';
             updateSelectedSeats();
-            updateSelectedSeatsVip();
+            return;
         }
-    
-        // container.addEventListener("click", (e) => {
-        //     if (
-        //         e.target.classList.contains("countSeat") &&
-        //         !e.target.classList.contains("sold")
-        //     ) {
-        //         e.target.classList.toggle("selected");
-        //         updateSelectedCount();
+
+        // Nếu người dùng chọn ghế đôi
+        if (isCouple) {
+            if (selectedSeatType && selectedSeatType !== 'couple') {
+                alert("Chỉ chọn một loại ghế");
+                return;
+            }
+
+            // Bỏ chọn tất cả các ghế vip nếu có
+            if (isVipSeatSelected) {
+                selectedVipSeats.forEach(seat => seat.classList.remove('selected'));
+                selectedVipSeats = [];
+            }
+
+            // Bỏ chọn tất cả các ghế thường nếu có
+            if (selectedRegularSeats.length > 0) {
+                selectedRegularSeats.forEach(seat => seat.classList.remove('selected'));
+                selectedRegularSeats = [];
+            }
+
+            // Thực hiện chọn ghế đôi
+            this.classList.toggle('selected');
+            selectedSeatType = 'couple';
+            updateSelectedSeats();
+            return;
+        }
+
+        // Nếu người dùng chọn ghế thường
+        if (isVipSeatSelected || isCoupleSeatSelected) {
+            alert("Chỉ chọn một loại ghế");
+            return;
+        }
+
+        // Thực hiện chọn ghế thường
+        this.classList.toggle('selected');
+        selectedSeatType = null;
+        updateSelectedSeats();
+
+        // console.log(selectedSeatType)
+        // if (selectedSeatType == null) {
+        //     if () {
+
         //     }
-        // });
-    
-        // Đăng ký sự kiện cho từng ghế
+        //     alert("Chỉ chọn một loại ghế");
+        //     return;
+        // }
+    }
+
+    // Đăng ký sự kiện cho từng ghế
+    seats.forEach(seat => {
+        seat.addEventListener('click', selectSeat);
+    });
+
+
+
+    // Xử lý sự kiện khi người dùng nhấn nút Book
+    // document.getElementById('book-btn').addEventListener('click', () => {
+    //     alert(`Booked seats: ${selectedSeats.join(', ')}`);
+    // });
+
+    function updateSelectedSeatsVip() {
+        // Gán giá tiền cho từng loại ghế
         seats.forEach(seat => {
-            seat.addEventListener('click', selectSeat);
+            const isVip = seat.getAttribute('data-vip') === "true";
+            const isCouple = seat.getAttribute('data-couple') === 'true';
+            let seatPrice;
+            if (isVip) {
+                seatPrice = vipSeatPrice;
+            } else if (isCouple) {
+                seatPrice = coupleSeatPrice;
+            } else {
+                seatPrice = regularSeatPrice;
+            }
+            // Áp dụng giá tiền vào ghế
+            seat.setAttribute('data-price', seatPrice);
         });
-    
-    
-    
-        // Xử lý sự kiện khi người dùng nhấn nút Book
-        document.getElementById('book-btn').addEventListener('click', () => {
-            alert(`Booked seats: ${selectedSeats.join(', ')}`);
-        });
-    
-        function updateSelectedSeatsVip() {
-            // Gán giá tiền cho từng loại ghế
-            seats.forEach(seat => {
-                const isVip = seat.getAttribute('data-vip') === "true";
-                const isCouple = seat.getAttribute('data-couple') === 'true';
-                let seatPrice;
-                if (isVip) {
-                    seatPrice = vipSeatPrice;
-                } else if (isCouple) {
-                    seatPrice = coupleSeatPrice;
-                } else {
-                    seatPrice = regularSeatPrice;
-                }
-                // Áp dụng giá tiền vào ghế
-                seat.setAttribute('data-price', seatPrice);
-            });
+    }
+
+
+
+    // chuyển hướng khi đặt xong ghế
+    document.getElementById("displaySeat").style.display = "block";
+    document.getElementById("displayFood").style.display = "none";
+    document.getElementById("displayPay").style.display = "none";
+
+    var nextButton = document.getElementById("nextButton");
+    var prevButton = document.getElementById("prevButton");
+    var countPage = 0;
+    nextButton.addEventListener("click", function () {
+    	console.log("hello")
+        if (selectedSeats.length > 0) {
+            document.getElementById("displaySeat").style.display = "none";
+            document.getElementById("displayFood").style.display = "block";
+            countPage++;
+        } else {
+            alert("bạn chưa chọn bất kỳ ghế nào vui lòng chọn ghế")
         }
-    </script>
+        if (countPage > 1) {
+            document.getElementById("displaySeat").style.display = "none";
+            document.getElementById("displayFood").style.display = "none";
+            document.getElementById("displayPay").style.display = "block";
+        }
+    });
+
+    prevButton.addEventListener("click", function () {
+        if (countPage == 1) {
+            document.getElementById("displaySeat").style.display = "block"
+            document.getElementById("displayFood").style.display = "none"
+            document.getElementById("displayPay").style.display = "none";
+            countPage = 0;
+        } else if (countPage > 1) {
+            document.getElementById("displaySeat").style.display = "none"
+            document.getElementById("displayFood").style.display = "block"
+            document.getElementById("displayPay").style.display = "none";
+            countPage = 1;
+        }
+    })
+
+
+    // thao tác đặt food
+    document.addEventListener('DOMContentLoaded', function () {
+        const decreaseQuantityButtons = document.querySelectorAll('.decrease-quantity');
+        const increaseQuantityButtons = document.querySelectorAll('.increase-quantity');
+        const quantityInputs = document.querySelectorAll('.quantity');
+        const cartItems = document.getElementById('cartItems');
+        const totalAmount = document.getElementById('totalAmount');
+        let totalPrice = 0;
+
+        // Xử lý khi người dùng giảm số lượng
+        decreaseQuantityButtons.forEach(function (button, index) {
+            button.addEventListener('click', function () {
+                if (quantityInputs[index].value > 0) {
+                    quantityInputs[index].value--;
+                    updateCart(index);
+                }
+            });
+        });
+
+        // Xử lý khi người dùng tăng số lượng
+        increaseQuantityButtons.forEach(function (button, index) {
+            button.addEventListener('click', function () {
+                quantityInputs[index].value++;
+                updateCart(index);
+            });
+        });
+
+        // Cập nhật giỏ hàng và tổng cộng
+        function updateCart(index) {
+            const quantity = parseInt(quantityInputs[index].value);
+            const priceElement = document.querySelectorAll('.price')[index];
+            const price = parseFloat(priceElement.innerText.split(':')[1].trim().slice(1));
+            const itemName = document.querySelectorAll('h5')[index].innerText;
+
+            // Xóa sản phẩm nếu đã tồn tại trong giỏ hàng
+            const existingItem = document.getElementById(`cartItem-${index}`);
+            if (existingItem) {
+                totalPrice -= parseFloat(existingItem.dataset.price);
+                existingItem.remove();
+            }
+
+            // Tạo một mục mới trong giỏ hàng
+            const cartItem = document.createElement('li');
+            cartItem.setAttribute('id', `cartItem-${index}`);
+            cartItem.setAttribute('data-price', (price * quantity).toFixed(2));
+            cartItem.innerText = `${itemName} x ${quantity} - $${(price * quantity).toFixed(2)}`;
+            cartItems.appendChild(cartItem);
+            cartItems.style.display = "none"
+
+            // Cập nhật tổng cộng
+            totalPrice += price * quantity;
+            combo = totalPrice;
+            // totalAmount.innerText = totalPrice.toFixed(2);
+            updateSelectedSeats()
+        }
+
+        // Xử lý khi người dùng nhấp vào nút Thanh toán
+        // document.querySelector('.checkout').addEventListener('click', function () {
+        //     // Thực hiện quá trình thanh toán, ví dụ: chuyển đến trang thanh toán, lưu thông tin đơn hàng, vv.
+        //     console.log('Thực hiện thanh toán');
+        // });
+    });
+</script>
     
       <!-- bootsstrap JS -->
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
