@@ -26,4 +26,9 @@ public class AdminController {
 		
 		return "admin/table/table.html";
 	}
+	@RequestMapping("bank")
+	public String bank() {
+		
+		return "admin/bank/bank.html";
+	}
 }
