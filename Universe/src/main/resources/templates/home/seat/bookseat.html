@@ -151,12 +151,6 @@
 
 <!-- css bookFood -->
 <style>
-	.container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
 .header {
     text-align: center;
     margin-bottom: 20px;
@@ -607,7 +601,7 @@
 	        </div>
 	        <div class="food-list">
 	            <div class="col-sm-6 d-flex p-4">
-	                <img class="w-25" src="https://www.cgv.vn/media/concession/web/6443fd2e624be_1682177326.png"
+	                <img class="w-25" style="width:;" src="https://www.cgv.vn/media/concession/web/6443fd2e624be_1682177326.png"
 	                    alt="Đồ ăn">
 	                <div class="" style="text-align: left;">
 	                    <h5>JUNGLE BROWN MY COMBO</h5>
@@ -706,6 +700,7 @@
 	            <ul id="cartItems"></ul>
 	        </div>
 	    </div>
+	    
         <div class="row p-0 m-0" style="color: red;background-color: black;">
             
         <!-- page Pay -->
@@ -1133,7 +1128,6 @@
     seats.forEach(seat => {
         seat.addEventListener('click', selectSeat);
     });
-
 
 
     // Xử lý sự kiện khi người dùng nhấn nút Book
