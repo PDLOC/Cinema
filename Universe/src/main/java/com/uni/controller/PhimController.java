@@ -7,20 +7,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.uni.entity.Phim;
+import com.uni.entity.Film;
 import com.uni.service.PhimService;
+import com.uni.service.PhongChieuService;
 
 @Controller
 @RequestMapping("home")
 public class PhimController {
 	@Autowired
 	PhimService phimService;
-	
+	@Autowired
+	PhongChieuService pcService;
 	
 	@RequestMapping("film")
 	public String phim(Model model) {
-		List<Phim> list = phimService.findAll();
-		model.addAttribute("items",list);
+		List<Film> listPhim = phimService.findAll();
+		model.addAttribute("items",listPhim);
 		return "home/view";
 	}
 }
