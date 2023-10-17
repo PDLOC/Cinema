@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+	<header style="width: 100%;">
+		<nav class="navbar navbar-expand-lg navbar-light bg-dark"
+			id="header-nav">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="home.html"><img class="logo"
+					src="/assets/Images/2.png" alt="" width="30" height="24"></a>
+				<button id="nav" class="navbar-toggler"
+					style="background-color: #8b0000" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarNav"
+					aria-controls="navbarNav" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"
+						style="background-color: dark-grey;"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarNav">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li class="nav-item "><a class="nav-link active s"
+							aria-current="page" href="home.html"
+							onMouseOver="this.style.color='red'"
+							onMouseOut="this.style.color='white'">Trang Chủ</a></li>
+						<li class="nav-item"><a class="nav-link " href="movies.html"
+							onMouseOver="this.style.color='red'"
+							onMouseOut="this.style.color='white'">Phim</a></li>
+						<li class="nav-item"><a class="nav-link "
+							href="web-series.html" onMouseOver="this.style.color='red'"
+							onMouseOut="this.style.color='white'">Lịch Chiếu</a></li>
+						<li class="nav-item"><a class="nav-link" href="tv.html"
+							onMouseOver="this.style.color='red'"
+							onMouseOut="this.style.color='white'">Rạp Và Giá</a></li>
+						<li class="nav-item"><a class="nav-link" href="kids.html"
+							onMouseOver="this.style.color='red'"
+							onMouseOut="this.style.color='white'">Khuyến Mãi</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="contactus.html" onMouseOver="this.style.color='red'"
+							onMouseOut="this.style.color='white'">Liên Hệ</a></li>
+						<div
+							style="position: relative; display: inline-block; padding-top: 5px; padding-left: 15px;">
+							<li>
+								<button type="button" class="btn btn-light" onclick="logout()"
+									onMouseOver="this.style.color='red'"
+									onMouseOut="this.style.color='white'">Đăng Nhập / Đăng
+									Kí</button>
+							</li>
+						</div>
+					</ul>
+					<form id="searchForm" class="d-flex">
+						<input class="form-control me-2" type="text" id="searchText"
+							placeholder="Search" aria-label="Search">
+						<button class="btn btn-danger" type="submit">Search</button>
+					</form>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+</body>
+</html>

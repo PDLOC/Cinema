@@ -41,9 +41,9 @@ public class Phim {
 	private String Hinh;
 	
 	@OneToOne
-	@JoinColumn(name = "PhongChieuMapc")
+	@JoinColumn(name = "Mapc")
 	private PhongChieu phongChieu;
 	@JsonIgnore
-	@OneToMany(mappedBy = "phim")
+	@OneToMany(mappedBy = "Malp")
 	private List<LoaiPhim> loaiPhim;
 }
