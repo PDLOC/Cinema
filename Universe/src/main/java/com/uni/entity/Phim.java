@@ -32,6 +32,7 @@ public class Phim {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer Maphim;
 	private String Tenphim;
+	private String Loaiphim;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date Suatchieu;
 	private String Daodien;
@@ -43,7 +44,4 @@ public class Phim {
 	@OneToOne
 	@JoinColumn(name = "Mapc")
 	private PhongChieu phongChieu;
-	@JsonIgnore
-	@OneToMany(mappedBy = "Malp")
-	private List<LoaiPhim> loaiPhim;
 }
