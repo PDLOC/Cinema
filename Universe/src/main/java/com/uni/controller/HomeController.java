@@ -18,7 +18,7 @@ public class HomeController {
 	
 	@RequestMapping("detail")
 	public String detail() {
-		
+		String test = "test";
 		return "home/detail/detail.html";
 	}
 	@RequestMapping("contact")
