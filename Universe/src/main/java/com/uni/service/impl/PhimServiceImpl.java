@@ -19,5 +19,13 @@ public class PhimServiceImpl implements PhimService {
 		// TODO Auto-generated method stub
 		return pDao.findAll();
 	}
+
+	@Override
+	public List<Film> findDistinctDuplicateTenPhim() {
+		// TODO Auto-generated method stub
+		return pDao.findDistinctDuplicateTenPhim();
+	}
+
+	
 	
 }

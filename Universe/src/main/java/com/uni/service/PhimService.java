@@ -11,4 +11,6 @@ public interface PhimService {
 
 	List<Film> findAll();
 
+	List<Film> findDistinctDuplicateTenPhim();
+	
 }
