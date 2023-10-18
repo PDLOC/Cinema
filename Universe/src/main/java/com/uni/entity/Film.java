@@ -1,5 +1,6 @@
 package com.uni.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -20,30 +21,32 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@SuppressWarnings("serial")
 @Data
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter @Setter
 @Table(name = "Phim")
-public class Phim {
+public class Film implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer Maphim;
-	private String Tenphim;
+	Integer Maphim;
+	String Tenphim;
+	String Loaiphim;
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date Suatchieu;
-	private String Daodien;
-	private String Dienvien;
-	private Integer Thoiluong;
-	private Integer Namsx;
-	private String Hinh;
+	Date Suatchieu;
+	String Daodien;
+	String Dienvien;
+	Integer Thoiluong;
+	Integer Namsx;
+	String Hinh;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "Mapc")
-	private PhongChieu phongChieu;
-	@JsonIgnore
-	@OneToMany(mappedBy = "Malp")
-	private List<LoaiPhim> loaiPhim;
+	Room room;
 }

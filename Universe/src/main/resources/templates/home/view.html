@@ -200,17 +200,16 @@
 						<div class="text-center text-warning mb-3"></div>
 						<div class="container" id="Movies">
 							<hr>
-							<div th:each="f:${items}">
-							<div class="poster">
+							<div th:each="f:${items}" class="poster">
 								<div class="flip-card_i">
 									<div class="flip-card-inner_i">
 										<div class="flip-card-front_i">
-											<img th:src="@{|/assets/Images/${f.hinh}|}" alt="Avatar"
+											<img th:src="@{|/assets/Images/${f.Hinh}|}" alt="Avatar"
 												style="width: 250px; height: 360px;">
 										</div>
 										<div class="flip-card-back_i">
-											<h1>Inception</h1>
-											<button class="btn_i b3_i" title="Year" style="color: white">2010</button>
+											<h5 th:utext=${f.Tenphim} class="mt-2"></h5>
+											<button th:utext=${f.Namsx} class="btn_i b3_i" title="Year" style="color: white"></button>
 											<button class="btn_i b2_i" title="Minutes"
 												style="color: white">
 												2h42m
@@ -256,7 +255,6 @@
 										<!-- <b>Inception</b><br>IMDb - 8.8 -->
 									</div>
 								</div>
-							</div>
 							</div>
 
 							

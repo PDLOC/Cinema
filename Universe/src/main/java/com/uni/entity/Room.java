@@ -1,30 +1,34 @@
 package com.uni.entity;
 
+import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@SuppressWarnings("serial")
 @Data
 @Entity
-@NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "LoaiPhim")
-public class LoaiPhim {
+@NoArgsConstructor
+@Table(name = "Phong")
+public class Room implements Serializable{
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer Malp;
-	private String loaiphim;
+	@GeneratedValue(strategy = GenerationType.IDENTITY )
+	Integer Mapc;
+	String Tenpc;
 	
-	@ManyToOne
-	@JoinColumn(name = "PhimMaphim")
-	private Phim phim;
+	@JsonIgnore
+	@OneToMany(mappedBy = "room")
+	List<Film> films;
 }
