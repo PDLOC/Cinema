@@ -15,8 +15,10 @@ import com.uni.service.PhongChieuService;
 @Controller
 @RequestMapping("home")
 public class PhimController {
+	
 	@Autowired
 	PhimService phimService;
+	
 	@Autowired
 	PhongChieuService pcService;
 	
