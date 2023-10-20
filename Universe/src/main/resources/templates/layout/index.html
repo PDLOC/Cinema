@@ -69,7 +69,6 @@
 <body ng-app="cinema-app" ng-controller="cinema-ctrl"
 	style="background-image: url(/assets/Images/back.jpg); background-size: cover;">
 	<div th:replace="/layout/menu.html"></div>
-	<div th:replace="/layout/banner.html"></div>
 	<article>
 		<div th:replace="${main}"></div>
 	</article>
@@ -132,6 +131,24 @@
           }
          })
 
+      </script>
+      
+      <script>
+      // Lấy tham chiếu đến các phần tử DOM
+         var btnOpen = document.getElementById("btnOpen");
+         var danhSachNut = document.getElementById("danhSachNut");
+
+         // Lắng nghe sự kiện click vào nút bấm
+         btnOpen.addEventListener("click", function() {
+           // Kiểm tra trạng thái hiển thị của dàn nút
+           if (danhSachNut.style.display === "none") {
+             // Nếu đang ẩn, hiển thị dàn nút
+             danhSachNut.style.display = "block";
+           } else {
+             // Nếu đang hiển thị, ẩn dàn nút
+             danhSachNut.style.display = "none";
+           }
+         });
       </script>
       <!-- bootsstrap JS -->
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
