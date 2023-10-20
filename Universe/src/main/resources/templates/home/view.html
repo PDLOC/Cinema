@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	th:replace="~{/layout/index :: dynamic(~{::main})}">
-<head>sdafjhsafkjdsahkjd
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="viewport" content="width=device-width">
@@ -249,11 +249,10 @@
 											</div>
 											<div class="flip-card-back_i">
 												<h5 th:utext=${f.Tenphim} class="mt-2"></h5>
-												<button th:utext=${f.Namsx} class="btn_i b3_i" title="Year"
-													style="color: white"></button>
+												<button th:utext=${f.Namsx} class="btn_i b3_i mt-3" title="Year"
+													style="color: white;width:100px"></button>
 												<button th:utext="${f.Thoiluong}+' phút'" class="btn_i b2_i"
-													title="Minutes" style="color: white"></button>
-												<button class="btn_i b1_i" title="IMDb" style="color: white">8.8</button>
+													title="Minutes" style="color: white;width:100px"></button>
 												<br /> <br />
 												<p class="para_i">Cobb steals information from his
 													targets by entering their dreams. Saito offers to wipe
@@ -263,28 +262,12 @@
 												<!--<form action="https://youtu.be/YoHD9XEInc0&t=17s"> -->
 
 												<button class="trailer_i" type="submit" value=""
-													onclick="openWin()">▶Trailer</button>
-												<script type="text/javascript">
-												function openWin() {
-													window
-															.open(
-																	"https://youtu.be/YoHD9XEInc0&t=17s",
-																	"_blank",
-																	"top=100,left=250,height=400,width=600,channelmode=yes,fullscreen=yes,menubar=no,toolbar=no,location=no,status=no,scrollbars=no,noopener=no");
-												}
-											</script>
+												>Chi Tiết</button>
+											
 												<!-- </form> -->
 												<br> <br>
-												<button class="btn_i b4_i" onclick="openMovieWin()">▶Play</button>
-												<script type="text/javascript">
-												function openMovieWin() {
-													window
-															.open(
-																	"https://youtu.be/wcS_awzEYuk",
-																	"_blank",
-																	"top=100,left=250,height=400,width=600,channelmode=yes,fullscreen=yes,menubar=no,toolbar=no,location=no,status=no,scrollbars=no,noopener=no");
-												}
-											</script>
+												<button class="btn_i b4_i">Đặt Vé</button>
+											
 											</div>
 										</div>
 										<div class="flim">
