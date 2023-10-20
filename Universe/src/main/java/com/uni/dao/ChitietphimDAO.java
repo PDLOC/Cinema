@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.uni.entity.Chitietphim;
 
-public interface ChitietphimDAO extends JpaRepository<Chitietphim, Integer> {
+public interface ChitietphimDAO extends JpaRepository<Chitietphim, String> {
 
 
 	
