@@ -38,6 +38,9 @@ public class Chitietphim implements Serializable{
 	String Mact;
 	String Loaiphim;
 	String Tenphim;
+	@Column(name = "Khoichieu")
+	@Temporal(TemporalType.DATE)
+	Date Khoichieu;
 	String Daodien;
 	String Dienvien;
 	String Noidung;
