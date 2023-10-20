@@ -4,13 +4,13 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.uni.entity.Film;
+import com.uni.entity.Phim;
 
 @Service
 public interface PhimService {
 
-	List<Film> findAll();
+	List<Phim> findAll();
 
-	List<Film> findDistinctDuplicateTenPhim();
-	
+	Phim findById(String maphim);
+
 }

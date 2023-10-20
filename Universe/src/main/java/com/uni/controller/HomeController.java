@@ -16,11 +16,6 @@ public class HomeController {
 		return "redirect:film";
 	}
 	
-	@RequestMapping("detail")
-	public String detail() {
-		String test = "test";
-		return "home/detail/detail.html";
-	}
 	@RequestMapping("contact")
 	public String contact() {
 		

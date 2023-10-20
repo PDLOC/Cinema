@@ -48,7 +48,7 @@ public class Chitietphim implements Serializable{
 	@JoinColumn(name = "Mapc")
 	Room room;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "Maphim")
-	Film film;
+	Phim film;
 }

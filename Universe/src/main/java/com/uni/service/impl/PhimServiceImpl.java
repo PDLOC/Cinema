@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uni.dao.PhimDAO;
-import com.uni.entity.Film;
+import com.uni.entity.Phim;
 import com.uni.service.PhimService;
 
 @Service
@@ -15,16 +15,17 @@ public class PhimServiceImpl implements PhimService {
 	PhimDAO pDao;
 
 	@Override
-	public List<Film> findAll() {
+	public List<Phim> findAll() {
 		// TODO Auto-generated method stub
 		return pDao.findAll();
 	}
 
 	@Override
-	public List<Film> findDistinctDuplicateTenPhim() {
+	public Phim findById(String maphim) {
 		// TODO Auto-generated method stub
-		return pDao.findDistinctDuplicateTenPhim();
+		return pDao.findById(maphim).get();
 	}
+
 
 	
 	

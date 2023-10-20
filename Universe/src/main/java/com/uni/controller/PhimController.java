@@ -8,7 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.uni.entity.Film;
+import com.uni.entity.Chitietphim;
+import com.uni.entity.Phim;
+import com.uni.service.ChitietphimService;
 import com.uni.service.PhimService;
 import com.uni.service.PhongChieuService;
 
@@ -20,18 +22,24 @@ public class PhimController {
 	PhimService phimService;
 	
 	@Autowired
+	ChitietphimService chitietphimService;
+	
+	@Autowired
 	PhongChieuService pcService;
 	
 	@RequestMapping("film")
 	public String phim(Model model) {
-		List<Film> listPhim = phimService.findAll();
+		List<Phim> listPhim = phimService.findAll();
 		model.addAttribute("items",listPhim);
 		return "home/view";
 	}
 	
-//	@RequestMapping("film/detail/${id}")
-//	public String detail(Model model, @PathVariable("id") Integer id) {
-//		
-//		return "home/detail/detail.html";
-//	}
+	@RequestMapping("film/detail/{maphim}")
+	public String detail(Model model, @PathVariable("maphim") String maphim) {
+		Phim p = phimService.findById(maphim);
+		Chitietphim ctp = chitietphimService.findById(maphim);
+		System.out.println(p);
+		model.addAttribute("item",p);
+		return "home/detail/detail";
+	}
 }

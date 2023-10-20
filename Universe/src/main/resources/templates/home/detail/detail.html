@@ -123,19 +123,20 @@
 <main>
 
 	<div class="container-fluid">
-		<div class="card-body mx-auto" style="width: 75%;">
+	
+		<div th:each="f:${item}" class="card-body mx-auto" style="width: 75%;">
 			<div class="row">
 				<div class="col-lg-6 col-md-6 col-sm-6 col-5">
 					<div class="pro-img-details text-center">
-						<img src="/assets/Images/3-iron.jpg" class="d-block w-100" width="100%"
+						<img th:src="@{|/assets/Images/${f.Hinh}|}" class="d-block w-100" width="100%"
 							alt="">
 					</div>
 				</div>
 				<div class="col-sm-6 col-6  shadow-sm rounded-3 ">
-                        <h4 class="mt-3">NHÂN DUYÊN TIỀN ĐÌNH (T13)</h4>
+                        <h4 class="mt-3"></h4>
 
                         <div class="ms-1 mb-2"><span class="fs-6 text-warning">Khởi chiếu : </span><span class="fs-6">Từ 12/09/2022</span></div>
-                        <div class="ms-1 mb-2"><span class="fs-6 text-warning">Thể loại : </span><span class="fs-6">Tình Cảm, Phim Hài</span></div>
+                        <div class="ms-1 mb-2"><span class="fs-6 text-warning">Thể loại : </span><span class="fs-6"></span></div>
                         <div class="ms-1 mb-2"><span class="fs-6 text-warning">Diễn viên : </span><span class="fs-6">Yoo Hae-jin, Kim Hee-seon, Cha In-pyo, Jin Seon-kyu, Han Seon-hwa, Lee Joon-hyuk, Yeom Hye-ran,...</span></div>
                         <div class="ms-1 mb-2"><span class="fs-6 text-warning">Đạo diễn : </span><span class="fs-6">Lee Han</span></div>
 
