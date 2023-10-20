@@ -6,170 +6,264 @@
 </head>
 <!------------------------Scroll to top button------------------------------------------------>
 <style>
-  .poster {
-    box-shadow: 0 0 15px red !important;
-  }
+.poster {
+	box-shadow: 0 0 15px red !important;
+}
 
-  .buddy {
-    cursor: pointer;
-  }
+.buddy {
+	cursor: pointer;
+}
 
- header {
+header {
 	position: fixed;
 	z-index: 100;
-  background-color: transparent;
-  transition: background-color 0.155s ease-in-out;
-  }
-  
-  header.scrolled{
-    opacity: 0.75;
-  }
+	background-color: transparent;
+	transition: background-color 0.155s ease-in-out;
+}
 
-  #scrollToTopButton {
-    position: fixed;
-    bottom: 40px;
-    right: 25px;
-    font-size: 25px;
-    z-index: 99;
-    width: 50px;
-    height: 50px;
-    background-color: red;
-    color: black;
-    border: none;
-    cursor: pointer;
-    outline: none;
-    padding: 6px;
-    border-radius: 50%;
-  }
+header.scrolled {
+	opacity: 0.75;
+}
 
-  #scrollToTopButton:hover,
-  i:hover {
-    background-color: white;
-    color: red;
-  }
+#scrollToTopButton {
+	position: fixed;
+	bottom: 40px;
+	right: 25px;
+	font-size: 25px;
+	z-index: 99;
+	width: 50px;
+	height: 50px;
+	background-color: red;
+	color: black;
+	border: none;
+	cursor: pointer;
+	outline: none;
+	padding: 6px;
+	border-radius: 50%;
+}
 
-  .navbar-nav {
-    display: flex;
-    align-items: center;
-    padding: 0px 7.5px;
-  }
+#scrollToTopButton:hover, i:hover {
+	background-color: white;
+	color: red;
+}
 
+.navbar-nav {
+	display: flex;
+	align-items: center;
+	padding: 0px 7.5px;
+}
 
+.maincontainer h3 {
+	color: white;
+	text-align: center;
+}
 
+.container {
+	text-align: center;
+}
 
-  .maincontainer h3 {
-    color: white;
-    text-align: center;
-  }
+#navbarNav.nav-item.nav-link a:hover {
+	color: red;
+}
 
-  .container {
-    text-align: center;
-  }
+.nav-link:hover {
+	color: red;
+}
 
-  #navbarNav.nav-item.nav-link a:hover {
-    color: red;
-  }
+.nav-item :hover {
+	margin-bottom: 10px;
+	/* background-color: aquamarine; */
+	border-bottom: 3px;
+	border-color: red;
+	border-bottom-style: solid;
+}
 
-  .nav-link:hover {
-    color: red;
-  }
+#header-nav .nav-link a:hover {
+	color: red;
+}
 
-  .nav-item :hover {
-    margin-bottom: 10px;
-    /* background-color: aquamarine; */
-    border-bottom: 3px;
-    border-color: red;
-    border-bottom-style: solid;
-  }
+.newsImg {
+	min-width: 200px;
+	min-height: 275px;
+	max-width: 200px;
+	max-height: 275px;
+	margin-left: 6px;
+}
 
-  #header-nav .nav-link a:hover {
-    color: red;
-  }
+.singleNewsComponent {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 
-  .newsImg{
-        min-width: 200px;
-        min-height: 275px;
-        max-width: 200px;
-        max-height: 275px;
-        margin-left: 6px;
-    }
-    .singleNewsComponent{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .desc{
-        margin: 8px;
-        font-size: 16px;
-    }
-    .descContainer {
-      padding: 10px;
-    }
-    .newsTitle{
-        color: white;
-    }
-    .carousel-inner {
-      cursor: pointer;  
-    }
+.desc {
+	margin: 8px;
+	font-size: 16px;
+}
 
+.descContainer {
+	padding: 10px;
+}
+
+.newsTitle {
+	color: white;
+}
+
+.carousel-inner {
+	cursor: pointer;
+}
 </style>
 <script>
-  setTimeout(function () {
-    $('.section').fadeToggle();
-  }, 1000);
-
+	setTimeout(function() {
+		$('.section').fadeToggle();
+	}, 1000);
 </script>
 <body>
-<main>
+	<main>
+		<div class="container-fluid">
+			<div class="card-body mx-auto" style="width: 100%;">
 
-	<div class="container-fluid">
-	
-		<div th:each="f:${item}" class="card-body mx-auto" style="width: 75%;">
-			<div class="row">
-				<div class="col-lg-6 col-md-6 col-sm-6 col-5">
-					<div class="pro-img-details text-center">
-						<img th:src="@{|/assets/Images/${f.Hinh}|}" class="d-block w-100" width="100%"
-							alt="">
+				<div th:each="f:${item}" class="card-body mx-auto"
+					style="width: 75%;">
+					<div class="row">
+						<div class="col-lg-5 col-md-6 col-sm-6 col-5">
+							<div class="pro-img-details text-center">
+								<img style="margin-left: 120px" th:src="@{|/assets/Images/${f.Hinh}|}"
+									class="d-block w-75" width="100%" height="520px">
+							</div>
+						</div>
+						<div th:each="f1:${f.ctPhims}"
+							class="col-sm-6 col-6  shadow-sm rounded-3 ">
+							<h4 class="mt-3"></h4>
+
+							<div class="ms-1 mb-2">
+								<span class="fs-6 text-warning">Khởi chiếu : </span><span
+									class="fs-6">Từ 12/09/2022</span>
+							</div>
+							<div class="ms-1 mb-2">
+								<span class="fs-6 text-warning">Thể loại : </span><span th:utext=${f1.Loaiphim}
+									class="fs-6"></span>
+							</div>
+							<div class="ms-1 mb-2">
+								<span class="fs-6 text-warning">Diễn viên : </span><span th:utext=${f1.Dienvien}
+									class="fs-6"></span>
+							</div>
+							<div class="ms-1 mb-2">
+								<span class="fs-6 text-warning">Đạo diễn : </span><span th:utext=${f1.Daodien}
+									class="fs-6"></span>
+							</div>
+
+							<div class="film-item-type">
+								<span class="icon-2d"></span><span class="icon-am3d"></span><span
+									class="icon-3d"></span>
+							</div>
+							<div class="ms-1 mb-2">
+								<span class="fs-6 text-warning">Nội dung : </span> <span
+									class="ms-1 mb-3 fs-6">Chuyện phim xoay quanh nhân vật
+									Chi-ho (Yoo Hae-jin) - nhà nghiên cứu bim bim với khả năng nếm
+									vị xuất chúng, nhưng lại ngờ nghệch với mọi thứ xung quanh.
+									Chi-ho là một người cực kỳ hướng nội, thích ở một mình và sống
+									như một cái máy được lập trình sẵn mà không hề mắc lỗi dù chỉ
+									một giây. Trong lúc phải đi trả nợ thay cho người anh trai cờ
+									bạc (Cha In-pyo), Chi-ho đã gặp gỡ “nhân viên đòi nợ” Il-young
+									- người phụ nữ hướng ngoại, luôn suy nghĩ tích cực về cuộc sống
+									dù đang ở trong hoàn cảnh khó khăn của một bà mẹ đơn thân. Khác
+									biệt về tính cách lẫn ngoại hình khiến cả hai trở thành “trái
+									dấu hút nhau”. Sự “trái dấu” này đã đẩy đưa cuộc tình của họ
+									đến vô vàn tình huống “cười ra nước mắt” nhưng cũng không kém
+									phần cảm xúc.</span>
+							</div>
+							<div class="ms-1 mb-3">
+								<span class="l-comment"></span><span class="l-comment"></span><span
+									class="l-comment"></span><span class="l-comment"></span><span
+									class="l-comment"></span>
+							</div>
+							<div class="d-flex justify-content-center">
+								<button id="btnOpen"
+									class="btn btn-md btn-danger btn-rounded mr-1 mx-auto mt-3"
+									style="width: 45%;" data-toggle="tooltip" title=""
+									data-original-title="Add to cart">
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+										fill="currentColor" class="bi bi-ticket-perforated me-1"
+										viewBox="0 0 16 16">
+                            <path
+											d="M4 4.85v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Z" />
+                            <path
+											d="M1.5 3A1.5 1.5 0 0 0 0 4.5V6a.5.5 0 0 0 .5.5 1.5 1.5 0 1 1 0 3 .5.5 0 0 0-.5.5v1.5A1.5 1.5 0 0 0 1.5 13h13a1.5 1.5 0 0 0 1.5-1.5V10a.5.5 0 0 0-.5-.5 1.5 1.5 0 0 1 0-3A.5.5 0 0 0 16 6V4.5A1.5 1.5 0 0 0 14.5 3h-13ZM1 4.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v1.05a2.5 2.5 0 0 0 0 4.9v1.05a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-1.05a2.5 2.5 0 0 0 0-4.9V4.5Z" />
+                          </svg>
+									Đặt Vé
+								</button>
+								<button
+									class="btn btn-md btn-danger btn-rounded mr-1 mx-auto mt-3"
+									style="width: 45%;" data-toggle="tooltip" title=""
+									data-original-title="Add to cart">
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+										fill="currentColor" class="bi bi-youtube me-1"
+										viewBox="0 0 16 16">
+                            <path
+											d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z" />
+                          </svg>
+									Trailer
+								</button>
+							</div>
+
+						</div>
+						<div class="container mt-3" style="width: 60%">
+							<div id="danhSachNut" style="display: none;"
+								class="mx-auto m-2 mt-3">
+								<div class=" mb-3 text-warning">
+									<p style="font-size: 14px">Lưu ý: Khán giả dưới 13 tuổi chỉ
+										chọn suất chiếu kết thúc trước 22h và Khán giả dưới 16 tuổi
+										chỉ chọn suất chiếu kết thúc trước 23h.</p>
+								</div>
+								<div class="cus-sty" style="margin-left: 30px;">
+									<a href="./seat" type="button" class="btn btn-outline-danger me-1 mb-2 text-white"
+								        style="border-radius: 12px; width: 120px; height: 50px; font-size: 18px;">
+								        <p style="margin-top: 5px;">12:15</p>
+								    </a>
+								    <a href="./seat" type="button" class="btn btn-outline-danger me-1 mb-2 text-white"
+								        style="border-radius: 12px; width: 120px; height: 50px; font-size: 18px;">
+								        <p style="margin-top: 5px;">12:15</p>
+								    </a>
+								    <a href="./seat" type="button" class="btn btn-outline-danger me-1 mb-2 text-white"
+								        style="border-radius: 12px; width: 120px; height: 50px; font-size: 18px;">
+								        <p style="margin-top: 5px;">12:15</p>
+								    </a>
+								    <a href="./seat" type="button" class="btn btn-outline-danger me-1 mb-2 text-white"
+								        style="border-radius: 12px; width: 120px; height: 50px; font-size: 18px;">
+								        <p style="margin-top: 5px;">12:15</p>
+								    </a>
+								    <a href="./seat" type="button" class="btn btn-outline-danger me-1 mb-2 text-white"
+								        style="border-radius: 12px; width: 120px; height: 50px; font-size: 18px;">
+								        <p style="margin-top: 5px;">12:15</p>
+								    </a>
+								    <a href="./seat" type="button" class="btn btn-outline-danger me-1 mb-2 text-white"
+								        style="border-radius: 12px; width: 120px; height: 50px; font-size: 18px;">
+								        <p style="margin-top: 5px;">12:15</p>
+								    </a>
+								    <a href="./seat" type="button" class="btn btn-outline-danger me-1 mb-2 text-white"
+								        style="border-radius: 12px; width: 120px; height: 50px; font-size: 18px;">
+								        <p style="margin-top: 5px;">12:15</p>
+								    </a>
+								    <a href="./seat" type="button" class="btn btn-outline-danger me-1 mb-2 text-white"
+								        style="border-radius: 12px; width: 120px; height: 50px; font-size: 18px;">
+								        <p style="margin-top: 5px;">12:15</p>
+								    </a>
+								    <a href="./seat" type="button" class="btn btn-outline-danger me-1 mb-2 text-white"
+								        style="border-radius: 12px; width: 120px; height: 50px; font-size: 18px;">
+								        <p style="margin-top: 5px;">12:15</p>
+								    </a>
+								    <a href="./seat" type="button" class="btn btn-outline-danger me-1 mb-2 text-white"
+								        style="border-radius: 12px; width: 120px; height: 50px; font-size: 18px;">
+								        <p style="margin-top: 5px;">12:15</p>
+								    </a>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
-				<div class="col-sm-6 col-6  shadow-sm rounded-3 ">
-                        <h4 class="mt-3"></h4>
-
-                        <div class="ms-1 mb-2"><span class="fs-6 text-warning">Khởi chiếu : </span><span class="fs-6">Từ 12/09/2022</span></div>
-                        <div class="ms-1 mb-2"><span class="fs-6 text-warning">Thể loại : </span><span class="fs-6"></span></div>
-                        <div class="ms-1 mb-2"><span class="fs-6 text-warning">Diễn viên : </span><span class="fs-6">Yoo Hae-jin, Kim Hee-seon, Cha In-pyo, Jin Seon-kyu, Han Seon-hwa, Lee Joon-hyuk, Yeom Hye-ran,...</span></div>
-                        <div class="ms-1 mb-2"><span class="fs-6 text-warning">Đạo diễn : </span><span class="fs-6">Lee Han</span></div>
-
-                        <div class="film-item-type">
-                            <span class="icon-2d"></span><span class="icon-am3d"></span><span class="icon-3d"></span>
-                        </div>
-                        <div class="ms-1 mb-2"><span class="fs-6 text-warning">Nội dung : </span>
-                        <span class="ms-1 mb-3 fs-6">Chuyện phim xoay quanh nhân vật Chi-ho (Yoo Hae-jin) - nhà nghiên cứu bim bim với khả năng nếm vị xuất chúng, nhưng lại ngờ nghệch với mọi thứ xung quanh.
-                             Chi-ho là một người cực kỳ hướng nội, thích ở một mình và sống như một cái máy được lập trình sẵn mà không hề mắc 
-                             lỗi dù chỉ một giây. Trong lúc phải đi trả nợ thay cho người anh trai cờ bạc (Cha In-pyo), Chi-ho đã gặp gỡ “nhân viên đòi nợ”
-                              Il-young - người phụ nữ hướng ngoại, luôn suy nghĩ tích cực về cuộc sống dù đang ở trong hoàn cảnh khó khăn của một bà mẹ đơn thân. 
-                              Khác biệt về tính cách lẫn ngoại hình khiến cả hai trở thành “trái dấu hút nhau”. Sự “trái dấu” này đã đẩy đưa cuộc tình của họ đến
-                             vô vàn tình huống “cười ra nước mắt” nhưng cũng không kém phần cảm xúc.</span></div>
-                        <div class="ms-1 mb-3">
-                            <span class="l-comment"></span><span class="l-comment"></span><span class="l-comment"></span><span class="l-comment"></span><span class="l-comment"></span>                                </div>
-                  <div class="d-flex justify-content-center">
-					<button class="btn btn-md btn-danger btn-rounded mr-1 mx-auto mt-3" style="width: 45%;"
-						data-toggle="tooltip" title="" data-original-title="Add to cart">
-						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-ticket-perforated me-1" viewBox="0 0 16 16">
-                            <path d="M4 4.85v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Z"/>
-                            <path d="M1.5 3A1.5 1.5 0 0 0 0 4.5V6a.5.5 0 0 0 .5.5 1.5 1.5 0 1 1 0 3 .5.5 0 0 0-.5.5v1.5A1.5 1.5 0 0 0 1.5 13h13a1.5 1.5 0 0 0 1.5-1.5V10a.5.5 0 0 0-.5-.5 1.5 1.5 0 0 1 0-3A.5.5 0 0 0 16 6V4.5A1.5 1.5 0 0 0 14.5 3h-13ZM1 4.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v1.05a2.5 2.5 0 0 0 0 4.9v1.05a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-1.05a2.5 2.5 0 0 0 0-4.9V4.5Z"/>
-                          </svg>Đặt Vé</button>
-                        <button class="btn btn-md btn-danger btn-rounded mr-1 mx-auto mt-3" style="width: 45%;"
-						data-toggle="tooltip" title="" data-original-title="Add to cart">
-						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-youtube me-1" viewBox="0 0 16 16">
-                            <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/>
-                          </svg>Trailer</button>
-				</div>
-                </div>
 			</div>
-		</div>  
-	</div>
-
-      </main>
+		</div>
+	</main>
 </body>
 </html>

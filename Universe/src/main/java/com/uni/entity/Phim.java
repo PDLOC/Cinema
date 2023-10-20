@@ -19,6 +19,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @SuppressWarnings("serial")
 @Data
@@ -35,6 +36,7 @@ public class Phim implements Serializable {
 	Integer Namsx;
 	String Hinh;
 	
+	@ToString.Exclude
 	@JsonIgnore
 	@OneToMany(mappedBy = "film")
 	List<Chitietphim> ctPhims;

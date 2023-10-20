@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+<link rel="stylesheet" href="/assets/css/headcss.css">
 </head>
 <body>
 	<header style="width: 100%;">
 		<nav class="navbar navbar-expand-lg navbar-light bg-dark"
 			id="header-nav">
 			<div class="container-fluid">
-				<a class="navbar-brand" th:href="@{|/home/index|}"><img class="logo"
+			<div class="container-fluid" style="height:80px;">
+				<a class="navbar-brand" th:href="@{|/home/film|}"><img class="logo"
 					src="/assets/Images/2.png" alt="" width="30" height="24"></a>
 				<button id="nav" class="navbar-toggler"
 					style="background-color: #8b0000" type="button"
@@ -26,34 +28,30 @@
 							onMouseOut="this.style.color='white'">Trang Chủ</a></li>
 						<li class="nav-item"><a class="nav-link " href="movies.html"
 							onMouseOver="this.style.color='red'"
-							onMouseOut="this.style.color='white'">Phim</a></li>
+							onMouseOut="this.style.color='white'">Lịch Chiếu</a></li>
 						<li class="nav-item"><a class="nav-link "
 							href="web-series.html" onMouseOver="this.style.color='red'"
-							onMouseOut="this.style.color='white'">Lịch Chiếu</a></li>
+							onMouseOut="this.style.color='white'">Khuyến Mại</a></li>
 						<li class="nav-item"><a class="nav-link" href="tv.html"
 							onMouseOver="this.style.color='red'"
-							onMouseOut="this.style.color='white'">Rạp Và Giá</a></li>
+							onMouseOut="this.style.color='white'">Giá Vé</a></li>
 						<li class="nav-item"><a class="nav-link" href="kids.html"
 							onMouseOver="this.style.color='red'"
-							onMouseOut="this.style.color='white'">Khuyến Mãi</a></li>
+							onMouseOut="this.style.color='white'">Liên Hoan Phim</a></li>
+						<li class="nav-item"><a class="nav-link" href="kids.html"
+							onMouseOver="this.style.color='red'"
+							onMouseOut="this.style.color='white'">Giới Thiệu</a></li>	
 						<li class="nav-item"><a class="nav-link"
 							href="contactus.html" onMouseOver="this.style.color='red'"
 							onMouseOut="this.style.color='white'">Liên Hệ</a></li>
-						<div
-							style="position: relative; display: inline-block; padding-top: 5px; padding-left: 15px;">
-							<li>
-								<button type="button" class="btn btn-light" onclick="logout()"
-									onMouseOver="this.style.color='red'"
-									onMouseOut="this.style.color='white'">Đăng Nhập / Đăng
-									Kí</button>
-							</li>
-						</div>
 					</ul>
-					<form id="searchForm" class="d-flex">
-						<input class="form-control me-2" type="text" id="searchText"
-							placeholder="Search" aria-label="Search">
-						<button class="btn btn-danger" type="submit">Search</button>
-					</form>
+							<div
+							style="position: relative; display: inline-block; padding-right: 15px;">
+							<div class="row">
+		       				<a href="" class="button instagram me-1" style="text-decoration:none;"><span class="gradient"></span><p>Đăng Kí</p></a>
+							<a href="#" class="button instagram" style="text-decoration:none;"><span class="gradient"></span><p>Đăng Nhập</p></a>
+							</div>			
+						</div>					
 				</div>
 			</div>
 		</nav>

@@ -30,5 +30,5 @@ public class Room implements Serializable{
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "room")
-	List<Chitietphim> chitietphims;
+	List<Chitietphim> ctphim;
 }

@@ -12,11 +12,8 @@ public class ChitietphimServiceImpl implements ChitietphimService {
 
 	@Autowired
 	ChitietphimDAO ctDAO;
+
+
 	
-	@Override
-	public Chitietphim findById(String maphim) {
-		// TODO Auto-generated method stub
-		return ctDAO.findByMaphim(maphim);
-	}
 
 }

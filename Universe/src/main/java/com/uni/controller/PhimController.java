@@ -37,7 +37,6 @@ public class PhimController {
 	@RequestMapping("film/detail/{maphim}")
 	public String detail(Model model, @PathVariable("maphim") String maphim) {
 		Phim p = phimService.findById(maphim);
-		Chitietphim ctp = chitietphimService.findById(maphim);
 		System.out.println(p);
 		model.addAttribute("item",p);
 		return "home/detail/detail";

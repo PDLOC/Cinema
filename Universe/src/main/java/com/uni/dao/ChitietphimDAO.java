@@ -7,8 +7,7 @@ import com.uni.entity.Chitietphim;
 
 public interface ChitietphimDAO extends JpaRepository<Chitietphim, Integer> {
 
+
 	
-	@Query("SELECT ct FROM Chitietphim ct WHERE ct.film like ?1")
-	Chitietphim findByMaphim(String maphim);
 
 }
