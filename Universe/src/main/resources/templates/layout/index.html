@@ -30,7 +30,8 @@
 <link rel="stylesheet" href="/assets/statics/bootstrap.min.css">
 <link rel="stylesheet" href="/assets/statics/style-min.css">
 <link rel="stylesheet" href="/assets/css/cards.css">
-
+<link rel="stylesheet" href="/assets/css/ghe.css">
+<link rel="stylesheet" href="/assets/css/login.css">
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 	crossorigin="anonymous"></script>
@@ -44,7 +45,7 @@
 	crossorigin="anonymous"></script>
 </head>
 <style>
-	#scrollToTopButton {
+#scrollToTopButton {
 	position: fixed;
 	bottom: 40px;
 	right: 25px;
@@ -74,12 +75,12 @@
 	</article>
 
 	<div th:replace="/layout/footer.html"></div>
-	
+
 	<!----------------------scroll back to top button-->
-      <button id="scrollToTopButton" title="Go to top">
-        <i class="fa fa-angle-double-up" aria-hidden="true"></i>
-      </button>
-      <script>
+	<button id="scrollToTopButton" title="Go to top">
+		<i class="fa fa-angle-double-up" aria-hidden="true"></i>
+	</button>
+	<script>
         $(document).ready(function () {
           var scrollTopButton = document.getElementById("scrollToTopButton");
           window.onscroll = function () { scrollFunction() };
@@ -98,30 +99,33 @@
         });
       </script>
 
-      <!-- footer scripts -->
+	<!-- footer scripts -->
 
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-      <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-      <script src="https://daniellaharel.com/raindrops/js/raindrops.js"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-      <script src="/assets/js/main-min.js"></script>
-
-      <script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script src="https://daniellaharel.com/raindrops/js/raindrops.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="/assets/js/main-min.js"></script>
+ 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	
+	<script>
         jQuery('#waterdrop').raindrops({
           color: '#292c2f',
           canvasHeight: 150,
           density: 0.1,
           frequency: 20
         });
-      </script>
-      <script>
+    </script>
+	<script>
         function logout() {
           window.location.replace("login.html");
         }
-      </script>
+    </script>
 
-      <script>
+	<script>
          document.addEventListener('scroll',()=>{
           const header = document.querySelector('header');
           if(window.scrollY > 0){
@@ -130,10 +134,9 @@
             header.classList.remove('scrolled');
           }
          })
+    </script>
 
-      </script>
-      
-      <script>
+	<script>
       // Lấy tham chiếu đến các phần tử DOM
          var btnOpen = document.getElementById("btnOpen");
          var danhSachNut = document.getElementById("danhSachNut");
@@ -149,12 +152,301 @@
              danhSachNut.style.display = "none";
            }
          });
-      </script>
-      <!-- bootsstrap JS -->
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
-        crossorigin="anonymous"></script>
-      <script src="/assets/static/script.js"></script>
+    </script>
+
+
 	
+
+	<!-- Show password -->
+	<script>
+    $(".toggle-password").click(function() {
+     $(this).toggleClass("fa-eye fa-eye-slash");
+     if ($("#pass_signup").attr("type") == "password") {
+      $("#pass_signup").attr("type", "text");
+     } else {
+       $("#pass_signup").attr("type", "password");
+     }
+    });
+    </script>
+    
+    <!-- Đăng nhập bằng tài khoản GOOGLE -->
+	<script>
+      function onSignIn(googleUser) {
+            document.location.href = 'https://qazimaazarshad.github.io/Movie-Streaming-Website/home.html'
+    }
+    </script>
+
+
+	<!-- Ghế -->
+	<script>
+    let combo = 0;
+
+    const film = document.getElementById('name-Film')
+
+    var countSeat = [];
+
+    // Lấy danh sách các ghế
+    const seats = document.querySelectorAll('.seat');
+
+    // Số lượng ghế đã chọn
+    let selectedSeats = [];
+    let selectedVipSeats = [];
+    let selectedRegularSeats = [];
+    let selectedCoupleSeats = [];
+    // Giá vé
+    const regularSeatPrice = 10;
+    const vipSeatPrice = 100;
+    const coupleSeatPrice = 500;
+
+    // Cập nhật số ghế đã chọn và tổng giá vé
+    function updateSelectedSeats() {
+    	
+        const selected = document.querySelectorAll('.seat.selected');
+        // selectedSeats = Array.from(selected).map(seat => Array.from(seats).indexOf(seat) + 1);
+        selectedSeats = Array.from(selected).map(seat => seat.getAttribute('data-name'));
+        selectedVipSeats = Array.from(selected).filter(seat => seat.getAttribute('data-vip') === 'true');
+        selectedRegularSeats = Array.from(selected).filter(seat => seat.getAttribute('data-vip') !== 'true' && seat.getAttribute('data-couple') !== 'true');
+        selectedCoupleSeats = Array.from(selected).filter(seat => seat.getAttribute('data-couple') === 'true');
+        const selectedSeatsCount = selectedSeats.length;
+        const selectedVipSeatsCount = selectedVipSeats.length;
+        const selectedRegularSeatsCount = selectedRegularSeats.length;
+        const selectedCoupleSeatsCount = selectedCoupleSeats.length;
+        console.log(selectedSeats.length)
+        //const totalPrice = selectedSeatsCount * seatPrice;
+        //const totalPrice = (selectedVipSeatsCount * vipSeatPrice) + (selectedRegularSeatsCount * regularSeatPrice);
+        const totalPrice = (selectedVipSeatsCount * vipSeatPrice) + (selectedRegularSeatsCount * regularSeatPrice) + (selectedCoupleSeatsCount * coupleSeatPrice);
+        document.getElementById('selected-seats').textContent = `${selectedSeats.join(', ')}`;
+        document.getElementById('total-price').textContent = `$${totalPrice + combo}`;
+        document.getElementById('combo').textContent = `$${combo}`
+        film.textContent = `$${totalPrice}`;
+
+        document.getElementById("toTalPay").textContent = `$${totalPrice + combo}`;
+        document.getElementById("toTalPay2").textContent = `$${totalPrice + combo}`;
+        document.getElementById("Pay").textContent = `$${totalPrice + combo}`;
+    }
+
+
+    let selectedSeatType = null;
+
+    function selectSeat() {
+        const isVip = this.getAttribute('data-vip') === 'true';
+        const isCouple = this.getAttribute('data-couple') === 'true';
+
+        // Kiểm tra xem có ghế vip hoặc ghế đôi đã được chọn hay chưa
+        const isVipSeatSelected = selectedVipSeats.length > 0;
+        const isCoupleSeatSelected = selectedCoupleSeats.length > 0;
+
+        // Nếu người dùng chọn ghế vip
+        if (isVip) {
+            if (selectedSeatType && selectedSeatType !== 'vip') {
+                alert("Chỉ chọn một loại ghế");
+                return;
+            }
+
+            // Bỏ chọn tất cả các ghế đôi nếu có
+            if (isCoupleSeatSelected) {
+                selectedCoupleSeats.forEach(seat => seat.classList.remove('selected'));
+                selectedCoupleSeats = [];
+            }
+
+            // Bỏ chọn tất cả các ghế thường nếu có
+            if (selectedRegularSeats.length > 0) {
+                selectedRegularSeats.forEach(seat => seat.classList.remove('selected'));
+                selectedRegularSeats = [];
+            }
+
+            // Thực hiện chọn ghế vip
+            this.classList.toggle('selected');
+            selectedSeatType = 'vip';
+            updateSelectedSeats();
+            return;
+        }
+
+        // Nếu người dùng chọn ghế đôi
+        if (isCouple) {
+            if (selectedSeatType && selectedSeatType !== 'couple') {
+                alert("Chỉ chọn một loại ghế");
+                return;
+            }
+
+            // Bỏ chọn tất cả các ghế vip nếu có
+            if (isVipSeatSelected) {
+                selectedVipSeats.forEach(seat => seat.classList.remove('selected'));
+                selectedVipSeats = [];
+            }
+
+            // Bỏ chọn tất cả các ghế thường nếu có
+            if (selectedRegularSeats.length > 0) {
+                selectedRegularSeats.forEach(seat => seat.classList.remove('selected'));
+                selectedRegularSeats = [];
+            }
+
+            // Thực hiện chọn ghế đôi
+            this.classList.toggle('selected');
+            selectedSeatType = 'couple';
+            updateSelectedSeats();
+            return;
+        }
+
+        // Nếu người dùng chọn ghế thường
+        if (isVipSeatSelected || isCoupleSeatSelected) {
+            alert("Chỉ chọn một loại ghế");
+            return;
+        }
+
+        // Thực hiện chọn ghế thường
+        this.classList.toggle('selected');
+        selectedSeatType = null;
+        updateSelectedSeats();
+
+        // console.log(selectedSeatType)
+        // if (selectedSeatType == null) {
+        //     if () {
+
+        //     }
+        //     alert("Chỉ chọn một loại ghế");
+        //     return;
+        // }
+    }
+
+    // Đăng ký sự kiện cho từng ghế
+    seats.forEach(seat => {
+        seat.addEventListener('click', selectSeat);
+    });
+
+
+    // Xử lý sự kiện khi người dùng nhấn nút Book
+    // document.getElementById('book-btn').addEventListener('click', () => {
+    //     alert(`Booked seats: ${selectedSeats.join(', ')}`);
+    // });
+
+    function updateSelectedSeatsVip() {
+        // Gán giá tiền cho từng loại ghế
+        seats.forEach(seat => {
+            const isVip = seat.getAttribute('data-vip') === "true";
+            const isCouple = seat.getAttribute('data-couple') === 'true';
+            let seatPrice;
+            if (isVip) {
+                seatPrice = vipSeatPrice;
+            } else if (isCouple) {
+                seatPrice = coupleSeatPrice;
+            } else {
+                seatPrice = regularSeatPrice;
+            }
+            // Áp dụng giá tiền vào ghế
+            seat.setAttribute('data-price', seatPrice);
+        });
+    }
+
+
+
+    // chuyển hướng khi đặt xong ghế
+    document.getElementById("displaySeat").style.display = "block";
+    document.getElementById("displayFood").style.display = "none";
+    document.getElementById("displayPay").style.display = "none";
+
+    var nextButton = document.getElementById("nextButton");
+    var prevButton = document.getElementById("prevButton");
+    var countPage = 0;
+    nextButton.addEventListener("click", function () {
+    	console.log("hello")
+        if (selectedSeats.length > 0) {
+            document.getElementById("displaySeat").style.display = "none";
+            document.getElementById("displayFood").style.display = "block";
+            countPage++;
+        } else {
+            alert("bạn chưa chọn bất kỳ ghế nào vui lòng chọn ghế")
+        }
+        if (countPage > 1) {
+            document.getElementById("displaySeat").style.display = "none";
+            document.getElementById("displayFood").style.display = "none";
+            document.getElementById("displayPay").style.display = "block";
+        }
+    });
+
+    prevButton.addEventListener("click", function () {
+        if (countPage == 1) {
+            document.getElementById("displaySeat").style.display = "block"
+            document.getElementById("displayFood").style.display = "none"
+            document.getElementById("displayPay").style.display = "none";
+            countPage = 0;
+        } else if (countPage > 1) {
+            document.getElementById("displaySeat").style.display = "none"
+            document.getElementById("displayFood").style.display = "block"
+            document.getElementById("displayPay").style.display = "none";
+            countPage = 1;
+        }
+    })
+
+
+    // thao tác đặt food
+    document.addEventListener('DOMContentLoaded', function () {
+        const decreaseQuantityButtons = document.querySelectorAll('.decrease-quantity');
+        const increaseQuantityButtons = document.querySelectorAll('.increase-quantity');
+        const quantityInputs = document.querySelectorAll('.quantity');
+        const cartItems = document.getElementById('cartItems');
+        const totalAmount = document.getElementById('totalAmount');
+        let totalPrice = 0;
+
+        // Xử lý khi người dùng giảm số lượng
+        decreaseQuantityButtons.forEach(function (button, index) {
+            button.addEventListener('click', function () {
+                if (quantityInputs[index].value > 0) {
+                    quantityInputs[index].value--;
+                    updateCart(index);
+                }
+            });
+        });
+
+        // Xử lý khi người dùng tăng số lượng
+        increaseQuantityButtons.forEach(function (button, index) {
+            button.addEventListener('click', function () {
+                quantityInputs[index].value++;
+                updateCart(index);
+            });
+        });
+
+        // Cập nhật giỏ hàng và tổng cộng
+        function updateCart(index) {
+            const quantity = parseInt(quantityInputs[index].value);
+            const priceElement = document.querySelectorAll('.price')[index];
+            const price = parseFloat(priceElement.innerText.split(':')[1].trim().slice(1));
+            const itemName = document.querySelectorAll('h5')[index].innerText;
+
+            // Xóa sản phẩm nếu đã tồn tại trong giỏ hàng
+            const existingItem = document.getElementById(`cartItem-${index}`);
+            if (existingItem) {
+                totalPrice -= parseFloat(existingItem.dataset.price);
+                existingItem.remove();
+            }
+
+            // Tạo một mục mới trong giỏ hàng
+            const cartItem = document.createElement('li');
+            cartItem.setAttribute('id', `cartItem-${index}`);
+            cartItem.setAttribute('data-price', (price * quantity).toFixed(2));
+            cartItem.innerText = `${itemName} x ${quantity} - $${(price * quantity).toFixed(2)}`;
+            cartItems.appendChild(cartItem);
+            cartItems.style.display = "none"
+
+            // Cập nhật tổng cộng
+            totalPrice += price * quantity;
+            combo = totalPrice;
+            // totalAmount.innerText = totalPrice.toFixed(2);
+            updateSelectedSeats()
+        }
+
+        // Xử lý khi người dùng nhấp vào nút Thanh toán
+        // document.querySelector('.checkout').addEventListener('click', function () {
+        //     // Thực hiện quá trình thanh toán, ví dụ: chuyển đến trang thanh toán, lưu thông tin đơn hàng, vv.
+        //     console.log('Thực hiện thanh toán');
+        // });
+    });
+	</script>
+	<!-- bootsstrap JS -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+		crossorigin="anonymous"></script>
+	<script src="/assets/statics/script.js"></script>
 </body>
 </html>

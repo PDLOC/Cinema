@@ -133,7 +133,7 @@ header.scrolled {
 									width="100%" height="520px">
 							</div>
 						</div>
-						
+
 						<div th:each="f1:${f.ctPhims}" class="col-sm-6 col-6  ">
 
 
@@ -142,19 +142,19 @@ header.scrolled {
 
 								<div class="ms-1 mb-2">
 									<span class="fs-6 text-warning">Khởi chiếu : </span><span
-										class="fs-6" th:utext="${f1.Khoichieu}"></span>
+										class="fs-6 text-white" th:utext="${f1.Khoichieu}"></span>
 								</div>
 								<div class="ms-1 mb-2">
 									<span class="fs-6 text-warning">Thể loại : </span><span
-										th:utext=${f1.Loaiphim} class="fs-6"></span>
+										th:utext=${f1.Loaiphim} class="fs-6 text-white"></span>
 								</div>
 								<div class="ms-1 mb-2">
 									<span class="fs-6 text-warning">Diễn viên : </span><span
-										th:utext=${f1.Dienvien} class="fs-6"></span>
+										th:utext=${f1.Dienvien} class="fs-6 text-white"></span>
 								</div>
 								<div class="ms-1 mb-2">
 									<span class="fs-6 text-warning">Đạo diễn : </span><span
-										th:utext=${f1.Daodien} class="fs-6"></span>
+										th:utext=${f1.Daodien} class="fs-6 text-white" ></span>
 								</div>
 
 								<div class="film-item-type">
@@ -163,7 +163,7 @@ header.scrolled {
 								</div>
 								<div class="ms-1 mb-2">
 									<span class="fs-6 text-warning">Nội dung : </span> <span
-										class="ms-1 mb-3 fs-6" th:utext="${f1.Noidung}"></span>
+										class="ms-1 mb-3 fs-6 text-white" th:utext="${f1.Noidung}"></span>
 								</div>
 								<div class="ms-1 mb-3">
 									<span class="l-comment"></span><span class="l-comment"></span><span
@@ -199,8 +199,14 @@ header.scrolled {
 									</button>
 								</div>
 							</div>
-							<br><br><br><br><br><br>
-							<div class="container mt-3 " style="width: 1000px;margin-left:-350px">
+							<br>
+							<br>
+							<br>
+							<br>
+							<br>
+							<br>
+							<div class="container mt-3 "
+								style="width: 1000px; margin-left: -350px">
 								<div id="danhSachNut" style="display: none;"
 									class="mx-auto m-2 mt-3">
 									<div class=" mb-3 text-warning">
@@ -208,14 +214,16 @@ header.scrolled {
 											chỉ chọn suất chiếu kết thúc trước 22h và Khán giả dưới 16
 											tuổi chỉ chọn suất chiếu kết thúc trước 23h.</p>
 									</div>
-									<div class="sitai" style="display:flex">
-									<div th:each="f2:${f1.listlich}" class="cus-sty "
-										style="margin-left:30px;">
-										<a href="./seat" type="button"
-											class="btn btn-outline-danger mb-2 text-white"
-											style="border-radius: 12px; width: 120px; height: 50px; font-size: 18px;">
-											<p style="margin-top: 5px;margin-left:1px;" th:utext="${f2.Giobatdau}"></p>
-										</a>
+									<div class="sitai" style="display: flex">
+										<div th:each="f2:${f1.listlich}" class="cus-sty "
+											style="margin-left: 30px;">
+											<a th:href="@{|/home/booking/ticket|}" type="button"
+												class="btn btn-outline-danger mb-2 text-white"
+												style="border-radius: 12px; width: 120px; height: 50px; font-size: 18px;">
+												<p style="margin-top: 5px; margin-left: 1px;"
+													th:utext="${f2.getFormattedGiobatdau}"></p>
+											</a>
+										</div>
 									</div>
 								</div>
 							</div>

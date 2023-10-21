@@ -1,6 +1,7 @@
 package com.uni.entity;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -43,4 +44,10 @@ public class Lich implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "Mact")
 	Chitietphim ctphims;
+
+	public String getFormattedGiobatdau() {
+        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
+        return formatter.format(Giobatdau);
+    }
+
 }

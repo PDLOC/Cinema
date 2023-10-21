@@ -1,1272 +1,673 @@
 <!DOCTYPE html>
-<html>
-
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/index :: dynamic(~{::main})}">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="viewport" content="width=device-width">
-  <title>Universe</title>
-  <link rel="shortcut icon" href="/assets/Images/2.png " type="image/x-icon">
-
-  <!-- Font  -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
-
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-  <link href="/assets/statics/style.css" rel="stylesheet" type="text/css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-    integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-  <link rel="stylesheet" href="/assets/statics/bootstrap.min.css">
-  <link rel="stylesheet" href="/assets/statics/style-min.css">
-  <link rel="stylesheet" href="/assets/css/cards.css">
-  <link rel="stylesheet" href="/assets/css/ghe.css">
-
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width">
 </head>
-
-
-<!------------------------Scroll to top button------------------------------------------------>
-<style>
-  .poster {
-    box-shadow: 0 0 15px red !important;
-
-  }
-
-  .buddy {
-    cursor: pointer;
-  }
-
- header {
-	position: fixed;
-	z-index: 100;
-  background-color: transparent;
-  transition: background-color 0.155s ease-in-out;
-  }
-  
-  header.scrolled{
-    opacity: 0.75;
-  }
-
-  #scrollToTopButton {
-    position: fixed;
-    bottom: 40px;
-    right: 25px;
-    font-size: 25px;
-    z-index: 99;
-    width: 50px;
-    height: 50px;
-    background-color: red;
-    color: black;
-    border: none;
-    cursor: pointer;
-    outline: none;
-    padding: 6px;
-    border-radius: 50%;
-  }
-
-  #scrollToTopButton:hover,
-  i:hover {
-    background-color: white;
-    color: red;
-  }
-
-  .navbar-nav {
-    display: flex;
-    align-items: center;
-    padding: 0px 7.5px;
-  }
-
-
-
-
-  .maincontainer h3 {
-    color: white;
-    text-align: center;
-  }
-
-  .container {
-    text-align: center;
-  }
-
-  #navbarNav.nav-item.nav-link a:hover {
-    color: red;
-  }
-
-  .nav-link:hover {
-    color: red;
-  }
-
-  .nav-item :hover {
-    margin-bottom: 10px;
-    /* background-color: aquamarine; */
-    border-bottom: 3px;
-    border-color: red;
-    border-bottom-style: solid;
-  }
-
-  #header-nav .nav-link a:hover {
-    color: red;
-  }
-
-  .newsImg{
-        min-width: 200px;
-        min-height: 275px;
-        max-width: 200px;
-        max-height: 275px;
-        margin-left: 6px;
-    }
-    .singleNewsComponent{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .desc{
-        margin: 8px;
-        font-size: 16px;
-    }
-    .descContainer {
-      padding: 10px;
-    }
-    .newsTitle{
-        color: white;
-    }
-    .carousel-inner {
-      cursor: pointer;  
-    }
-
-</style>
-
-<!-- css bookFood -->
-<style>
-.header {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.food-list {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
-.food-item {
-    width: 30%;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.food-item img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
-
-.food-item h3 {
-    margin-bottom: 10px;
-}
-
-.quantity-input {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.quantity-input .quantity {
-    width: 40px;
-    text-align: center;
-}
-
-.price {
-    margin-bottom: 10px;
-}
-
-.cart {
-    margin-top: 40px;
-}
-
-.cart h2 {
-    text-align: center;
-}
-
-.cartItems {
-    list-style-type: none;
-    padding: 0;
-    margin-top: 10px;
-}
-
-.cartItems li {
-    margin-bottom: 5px;
-}
-
-.total {
-    text-align: right;
-    margin-top: 10px;
-    font-weight: bold;
-}
-
-.checkout {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-}
-.list-group-item:hover{
-    color : black;
-}
-</style>
-<script>
-  setTimeout(function () {
-    $('.section').fadeToggle();
-  }, 1000);
-
-</script>
-
-<body style="background-image: url(/assets/Images/back.jpg);background-size: cover;">
-
-
-<header style="width: 100%;">
-  <nav class="navbar navbar-expand-lg navbar-light bg-dark" id="header-nav">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="home.html"><img class="logo" src="/assets/Images/2.png" alt="" width="30"
-          height="24"></a>
-      <button class="navbar-toggler" id="nav" style="background-color:#8b0000" type="button"
-        data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-        aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon" style="background-color:dark-grey;"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item ">
-            <a class="nav-link active s" aria-current="page" href="home.html" onMouseOver="this.style.color='red'"
-              onMouseOut="this.style.color='white'">Trang Chủ</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link " href="movies.html" onMouseOver="this.style.color='red'"
-              onMouseOut="this.style.color='white'">Phim</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link " href="web-series.html" onMouseOver="this.style.color='red'"
-              onMouseOut="this.style.color='white'">Lịch Chiếu</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="tv.html" onMouseOver="this.style.color='red'"
-              onMouseOut="this.style.color='white'">Rạp Và Giá</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="kids.html" onMouseOver="this.style.color='red'"
-              onMouseOut="this.style.color='white'">Khuyến Mãi</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="contactus.html" onMouseOver="this.style.color='red'"
-              onMouseOut="this.style.color='white'">Liên Hệ</a>
-          </li>
-          <div style="position: relative; display: inline-block; padding-top: 5px; padding-left: 15px;">
-            <li>
-              <button type="button" class="btn btn-light" onclick="logout()" onMouseOver="this.style.color='red'"
-                onMouseOut="this.style.color='white'">Đăng Nhập / Đăng Kí</button>
-            </li>
-          </div>
-        </ul>
-        <form id="searchForm" class="d-flex">
-          <input class="form-control me-2" type="text" id="searchText" placeholder="Search" aria-label="Search">
-          <button class="btn btn-danger" type="submit">Search</button>
-        </form>
-      </div>
-    </div>
-    </nav>
-    
-
-
-</header>
-<br><br><br><br><br><br>
-  <div class="scroll-bar">
-      
-    <div class="container col-9">
-        <div id="displaySeat">
-        	<div class="mx-auto">
-            <h1>Seat Booking</h1>
-        </div>
-        <div class="card text-center">
-            <div class="card-header">
-                <div class="movie-title">
-                    Người sắt vô tri - 2022
-                </div>
-            </div>
-            <div class="card-body">
-                <div class="seat-map">
-                    <div class="screen"></div>
-                    <div class="seats">
-                        <div class="seat" data-row="1" data-col="1" data-name="A1">
-                            <div class="mt-2">A1</div>
-                        </div>
-                        <div class="seat" data-row="1" data-col="2" data-name="A2">
-                            <div class="mt-2">A2</div>
-                        </div>
-                        <div class="seat" data-row="1" data-col="3" data-name="A3">
-                            <div class="mt-2">A3</div>
-                        </div>
-                        <div class="seat" data-row="1" data-col="4" data-name="A4">
-                            <div class="mt-2">A4</div>
-                        </div>
-                        <div class="seat" data-row="1" data-col="5" data-name="A5">
-                            <div class="mt-2">A5</div>
-                        </div>
-                        <div class="seat" data-row="1" data-col="6" data-name="A6">
-                            <div class="mt-2">A6</div>
-                        </div>
-                        <div class="seat" data-row="1" data-col="7" data-name="A7">
-                            <div class="mt-2">A7</div>
-                        </div>
-                        <div class="seat" data-row="1" data-col="8" data-name="A8">
-                            <div class="mt-2">A8</div>
-                        </div>
-                        <div class="seat" data-row="1" data-col="9" data-name="A9">
-                            <div class="mt-2">A9</div>
-                        </div>
-                        <div class="seat" data-row="1" data-col="10" data-name="A10">
-                            <div class="mt-2">A10</div>
-                        </div>
-                        <!-- Thêm các ghế khác vào đây -->
-                    </div>
-                    <div class="seats">
-                        <div class="seat" data-row="2" data-col="1" data-name="B1">
-                            <div class="mt-2">B1</div>
-                        </div>
-                        <div class="seat" data-row="2" data-col="2" data-name="B2">
-                            <div class="mt-2">B2</div>
-                        </div>
-                        <div class="seat" data-row="2" data-col="3" data-name="B3">
-                            <div class="mt-2">B3</div>
-                        </div>
-                        <div class="seat" data-row="2" data-col="4" data-name="B4">
-                            <div class="mt-2">B4</div>
-                        </div>
-                        <div class="seat" data-row="2" data-col="5" data-name="B5">
-                            <div class="mt-2">B5</div>
-                        </div>
-                        <div class="seat" data-row="2" data-col="6" data-name="B6">
-                            <div class="mt-2">B6</div>
-                        </div>
-                        <div class="seat" data-row="2" data-col="7" data-name="B7">
-                            <div class="mt-2">B7</div>
-                        </div>
-                        <div class="seat" data-row="2" data-col="8" data-name="B8">
-                            <div class="mt-2">B8</div>
-                        </div>
-                        <div class="seat" data-row="2" data-col="9" data-name="B9">
-                            <div class="mt-2">B9</div>
-                        </div><div class="seat" data-row="2" data-col="10" data-name="B10">
-                            <div class="mt-2">B10</div>
-                        </div>
-                        <!-- Thêm các ghế khác vào đây -->
-                    </div>
-                    <div class="seats">
-                        <div class="seat" data-row="3" data-col="1" data-name="C1">
-                            <div class="mt-2">C1</div>
-                        </div>
-                        <div class="seat" data-row="3" data-col="2" data-name="C2">
-                            <div class="mt-2">C2</div>
-                        </div>
-                        <div class="seat" data-row="3" data-col="3" data-name="C3">
-                            <div class="mt-2">C3</div>
-                        </div>
-                        <div class="seat" data-row="3" data-col="4" data-name="C4">
-                            <div class="mt-2">C4</div>
-                        </div>
-                        <div class="seat" data-row="3" data-col="5" data-name="C5">
-                            <div class="mt-2">C5</div>
-                        </div>
-                        <div class="seat" data-row="3" data-col="6" data-name="C6">
-                            <div class="mt-2">C6</div>
-                        </div>
-                        <div class="seat" data-row="3" data-col="7" data-name="C7">
-                            <div class="mt-2">C7</div>
-                        </div>
-                        <div class="seat" data-row="3" data-col="8" data-name="C8">
-                            <div class="mt-2">C8</div>
-                        </div>
-                        <div class="seat" data-row="3" data-col="9" data-name="C9">
-                            <div class="mt-2">C9</div>
-                        </div> 
-                        <div class="seat" data-row="3" data-col="10" data-name="C10">
-                            <div class="mt-2">C10</div>
-                        </div>
-                        <!-- Thêm các ghế khác vào đây -->
-                    </div>
-                    <div class="seats">
-                        <div class="seat" data-row="4" data-col="1" data-name="D1">
-                            <div class="mt-2">D1</div>
-                        </div>
-                        <div class="seat" data-row="4" data-col="2" data-name="D2">
-                            <div class="mt-2">D2</div>
-                        </div>
-                        <div class="seat" data-row="4" data-col="3" data-name="D3">
-                            <div class="mt-2">D3</div>
-                        </div>
-                        <div class="seat" data-row="4" data-col="4" data-name="D4">
-                            <div class="mt-2">D4</div>
-                        </div>
-                        <div class="seat" data-row="4" data-col="5" data-name="D5">
-                            <div class="mt-2">D5</div>
-                        </div>
-                        <div class="seat" data-row="4" data-col="6" data-name="D6">
-                            <div class="mt-2">D6</div>
-                        </div>
-                        <div class="seat" data-row="4" data-col="7" data-name="D7">
-                            <div class="mt-2">D7</div>
-                        </div>
-                        <div class="seat" data-row="4" data-col="8" data-name="D8">
-                            <div class="mt-2">D8</div>
-                        </div>
-                        <div class="seat" data-row="4" data-col="9" data-name="D9">
-                            <div class="mt-2">D9</div>
-                        </div>
-                        <div class="seat" data-row="4" data-col="10" data-name="D10">
-                            <div class="mt-2">D10</div>
-                        </div>
-                        <!-- Thêm các ghế khác vào đây -->
-                    </div>
-                    <div class="seats">
-                        <div class="seat" data-row="4" data-col="1" data-name="E1" data-vip="true">
-                            <div class="mt-2">E1</div>
-                        </div>
-                        <div class="seat" data-row="4" data-col="2" data-name="E2" data-vip="true">
-                            <div class="mt-2">E2</div>
-                        </div>
-                        <div class="seat" data-row="4" data-col="3" data-name="E3" data-vip="true">
-                            <div class="mt-2">E3</div>
-                        </div>
-                        <div class="seat" data-row="4" data-col="4" data-name="E4" data-vip="true">
-                            <div class="mt-2">E4</div>
-                        </div>
-                        <div class="seat" data-row="4" data-col="5" data-name="E5" data-vip="true">
-                            <div class="mt-2">E5</div>
-                        </div>
-                        <div class="seat" data-row="4" data-col="6" data-name="E6" data-vip="true">
-                            <div class="mt-2">E6</div>
-                        </div>
-                        <div class="seat" data-row="4" data-col="7" data-name="E7" data-vip="true">
-                            <div class="mt-2">E7</div>
-                        </div>
-                        <div class="seat" data-row="4" data-col="8" data-name="E8" data-vip="true" >
-                            <div class="mt-2">E8</div> 
-                        </div>
-                        <div class="seat" data-row="4" data-col="9" data-name="E9" data-vip="true">
-                            <div class="mt-2">E9</div>
-                        </div>
-                        <div class="seat" data-row="4" data-col="10" data-name="E10" data-vip="true">
-                            <div class="mt-2">E10</div>
-                        </div>
-                        <!-- Thêm các ghế khác vào đây -->
-                    </div>
-                    <div class="seats">
-                        <div class="seat" data-row="4" data-col="1" data-name="F1" data-vip="true">
-                            <div class="mt-2">F1</div>
-                        </div>
-                        <div class="seat" data-row="4" data-col="2" data-name="F2" data-vip="true">
-                            <div class="mt-2">F2</div>
-                        </div>
-                        <div class="seat" data-row="4" data-col="3" data-name="F3" data-vip="true">
-                            <div class="mt-2">F3</div>
-                        </div>
-                        <div class="seat" data-row="4" data-col="4" data-name="F4" data-vip="true">
-                            <div class="mt-2">F4</div>
-                        </div>
-                        <div class="seat" data-row="4" data-col="5" data-name="F5" data-vip="true">
-                            <div class="mt-2">F5</div>
-                        </div>
-                        <div class="seat" data-row="4" data-col="6" data-name="F6" data-vip="true">
-                            <div class="mt-2">F6</div>
-                        </div>
-                        <div class="seat" data-row="4" data-col="7" data-name="F7" data-vip="true">
-                            <div class="mt-2">F7</div>
-                        </div>
-                        <div class="seat" data-row="4" data-col="8" data-name="F8" data-vip="true">
-                            <div class="mt-2">F8</div>
-                        </div>
-                        <div class="seat" data-row="4" data-col="9" data-name="F9" data-vip="true">
-                            <div class="mt-2">F9</div>
-                        </div>
-                        <div class="seat" data-row="4" data-col="10" data-name="F10" data-vip="true">
-                            <div class="mt-2">F10</div>
-                        </div>
-                        <!-- Thêm các ghế khác vào đây -->
-                    </div>
-                    <div class="seats">
-                        <div class="seat" data-row="4" data-col="1" data-name="G1" data-vip="true">
-                            <div class="mt-2">G1</div>
-                        </div>
-                        <div class="seat" data-row="4" data-col="2" data-name="G2" data-vip="true">
-                            <div class="mt-2">G2</div>
-                        </div>
-                        <div class="seat" data-row="4" data-col="3" data-name="G3" data-vip="true">
-                            <div class="mt-2">G3</div>
-                        </div>
-                        <div class="seat" data-row="4" data-col="4" data-name="G4" data-vip="true">
-                            <div class="mt-2">G4</div>
-                        </div>
-                        <div class="seat" data-row="4" data-col="5" data-name="G5" data-vip="true">
-                            <div class="mt-2">G5</div>
-                        </div>
-                        <div class="seat" data-row="4" data-col="6" data-name="G6" data-vip="true">
-                            <div class="mt-2">G6</div>
-                        </div>
-                        <div class="seat" data-row="4" data-col="7" data-name="G7" data-vip="true">
-                            <div class="mt-2">G7</div>
-                        </div>
-                        <div class="seat" data-row="4" data-col="8" data-name="G8" data-vip="true">
-                            <div class="mt-2">G8</div>
-                        </div>
-                        <div class="seat" data-row="4" data-col="9" data-name="G9" data-vip="true">
-                            <div class="mt-2">G9</div>
-                        </div>
-                        <div class="seat" data-row="4" data-col="10" data-name="G10" data-vip="true">
-                            <div class="mt-2">G10</div>
-                        </div>
-                        <!-- Thêm các ghế khác vào đây -->
-                        <!-- Thêm các ghế khác vào đây -->
-                    </div>
-                    <div class="seats">
-                        <div class="seat double" data-row="5" data-name="H1" data-couple="true">
-                            <div class="mt-2">H1</div>
-                        </div>
-                        <div class="seat double" data-row="5" data-name="H2" data-couple="true">
-                            <div class="mt-2">H2</div>
-                        </div>
-                        <div class="seat double" data-row="5" data-name="H3" data-couple="true">
-                            <div class="mt-2">H3</div>
-                        </div>
-                        <div class="seat double" data-row="5" data-name="H4" data-couple="true">
-                            <div class="mt-2">H4</div>
-                        </div>
-                        <div class="seat double" data-row="5" data-name="H1" data-couple="true">
-                            <div class="mt-2">H5</div>
-                        </div>
-                        <div class="seat double" data-row="5" data-name="H6" data-couple="true">
-                            <div class="mt-2">H6</div>
-                        </div>
-                    </div>
-                    <ul class="showcase mt-4">
-                        <li>
-                            <div class="commentSeat"></div>
-                            <small>Ghế Trống</small>
-                        </li>
-                        <li>
-                            <div class="commentSeat selected"></div>
-                            <small>Đã Chọn</small>
-                        </li>
-                        <li>
-                        <li>
-                            <div class="commentSeat soled"></div>
-                            <small>Đã Đặt</small>
-                        </li>
-                        <li>
-                            <div class="commentSeat vip"></div>
-                            <small>VIP</small>
-                        </li>
-                        <li>
-                            <div class="commentSeat double"></div>
-                            <small>Ghê Đôi</small>
-                        </li>
-                    </ul>
-                </div>
-                <!-- <p id="selected-seats">Selected Seats: </p>
+<body>
+	<main>
+		<div class="scroll-bar">
+			<div class="container col-9">
+				<div id="displaySeat">
+					<div class="mx-auto text-center">
+						<h1>Seat Booking</h1>
+					</div>
+					<div class="card text-center">
+						<div class="card-header">
+							<div class="movie-title">Người sắt vô tri - 2022</div>
+						</div>
+						<div class="card-body">
+							<div class="seat-map">
+								<div class="screen"></div>
+								<div class="seats">
+									<div class="seat" data-row="1" data-col="1" data-name="A1">
+										<div class="mt-2">A1</div>
+									</div>
+									<div class="seat" data-row="1" data-col="2" data-name="A2">
+										<div class="mt-2">A2</div>
+									</div>
+									<div class="seat" data-row="1" data-col="3" data-name="A3">
+										<div class="mt-2">A3</div>
+									</div>
+									<div class="seat" data-row="1" data-col="4" data-name="A4">
+										<div class="mt-2">A4</div>
+									</div>
+									<div class="seat" data-row="1" data-col="5" data-name="A5">
+										<div class="mt-2">A5</div>
+									</div>
+									<div class="seat" data-row="1" data-col="6" data-name="A6">
+										<div class="mt-2">A6</div>
+									</div>
+									<div class="seat" data-row="1" data-col="7" data-name="A7">
+										<div class="mt-2">A7</div>
+									</div>
+									<div class="seat" data-row="1" data-col="8" data-name="A8">
+										<div class="mt-2">A8</div>
+									</div>
+									<div class="seat" data-row="1" data-col="9" data-name="A9">
+										<div class="mt-2">A9</div>
+									</div>
+									<div class="seat" data-row="1" data-col="10" data-name="A10">
+										<div class="mt-2">A10</div>
+									</div>
+									<!-- Thêm các ghế khác vào đây -->
+								</div>
+								<div class="seats">
+									<div class="seat" data-row="2" data-col="1" data-name="B1">
+										<div class="mt-2">B1</div>
+									</div>
+									<div class="seat" data-row="2" data-col="2" data-name="B2">
+										<div class="mt-2">B2</div>
+									</div>
+									<div class="seat" data-row="2" data-col="3" data-name="B3">
+										<div class="mt-2">B3</div>
+									</div>
+									<div class="seat" data-row="2" data-col="4" data-name="B4">
+										<div class="mt-2">B4</div>
+									</div>
+									<div class="seat" data-row="2" data-col="5" data-name="B5">
+										<div class="mt-2">B5</div>
+									</div>
+									<div class="seat" data-row="2" data-col="6" data-name="B6">
+										<div class="mt-2">B6</div>
+									</div>
+									<div class="seat" data-row="2" data-col="7" data-name="B7">
+										<div class="mt-2">B7</div>
+									</div>
+									<div class="seat" data-row="2" data-col="8" data-name="B8">
+										<div class="mt-2">B8</div>
+									</div>
+									<div class="seat" data-row="2" data-col="9" data-name="B9">
+										<div class="mt-2">B9</div>
+									</div>
+									<div class="seat" data-row="2" data-col="10" data-name="B10">
+										<div class="mt-2">B10</div>
+									</div>
+									<!-- Thêm các ghế khác vào đây -->
+								</div>
+								<div class="seats">
+									<div class="seat" data-row="3" data-col="1" data-name="C1">
+										<div class="mt-2">C1</div>
+									</div>
+									<div class="seat" data-row="3" data-col="2" data-name="C2">
+										<div class="mt-2">C2</div>
+									</div>
+									<div class="seat" data-row="3" data-col="3" data-name="C3">
+										<div class="mt-2">C3</div>
+									</div>
+									<div class="seat" data-row="3" data-col="4" data-name="C4">
+										<div class="mt-2">C4</div>
+									</div>
+									<div class="seat" data-row="3" data-col="5" data-name="C5">
+										<div class="mt-2">C5</div>
+									</div>
+									<div class="seat" data-row="3" data-col="6" data-name="C6">
+										<div class="mt-2">C6</div>
+									</div>
+									<div class="seat" data-row="3" data-col="7" data-name="C7">
+										<div class="mt-2">C7</div>
+									</div>
+									<div class="seat" data-row="3" data-col="8" data-name="C8">
+										<div class="mt-2">C8</div>
+									</div>
+									<div class="seat" data-row="3" data-col="9" data-name="C9">
+										<div class="mt-2">C9</div>
+									</div>
+									<div class="seat" data-row="3" data-col="10" data-name="C10">
+										<div class="mt-2">C10</div>
+									</div>
+									<!-- Thêm các ghế khác vào đây -->
+								</div>
+								<div class="seats">
+									<div class="seat" data-row="4" data-col="1" data-name="D1">
+										<div class="mt-2">D1</div>
+									</div>
+									<div class="seat" data-row="4" data-col="2" data-name="D2">
+										<div class="mt-2">D2</div>
+									</div>
+									<div class="seat" data-row="4" data-col="3" data-name="D3">
+										<div class="mt-2">D3</div>
+									</div>
+									<div class="seat" data-row="4" data-col="4" data-name="D4">
+										<div class="mt-2">D4</div>
+									</div>
+									<div class="seat" data-row="4" data-col="5" data-name="D5">
+										<div class="mt-2">D5</div>
+									</div>
+									<div class="seat" data-row="4" data-col="6" data-name="D6">
+										<div class="mt-2">D6</div>
+									</div>
+									<div class="seat" data-row="4" data-col="7" data-name="D7">
+										<div class="mt-2">D7</div>
+									</div>
+									<div class="seat" data-row="4" data-col="8" data-name="D8">
+										<div class="mt-2">D8</div>
+									</div>
+									<div class="seat" data-row="4" data-col="9" data-name="D9">
+										<div class="mt-2">D9</div>
+									</div>
+									<div class="seat" data-row="4" data-col="10" data-name="D10">
+										<div class="mt-2">D10</div>
+									</div>
+									<!-- Thêm các ghế khác vào đây -->
+								</div>
+								<div class="seats">
+									<div class="seat" data-row="4" data-col="1" data-name="E1"
+										data-vip="true">
+										<div class="mt-2">E1</div>
+									</div>
+									<div class="seat" data-row="4" data-col="2" data-name="E2"
+										data-vip="true">
+										<div class="mt-2">E2</div>
+									</div>
+									<div class="seat" data-row="4" data-col="3" data-name="E3"
+										data-vip="true">
+										<div class="mt-2">E3</div>
+									</div>
+									<div class="seat" data-row="4" data-col="4" data-name="E4"
+										data-vip="true">
+										<div class="mt-2">E4</div>
+									</div>
+									<div class="seat" data-row="4" data-col="5" data-name="E5"
+										data-vip="true">
+										<div class="mt-2">E5</div>
+									</div>
+									<div class="seat" data-row="4" data-col="6" data-name="E6"
+										data-vip="true">
+										<div class="mt-2">E6</div>
+									</div>
+									<div class="seat" data-row="4" data-col="7" data-name="E7"
+										data-vip="true">
+										<div class="mt-2">E7</div>
+									</div>
+									<div class="seat" data-row="4" data-col="8" data-name="E8"
+										data-vip="true">
+										<div class="mt-2">E8</div>
+									</div>
+									<div class="seat" data-row="4" data-col="9" data-name="E9"
+										data-vip="true">
+										<div class="mt-2">E9</div>
+									</div>
+									<div class="seat" data-row="4" data-col="10" data-name="E10"
+										data-vip="true">
+										<div class="mt-2">E10</div>
+									</div>
+									<!-- Thêm các ghế khác vào đây -->
+								</div>
+								<div class="seats">
+									<div class="seat" data-row="4" data-col="1" data-name="F1"
+										data-vip="true">
+										<div class="mt-2">F1</div>
+									</div>
+									<div class="seat" data-row="4" data-col="2" data-name="F2"
+										data-vip="true">
+										<div class="mt-2">F2</div>
+									</div>
+									<div class="seat" data-row="4" data-col="3" data-name="F3"
+										data-vip="true">
+										<div class="mt-2">F3</div>
+									</div>
+									<div class="seat" data-row="4" data-col="4" data-name="F4"
+										data-vip="true">
+										<div class="mt-2">F4</div>
+									</div>
+									<div class="seat" data-row="4" data-col="5" data-name="F5"
+										data-vip="true">
+										<div class="mt-2">F5</div>
+									</div>
+									<div class="seat" data-row="4" data-col="6" data-name="F6"
+										data-vip="true">
+										<div class="mt-2">F6</div>
+									</div>
+									<div class="seat" data-row="4" data-col="7" data-name="F7"
+										data-vip="true">
+										<div class="mt-2">F7</div>
+									</div>
+									<div class="seat" data-row="4" data-col="8" data-name="F8"
+										data-vip="true">
+										<div class="mt-2">F8</div>
+									</div>
+									<div class="seat" data-row="4" data-col="9" data-name="F9"
+										data-vip="true">
+										<div class="mt-2">F9</div>
+									</div>
+									<div class="seat" data-row="4" data-col="10" data-name="F10"
+										data-vip="true">
+										<div class="mt-2">F10</div>
+									</div>
+									<!-- Thêm các ghế khác vào đây -->
+								</div>
+								<div class="seats">
+									<div class="seat" data-row="4" data-col="1" data-name="G1"
+										data-vip="true">
+										<div class="mt-2">G1</div>
+									</div>
+									<div class="seat" data-row="4" data-col="2" data-name="G2"
+										data-vip="true">
+										<div class="mt-2">G2</div>
+									</div>
+									<div class="seat" data-row="4" data-col="3" data-name="G3"
+										data-vip="true">
+										<div class="mt-2">G3</div>
+									</div>
+									<div class="seat" data-row="4" data-col="4" data-name="G4"
+										data-vip="true">
+										<div class="mt-2">G4</div>
+									</div>
+									<div class="seat" data-row="4" data-col="5" data-name="G5"
+										data-vip="true">
+										<div class="mt-2">G5</div>
+									</div>
+									<div class="seat" data-row="4" data-col="6" data-name="G6"
+										data-vip="true">
+										<div class="mt-2">G6</div>
+									</div>
+									<div class="seat" data-row="4" data-col="7" data-name="G7"
+										data-vip="true">
+										<div class="mt-2">G7</div>
+									</div>
+									<div class="seat" data-row="4" data-col="8" data-name="G8"
+										data-vip="true">
+										<div class="mt-2">G8</div>
+									</div>
+									<div class="seat" data-row="4" data-col="9" data-name="G9"
+										data-vip="true">
+										<div class="mt-2">G9</div>
+									</div>
+									<div class="seat" data-row="4" data-col="10" data-name="G10"
+										data-vip="true">
+										<div class="mt-2">G10</div>
+									</div>
+									<!-- Thêm các ghế khác vào đây -->
+									<!-- Thêm các ghế khác vào đây -->
+								</div>
+								<div class="seats">
+									<div class="seat double" data-row="5" data-name="H1"
+										data-couple="true">
+										<div class="mt-2">H1</div>
+									</div>
+									<div class="seat double" data-row="5" data-name="H2"
+										data-couple="true">
+										<div class="mt-2">H2</div>
+									</div>
+									<div class="seat double" data-row="5" data-name="H3"
+										data-couple="true">
+										<div class="mt-2">H3</div>
+									</div>
+									<div class="seat double" data-row="5" data-name="H4"
+										data-couple="true">
+										<div class="mt-2">H4</div>
+									</div>
+									<div class="seat double" data-row="5" data-name="H1"
+										data-couple="true">
+										<div class="mt-2">H5</div>
+									</div>
+									<div class="seat double" data-row="5" data-name="H6"
+										data-couple="true">
+										<div class="mt-2">H6</div>
+									</div>
+								</div>
+								<ul class="showcase mt-4">
+									<li>
+										<div class="commentSeat"></div> <small>Ghế Trống</small>
+									</li>
+									<li>
+										<div class="commentSeat selected"></div> <small>Đã
+											Chọn</small>
+									</li>
+									<li>
+									<li>
+										<div class="commentSeat soled"></div> <small>Đã Đặt</small>
+									</li>
+									<li>
+										<div class="commentSeat vip"></div> <small>VIP</small>
+									</li>
+									<li>
+										<div class="commentSeat double"></div> <small>Ghê Đôi</small>
+									</li>
+								</ul>
+							</div>
+							<!-- <p id="selected-seats">Selected Seats: </p>
                 <p id="total-price">Total Price: $0</p> -->
-            </div>
+						</div>
 
-        </div>
-        </div>
-        
-        <!-- page Food -->
-	    <div id="displayFood" class="m-auto border mt-3">
-	        <div class="bg-dark text-light">
-	            <h4>Bắp nước</h4>
-	        </div>
-	        <div class="food-list">
-	            <div class="col-sm-6 d-flex p-4">
-	                <img class="w-25" src="https://www.cgv.vn/media/concession/web/6443fd2e624be_1682177326.png"
-	                    alt="Đồ ăn">
-	                <div class="" style="text-align: left;">
-	                    <h5>JUNGLE BROWN MY COMBO</h5>
-	                    <p>1 bình Jungle Brown + 1 nước siêu lớn <br>
-	                        **Mua thêm 1 bắp ngọt chỉ với 29K tại rạp <br>
-	                        **Nhận trong ngày xem phim** <br>
-	                        ***Mẫu ly phụ thuộc vào số lượng hàng tại rạp</p>
-	                    <div class="price">Giá: $10</div>
-	                    <div class="quantity-input">
-	                        <button class="decrease-quantity"
-	                            style="width: 25px; height: 30px; border: none; background-color: red;">-</button>
-	                        <input style="margin: 5px;" type="number" class="quantity" value="0">
-	                        <button style="width: 25px; height: 30px; border: none; background-color: red;"
-	                            class="increase-quantity">+</button>
-	                    </div>
-	                </div>
-	            </div>
-	            <div class="col-sm-6 d-flex p-4">
-	                <img class="w-25" src="https://www.cgv.vn/media/concession/web/6426a4fc4b1ca_1680254204.png"
-	                    alt="Đồ ăn">
-	                <div class="" style="text-align: left;">
-	                    <h5>JUNGLE BROWN COUPL</h5>
-	                    <p>2 bình Jungle Brown + 2 nước siêu lớn + 1 bắp ngọt lớn <br>
-	                        **Nhận trong ngày xem phim** <br>
-	                        ***Mẫu ly phụ thuộc vào số lượng hàng tại rạp <br></p>
-	                    <div class="price">Giá: $15</div>
-	                    <div class="quantity-input">
-	                        <button style="width: 25px; height: 30px; border: none; background-color: red;"
-	                            class="decrease-quantity">-</button>
-	                        <input style="margin: 5px;" type="number" class="quantity" value="0">
-	                        <button style="width: 25px; height: 30px; border: none; background-color: red;"
-	                            class="increase-quantity">+</button>
-	                    </div>
-	                </div>
-	            </div>
-	            <div class="col-sm-6 d-flex p-4">
-	                <img class="w-25" src="https://www.cgv.vn/media/concession/web/64d0e5082f836_1691411720.png"
-	                    alt="Đồ ăn">
-	                <div class="p-3" style="text-align: left;">
-	                    <h5>MILO COMBO 2023</h5>
-	                    <p>1 milo lớn + 1 nước ngọt siêu lớn + 1 bắp ngọt lớn <br>
-	                        * Nhận trong ngày xem phim.<br>
-	                        ** Miễn phí đổi vị bắp Caramel<br>
-	                        *** Đổi vị phô mai phụ thu thêm tiền <br>
-	                    </p>
-	                    <div class="price">Giá: $20</div>
-	                    <div class="quantity-input">
-	                        <button style="width: 25px; height: 30px; border: none; background-color: red;"
-	                            class="decrease-quantity">-</button>
-	                        <input style="margin: 5px;" type="number" class="quantity" value="0">
-	                        <button style="width: 25px; height: 30px; border: none; background-color: red;"
-	                            class="increase-quantity">+</button>
-	                    </div>
-	                </div>
-	            </div>
-	            <div class="col-sm-6 d-flex p-4">
-	                <img class="w-25" src="https://www.cgv.vn/media/concession/web/64d315fa964c0_1691555323.png"
-	                    alt="Đồ ăn">
-	                <div class="p-3" style="text-align: left;">
-	                    <h5>BLUE BEETLE SCARAB W</h5>
-	                    <p>1 ly Blue Beetle nắp cánh + 1 nước ngọt siêu lớn + 1 bắp lớn<br>
-	                        *Nhận trong ngày xem phim<br>
-	                    </p>
-	                    <div class="price">Giá: $30</div>
-	                    <div class="quantity-input">
-	                        <button style="width: 25px; height: 30px; border: none; background-color: red;"
-	                            class="decrease-quantity">-</button>
-	                        <input style="margin: 5px;" type="number" class="quantity" value="0">
-	                        <button style="width: 25px; height: 30px; border: none; background-color: red;"
-	                            class="increase-quantity">+</button>
-	                    </div>
-	                </div>
-	            </div>
-	            <div class="col-sm-6 d-flex p-4">
-	                <img class="w-25" src="https://www.cgv.vn/media/concession/web/64e0cd409b54d_1692454209.png"
-	                    alt="Đồ ăn">
-	                <div class="p-3" style="text-align: left;">
-	                    <h5>PEANUTS COUPLE COME</h5>
-	                    <p>02 ly nhân vật Peanuts (kèm nước)<br>
-	                        * Nhận ngay trong ngày xem phim<br>
-	                        ** Thêm 39,000đ nhận ngay 1 bắp ngọt<br>
-	                        *** Mẫu ly phụ thuộc vào số lượng của rạp<br>
-	                    </p>
-	                    <div class="price">Giá: $40</div>
-	                    <div class="quantity-input">
-	                        <button style="width: 25px; height: 30px; border: none; background-color: red;"
-	                            class="decrease-quantity">-</button>
-	                        <input style="margin: 5px;" type="number" class="quantity" value="0">
-	                        <button style="width: 25px; height: 30px; border: none; background-color: red;"
-	                            class="increase-quantity">+</button>
-	                    </div>
-	                </div>
-	            </div>
-	        </div>
-	        <div class="cart">
-	            <ul id="cartItems"></ul>
-	        </div>
-	    </div>
-	    
-        <div class="row p-0 m-0" style="color: red;background-color: black;">
-            
-        <!-- page Pay -->
-    <div id="displayPay" class="m-auto">
-        <div>
-            <h4>THANH TOÁN</h4>
-        </div>
-        <div class="row p-0 m-0">
-            <div class="col-8">
-                <div style="background-color: #bcbdc0; text-align: left; padding: 5px;">
-                    <span style="display:inline-block;">Bước 1:</span>
-                    <h5 style="display:inline-block;">GIẢM GIÁ</h5>
-                </div>
-                <div class="m-2">
-                    <div class="accordion" id="accordionPanelsStayOpenExample">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
-                                    aria-controls="panelsStayOpen-collapseOne">
-                                    Đối tác
-                                </button>
-                            </h2>
-                            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
-                                aria-labelledby="panelsStayOpen-headingOne">
-                                <div class="accordion-body">
-                                    ...
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
-                                    aria-controls="panelsStayOpen-collapseTwo">
-                                    Mã khuyến mãi
-                                </button>
-                            </h2>
-                            <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
-                                aria-labelledby="panelsStayOpen-headingTwo">
-                                <div class="accordion-body">
-                                    ...
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div style="background-color: #bcbdc0; text-align: left; padding: 5px;">
-                    <span style="display:inline-block;">Bước 2:</span>
-                    <h5 style="display:inline-block;">HÌNH THỨC THANH TOÁN</h5>
-                </div>
-                <div style="background-color: #fff1ce;">
-                    <div class="form-check m-2" style="text-align: left;">
-                        <input class="form-check-input mt-3" type="radio" name="flexRadioDefault"
-                            id="flexRadioDefault1">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            <div style="display: inline-block; width: 50px;"><img style="width: 100%;"
-                                    src="https://www.cgv.vn/media/catalog/product/placeholder/default/atm_icon.png"
-                                    alt=""></div>
-                            ATM card (Thẻ nội địa)
-                        </label>
-                    </div>
-                    <div class="form-check m-2" style="text-align: left;">
-                        <input class="form-check-input mt-3" type="radio" name="flexRadioDefault"
-                            id="flexRadioDefault2">
-                        <label class="form-check-label" for="flexRadioDefault2">
-                            <div style="display: inline-block; width: 50px;"><img style="width: 100%;"
-                                    src="https://www.cgv.vn/media/catalog/product/placeholder/default/visa-mastercard-icon.png"
-                                    alt=""></div>
-                            Thẻ quốc tế (Visa, Master, Amex, JCB) (Thẻ nội địa)
-                        </label>
-                    </div>
-                    <div class="form-check m-2" style="text-align: left;">
-                        <input class="form-check-input mt-3" type="radio" name="flexRadioDefault"
-                            id="flexRadioDefault3">
-                        <label class="form-check-label" for="flexRadioDefault3">
-                            <div style="display: inline-block; width: 50px;"><img style="width: 100%;"
-                                    src="https://www.cgv.vn/media/catalog/product/placeholder/default/momo_icon.png"
-                                    alt=""></div>
-                            MoMo - Nhập MMCGV -5K/bill, Vé 9K Bạn Mới
-                        </label>
-                    </div>
-                    <div class="form-check m-2" style="text-align: left;">
-                        <input class="form-check-input mt-3" type="radio" name="flexRadioDefault"
-                            id="flexRadioDefault4">
-                        <label class="form-check-label" for="flexRadioDefault4">
-                            <div style="display: inline-block; width: 50px;"><img style="width: 100%;"
-                                    src="https://www.cgv.vn/media/catalog/product/placeholder/default/icon-HOT-96x96.png"
-                                    alt=""></div>
-                            ZaloPay: Bạn Mới vé 14K - Bạn Thân 84K
-                        </label>
-                    </div>
-                    <div class="form-check m-2" style="text-align: left;">
-                        <input class="form-check-input mt-3" type="radio" name="flexRadioDefault"
-                            id="flexRadioDefault5">
-                        <label class="form-check-label" for="flexRadioDefault5">
-                            <div style="display: inline-block; width: 50px;"><img style="width: 100%;"
-                                    src="https://www.cgv.vn/media/catalog/product/placeholder/default/vnpay_newlogo.png"
-                                    alt=""></div>
-                            VNPAY
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="m-2 mt-0">
-                    <ul class="list-group">
-                        <li style="background-color: #fff1ce; font-weight:650;" class="list-group-item">Tổng cộng</li>
-                        <li style="background-color: #fff1ce;" class="list-group-item" id="toTalPay"> $0.00</li>
-                        <li style="background-color: #d0cece;" class="list-group-item" id="toTalPay2">$0.00</li>
-                    </ul>
-                </div>
-                <div class="m-2">
-                    <ul class="list-group">
-                        <li style="background-color: #fff1ce; font-weight:650;" class="list-group-item">Khuyến mãi</li>
-                        <li style="background-color: #d0cece;" class="list-group-item">$0.00</li>
-                    </ul>
-                </div>
-                <div class="m-2">
-                    <ul class="list-group">
-                        <li style="background-color: #e71a0f; font-weight:650; color: white;" class="list-group-item">
-                            Tổng số tiền
-                            thanh toán</li>
-                        <li style="background-color: #d0cece;" class="list-group-item" id="Pay">$0.00</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-            <div class="col-2">
-                <button id="prevButton" style="margin-top: 20px; width: 104px;height: 85px;" class="btn btn-danger">prev</button>
-            </div>
-            <div class="col-1">
-                <img style="width: 70px; margin-top: 10px;"
-                    src="https://www.cgv.vn/media/catalog/product/cache/1/thumbnail/dc33889b0f8b5da88052ef70de32f1cb/7/0/700x1000_17_1_.jpg"
-                    alt="">
-            </div>
-            <div class="col-2" style="margin-top: 10px;">
-                <p style="text-align: left;">
-                    KUMANTHONG: QUỶ LINH NHI
-                    2D
-                    T18
-                </p>
-            </div>
-            <div style="margin-top: 10px;" class="col-3">
-                <div class="row">
-                    <p class="col-4 m-0 p-0">Rạp</p>
-                    <p class="col-8 m-0 p-0">CGV Vincom Thủ Đức</p>
-                </div>
-                <div class="row">
-                    <p class="col-4 m-0 p-0">Suất chiếu</p>
-                    <p class="col-8 m-0 p-0">18:05, 05/10/2023</p>
-                </div>
-                <div class="row">
-                    <p class="col-4 m-0 p-0">Phòng chiếu</p>
-                    <p class="col-8 m-0 p-0">Cinema 2</p>
-                </div>
-                <div class="row">
-                    <p class="col-4 m-0 p-0">Ghế</p>
-                    <p class="col-8 m-0 p-0" id="selected-seats"></p>
-                </div>
-            </div>
-            <div style="margin-top: 10px;" class="col-2">
-                <div class="row">
-                    <p class="col-4 m-0 p-0">Tên phim</p>
-                    <p class="col-8 m-0 p-0" id="name-Film">$0.00</p>
-                </div>
-                <div class="row">
-                    <p class="col-4 m-0 p-0">Combo</p>
-                    <p id="combo" class="col-8 m-0 p-0">$0.00</p>
-                </div>
-                <div class="row">
-                    <p class="col-4 m-0 p-0">Tổng</p>
-                    <p class="col-8 m-0 p-0" id="total-price">$0.00</p>
-                </div>
-            </div><br>
-            <br><br><br><br><br>
-            <div class="col-2 text-center">
-                <button id="nextButton" style="margin-top: 20px; width: 104px;height: 85px;" class="btn btn-danger">next</button>
-            </div>
-        </div>
-    </div>
+					</div>
+				</div>
 
-	
-	</div>
+				<!-- page Food -->
+				<div id="displayFood" class="m-auto border mt-3">
+					<div class="bg-dark text-light">
+						<h4>Bắp nước</h4>
+					</div>
+					<div class="food-list">
+						<div class="col-sm-6 d-flex p-4">
+							<img class="w-25"
+								src="https://www.cgv.vn/media/concession/web/6443fd2e624be_1682177326.png"
+								alt="Đồ ăn">
+							<div class="" style="text-align: left;">
+								<h5>JUNGLE BROWN MY COMBO</h5>
+								<p>
+									1 bình Jungle Brown + 1 nước siêu lớn <br> **Mua thêm 1
+									bắp ngọt chỉ với 29K tại rạp <br> **Nhận trong ngày xem
+									phim** <br> ***Mẫu ly phụ thuộc vào số lượng hàng tại rạp
+								</p>
+								<div class="price">Giá: $10</div>
+								<div class="quantity-input">
+									<button class="decrease-quantity"
+										style="width: 25px; height: 30px; border: none; background-color: red;">-</button>
+									<input style="margin: 5px;" type="number" class="quantity"
+										value="0">
+									<button
+										style="width: 25px; height: 30px; border: none; background-color: red;"
+										class="increase-quantity">+</button>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6 d-flex p-4">
+							<img class="w-25"
+								src="https://www.cgv.vn/media/concession/web/6426a4fc4b1ca_1680254204.png"
+								alt="Đồ ăn">
+							<div class="" style="text-align: left;">
+								<h5>JUNGLE BROWN COUPL</h5>
+								<p>
+									2 bình Jungle Brown + 2 nước siêu lớn + 1 bắp ngọt lớn <br>
+									**Nhận trong ngày xem phim** <br> ***Mẫu ly phụ thuộc vào
+									số lượng hàng tại rạp <br>
+								</p>
+								<div class="price">Giá: $15</div>
+								<div class="quantity-input">
+									<button
+										style="width: 25px; height: 30px; border: none; background-color: red;"
+										class="decrease-quantity">-</button>
+									<input style="margin: 5px;" type="number" class="quantity"
+										value="0">
+									<button
+										style="width: 25px; height: 30px; border: none; background-color: red;"
+										class="increase-quantity">+</button>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6 d-flex p-4">
+							<img class="w-25"
+								src="https://www.cgv.vn/media/concession/web/64d0e5082f836_1691411720.png"
+								alt="Đồ ăn">
+							<div class="p-3" style="text-align: left;">
+								<h5>MILO COMBO 2023</h5>
+								<p>
+									1 milo lớn + 1 nước ngọt siêu lớn + 1 bắp ngọt lớn <br> *
+									Nhận trong ngày xem phim.<br> ** Miễn phí đổi vị bắp
+									Caramel<br> *** Đổi vị phô mai phụ thu thêm tiền <br>
+								</p>
+								<div class="price">Giá: $20</div>
+								<div class="quantity-input">
+									<button
+										style="width: 25px; height: 30px; border: none; background-color: red;"
+										class="decrease-quantity">-</button>
+									<input style="margin: 5px;" type="number" class="quantity"
+										value="0">
+									<button
+										style="width: 25px; height: 30px; border: none; background-color: red;"
+										class="increase-quantity">+</button>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6 d-flex p-4">
+							<img class="w-25"
+								src="https://www.cgv.vn/media/concession/web/64d315fa964c0_1691555323.png"
+								alt="Đồ ăn">
+							<div class="p-3" style="text-align: left;">
+								<h5>BLUE BEETLE SCARAB W</h5>
+								<p>
+									1 ly Blue Beetle nắp cánh + 1 nước ngọt siêu lớn + 1 bắp lớn<br>
+									*Nhận trong ngày xem phim<br>
+								</p>
+								<div class="price">Giá: $30</div>
+								<div class="quantity-input">
+									<button
+										style="width: 25px; height: 30px; border: none; background-color: red;"
+										class="decrease-quantity">-</button>
+									<input style="margin: 5px;" type="number" class="quantity"
+										value="0">
+									<button
+										style="width: 25px; height: 30px; border: none; background-color: red;"
+										class="increase-quantity">+</button>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6 d-flex p-4">
+							<img class="w-25"
+								src="https://www.cgv.vn/media/concession/web/64e0cd409b54d_1692454209.png"
+								alt="Đồ ăn">
+							<div class="p-3" style="text-align: left;">
+								<h5>PEANUTS COUPLE COME</h5>
+								<p>
+									02 ly nhân vật Peanuts (kèm nước)<br> * Nhận ngay trong
+									ngày xem phim<br> ** Thêm 39,000đ nhận ngay 1 bắp ngọt<br>
+									*** Mẫu ly phụ thuộc vào số lượng của rạp<br>
+								</p>
+								<div class="price">Giá: $40</div>
+								<div class="quantity-input">
+									<button
+										style="width: 25px; height: 30px; border: none; background-color: red;"
+										class="decrease-quantity">-</button>
+									<input style="margin: 5px;" type="number" class="quantity"
+										value="0">
+									<button
+										style="width: 25px; height: 30px; border: none; background-color: red;"
+										class="increase-quantity">+</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="cart">
+						<ul id="cartItems"></ul>
+					</div>
+				</div>
 
-      <!-------------------------------Footer-------------------------------->
-      <footer class="footer">
-        <hr class="footer-hr">
-        <div class="footer-content">
-          <div class="footer-left">
-            <a href="home.html"><img class="footer-logo" src="/assets/Images/2.png" alt="" width="30"
-                height="24"></a>
-            <p class="footer-bottom-tagline">Watch! Chill! Repeat!</p>
-          </div>
-          <div class="footer-middle">
-            <h2 class="footer-heading">Follow Us</h2>
-            <ul class="footer-middle-list icons">
-              <a class="footer-links" href="https://www.facebook.com/" target="_blank"><i
-                  class="fab fa-facebook-f facebook" style="color:red"></i></a>
-              <a class="footer-links" href="https://twitter.com/login?lang=en" target="_blank"><i
-                  class="fab fa-twitter twitter" style="color:red"></i></a>
-              <a class="footer-links" href="https://www.linkedin.com/login" target="_blank"><i
-                  class="fab fa-linkedin linkedin" style="color:red"></i></a>
-              <a class="footer-links" href="https://www.instagram.com/" target="_blank"><i
-                  class="fab fa-instagram instagram" style="color:red"></i></a>
-              <a class="footer-links" href="https://github.com/QAZIMAAZARSHAD/Movie-Streaming-Website"
-                target="_blank"><i class="fab fa-github github" style="color:red"></i></a>
-            </ul>
-          </div>
-          <div class="footer-middle">
-            <h2 class="footer-heading">Services</h2>
-            <ul class="footer-middle-list">
-              <li class="footer-middle-list-item"><a href="home.html">Enjoy Latest Movies</a> </li>
-              <li class="footer-middle-list-item"><a href="web-series.html">Watch Web-Series</a> </li>
-              <li class="footer-middle-list-item"><a href="kids.html">Everything for Kids</a> </li>
-              <li class="footer-middle-list-item"><a href="news.html">Coming soon</a> </li>
-              <li class="footer-middle-list-item"><a href="premium.html">Get Premium Subscription</a> </li>
-              <li class="footer-middle-list-item"><a href="faq.html">FAQ</a> </li>
-            </ul>
-          </div>
-          <div class="footer-middle">
-            <h2 class="footer-heading">Try Our App</h2>
-            <ul class="footer-middle-list icons">
-              <a class="footer-links" href="#"><i class="fab fa-google-play" style="color:red"></i></a>
-              <a class="footer-links" href="#"><i class="fab fa-app-store-ios" style="color:red"></i></a>
-            </ul>
-          </div>
-          <div class="footer-right">
-            <p class="footer-links">
-            <h2 class="footer-heading">Contact Us</h2>
-            <p class="footer-bottom-tagline">Feel free to contact us.</p>
-            <a class="footer-contact-button" href="contactus.html">Contact</a>
-            </p>
-          </div>
-        </div>
-        <hr class="footer-hr">
-        <!-- <div class="footer-copyright">
-        <p>Copyright &copy; and &reg; Since
-          <script>
-            document.write(new Date().getFullYear())
-          </script> Under ApnaTheatre.com : (Project Is Done By Qazi Maaz Arshad)
-        </p>
-      </div> -->
-      </footer>
+				<div class="row p-0 m-0"
+					style="color: red; background-color: black;">
 
-      <!----------------------scroll back to top button-->
-      <button id="scrollToTopButton" title="Go to top">
-        <i class="fa fa-angle-double-up" aria-hidden="true"></i>
-      </button>
-      <script>
-        $(document).ready(function () {
-          var scrollTopButton = document.getElementById("scrollToTopButton");
-          window.onscroll = function () { scrollFunction() };
-
-          function scrollFunction() {
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-              scrollTopButton.style.display = "block";
-            } else {
-              scrollTopButton.style.display = "none";
-            }
-          }
-
-          $("#scrollToTopButton").click(function () {
-            $('html ,body').animate({ scrollTop: 0 }, 800)
-          });
-        });
-      </script>
-
-      <!-- footer scripts -->
-
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-      <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-      <script src="https://daniellaharel.com/raindrops/js/raindrops.js"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-      <script src="/assets/js/main-min.js"></script>
-
-      <script>
-        jQuery('#waterdrop').raindrops({
-          color: '#292c2f',
-          canvasHeight: 150,
-          density: 0.1,
-          frequency: 20
-        });
-      </script>
-      <script>
-        function logout() {
-          window.location.replace("login.html");
-        }
-      </script>
-
-      <script>
-    let combo = 0;
-
-    const film = document.getElementById('name-Film')
-
-    var countSeat = [];
-
-    // Lấy danh sách các ghế
-    const seats = document.querySelectorAll('.seat');
-
-    // Số lượng ghế đã chọn
-    let selectedSeats = [];
-    let selectedVipSeats = [];
-    let selectedRegularSeats = [];
-    let selectedCoupleSeats = [];
-    // Giá vé
-    const regularSeatPrice = 10;
-    const vipSeatPrice = 100;
-    const coupleSeatPrice = 500;
-
-    // Cập nhật số ghế đã chọn và tổng giá vé
-    function updateSelectedSeats() {
-    	
-        const selected = document.querySelectorAll('.seat.selected');
-        // selectedSeats = Array.from(selected).map(seat => Array.from(seats).indexOf(seat) + 1);
-        selectedSeats = Array.from(selected).map(seat => seat.getAttribute('data-name'));
-        selectedVipSeats = Array.from(selected).filter(seat => seat.getAttribute('data-vip') === 'true');
-        selectedRegularSeats = Array.from(selected).filter(seat => seat.getAttribute('data-vip') !== 'true' && seat.getAttribute('data-couple') !== 'true');
-        selectedCoupleSeats = Array.from(selected).filter(seat => seat.getAttribute('data-couple') === 'true');
-        const selectedSeatsCount = selectedSeats.length;
-        const selectedVipSeatsCount = selectedVipSeats.length;
-        const selectedRegularSeatsCount = selectedRegularSeats.length;
-        const selectedCoupleSeatsCount = selectedCoupleSeats.length;
-        console.log(selectedSeats.length)
-        //const totalPrice = selectedSeatsCount * seatPrice;
-        //const totalPrice = (selectedVipSeatsCount * vipSeatPrice) + (selectedRegularSeatsCount * regularSeatPrice);
-        const totalPrice = (selectedVipSeatsCount * vipSeatPrice) + (selectedRegularSeatsCount * regularSeatPrice) + (selectedCoupleSeatsCount * coupleSeatPrice);
-        document.getElementById('selected-seats').textContent = `${selectedSeats.join(', ')}`;
-        document.getElementById('total-price').textContent = `$${totalPrice + combo}`;
-        document.getElementById('combo').textContent = `$${combo}`
-        film.textContent = `$${totalPrice}`;
-
-        document.getElementById("toTalPay").textContent = `$${totalPrice + combo}`;
-        document.getElementById("toTalPay2").textContent = `$${totalPrice + combo}`;
-        document.getElementById("Pay").textContent = `$${totalPrice + combo}`;
-    }
+					<!-- page Pay -->
+					<div id="displayPay" class="m-auto">
+						<div>
+							<h4>THANH TOÁN</h4>
+						</div>
+						<div class="row p-0 m-0">
+							<div class="col-8">
+								<div
+									style="background-color: #bcbdc0; text-align: left; padding: 5px;">
+									<span style="display: inline-block;">Bước 1:</span>
+									<h5 style="display: inline-block;">GIẢM GIÁ</h5>
+								</div>
+								<div class="m-2">
+									<div class="accordion" id="accordionPanelsStayOpenExample">
+										<div class="accordion-item">
+											<h2 class="accordion-header" id="panelsStayOpen-headingOne">
+												<button class="accordion-button" type="button"
+													data-bs-toggle="collapse"
+													data-bs-target="#panelsStayOpen-collapseOne"
+													aria-expanded="true"
+													aria-controls="panelsStayOpen-collapseOne">Đối tác
+												</button>
+											</h2>
+											<div id="panelsStayOpen-collapseOne"
+												class="accordion-collapse collapse show"
+												aria-labelledby="panelsStayOpen-headingOne">
+												<div class="accordion-body">...</div>
+											</div>
+										</div>
+										<div class="accordion-item">
+											<h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+												<button class="accordion-button collapsed" type="button"
+													data-bs-toggle="collapse"
+													data-bs-target="#panelsStayOpen-collapseTwo"
+													aria-expanded="false"
+													aria-controls="panelsStayOpen-collapseTwo">Mã
+													khuyến mãi</button>
+											</h2>
+											<div id="panelsStayOpen-collapseTwo"
+												class="accordion-collapse collapse"
+												aria-labelledby="panelsStayOpen-headingTwo">
+												<div class="accordion-body">...</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div
+									style="background-color: #bcbdc0; text-align: left; padding: 5px;">
+									<span style="display: inline-block;">Bước 2:</span>
+									<h5 style="display: inline-block;">HÌNH THỨC THANH TOÁN</h5>
+								</div>
+								<div style="background-color: #fff1ce;">
+									<div class="form-check m-2" style="text-align: left;">
+										<input class="form-check-input mt-3" type="radio"
+											name="flexRadioDefault" id="flexRadioDefault1"> <label
+											class="form-check-label" for="flexRadioDefault1">
+											<div style="display: inline-block; width: 50px;">
+												<img style="width: 100%;"
+													src="https://www.cgv.vn/media/catalog/product/placeholder/default/atm_icon.png"
+													alt="">
+											</div> ATM card (Thẻ nội địa)
+										</label>
+									</div>
+									<div class="form-check m-2" style="text-align: left;">
+										<input class="form-check-input mt-3" type="radio"
+											name="flexRadioDefault" id="flexRadioDefault2"> <label
+											class="form-check-label" for="flexRadioDefault2">
+											<div style="display: inline-block; width: 50px;">
+												<img style="width: 100%;"
+													src="https://www.cgv.vn/media/catalog/product/placeholder/default/visa-mastercard-icon.png"
+													alt="">
+											</div> Thẻ quốc tế (Visa, Master, Amex, JCB) (Thẻ nội địa)
+										</label>
+									</div>
+									<div class="form-check m-2" style="text-align: left;">
+										<input class="form-check-input mt-3" type="radio"
+											name="flexRadioDefault" id="flexRadioDefault3"> <label
+											class="form-check-label" for="flexRadioDefault3">
+											<div style="display: inline-block; width: 50px;">
+												<img style="width: 100%;"
+													src="https://www.cgv.vn/media/catalog/product/placeholder/default/momo_icon.png"
+													alt="">
+											</div> MoMo - Nhập MMCGV -5K/bill, Vé 9K Bạn Mới
+										</label>
+									</div>
+									<div class="form-check m-2" style="text-align: left;">
+										<input class="form-check-input mt-3" type="radio"
+											name="flexRadioDefault" id="flexRadioDefault4"> <label
+											class="form-check-label" for="flexRadioDefault4">
+											<div style="display: inline-block; width: 50px;">
+												<img style="width: 100%;"
+													src="https://www.cgv.vn/media/catalog/product/placeholder/default/icon-HOT-96x96.png"
+													alt="">
+											</div> ZaloPay: Bạn Mới vé 14K - Bạn Thân 84K
+										</label>
+									</div>
+									<div class="form-check m-2" style="text-align: left;">
+										<input class="form-check-input mt-3" type="radio"
+											name="flexRadioDefault" id="flexRadioDefault5"> <label
+											class="form-check-label" for="flexRadioDefault5">
+											<div style="display: inline-block; width: 50px;">
+												<img style="width: 100%;"
+													src="https://www.cgv.vn/media/catalog/product/placeholder/default/vnpay_newlogo.png"
+													alt="">
+											</div> VNPAY
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="col-4">
+								<div class="m-2 mt-0">
+									<ul class="list-group">
+										<li style="background-color: #fff1ce; font-weight: 650;"
+											class="list-group-item">Tổng cộng</li>
+										<li style="background-color: #fff1ce;" class="list-group-item"
+											id="toTalPay">$0.00</li>
+										<li style="background-color: #d0cece;" class="list-group-item"
+											id="toTalPay2">$0.00</li>
+									</ul>
+								</div>
+								<div class="m-2">
+									<ul class="list-group">
+										<li style="background-color: #fff1ce; font-weight: 650;"
+											class="list-group-item">Khuyến mãi</li>
+										<li style="background-color: #d0cece;" class="list-group-item">$0.00</li>
+									</ul>
+								</div>
+								<div class="m-2">
+									<ul class="list-group">
+										<li
+											style="background-color: #e71a0f; font-weight: 650; color: white;"
+											class="list-group-item">Tổng số tiền thanh toán</li>
+										<li style="background-color: #d0cece;" class="list-group-item"
+											id="Pay">$0.00</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-2">
+						<button id="prevButton"
+							style="margin-top: 20px; width: 104px; height: 85px;"
+							class="btn btn-danger">prev</button>
+					</div>
+					<div class="col-1">
+						<img style="width: 70px; margin-top: 10px;"
+							src="https://www.cgv.vn/media/catalog/product/cache/1/thumbnail/dc33889b0f8b5da88052ef70de32f1cb/7/0/700x1000_17_1_.jpg"
+							alt="">
+					</div>
+					<div class="col-2" style="margin-top: 10px;">
+						<p style="text-align: left;">KUMANTHONG: QUỶ LINH NHI 2D T18</p>
+					</div>
+					<div style="margin-top: 10px;" class="col-3">
+						<div class="row">
+							<p class="col-4 m-0 p-0">Rạp</p>
+							<p class="col-8 m-0 p-0">CGV Vincom Thủ Đức</p>
+						</div>
+						<div class="row">
+							<p class="col-4 m-0 p-0">Suất chiếu</p>
+							<p class="col-8 m-0 p-0">18:05, 05/10/2023</p>
+						</div>
+						<div class="row">
+							<p class="col-4 m-0 p-0">Phòng chiếu</p>
+							<p class="col-8 m-0 p-0">Cinema 2</p>
+						</div>
+						<div class="row">
+							<p class="col-4 m-0 p-0">Ghế</p>
+							<p class="col-8 m-0 p-0" id="selected-seats"></p>
+						</div>
+					</div>
+					<div style="margin-top: 10px;" class="col-2">
+						<div class="row">
+							<p class="col-4 m-0 p-0">Tên phim</p>
+							<p class="col-8 m-0 p-0" id="name-Film">$0.00</p>
+						</div>
+						<div class="row">
+							<p class="col-4 m-0 p-0">Combo</p>
+							<p id="combo" class="col-8 m-0 p-0">$0.00</p>
+						</div>
+						<div class="row">
+							<p class="col-4 m-0 p-0">Tổng</p>
+							<p class="col-8 m-0 p-0" id="total-price">$0.00</p>
+						</div>
+					</div>
+					<br> <br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<div class="col-2 text-center">
+						<button id="nextButton"
+							style="margin-top: 20px; width: 104px; height: 85px;"
+							class="btn btn-danger">next</button>
+					</div>
+				</div>
+			</div>
 
 
-    let selectedSeatType = null;
-
-    function selectSeat() {
-        const isVip = this.getAttribute('data-vip') === 'true';
-        const isCouple = this.getAttribute('data-couple') === 'true';
-
-        // Kiểm tra xem có ghế vip hoặc ghế đôi đã được chọn hay chưa
-        const isVipSeatSelected = selectedVipSeats.length > 0;
-        const isCoupleSeatSelected = selectedCoupleSeats.length > 0;
-
-        // Nếu người dùng chọn ghế vip
-        if (isVip) {
-            if (selectedSeatType && selectedSeatType !== 'vip') {
-                alert("Chỉ chọn một loại ghế");
-                return;
-            }
-
-            // Bỏ chọn tất cả các ghế đôi nếu có
-            if (isCoupleSeatSelected) {
-                selectedCoupleSeats.forEach(seat => seat.classList.remove('selected'));
-                selectedCoupleSeats = [];
-            }
-
-            // Bỏ chọn tất cả các ghế thường nếu có
-            if (selectedRegularSeats.length > 0) {
-                selectedRegularSeats.forEach(seat => seat.classList.remove('selected'));
-                selectedRegularSeats = [];
-            }
-
-            // Thực hiện chọn ghế vip
-            this.classList.toggle('selected');
-            selectedSeatType = 'vip';
-            updateSelectedSeats();
-            return;
-        }
-
-        // Nếu người dùng chọn ghế đôi
-        if (isCouple) {
-            if (selectedSeatType && selectedSeatType !== 'couple') {
-                alert("Chỉ chọn một loại ghế");
-                return;
-            }
-
-            // Bỏ chọn tất cả các ghế vip nếu có
-            if (isVipSeatSelected) {
-                selectedVipSeats.forEach(seat => seat.classList.remove('selected'));
-                selectedVipSeats = [];
-            }
-
-            // Bỏ chọn tất cả các ghế thường nếu có
-            if (selectedRegularSeats.length > 0) {
-                selectedRegularSeats.forEach(seat => seat.classList.remove('selected'));
-                selectedRegularSeats = [];
-            }
-
-            // Thực hiện chọn ghế đôi
-            this.classList.toggle('selected');
-            selectedSeatType = 'couple';
-            updateSelectedSeats();
-            return;
-        }
-
-        // Nếu người dùng chọn ghế thường
-        if (isVipSeatSelected || isCoupleSeatSelected) {
-            alert("Chỉ chọn một loại ghế");
-            return;
-        }
-
-        // Thực hiện chọn ghế thường
-        this.classList.toggle('selected');
-        selectedSeatType = null;
-        updateSelectedSeats();
-
-        // console.log(selectedSeatType)
-        // if (selectedSeatType == null) {
-        //     if () {
-
-        //     }
-        //     alert("Chỉ chọn một loại ghế");
-        //     return;
-        // }
-    }
-
-    // Đăng ký sự kiện cho từng ghế
-    seats.forEach(seat => {
-        seat.addEventListener('click', selectSeat);
-    });
-
-
-    // Xử lý sự kiện khi người dùng nhấn nút Book
-    // document.getElementById('book-btn').addEventListener('click', () => {
-    //     alert(`Booked seats: ${selectedSeats.join(', ')}`);
-    // });
-
-    function updateSelectedSeatsVip() {
-        // Gán giá tiền cho từng loại ghế
-        seats.forEach(seat => {
-            const isVip = seat.getAttribute('data-vip') === "true";
-            const isCouple = seat.getAttribute('data-couple') === 'true';
-            let seatPrice;
-            if (isVip) {
-                seatPrice = vipSeatPrice;
-            } else if (isCouple) {
-                seatPrice = coupleSeatPrice;
-            } else {
-                seatPrice = regularSeatPrice;
-            }
-            // Áp dụng giá tiền vào ghế
-            seat.setAttribute('data-price', seatPrice);
-        });
-    }
-
-
-
-    // chuyển hướng khi đặt xong ghế
-    document.getElementById("displaySeat").style.display = "block";
-    document.getElementById("displayFood").style.display = "none";
-    document.getElementById("displayPay").style.display = "none";
-
-    var nextButton = document.getElementById("nextButton");
-    var prevButton = document.getElementById("prevButton");
-    var countPage = 0;
-    nextButton.addEventListener("click", function () {
-    	console.log("hello")
-        if (selectedSeats.length > 0) {
-            document.getElementById("displaySeat").style.display = "none";
-            document.getElementById("displayFood").style.display = "block";
-            countPage++;
-        } else {
-            alert("bạn chưa chọn bất kỳ ghế nào vui lòng chọn ghế")
-        }
-        if (countPage > 1) {
-            document.getElementById("displaySeat").style.display = "none";
-            document.getElementById("displayFood").style.display = "none";
-            document.getElementById("displayPay").style.display = "block";
-        }
-    });
-
-    prevButton.addEventListener("click", function () {
-        if (countPage == 1) {
-            document.getElementById("displaySeat").style.display = "block"
-            document.getElementById("displayFood").style.display = "none"
-            document.getElementById("displayPay").style.display = "none";
-            countPage = 0;
-        } else if (countPage > 1) {
-            document.getElementById("displaySeat").style.display = "none"
-            document.getElementById("displayFood").style.display = "block"
-            document.getElementById("displayPay").style.display = "none";
-            countPage = 1;
-        }
-    })
-
-
-    // thao tác đặt food
-    document.addEventListener('DOMContentLoaded', function () {
-        const decreaseQuantityButtons = document.querySelectorAll('.decrease-quantity');
-        const increaseQuantityButtons = document.querySelectorAll('.increase-quantity');
-        const quantityInputs = document.querySelectorAll('.quantity');
-        const cartItems = document.getElementById('cartItems');
-        const totalAmount = document.getElementById('totalAmount');
-        let totalPrice = 0;
-
-        // Xử lý khi người dùng giảm số lượng
-        decreaseQuantityButtons.forEach(function (button, index) {
-            button.addEventListener('click', function () {
-                if (quantityInputs[index].value > 0) {
-                    quantityInputs[index].value--;
-                    updateCart(index);
-                }
-            });
-        });
-
-        // Xử lý khi người dùng tăng số lượng
-        increaseQuantityButtons.forEach(function (button, index) {
-            button.addEventListener('click', function () {
-                quantityInputs[index].value++;
-                updateCart(index);
-            });
-        });
-
-        // Cập nhật giỏ hàng và tổng cộng
-        function updateCart(index) {
-            const quantity = parseInt(quantityInputs[index].value);
-            const priceElement = document.querySelectorAll('.price')[index];
-            const price = parseFloat(priceElement.innerText.split(':')[1].trim().slice(1));
-            const itemName = document.querySelectorAll('h5')[index].innerText;
-
-            // Xóa sản phẩm nếu đã tồn tại trong giỏ hàng
-            const existingItem = document.getElementById(`cartItem-${index}`);
-            if (existingItem) {
-                totalPrice -= parseFloat(existingItem.dataset.price);
-                existingItem.remove();
-            }
-
-            // Tạo một mục mới trong giỏ hàng
-            const cartItem = document.createElement('li');
-            cartItem.setAttribute('id', `cartItem-${index}`);
-            cartItem.setAttribute('data-price', (price * quantity).toFixed(2));
-            cartItem.innerText = `${itemName} x ${quantity} - $${(price * quantity).toFixed(2)}`;
-            cartItems.appendChild(cartItem);
-            cartItems.style.display = "none"
-
-            // Cập nhật tổng cộng
-            totalPrice += price * quantity;
-            combo = totalPrice;
-            // totalAmount.innerText = totalPrice.toFixed(2);
-            updateSelectedSeats()
-        }
-
-        // Xử lý khi người dùng nhấp vào nút Thanh toán
-        // document.querySelector('.checkout').addEventListener('click', function () {
-        //     // Thực hiện quá trình thanh toán, ví dụ: chuyển đến trang thanh toán, lưu thông tin đơn hàng, vv.
-        //     console.log('Thực hiện thanh toán');
-        // });
-    });
-</script>
-    
-      <!-- bootsstrap JS -->
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
-        crossorigin="anonymous"></script>
-      <script src="/assets/statics/script.js"></script>
-
+		</div>
+	</main>
 
 
 
