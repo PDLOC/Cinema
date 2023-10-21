@@ -82,6 +82,7 @@
 .carousel-inner {
 	cursor: pointer;
 }
+
 </style>
 <script>
 	setTimeout(function() {
@@ -254,10 +255,10 @@
 												<button th:utext="${f.Thoiluong}+' phút'" class="btn_i b2_i"
 													title="Minutes" style="color: white;width:100px"></button>
 												<br /> <br />
-												<p class="para_i">Cobb steals information from his
-													targets by entering their dreams. Saito offers to wipe
-													clean Cobb's criminal history as payment for performing an
-													inception on his sick competitor's son.</p>
+												<p class="para_i" th:each="f1:${f.ctPhims}" >
+													<span 
+										class="  ms-1 mb-3 fs-6" th:utext="${f1.Noidung}"></span>
+												</p>
 
 												<!--<form action="https://youtu.be/YoHD9XEInc0&t=17s"> -->
 

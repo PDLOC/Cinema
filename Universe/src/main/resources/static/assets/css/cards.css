@@ -98,8 +98,16 @@ h1{
 
   }
   .para_i{
-    font-size: 0.8em;
-    margin-bottom: 5px;
+  /*  font-size: 0.8em;
+    margin-bottom: 5px;*/
+    width: 250px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 25px;
+    -webkit-line-clamp: 3;
+    height: 75px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
   }
 .flip-card-front_i, .flip-card-back_i {
   position: absolute;
