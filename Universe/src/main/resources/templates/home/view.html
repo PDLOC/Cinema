@@ -126,92 +126,17 @@
 	    
 	
 	    <!-- Banner Ends Here -->
-	
 	    <br>
 	    <br>
-	
-	
 		<div class="scroll-bar">
-			<!-- navbar starts -->
-
-
-			<!-- navbar ends -->
-
 
 			<!-- <marquee>Welcome To <i>ApnaTheatre</i>.com<sup>&reg;</sup></marquee> -->
 			<!-- <label class="online">Stream Latest Movies Now!</label> -->
-
-
-
-
 			<div class="buddy">
-
-				<div class="slider container">
+				<div  class="slider container">
 					<div class="slide_track ">
-
-						<div class="slide ">
-							<img src="/assets/Images/apharan.jpg" alt="" />
-						</div>
-
-						<div class="slide">
-							<img src="/assets/Images/bat.jpg" alt="" />
-						</div>
-						<div class="slide">
-							<img src="/assets/Images/breaking.jpg" alt="" />
-						</div>
-						<div class="slide">
-							<img src="/assets/Images/criminal.jpg" alt="" />
-						</div>
-						<div class="slide">
-							<img src="/assets/Images/got.jpg" alt="" />
-						</div>
-						<div class="slide">
-							<img src="/assets/Images/infinity.jpg" alt="" />
-						</div>
-						<div class="slide">
-							<img src="/assets/Images/kota.jpg" alt="" />
-						</div>
-						<div class="slide">
-							<img src="/assets/Images/mirzapur.jpg" alt="" />
-						</div>
-						<div class="slide">
-							<img src="/assets/Images/sacred.jpg" alt="" />
-						</div>
-						<div class="slide">
-							<img src="/assets/Images/scam.jpg" alt="" />
-						</div>
-
-
-						<div class="slide">
-							<img src="/assets/Images/apharan.jpg" alt="" />
-						</div>
-
-						<div class="slide">
-							<img src="/assets/Images/bat.jpg" alt="" />
-						</div>
-						<div class="slide">
-							<img src="/assets/Images/breaking.jpg" alt="" />
-						</div>
-						<div class="slide">
-							<img src="/assets/Images/criminal.jpg" alt="" />
-						</div>
-						<div class="slide">
-							<img src="/assets/Images/got.jpg" alt="" />
-						</div>
-						<div class="slide">
-							<img src="/assets/Images/infinity.jpg" alt="" />
-						</div>
-						<div class="slide">
-							<img src="/assets/Images/kota.jpg" alt="" />
-						</div>
-						<div class="slide">
-							<img src="/assets/Images/mirzapur.jpg" alt="" />
-						</div>
-						<div class="slide">
-							<img src="/assets/Images/sacred.jpg" alt="" />
-						</div>
-						<div class="slide">
-							<img src="/assets/Images/scam.jpg" alt="" />
+						<div th:each="f:${items}" class="slide" >
+							<img style="height: 300px;" th:src="@{|/assets/Images/${f.Hinh}|}" alt="" />
 						</div>
 					</div>
 				</div>
@@ -909,14 +834,6 @@
 			</div>
 		</div>
 
-		<div class="maincontainer">
-
-			<!-- <h2>Movies</h2> -->
-			<br> <br>
-			<div class="container">
-				<div id="movies" class="row"></div>
-			</div>
-		</div>
 	</main>
 
 </body>

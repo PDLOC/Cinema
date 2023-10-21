@@ -45,7 +45,7 @@ input[type="submit"]:hover {
 	border-radius: 12px;
 }
 
-p {
+.loi {
 	display: inline-flex;
 	font-size: 1em;
 	align-items: center;
@@ -55,7 +55,7 @@ p {
 	font-family: sans-serif;
 }
 
-p svg {
+.loi svg {
 	width: 2em;
 	height: 2em;
 	margin-right: 0.5em;
@@ -173,9 +173,8 @@ p svg {
 	color: #bdc7c9;
 }
 
-.or {
-	margin-bottom: 5px;
-	text-align: center;
+.or{
+	margin-left:120px;
 	color: #bdc7c9;
 }
 

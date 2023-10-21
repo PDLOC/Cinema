@@ -5,10 +5,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("home")
-public class SignController {
-	@RequestMapping("sign")
-	public String sign() {
+public class RegisterController {
+	@RequestMapping("register")
+	public String register() {
 		
-		return "home/sign_login/signup";
+		return "home/sign_login/register";
 	}
 }

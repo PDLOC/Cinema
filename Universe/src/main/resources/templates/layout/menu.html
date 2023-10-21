@@ -42,14 +42,13 @@
 							onMouseOver="this.style.color='red'"
 							onMouseOut="this.style.color='white'">Giới Thiệu</a></li>	
 						<li class="nav-item"><a class="nav-link"
-							href="contactus.html" onMouseOver="this.style.color='red'"
+							th:href="@{|/home/contact|}" onMouseOver="this.style.color='red'"
 							onMouseOut="this.style.color='white'">Liên Hệ</a></li>
 					</ul>
-							<div
-							style="position: relative; display: inline-block; padding-right: 15px;">
+						<div style="position: relative; display: inline-block; padding-right: 15px;">
 							<div class="row">
-		       				<a th:href="@{|/home/sign|}" class="button instagram me-1" style="text-decoration:none;"><span class="gradient"></span><p>Đăng Kí</p></a>
-							<a th:href="@{|/home/login|}" class="button instagram" style="text-decoration:none;"><span class="gradient"></span><p>Đăng Nhập</p></a>
+			       				<a th:href="@{|/home/register|}" class="button nut  me-1" style="text-decoration:none;"><span class="gradient"></span><p>Đăng Kí</p></a>
+								<a th:href="@{|/home/login|}" class="button nut" style="text-decoration:none;"><span class="gradient"></span><p>Đăng Nhập</p></a>
 							</div>
 						</div>		
 				</div>
