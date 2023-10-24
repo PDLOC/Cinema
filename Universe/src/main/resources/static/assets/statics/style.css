@@ -339,6 +339,7 @@ h3 {
 
 .map-padd {
   padding: 0 calc(var(--bs-gutter-x) / 2) 0 0;
+  height:350px;
 }
 iframe {
   height: 100%;
@@ -354,6 +355,7 @@ iframe {
   }
   .map-padd {
     padding: 0 calc(var(--bs-gutter-x) / 2);
+    height:500px;
   }
   iframe {
     height: 300px;
@@ -369,7 +371,6 @@ iframe {
 }
 
 .address {
-  padding-top: 100px;
   margin: 0 auto;
 }
 @media (min-width: 992px) {
@@ -382,7 +383,8 @@ iframe {
   border: none;
   height: 3px;
   background-color: #e71328;
-  width: 140px;
+  width: 220px;
+  margin-left:5px;
   margin-bottom: 20px;
 }
 
@@ -391,9 +393,7 @@ iframe {
   color: #afadad;
   margin: 3px;
 }
-.phone-e {
-  padding: 15px 0;
-}
+
 .c_logo img {
   height: 100px;
   width: 100px;
@@ -510,13 +510,14 @@ textarea.ng-valid {
 
 .fill .form-row .form-group label {
   position: absolute;
-  bottom: 10px;
+  bottom: 15px;
+  top:10px;
   left: 0;
   color: rgba(255, 255, 255, 0.7);
   pointer-events: none;
   transition: all 0.4s ease;
   margin-bottom: 0px;
-  padding-left: 15px;
+  padding-left: 20px;
   font-size: 1em;
 }
 
@@ -569,7 +570,7 @@ textarea.ng-valid {
 }
 
 .fill .btn-sm {
-  padding-top: 2.5rem;
+  padding-top: 2.5rem; 
 }
 
 .fill .sm-button {
@@ -580,7 +581,7 @@ textarea.ng-valid {
   color: #000;
   border: 2px solid #e71328;
   font-weight: 600;
-  z-index: 100;
+  z-index: 10;
   transition: 0.3s box-shadow;
   -webkit-transition: 0.3s box-shadow;
   outline: none;
@@ -590,6 +591,29 @@ textarea.ng-valid {
   box-shadow: 0 0 10px rgba(231, 19, 40, 0.7), 0 0 15px rgba(231, 19, 40, 0.7),
     0 0 20px rgba(231, 19, 40, 0.7);
   transition: 0.3s box-shadow;
+  -webkit-transition: 0.3s box-shadow;
+}
+
+.fill .sm-buton {
+	margin-left:700px;	
+  padding: 0.55rem 1.5rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  background-color: #e71328;
+  color: #000;
+  border: 2px solid #e71328;
+  font-weight: 600;
+  z-index: 10;
+  transition: 0.3s box-shadow;
+  -webkit-transition: 0.3s box-shadow;
+  outline: none;
+  border-radius: 0.25rem;
+}
+.fill .sm-buton:hover {
+  box-shadow: 0 0 10px rgba(231, 19, 40, 0.7), 0 0 15px rgba(231, 19, 40, 0.7),
+    0 0 20px rgba(231, 19, 40, 0.7);
+  transition: 0.3s box-shadow;
+  text-decoration: none;
   -webkit-transition: 0.3s box-shadow;
 }
 

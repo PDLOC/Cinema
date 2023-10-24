@@ -121,23 +121,9 @@
 </script>
 <body>
 	<main>
-		<div class="container">
-			<div id="movies" class="row"></div>
-		</div>
-		<hr>
-		<div class="box">
-			<div class="text">
-				<h1>
-					Contact <span class="red">Us</span>
-				</h1>
-				<div class="redline"></div>
-				<p>Have Questions ? We have answers ( may be )</p>
-			</div>
-		</div>
-
 		<div class="touch">
-			<h2>Get in touch</h2>
-			<div class="redline"></div>
+			<h2>Feedback</h2>
+			<div class="redline" style="width:150px"></div>
 		</div>
 		<div class="container fill">
 			<div class="forthis">
@@ -148,13 +134,13 @@
 						<div class="form-group col-md-6 column">
 							<input type="text" class="form-control input" id="firstname"
 								name="firstname" placeholder=" "> <label for="firstname"
-								class="">First Name</label>
+								class="">Tên Đệm</label>
 							<div class="underline"></div>
 						</div>
 						<div class="form-group col-md-6 column">
 							<input type="text" class="form-control input" id="lastname"
 								name="lastname" placeholder=" "> <label for="lastname"
-								class="">Last Name</label>
+								class="">Tên Chính</label>
 							<div class="underline"></div>
 						</div>
 					</div>
@@ -168,7 +154,7 @@
 						<div class="form-group col-lg-6 column">
 							<input type="text" class="form-control input" id="phone"
 								name="phone" placeholder=" "> <label for="number"
-								class="">Phone Number</label>
+								class="">Số Điện Thoại</label>
 							<div class="underline"></div>
 						</div>
 					</div>
@@ -176,7 +162,7 @@
 						<div class="form-group column">
 							<input type="text" class="form-control input" name="subject"
 								id="subject" placeholder=" "> <label for="subject"
-								class="">Subject</label>
+								class="">Vấn Đề</label>
 							<div class="underline extra"></div>
 						</div>
 					</div>
@@ -184,13 +170,14 @@
 						<div class="form-group column">
 							<textarea type="text" class="form-control input" name="message"
 								id="message" rows="5" placeholder=" "></textarea>
-							<label for="message" class="">Message</label>
+							<label for="message" class="">Lời Nhắn</label>
 							<div class="underline extra gap"></div>
 						</div>
 					</div>
 					<div class="btn-sm">
 						<input type="submit" value="SEND MESSAGE" class="sm-button"
-							id="submit-btn"> <a href="#" onclick="clearFunc()">Reset</a>
+							id="submit-btn"> 
+							<a href="#" class="sm-buton" onclick="clearFunc()">Reset</a>
 					</div>
 				</form>
 			</div>
@@ -201,27 +188,23 @@
 		<div class="container address">
 			<div class="row add-row">
 				<div class="col-sm-6">
-					<h3>Our Address</h3>
+					<h3>Thông Tin</h3>
 					<div class="redline-address"></div>
-					<p>13 B</p>
-					<p>King Koti Road</p>
-					<p>Vadodara,</p>
-					<p>Gujrat - 500029</p>
+					<p>Địa chỉ : Bình Dương</p>
 					<div class="phone-e">
 						<p>
 							<span class="glyphicon glyphicon-envelope"> </span>
-							info@movie-website.com
+							Gmail : kymtps19999@fpt.edu.vn
 						</p>
 						<p>
-							<span class="glyphicon glyphicon-phone"></span> +91-97427 66666
+							<span class="glyphicon glyphicon-phone"></span>Sđt : +840372265934
 						</p>
 					</div>
 				</div>
 				<div class="col-sm-6 map-padd">
 					<!-- -map- -->
-					<iframe
-						src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.019213593812!2d77.62060731482127!3d12.906485990898592!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae14eed2a26dbb%3A0x98f64960052a26b0!2sTrainingMug!5e0!3m2!1sen!2sin!4v1504259922701"
-						width="100%" frameborder="0" style="border: 0" allowfullscreen></iframe>
+					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1107.7773455261397!2d106.67900903567501!3d10.79070971126726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f2b4cac4117%3A0x5ad25c3f747765d8
+					!2zMTc1IMSQLiBUcsaw4budbmcgU2EsIFBoxrDhu51uZyAxNCwgUXXhuq1uIDMsIFRow6BuaCBwaOG7kSBI4buTIENow60gTWluaCwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1698123435550!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 				</div>
 			</div>
 		</div>
@@ -259,53 +242,53 @@
 						&& phone.value.trim().length === 0
 						&& subject.value.trim().length === 0
 						&& message.value.trim().length === 0) {
-					swal("Oops...", "Please! Enter the credentials first .",
+					swal("Oops...", "Điền tên đệm đi bồ .",
 							"error");
 					return false;
 				}
 				if (firstname.value.trim().length === 0) {
-					swal("Oops...", "Please! Enter your first name .", "error");
+					swal("Oops...", "Điền tên chính đi bồ .", "error");
 					return false;
 				}
 				if (!firstname.value.trim().match(alphabets)) {
-					swal("Oops...", "Please! Enter a valid first name.",
+					swal("Oops...", "Tên bồ bị lỏ rồi",
 							"error");
 					return false;
 				}
 				if (lastname.value.trim().length > 0) {
 					if (!lastname.value.trim().match(alphabets)) {
-						swal("Oops...", "Please! Enter a valid last name.",
+						swal("Oops...", "Tên bồ bị lỏ rồi",
 								"error");
 						return false;
 					}
 				}
 				if (email.value.trim().length === 0) {
-					swal("Oops...", "Please! Enter your email address.",
+					swal("Oops...", "Điền địa chỉ đi bồ",
 							"error");
 					return false;
 				}
 				if (!email.value.trim().includes("@gmail.com")) {
-					swal("Oops...", "Please! Enter a valid email address.",
+					swal("Oops...", "Bớt xài địa chỉ ma đi bồ",
 							"error");
 					return false;
 				}
 				if (phone.value.trim().length != 10
 						|| isNaN(phone.value.trim())) {
-					swal("Oops...", "Phone number should be 10 digits. ",
+					swal("Oops...", "Xin số điện thoại đi bồ",
 							"error");
 					return false;
 				}
 				if (subject.value.trim().length === 0) {
-					swal("Oops...", "Please! Enter the subject.", "error");
+					swal("Oops...", "Nhả số điện thoại ra bồ", "error");
 					return false;
 				}
 				if (message.value.trim().length === 0) {
-					swal("Oops...", "Please! Enter the message.", "error");
+					swal("Oops...", "Nhập cái vấn đề vô ??", "error");
 					return false;
 				}
 				swal(
-						"Congrats!",
-						"Message was delivered successfully! Thanks for your Submission",
+						"Hoàn Tất!",
+						"Bên chúng tôi sẽ giải quyết vấn đề của bạn torng thời gian sớm nhất",
 						"success");
 				return true;
 			}
