@@ -13,6 +13,13 @@
 					<div class="mx-auto text-center">
 						<h1>Seat Booking</h1>
 					</div>
+					<div style="background-color: red; color:white; padding:10px;">
+						<span>CGV Hùng Vương Plaza |</span>
+						<span>Cinema 8 |</span>
+						<span id="TotalSeat">Số ghế (76/76)</span><br>
+						<span>Time Bắt Đầu</span>
+						<span>Time Kết Thúc</span>
+					</div>
 					<div class="card text-center">
 						<div class="card-header">
 							<div class="movie-title">Người sắt vô tri - 2022</div>
@@ -340,6 +347,16 @@
 					<div class="bg-dark text-light">
 						<h4>Bắp nước</h4>
 					</div>
+					<div style="background-color: red; color:white; padding:10px;" class="d-flex">
+						<div>
+							<span>CGV Hùng Vương Plaza |</span>
+							<span>Cinema 8 |</span>
+							<span id="TotalSeat2">Số ghế (76/76)</span><br>
+							<span>Time Bắt Đầu</span>
+							<span>Time Kết Thúc</span>
+						</div>
+						<span class="ml-auto" id="countdown">Count Down: 00:00</span>
+					</div>
 					<div class="food-list">
 						<div class="col-sm-6 d-flex p-4">
 							<img class="w-25"
@@ -466,7 +483,7 @@
 				</div>
 
 				<div class="row p-0 m-0"
-					style="color: red; background-color: black;">
+					style="color: red;">
 
 					<!-- page Pay -->
 					<div id="displayPay" class="m-auto">
@@ -478,7 +495,7 @@
 								<div
 									style="background-color: #bcbdc0; text-align: left; padding: 5px;">
 									<span style="display: inline-block;">Bước 1:</span>
-									<h5 style="display: inline-block;">GIẢM GIÁ</h5>
+									<span style="display: inline-block;">GIẢM GIÁ</span>
 								</div>
 								<div class="m-2">
 									<div class="accordion" id="accordionPanelsStayOpenExample">
@@ -517,7 +534,7 @@
 								<div
 									style="background-color: #bcbdc0; text-align: left; padding: 5px;">
 									<span style="display: inline-block;">Bước 2:</span>
-									<h5 style="display: inline-block;">HÌNH THỨC THANH TOÁN</h5>
+									<span style="display: inline-block;">HÌNH THỨC THANH TOÁN</span>
 								</div>
 								<div style="background-color: #fff1ce;">
 									<div class="form-check m-2" style="text-align: left;">
@@ -607,10 +624,13 @@
 							</div>
 						</div>
 					</div>
+
+				</div>
+				<div class="row p-0 m-0" style="color: red; background-color: black;">
 					<div class="col-2">
 						<button id="prevButton"
-							style="margin-top: 20px; width: 104px; height: 85px;"
-							class="btn btn-danger">prev</button>
+							style="margin-top: 20px; width: 104px; height: 85px; background-color: #343433;"
+							class="btn btn-danger"><i class="fa-solid fa-arrow-left fa-2xl"></i>Previous</button>
 					</div>
 					<div class="col-1">
 						<img style="width: 70px; margin-top: 10px;"
@@ -618,7 +638,7 @@
 							alt="">
 					</div>
 					<div class="col-2" style="margin-top: 10px;">
-						<p style="text-align: left;">KUMANTHONG: QUỶ LINH NHI 2D T18</p>
+						<p style="text-align: left; margin-top:5px;">KUMANTHONG: QUỶ LINH NHI 2D T18</p>
 					</div>
 					<div style="margin-top: 10px;" class="col-3">
 						<div class="row">
@@ -660,7 +680,7 @@
 					<div class="col-2 text-center">
 						<button id="nextButton"
 							style="margin-top: 20px; width: 104px; height: 85px;"
-							class="btn btn-danger">next</button>
+							class="btn btn-danger"><i class="fa-solid fa-arrow-right fa-2xl"></i><br>Next</button>
 					</div>
 				</div>
 			</div>

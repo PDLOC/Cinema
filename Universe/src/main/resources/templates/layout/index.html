@@ -13,6 +13,9 @@
 	href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap"
 	rel="stylesheet">
 
+<!-- FontAweSome -->
+<script src="https://kit.fontawesome.com/f41adfc48f.js" crossorigin="anonymous"></script>
+
 <!-- Bootstrap CSS -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
@@ -197,6 +200,8 @@
         document.getElementById("toTalPay").textContent = `$${totalPrice + combo}`;
         document.getElementById("toTalPay2").textContent = `$${totalPrice + combo}`;
         document.getElementById("Pay").textContent = `$${totalPrice + combo}`;
+        document.getElementById("TotalSeat").textContent = `Số ghế ${76 - selectedSeatsCount}/76`
+       	document.getElementById("TotalSeat2").textContent = `Số ghế ${76 - selectedSeatsCount}/76`
     }
 
 
@@ -206,14 +211,15 @@
         const isVip = this.getAttribute('data-vip') === 'true';
         const isCouple = this.getAttribute('data-couple') === 'true';
 
-        // Kiểm tra xem có ghế vip hoặc ghế đôi đã được chọn hay chưa
+        // Kiểm tra xem đã chọn ghế vip hay ghế đôi hay không
         const isVipSeatSelected = selectedVipSeats.length > 0;
         const isCoupleSeatSelected = selectedCoupleSeats.length > 0;
+        const isRegularSeatSelected = selectedRegularSeats.length > 0;
 
         // Nếu người dùng chọn ghế vip
         if (isVip) {
-            if (selectedSeatType && selectedSeatType !== 'vip') {
-                alert("Chỉ chọn một loại ghế");
+            if (isCoupleSeatSelected || isRegularSeatSelected) {
+                alert("Chỉ được chọn một loại ghế");
                 return;
             }
 
@@ -224,22 +230,26 @@
             }
 
             // Bỏ chọn tất cả các ghế thường nếu có
-            if (selectedRegularSeats.length > 0) {
+            if (isRegularSeatSelected) {
                 selectedRegularSeats.forEach(seat => seat.classList.remove('selected'));
                 selectedRegularSeats = [];
             }
 
-            // Thực hiện chọn ghế vip
+            // Thực hiện chọn/ bỏ chọn ghế vip
             this.classList.toggle('selected');
-            selectedSeatType = 'vip';
+            if (this.classList.contains('selected')) {
+                selectedSeatType = 'vip';
+            } else {
+                selectedSeatType = null;
+            }
             updateSelectedSeats();
             return;
         }
 
         // Nếu người dùng chọn ghế đôi
         if (isCouple) {
-            if (selectedSeatType && selectedSeatType !== 'couple') {
-                alert("Chỉ chọn một loại ghế");
+            if (isVipSeatSelected || isRegularSeatSelected) {
+                alert("Chỉ được chọn một loại ghế");
                 return;
             }
 
@@ -250,37 +260,34 @@
             }
 
             // Bỏ chọn tất cả các ghế thường nếu có
-            if (selectedRegularSeats.length > 0) {
+            if (isRegularSeatSelected) {
                 selectedRegularSeats.forEach(seat => seat.classList.remove('selected'));
                 selectedRegularSeats = [];
             }
 
-            // Thực hiện chọn ghế đôi
+            // Thực hiện chọn/ bỏ chọn ghế đôi
             this.classList.toggle('selected');
-            selectedSeatType = 'couple';
+            if (this.classList.contains('selected')) {
+                selectedSeatType = 'couple';
+            } else {
+                selectedSeatType = null;
+            }
             updateSelectedSeats();
             return;
         }
 
         // Nếu người dùng chọn ghế thường
         if (isVipSeatSelected || isCoupleSeatSelected) {
-            alert("Chỉ chọn một loại ghế");
+            alert("Chỉ được chọn một loại ghế");
             return;
         }
 
-        // Thực hiện chọn ghế thường
+        // Thực hiện chọn/ bỏ chọn ghế thường
         this.classList.toggle('selected');
-        selectedSeatType = null;
+        if (this.classList.contains('selected')) {
+            selectedSeatType = null; // Đặt selectedSeatType thành null để cho phép chọn một loại ghế khác
+        }
         updateSelectedSeats();
-
-        // console.log(selectedSeatType)
-        // if (selectedSeatType == null) {
-        //     if () {
-
-        //     }
-        //     alert("Chỉ chọn một loại ghế");
-        //     return;
-        // }
     }
 
     // Đăng ký sự kiện cho từng ghế
@@ -312,7 +319,37 @@
         });
     }
 
+	/* đếm thời gian */
+    let remainingTime = 60 + 59; // Tổng thời gian còn lại trong giây
+    function countdown() {
+      const countdownElement = document.getElementById('countdown');
 
+      // Kiểm tra xem đã đạt được thời gian đích đến chưa
+      if (remainingTime <= 0) {
+        clearInterval(timer);
+        countdownElement.textContent = 'Count Down 00:00';
+        document.getElementById("displaySeat").style.display = "block";
+        document.getElementById("displayFood").style.display = "none";
+        document.getElementById("displayPay").style.display = "none";
+        countPage = 0;
+        return;
+      }
+
+      // Chuyển đổi thời gian còn lại thành giờ, phút, giây
+      const minutes = Math.floor(remainingTime / 60);
+      const seconds = remainingTime % 60;
+
+      // Hiển thị kết quả
+      countdownElement.textContent = `Count Down: ${minutes} phút, ${seconds} giây`;
+
+      // Giảm thời gian còn lại
+      remainingTime--;
+    }
+
+    // Cập nhật đồng hồ đếm ngược mỗi giây
+    const timer = setInterval(countdown, 1000);
+    
+    
 
     // chuyển hướng khi đặt xong ghế
     document.getElementById("displaySeat").style.display = "block";
@@ -327,6 +364,7 @@
         if (selectedSeats.length > 0) {
             document.getElementById("displaySeat").style.display = "none";
             document.getElementById("displayFood").style.display = "block";
+            countdown()
             countPage++;
         } else {
             alert("bạn chưa chọn bất kỳ ghế nào vui lòng chọn ghế")
