@@ -30,7 +30,7 @@
 				<div class="remember-flex">
 					<div>
 						<div class="or">OR</div>
-						<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"
+						<div class="g-signin2 mt-3" data-onsuccess="onSignIn" data-theme="dark"
 							data-width="250" data-height="50" data-longtitle="true"></div>
 					</div>
 
@@ -54,13 +54,8 @@
 		</div>
 		
 	<!-- Đăng nhập bằng tài khoản GOOGLE -->
-	<script>
-      function onSignIn(googleUser) {
-            document.location.href = 'https://qazimaazarshad.github.io/Movie-Streaming-Website/home.html'
-    }
-    </script>
-	<!-- Đăng nhập -->
-	<script>
+	 <script>
+
       var emailerror = false;
       var passworderror = false;
       var strongPass = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{6,})");
@@ -75,12 +70,12 @@
         if (email.length == 0) {
           emailerror = true;
           error.style.display = "block";
-          error.innerHTML = `<p class="loi"><svg class="svg-icon" viewBox="0 0 20 20">
+          error.innerHTML = `<p><svg class="svg-icon" viewBox="0 0 20 20">
 							<path d="M17.388,4.751H2.613c-0.213,0-0.389,0.175-0.389,0.389v9.72c0,0.216,0.175,0.389,0.389,0.389h14.775c0.214,0,0.389-0.173,0.389-0.389v-9.72C17.776,4.926,17.602,4.751,17.388,4.751 M16.448,5.53L10,11.984L3.552,5.53H16.448zM3.002,6.081l3.921,3.925l-3.921,3.925V6.081z M3.56,14.471l3.914-3.916l2.253,2.253c0.153,0.153,0.395,0.153,0.548,0l2.253-2.253l3.913,3.916H3.56z M16.999,13.931l-3.921-3.925l3.921-3.925V13.931z"></path>
 						</svg><span class="error">Email should not be empty</span></p>`;
         } else if(!mailformat.test(email)){
           error.style.display = "block";
-          error.innerHTML = `<p class="loi"><svg class="svg-icon" viewBox="0 0 20 20">
+          error.innerHTML = `<p><svg class="svg-icon" viewBox="0 0 20 20">
               <path d="M17.388,4.751H2.613c-0.213,0-0.389,0.175-0.389,0.389v9.72c0,0.216,0.175,0.389,0.389,0.389h14.775c0.214,0,0.389-0.173,0.389-0.389v-9.72C17.776,4.926,17.602,4.751,17.388,4.751 M16.448,5.53L10,11.984L3.552,5.53H16.448zM3.002,6.081l3.921,3.925l-3.921,3.925V6.081z M3.56,14.471l3.914-3.916l2.253,2.253c0.153,0.153,0.395,0.153,0.548,0l2.253-2.253l3.913,3.916H3.56z M16.999,13.931l-3.921-3.925l3.921-3.925V13.931z"></path>
             </svg><span class="error">Email address is invalid</span></p>`;
         }
@@ -121,6 +116,43 @@
           }
         }
       }
+    </script>
+   <script>
+    $(document).ready(function(){
+      var scrollTopButton = document.getElementById("scrollToTopButton");
+      window.onscroll = function () { scrollFunction() };
+
+      function scrollFunction() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        scrollTopButton.style.display = "block";
+      } else {
+        scrollTopButton.style.display = "none";
+      }
+    }
+
+    $("#scrollToTopButton").click(function(){
+    $('html ,body').animate({scrollTop : 0},800)
+    });
+    });
+    </script>
+    <script>
+    $(".toggle-password").click(function() {
+     $(this).toggleClass("fa-eye fa-eye-slash");
+     if ($("#pass_signup").attr("type") == "password") {
+      $("#pass_signup").attr("type", "text");
+     } else {
+       $("#pass_signup").attr("type", "password");
+     }
+    });
+    </script>
+    <script>
+      
+      function onSignIn(googleUser) {
+   
+            document.location.href = 'https://qazimaazarshad.github.io/Movie-Streaming-Website/home.html'
+      
+    }
+      
     </script>
     </main>
 </body>
