@@ -177,11 +177,19 @@
 	    let coupleSeatPrice = 500;
 	    
 	    /* Quá giờ giảm giá */
-	    const gioBatDau = document.getElementById('GioBatDau').innerText;
-	    const gioBatDauHour = parseInt(gioBatDau.split(":")[0]);
-	    const gioBatDauMinute = parseInt(gioBatDau.split(":")[1]);
+	    const gioBatDauElement = document.getElementById('GioBatDau');
+		const gioBatDau = gioBatDauElement.innerText;
+		const gioKetThucElement = document.getElementById('GioKetThuc');
+		const gioKetThuc = gioKetThucElement.innerText;
+		
+		const gioBatDauHour = parseInt(gioBatDau.split(":")[0]);
+		const gioBatDauMinute = parseInt(gioBatDau.split(":")[1]);
+		const gioKetThucHour = parseInt(gioKetThuc.split(":")[0]);
+		const gioKetThucMinute = parseInt(gioKetThuc.split(":")[1]);
 	    
-        if (gioBatDauHour > 21 || (gioBatDauHour === 21 && gioBatDauMinute > 0)) {
+        if ((gioBatDauHour > 21 && gioKetThucHour < 7) || 
+        	(gioBatDauHour === 21 && gioBatDauMinute > 0) || 
+        	(gioKetThucHour === 7 && gioKetThucMinute < 59)) {
         	regularSeatPrice = 10 * 0.9;
 	        vipSeatPrice = 100 * 0.9;
 	        coupleSeatPrice = 500 *0.9;
