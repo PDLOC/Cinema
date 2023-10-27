@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("home")
 public class IntroController {
-	@RequestMapping("intro")
+	@RequestMapping("gioithieu")
 	public String intro(Model model) {
-		return "home/introdu/intro";
+		return "home/gioithieu/intro";
 	}
 }

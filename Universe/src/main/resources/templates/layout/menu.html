@@ -8,51 +8,58 @@
 		<nav class="navbar navbar-expand-lg navbar-light bg-dark"
 			id="header-nav">
 			<div class="container-fluid">
-			<div class="container-fluid" style="height:80px;">
-				<a class="navbar-brand" th:href="@{|/home/film|}"><img class="logo"
-					src="/assets/Images/2.png" alt="" width="30" height="24"></a>
-				<button id="nav" class="navbar-toggler"
-					style="background-color: #8b0000" type="button"
-					data-bs-toggle="collapse" data-bs-target="#navbarNav"
-					aria-controls="navbarNav" aria-expanded="false"
-					aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"
-						style="background-color: dark-grey;"></span>
-				</button>
+				<div class="container-fluid" style="height: 80px;">
+					<a class="navbar-brand" th:href="@{|/home/film|}"><img
+						class="logo" src="/assets/Images/2.png" alt="" width="30"
+						height="24"></a>
+					<button id="nav" class="navbar-toggler"
+						style="background-color: #8b0000" type="button"
+						data-bs-toggle="collapse" data-bs-target="#navbarNav"
+						aria-controls="navbarNav" aria-expanded="false"
+						aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"
+							style="background-color: dark-grey;"></span>
+					</button>
 
-				<div class="collapse navbar-collapse" id="navbarNav">
-					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-						<li class="nav-item "><a class="nav-link active s"
-							aria-current="page" th:href="@{|/home/film|}"
-							onMouseOver="this.style.color='red'"
-							onMouseOut="this.style.color='white'">Trang Chủ</a></li>
-						<li class="nav-item"><a class="nav-link " href="movies.html"
-							onMouseOver="this.style.color='red'"
-							onMouseOut="this.style.color='white'">Lịch Chiếu</a></li>
-						<li class="nav-item"><a class="nav-link "
-							href="web-series.html" onMouseOver="this.style.color='red'"
-							onMouseOut="this.style.color='white'">Khuyến Mại</a></li>
-						<li class="nav-item"><a class="nav-link" href="tv.html"
-							onMouseOver="this.style.color='red'"
-							onMouseOut="this.style.color='white'">Giá Vé</a></li>
-						<li class="nav-item"><a class="nav-link" href="kids.html"
-							onMouseOver="this.style.color='red'"
-							onMouseOut="this.style.color='white'">Vé Của Tôi</a></li>
-						<li class="nav-item"><a class="nav-link" href="kids.html"
-							onMouseOver="this.style.color='red'"
-							onMouseOut="this.style.color='white'">Giới Thiệu</a></li>	
-						<li class="nav-item"><a class="nav-link"
-							th:href="@{|/home/contact|}" onMouseOver="this.style.color='red'"
-							onMouseOut="this.style.color='white'">Liên Hệ</a></li>
-					</ul>
-						<div style="position: relative; display: inline-block; padding-right: 15px;">
+					<div class="collapse navbar-collapse" id="navbarNav">
+						<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+							<li class="nav-item "><a class="nav-link active s"
+								aria-current="page" th:href="@{|/home/film|}"
+								onMouseOver="this.style.color='red'"
+								onMouseOut="this.style.color='white'">Trang Chủ</a></li>
+							<li class="nav-item"><a class="nav-link " th:href="@{|/home/show|}"
+								onMouseOver="this.style.color='red'"
+								onMouseOut="this.style.color='white'">Lịch Chiếu</a></li>
+							<li class="nav-item"><a class="nav-link "
+								href="web-series.html" onMouseOver="this.style.color='red'"
+								onMouseOut="this.style.color='white'">Khuyến Mại</a></li>
+							<li class="nav-item"><a class="nav-link" href="tv.html"
+								onMouseOver="this.style.color='red'"
+								onMouseOut="this.style.color='white'">Giá Vé</a></li>
+							<li class="nav-item"><a class="nav-link"
+								th:href="@{|/home/gioithieu|}"
+								onMouseOver="this.style.color='red'"
+								onMouseOut="this.style.color='white'">Giới Thiệu</a></li>
+							<li class="nav-item"><a class="nav-link"
+								th:href="@{|/home/contact|}"
+								onMouseOver="this.style.color='red'"
+								onMouseOut="this.style.color='white'">Liên Hệ</a></li>
+							<li class="nav-item"><a class="nav-link" th:href="@{|/home/myticket|}"
+								onMouseOver="this.style.color='red'"
+								onMouseOut="this.style.color='white'">Vé Của Tôi</a></li>
+						</ul>
+						<div
+							style="position: relative; display: inline-block; padding-right: 15px;">
 							<div class="row">
-			       				<a th:href="@{|/home/register|}" class="button nut  me-1" style="text-decoration:none;"><span class="gradient"></span><p>Đăng Kí</p></a>
-								<a th:href="@{|/home/login|}" class="button nut" style="text-decoration:none;"><span class="gradient"></span><p>Đăng Nhập</p></a>
+								<a th:href="@{|/home/register|}" class="button nut  me-1"
+									style="text-decoration: none;"><span class="gradient"></span>
+								<p>Đăng Kí</p></a> <a th:href="@{|/home/login|}" class="button nut"
+									style="text-decoration: none;"><span class="gradient"></span>
+								<p>Đăng Nhập</p></a>
 							</div>
-						</div>		
+						</div>
+					</div>
 				</div>
-			</div>
 		</nav>
 	</header>
 	<br>

@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("home")
-public class ShowTController {
+public class ShowTimeController {
 	@RequestMapping("show")
 	public String show() {
 		

@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("home")
 public class UserController {
-	@RequestMapping("user")
+	@RequestMapping("myticket")
 	public String user() {
 		
-		return "home/user/user";
+		return "home/myTicket/form";
 	}
 }
