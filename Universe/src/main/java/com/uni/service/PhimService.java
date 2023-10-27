@@ -13,4 +13,8 @@ public interface PhimService {
 
 	Phim findById(String maphim);
 
+	List<Phim> findPhimDangChieu();
+
+	List<Phim> findPhimSapChieu();
+
 }

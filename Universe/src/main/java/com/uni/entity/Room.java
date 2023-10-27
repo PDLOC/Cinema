@@ -15,6 +15,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @SuppressWarnings("serial")
 @Data
@@ -28,6 +29,7 @@ public class Room implements Serializable{
 	Integer Mapc;
 	String Tenpc;
 	
+	@ToString.Exclude
 	@JsonIgnore
 	@OneToMany(mappedBy = "room")
 	List<Chitietphim> ctphim;

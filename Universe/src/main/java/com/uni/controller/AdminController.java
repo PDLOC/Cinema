@@ -13,4 +13,16 @@ public class AdminController {
 		return "redirect:/assets/admin/index.html";
 	}
 	
+	@RequestMapping("admin/nhanvien/form")
+	public String formNV() {
+		
+		return "redirect:/assets/admin/nhanvien/form.html";
+	}
+	
+	@RequestMapping("admin/nhanvien/list")
+	public String listNV() {
+		
+		return "redirect:/assets/admin/nhanvien/list.html";
+	}
+	
 }

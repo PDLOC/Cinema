@@ -26,6 +26,18 @@ public class PhimServiceImpl implements PhimService {
 		return pDao.findById(maphim).get();
 	}
 
+	@Override
+	public List<Phim> findPhimDangChieu() {
+		// TODO Auto-generated method stub
+		return pDao.findPhimDangChieu();
+	}
+
+	@Override
+	public List<Phim> findPhimSapChieu() {
+		// TODO Auto-generated method stub
+		return pDao.findPhimSapChieu();
+	}
+
 
 	
 	

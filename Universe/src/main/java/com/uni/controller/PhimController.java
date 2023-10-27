@@ -30,8 +30,10 @@ public class PhimController {
 	
 	@RequestMapping("film")
 	public String phim(Model model) {
-		List<Phim> listPhim = phimService.findAll();
-		model.addAttribute("items",listPhim);
+		List<Phim> listPhimDangChieu = phimService.findPhimDangChieu();
+		List<Phim> listPhimSapChieu = phimService.findPhimSapChieu();
+		model.addAttribute("items",listPhimDangChieu);
+		model.addAttribute("items1",listPhimSapChieu);
 		return "home/view";
 	}
 	
