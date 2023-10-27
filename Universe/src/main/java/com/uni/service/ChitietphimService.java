@@ -6,7 +6,7 @@ import com.uni.entity.Chitietphim;
 
 @Service
 public interface ChitietphimService {
-
-
+	
+	Chitietphim findById(String maCtphim);
 
 }

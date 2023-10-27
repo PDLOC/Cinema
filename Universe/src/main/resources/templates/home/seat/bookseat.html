@@ -8,18 +8,27 @@
 <body>
 	<main>
 		<div class="scroll-bar">
-			<div class="container col-9">
-				<div th:each="f:${items}" id="displaySeat">
+			<div id="SeatFood" class="container col-9">
+				<div id="headMenu">
 					<div class="mx-auto text-center">
-						<h1>Seat Booking</h1>
+						<h1>Đặt Vé</h1>
 					</div>
-					<div style="background-color: red; color:white; padding:10px;">
-						<span>CGV Hùng Vương Plaza |</span>
-						<span>Cinema 8 |</span>
-						<span id="TotalSeat">Số ghế (76/76)</span><br>
-						<span>Time Bắt Đầu</span>
-						<span>Time Kết Thúc</span>
+					<div id="hh"
+						style="background-color: red; color: white; padding: 10px;"
+						class="d-flex">
+						<div>
+							<span>CGV Hùng Vương Plaza |</span> 
+							<span>Cinema 8 |</span> 
+							<span id="TotalSeat2">Số ghế (76/76)</span><br> 
+							<div style="display:inline-block;">Giờ bắt đầu <span id="GioBatDau" th:utext="${#strings.substring(itemL.Giobatdau, 0, 5)}"></span></div> 
+							<div style="display:inline-block;">Giờ kết thúc <span id="GioKetThuc" th:utext="${#strings.substring(itemL.Gioketthuc, 0, 5)}"></span></div>
+						</div>
+						<span class="ml-auto" id="countdown">Count Down: 00:00</span>
 					</div>
+
+				</div>
+				<!-- page Seat -->
+				<div id="displaySeat">
 					<div class="card text-center">
 						<div class="card-header">
 							<div class="movie-title">Người sắt vô tri - 2022</div>
@@ -344,19 +353,9 @@
 
 				<!-- page Food -->
 				<div id="displayFood" class="m-auto border mt-3">
-					<div class="bg-dark text-light">
+					<!-- <div class="bg-dark text-light">
 						<h4>Bắp nước</h4>
-					</div>
-					<div style="background-color: red; color:white; padding:10px;" class="d-flex">
-						<div>
-							<span>CGV Hùng Vương Plaza |</span>
-							<span>Cinema 8 |</span>
-							<span id="TotalSeat2">Số ghế (76/76)</span><br>
-							<span>Time Bắt Đầu</span>
-							<span>Time Kết Thúc</span>
-						</div>
-						<span class="ml-auto" id="countdown">Count Down: 00:00</span>
-					</div>
+					</div> -->
 					<div class="food-list">
 						<div class="col-sm-6 d-flex p-4">
 							<img class="w-25"
@@ -374,7 +373,7 @@
 									<button class="decrease-quantity"
 										style="width: 25px; height: 30px; border: none; background-color: red;">-</button>
 									<input style="margin: 5px;" type="number" class="quantity"
-										value="0">
+										value="0" readonly>
 									<button
 										style="width: 25px; height: 30px; border: none; background-color: red;"
 										class="increase-quantity">+</button>
@@ -398,7 +397,7 @@
 										style="width: 25px; height: 30px; border: none; background-color: red;"
 										class="decrease-quantity">-</button>
 									<input style="margin: 5px;" type="number" class="quantity"
-										value="0">
+										value="0" readonly>
 									<button
 										style="width: 25px; height: 30px; border: none; background-color: red;"
 										class="increase-quantity">+</button>
@@ -422,7 +421,7 @@
 										style="width: 25px; height: 30px; border: none; background-color: red;"
 										class="decrease-quantity">-</button>
 									<input style="margin: 5px;" type="number" class="quantity"
-										value="0">
+										value="0" readonly>
 									<button
 										style="width: 25px; height: 30px; border: none; background-color: red;"
 										class="increase-quantity">+</button>
@@ -445,7 +444,7 @@
 										style="width: 25px; height: 30px; border: none; background-color: red;"
 										class="decrease-quantity">-</button>
 									<input style="margin: 5px;" type="number" class="quantity"
-										value="0">
+										value="0" readonly>
 									<button
 										style="width: 25px; height: 30px; border: none; background-color: red;"
 										class="increase-quantity">+</button>
@@ -469,7 +468,7 @@
 										style="width: 25px; height: 30px; border: none; background-color: red;"
 										class="decrease-quantity">-</button>
 									<input style="margin: 5px;" type="number" class="quantity"
-										value="0">
+										value="0" readonly>
 									<button
 										style="width: 25px; height: 30px; border: none; background-color: red;"
 										class="increase-quantity">+</button>
@@ -482,8 +481,7 @@
 					</div>
 				</div>
 
-				<div class="row p-0 m-0"
-					style="color: red;">
+				<div class="row p-0 m-0" style="color: red;">
 
 					<!-- page Pay -->
 					<div id="displayPay" class="m-auto">
@@ -494,26 +492,11 @@
 							<div class="col-8">
 								<div
 									style="background-color: #bcbdc0; text-align: left; padding: 5px;">
-									<span style="display: inline-block;">Bước 1:</span>
-									<span style="display: inline-block;">GIẢM GIÁ</span>
+									<span style="display: inline-block;">Bước 1:</span> <span
+										style="display: inline-block;">GIẢM GIÁ</span>
 								</div>
 								<div class="m-2">
 									<div class="accordion" id="accordionPanelsStayOpenExample">
-										<div class="accordion-item">
-											<h2 class="accordion-header" id="panelsStayOpen-headingOne">
-												<button class="accordion-button" type="button"
-													data-bs-toggle="collapse"
-													data-bs-target="#panelsStayOpen-collapseOne"
-													aria-expanded="true"
-													aria-controls="panelsStayOpen-collapseOne">Đối tác
-												</button>
-											</h2>
-											<div id="panelsStayOpen-collapseOne"
-												class="accordion-collapse collapse show"
-												aria-labelledby="panelsStayOpen-headingOne">
-												<div class="accordion-body">...</div>
-											</div>
-										</div>
 										<div class="accordion-item">
 											<h2 class="accordion-header" id="panelsStayOpen-headingTwo">
 												<button class="accordion-button collapsed" type="button"
@@ -533,8 +516,8 @@
 								</div>
 								<div
 									style="background-color: #bcbdc0; text-align: left; padding: 5px;">
-									<span style="display: inline-block;">Bước 2:</span>
-									<span style="display: inline-block;">HÌNH THỨC THANH TOÁN</span>
+									<span style="display: inline-block;">Bước 2:</span> <span
+										style="display: inline-block;">HÌNH THỨC THANH TOÁN</span>
 								</div>
 								<div style="background-color: #fff1ce;">
 									<div class="form-check m-2" style="text-align: left;">
@@ -621,24 +604,36 @@
 											id="Pay">$0.00</li>
 									</ul>
 								</div>
+								<div class="m-2">
+									<ul class="list-group">
+										<li
+											style="background-color: #e71a0f; font-weight: 650; color: white;"
+											class="list-group-item">Count Down</li>
+										<li style="background-color: #d0cece;" class="list-group-item"
+											id="countdown2">$0.00</li>
+									</ul>
+								</div>
 							</div>
 						</div>
 					</div>
 
 				</div>
-				<div class="row p-0 m-0" style="color: red; background-color: black;">
+				<div class="row p-0 m-0"
+					style="color: red; background-color: black;">
 					<div class="col-2">
 						<button id="prevButton"
 							style="margin-top: 20px; width: 104px; height: 85px; background-color: #343433;"
-							class="btn btn-danger"><i class="fa-solid fa-arrow-left fa-2xl"></i>Previous</button>
+							class="btn btn-danger">
+							<i class="fa-solid fa-arrow-left fa-2xl"></i>Previous
+						</button>
 					</div>
 					<div class="col-1">
 						<img style="width: 70px; margin-top: 10px;"
-							src="https://www.cgv.vn/media/catalog/product/cache/1/thumbnail/dc33889b0f8b5da88052ef70de32f1cb/7/0/700x1000_17_1_.jpg"
-							alt="">
+							th:src="@{|/assets/Images/${itemCt.Hinh}|}"
+							th:alt="${itemCt.Tenphim}">
 					</div>
 					<div class="col-2" style="margin-top: 10px;">
-						<p style="text-align: left; margin-top:5px;">KUMANTHONG: QUỶ LINH NHI 2D T18</p>
+						<p style="text-align: left; margin-top: 5px;" th:utext="${itemCt.Tenphim}">Tên Phim</p>
 					</div>
 					<div style="margin-top: 10px;" class="col-3">
 						<div class="row">
@@ -647,7 +642,7 @@
 						</div>
 						<div class="row">
 							<p class="col-4 m-0 p-0">Suất chiếu</p>
-							<p class="col-8 m-0 p-0">18:05, 05/10/2023</p>
+							<p class="col-8 m-0 p-0" th:utext="${#strings.concat(#strings.substring(itemL.Giobatdau, 0, 5), ' , ', #dates.format(itemL.Ngaychieu, 'dd/MM/yyyy'))}">18:05, 05/10/2023</p>
 						</div>
 						<div class="row">
 							<p class="col-4 m-0 p-0">Phòng chiếu</p>
@@ -660,8 +655,8 @@
 					</div>
 					<div style="margin-top: 10px;" class="col-2">
 						<div class="row">
-							<p class="col-4 m-0 p-0">Tên phim</p>
-							<p class="col-8 m-0 p-0" id="name-Film">$0.00</p>
+							<p class="col-4 m-0 p-0">Tổng ghế</p>
+							<p class="col-8 m-0 p-0" id="countSeat">0</p>
 						</div>
 						<div class="row">
 							<p class="col-4 m-0 p-0">Combo</p>
@@ -672,15 +667,13 @@
 							<p class="col-8 m-0 p-0" id="total-price">$0.00</p>
 						</div>
 					</div>
-					<br> <br>
-					<br>
-					<br>
-					<br>
-					<br>
+					<br> <br> <br> <br> <br> <br>
 					<div class="col-2 text-center">
 						<button id="nextButton"
 							style="margin-top: 20px; width: 104px; height: 85px;"
-							class="btn btn-danger"><i class="fa-solid fa-arrow-right fa-2xl"></i><br>Next</button>
+							class="btn btn-danger">
+							<i class="fa-solid fa-arrow-right fa-2xl"></i><br>Next
+						</button>
 					</div>
 				</div>
 			</div>

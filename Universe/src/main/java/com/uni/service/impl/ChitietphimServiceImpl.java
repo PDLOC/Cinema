@@ -13,6 +13,12 @@ public class ChitietphimServiceImpl implements ChitietphimService {
 	@Autowired
 	ChitietphimDAO ctDAO;
 
+	@Override
+	public Chitietphim findById(String maCtphim) {
+		
+		return ctDAO.findById(maCtphim).get();
+	}
+
 
 	
 
