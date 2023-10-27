@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/index :: dynamic(~{::main})}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+</head>
+<body>
+	<main>
+		<div class="container">
+
+<div class="tabs">
+  <div class="tab-2">
+    <label for="tab2-1" style="font-size:22px">Tài khoản của tôi</label>
+    <input id="tab2-1" name="tabs-two" type="radio" checked="checked">
+    <div>
+      <div class="row mb-3">
+         <div class="col-6">
+         <h5 style="font-family: Georgia, serif;">Họ</h5>
+               <input type="text" style="background:none;border:2px solid red;" class="form-control" id="exampleFormControlInput1" placeholder="Họ">
+         </div>
+         <div class="col-6">
+         <h5 style="font-family: Georgia, serif;">Tên</h5>
+               <input type="text" style="background:none;border:2px solid red" class="form-control" id="exampleFormControlInput1" placeholder="Tên">
+         </div>
+      </div>
+       <div class="row">
+         <div class="col-6 mt-3" style="font-family: Georgia, serif;">
+         <h5>Số điện thoại</h5>
+               <input type="text" style="background:none;border:2px solid red" class="form-control" id="exampleFormControlInput1" placeholder="Số điện thoại">
+         </div>
+         <div class="col-6 mt-3" style="font-family: Georgia, serif;">
+         <h5>Email</h5>
+               <input type="email" style="background:none;border:2px solid red" class="form-control" id="exampleFormControlInput1" placeholder="Email">
+         </div>
+      </div>
+      <br>
+    <div class="ms-3 mb-3">
+    <button type="button" class="btn btn-danger me-3">Lưu thông tin</button>
+    <button type="button" class="btn btn-secondary">Đổi mật khẩu</button>
+    </div>
+    </div>
+  </div>
+  <div class="tab-2">
+    <label for="tab2-2"  style="font-size:22px">Lịch sử mua vé</label>
+    <input id="tab2-2" name="tabs-two" type="radio">
+    <div>
+      <table class="table table-borderless "  style="border:3px solid black;background:none;">
+                <thead class="text-center" style="background:none">
+                    <tr>
+                      <th scope="col" class="align-middle" rowspan="0">Phim</th>   
+                      <th scope="col" class="align-middle" rowspan="1">Ngày giao dịch</th> 
+                      <th scope="col" class="align-middle" rowspan="2">Tên Phim</th>
+                      <th scope="col" class="align-middle" rowspan="3">Số vé</th>
+                      <th scope="col" class="align-middle" rowspan="4">Số tiền</th>
+                    </tr>
+                  </thead>
+                <tr	class="text-center" style="height:200px">
+                  <td>cac</td>
+                  <td>asgnsngklasdg</td>
+                  <td>asdgsdg</td>
+                  <td>asdgsg</td>
+                  <td>asdgsg</td>
+                </tr>
+            </table>
+    
+   </div>
+  </div>
+</div>	
+	</div>
+	<br><br><br><br><br>
+	</main>
+</body>
+</html>
