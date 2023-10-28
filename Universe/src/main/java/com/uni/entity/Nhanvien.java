@@ -25,7 +25,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter
-@Table(name = "Phim")
+@Table(name = "Nhanvien")
 public class Nhanvien implements Serializable{
 	@Id
 	String Manv;

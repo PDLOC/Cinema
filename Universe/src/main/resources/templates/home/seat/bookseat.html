@@ -11,14 +11,14 @@
 			<div id="SeatFood" class="container col-9">
 				<div id="headMenu">
 					<div class="mx-auto text-center">
-						<h1>Đặt Vé</h1>
+						<h1 class="fw-bolder text-white mb-3">Đặt vé</h1>
 					</div>
 					<div id="hh"
 						style="background-color: red; color: white; padding: 10px;"
 						class="d-flex">
 						<div>
-							<span>CGV Hùng Vương Plaza |</span> 
-							<span>Cinema 8 |</span> 
+							<span>Universe Cinema |</span> 
+							<span th:utext="${itemCt.room.Tenpc} + ' |'"></span> 
 							<span id="TotalSeat2">Số ghế (76/76)</span><br> 
 							<div style="display:inline-block;">Giờ bắt đầu <span id="GioBatDau" th:utext="${#strings.substring(itemL.Giobatdau, 0, 5)}"></span></div> 
 							<div style="display:inline-block;">Giờ kết thúc <span id="GioKetThuc" th:utext="${#strings.substring(itemL.Gioketthuc, 0, 5)}"></span></div>
@@ -31,7 +31,7 @@
 				<div id="displaySeat">
 					<div class="card text-center">
 						<div class="card-header">
-							<div class="movie-title">Người sắt vô tri - 2022</div>
+							<div class="movie-title h5 mt-3" th:utext="${itemCt.Tenphim}"></div>
 						</div>
 						<div class="card-body">
 							<div class="seat-map">
@@ -326,7 +326,7 @@
 								</div>
 								<ul class="showcase mt-4">
 									<li>
-										<div class="commentSeat"></div> <small>Ghế Trống</small>
+										<div class="commentSeat"></div> <small>Ghế Thường</small>
 									</li>
 									<li>
 										<div class="commentSeat selected"></div> <small>Đã
@@ -358,7 +358,7 @@
 					</div> -->
 					<div class="food-list">
 						<div class="col-sm-6 d-flex p-4">
-							<img class="w-25"
+							<img class="w-25" 
 								src="https://www.cgv.vn/media/concession/web/6443fd2e624be_1682177326.png"
 								alt="Đồ ăn">
 							<div class="" style="text-align: left;">
@@ -638,7 +638,7 @@
 					<div style="margin-top: 10px;" class="col-3">
 						<div class="row">
 							<p class="col-4 m-0 p-0">Rạp</p>
-							<p class="col-8 m-0 p-0">CGV Vincom Thủ Đức</p>
+							<p class="col-8 m-0 p-0">Universe Cinema</p>
 						</div>
 						<div class="row">
 							<p class="col-4 m-0 p-0">Suất chiếu</p>
@@ -646,7 +646,7 @@
 						</div>
 						<div class="row">
 							<p class="col-4 m-0 p-0">Phòng chiếu</p>
-							<p class="col-8 m-0 p-0">Cinema 2</p>
+							<p class="col-8 m-0 p-0" th:utext="${itemCt.room.Tenpc}"></p>
 						</div>
 						<div class="row">
 							<p class="col-4 m-0 p-0">Ghế</p>

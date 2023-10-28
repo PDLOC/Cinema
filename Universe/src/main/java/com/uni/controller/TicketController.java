@@ -22,23 +22,14 @@ public class TicketController {
 	
 	@RequestMapping("booking/ticket/{mact}/{gioBatDau}")
 	public String ticket(Model model,@PathVariable("mact") String mact,@PathVariable("gioBatDau") String Giobatdau) {
-		
 		Chitietphim CtPhim = CtphimService.findById(mact);
-		
 		//Hiển thị Giờ bắt đầu và Giờ kết thúc
-		String NgayChieu = null;
-		String GioChieu = null;
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		for (Lich L : CtPhim.getListlich()) {
 			if (L.getGiobatdau().toString().contains(Giobatdau)) {
 				model.addAttribute("itemL",L);
 			}
 		}
-		
 		model.addAttribute("itemCt",CtPhim);
-		
-		//suất chiếu		
-		
 		return "home/seat/bookseat";
 	}
 }
