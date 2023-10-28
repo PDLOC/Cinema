@@ -50,11 +50,65 @@
 						<div class="ms-3 mb-3">
 							<button type="button" class="btn btn-danger me-3">Lưu
 								thông tin</button>
-							<button type="button" class="btn btn-secondary">Đổi mật
-								khẩu</button>
+							<button type="button" data-bs-toggle="modal"
+								class="btn btn-secondary" data-bs-target="#exampleModal">Đổi
+								mật khẩu</button>
 						</div>
 					</div>
 				</div>
+
+				<!-- Modal change pass -->
+				<div class="modal fade" id="exampleModal" tabindex="-1"
+					aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<form onsubmit="return DisplayResults()" name="regform"
+								autocomplete="off">
+								<div class="modal-body">
+									<div class="login-div">
+
+										<h1 class="sign">Đổi mật khẩu</h1>
+										<div id="errormessage"></div>
+										<span class="seperator"></span>
+										<h5>Mật khẩu cũ</h5>
+										<div class="input-text">
+											<input id="pass_signup" type="password" name="password"
+												placeholder="Enter your old password" oninput="change()" /><i
+												class="fa fa-fw fa-eye field-icon toggle-password"
+												id="togglePassword"></i>
+										</div>
+										<h5>Mật khẩu mới</h5>
+										<div class="input-text">
+											<input id="pass_signup2" type="password" name="newpassword"
+												placeholder="Enter your new password" oninput="change()" /><i
+												class="fa fa-fw fa-eye field-icon toggle-password2"
+												id="togglePassword"></i>
+										</div>
+										<h5>Xác nhận mật khẩu</h5>
+										<div class="input-text">
+											<input id="pass_signup3" type="password"
+												name="retypepassword" placeholder="Confirm new password"
+												oninput="change()" /><i
+												class="fa fa-fw fa-eye field-icon toggle-password3"
+												id="togglePassword"></i>
+										</div>
+										<input class="signin-button" type="submit" value="Hoàn Thành" />
+										<button type="button" style="height: 50px; width: 100px"
+											class="btn btn-secondary mb-1 ms-3" data-bs-dismiss="modal">Close</button>
+										<div class="remember-flex">
+											<div></div>
+										</div>
+									</div>
+								</div>
+							</form>
+							<span class="seperator"></span>
+						</div>
+
+					</div>
+				</div>
+				<!-- End Modal change pass -->
+
+
 				<div class="tab-2">
 					<label for="tab2-2" style="font-size: 22px">Lịch sử mua vé</label>
 					<input id="tab2-2" name="tabs-two" type="radio">
@@ -69,6 +123,8 @@
 									<th scope="col" class="align-middle" rowspan="2">Tên Phim</th>
 									<th scope="col" class="align-middle" rowspan="3">Số vé</th>
 									<th scope="col" class="align-middle" rowspan="4">Số tiền</th>
+									<th scope="col" class="align-middle" rowspan="5">Trạng
+										thái</th>
 								</tr>
 							</thead>
 							<tr class="text-center" style="height: 200px">
@@ -80,6 +136,8 @@
 								<td style="padding-bottom: 50px;" class="align-middle">2</td>
 								<td style="padding-bottom: 50px;" class="align-middle">250,000
 									VNĐ</td>
+								<td style="padding-bottom: 50px;" class="align-middle">Đã
+									thanh toán</td>
 							</tr>
 							<tr class="text-center" style="height: 200px">
 								<td><img style="width: 90px;" alt=""
@@ -90,18 +148,50 @@
 								<td style="padding-bottom: 50px;" class="align-middle">2</td>
 								<td style="padding-bottom: 50px;" class="align-middle">250,000
 									VNĐ</td>
+								<td style="padding-bottom: 50px;" class="align-middle">
+									Chưa thanh toán</td>
 							</tr>
 						</table>
 
 					</div>
 				</div>
 			</div>
+
 		</div>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
+		<br> <br> <br> <br> <br>
+
+
+		<script>
+    $(".toggle-password").click(function() {
+     $(this).toggleClass("fa-eye fa-eye-slash");
+     if ($("#pass_signup").attr("type") == "password") {
+      $("#pass_signup").attr("type", "text");
+     } else {
+       $("#pass_signup").attr("type", "password");
+     }
+    });
+    </script>
+		<script>
+    $(".toggle-password2").click(function() {
+     $(this).toggleClass("fa-eye fa-eye-slash");
+     if ($("#pass_signup2").attr("type") == "password") {
+      $("#pass_signup2").attr("type", "text");
+     } else {
+       $("#pass_signup2").attr("type", "password");
+     }
+    });
+    </script>
+<script>
+    $(".toggle-password3").click(function() {
+     $(this).toggleClass("fa-eye fa-eye-slash");
+     if ($("#pass_signup3").attr("type") == "password") {
+      $("#pass_signup3").attr("type", "text");
+     } else {
+       $("#pass_signup3").attr("type", "password");
+     }
+    });
+    </script>
+            
 	</main>
 </body>
 </html>
