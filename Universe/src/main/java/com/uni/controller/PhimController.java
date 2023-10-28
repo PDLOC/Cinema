@@ -31,8 +31,10 @@ public class PhimController {
 	
 	@RequestMapping("film")
 	public String phim(Model model) {
+		List<Phim> listPhim = phimService.findAll();
 		List<Phim> listPhimDangChieu = phimService.findPhimDangChieu();
 		List<Phim> listPhimSapChieu = phimService.findPhimSapChieu();
+		model.addAttribute("imageF",listPhim);
 		model.addAttribute("items",listPhimDangChieu);
 		model.addAttribute("items1",listPhimSapChieu);
 		return "home/view";

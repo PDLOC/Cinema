@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 </head>
@@ -9,7 +9,7 @@
 		<hr class="footer-hr">
 		<div class="footer-content">
 			<div class="footer-left">
-				<a href="home.html"><img class="footer-logo"
+				<a th:href="@{|/home/index|}"><img class="footer-logo"
 					src="/assets/Images/2.png" alt="" width="30" height="24"></a>
 				<p class="footer-bottom-tagline">Watch! Chill! Repeat!</p>
 			</div>
@@ -37,11 +37,10 @@
 			<div class="footer-middle">
 				<h2 class="footer-heading">Universe Cinema</h2>
 				<ul class="footer-middle-list" style="margin-right:25px;">
-					<li class="footer-middle-list-item"><a href="home.html" style="font-size:20px;">Giới Thiệu</a></li>
-					<li class="footer-middle-list-item"><a href="web-series.html" style="font-size:20px;">Khuyến Mãi</a></li>
-					<li class="footer-middle-list-item"><a href="kids.html" style="font-size:20px;">Lễ Hội Phim</a></li>
-					<li class="footer-middle-list-item"><a href="news.html" style="font-size:20px;">Lịch Chiếu</a></li>
-					<li class="footer-middle-list-item"><a href="faq.html" style="font-size:20px;">FAQ</a>
+					<li class="footer-middle-list-item"><a th:href="@{|/home/gioithieu|}" style="font-size:20px;">Giới Thiệu</a></li>
+					<li class="footer-middle-list-item"><a th:href="@{|/home/promotion|}" style="font-size:20px;">Khuyến Mãi</a></li>
+					<li class="footer-middle-list-item"><a th:href="@{|/home/movies/|}" style="font-size:20px;">Lịch Chiếu</a></li>
+					<li class="footer-middle-list-item"><a th:href="@{|/home/faq|}" style="font-size:20px;">FAQ</a>
 					</li>
 				</ul>
 			</div>
