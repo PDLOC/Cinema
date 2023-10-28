@@ -7,11 +7,15 @@ app.config(function($routeProvider){
 		controller:"nhanvien-ctrl"
 	})
 	.when("/khachhang",{
-		templateUrl: "/assets/admin/admin.html",
+		templateUrl: "/assets/admin/khachhang/index.html",
 		controller:"khachhang-ctrl"		
 	})
+	.when("/combo",{
+		templateUrl: "/assets/admin/combo/index.html",
+		controller:"combo-ctrl"		
+	})
 	.when("/doan",{
-		templateUrl: "/assets/admin/admin.html",
+		templateUrl: "/assets/admin/doan/index.html",
 		controller:"doan-ctrl"		
 	})
 	.when("/khuyenmai",{
@@ -19,7 +23,7 @@ app.config(function($routeProvider){
 		controller:"khuyenmai-ctrl"		
 	})
 	.when("/phim",{
-		templateUrl: "/assets/admin/admin.html",
+		templateUrl: "/assets/admin/phim/index.html",
 		controller:"phim-ctrl"		
 	})
 	.when("/lichchieu",{
