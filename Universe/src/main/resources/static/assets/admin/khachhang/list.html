@@ -5,54 +5,55 @@
 		<!-- Sales Cards  -->
 		<div class="row">
 			<div class="col-md-12">
-				<h3 class="alert alert-info text-center">Danh sách nhân viên</h3>
+				<h3 class="alert alert-info text-center">
+					Danh sách khách hàng
+				</h3>
 				<table class="table text-center">
 					<thead>
 						<tr>
-							<th style="font-weight: bolder; font-size: 18px">Hình ảnh</th>
+						
 							<th style="font-weight: bolder; font-size: 18px">Mã</th>
 							<th style="font-weight: bolder; font-size: 18px">Tên</th>
+							<th style="font-weight: bolder; font-size: 18px">Email</th>
 							<th style="font-weight: bolder; font-size: 18px">Ngày sinh</th>
 							<th style="font-weight: bolder; font-size: 18px">SĐT</th>
 							<th style="font-weight: bolder; font-size: 18px">Mật khẩu</th>
-							<th style="font-weight: bolder; font-size: 18px">Địa chỉ</th>
-							<th style="font-weight: bolder; font-size: 18px">Vai trò</th>
-							<th style="font-weight: bolder; font-size: 18px">Action</th>
+						    <th style="font-weight: bolder; font-size: 18px">Action</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="item in pager.items">
-							<td><img ng-src="/assets/Images/{{item.hinh}}" alt="" width=30% /></td>
-							<td>{{item.manv}}</td>
-							<td>{{item.tennv}}</td>
-							<td>{{item.ngaysinh | date:'dd-MM-yyyy'}}</td>
-							<td>{{item.sdt}}</td>
-							<td>{{item.matkhaunv}}</td>
-							<td>{{item.diachi}}</td>
-							<td>{{item.vaitro?'Quản trị':'Nhân viên'}}</td>
-							<td><a class='btn btn-warning' style="font-size: 14px"
-								href="/admin/staff/edit/${item.Manv}"> <span
-									class="glyphicon glyphicon-edit"></span> Edit
-							</a> <a href="/admin/staff/delete/${item.Manv}"
-								style="font-size: 14px" class="btn btn-danger btn-xs"> <span
-									class="glyphicon glyphicon-remove"></span> Delete
-							</a></td>
-						</tr>
+						<c:forEach var="item" items="${page.content}">
+							<tr>
+								<td><img src="/images/${item.image}" alt="" width=50% /></td>
+								<td></td>
+								<td></td>
+								<td><fmt:formatNumber value="${item.price}"
+										pattern="###,###,###">
+									</fmt:formatNumber></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td><a class='btn btn-warning' style="font-size: 14px"
+									href="/admin/product/edit/${item.id}"> <span
+										class="glyphicon glyphicon-edit"></span> Edit
+								</a> <a href="/admin/product/delete/${item.id}"
+									style="font-size: 14px" class="btn btn-danger btn-xs"> <span
+										class="glyphicon glyphicon-remove"></span> Delete
+								</a></td>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 				<hr />
-				<div class="d-grid gap-2 d-md-flex justify-content-md-center mt-4">
-<<<<<<< Updated upstream
-			
-=======
-					<a class="btn  text-white "  style="width: 100px; background: #0a58ca;" ng-click="pager.first()">First</a>
+					<div class="d-grid gap-2 d-md-flex justify-content-md-center mt-4">
+					<a class="btn  text-white "  style="width: 100px; background: #0a58ca;" href="/admin/product?p=0">First</a>
 					<a class="btn  text-white" style="width: 100px; background: #0a58ca;"
-						ng-click="pager.prev()">Previous</a> <a
+						href="/admin/product?p=${page.number-1}">Previous</a> <a
 						class="btn  text-white" style="width: 100px; background: #0a58ca;"
-						ng-click="pager.next()">Next</a> <a
+						href="/admin/product?p=${page.number+1}">Next</a> <a
 						class="btn  text-white" style="width: 100px; background: #0a58ca;"
-						ng-click="pager.last()">Last</a>
->>>>>>> Stashed changes
+						href="/admin/product?p=${page.totalPages-1}">Last</a>
 				</div>
 				<hr />
 			</div>
