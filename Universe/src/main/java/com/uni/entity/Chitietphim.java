@@ -44,6 +44,7 @@ public class Chitietphim implements Serializable{
 	String Daodien;
 	String Dienvien;
 	String Noidung;
+	String Linkytb;
 	String Hinh;
 	
 	@ManyToOne
