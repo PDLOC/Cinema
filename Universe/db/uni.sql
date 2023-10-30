@@ -15,7 +15,7 @@ alter table Nhanvien add constraint df_Nhanvien_Hinh default (N'user.png') for H
 
 
 ------------------------------------Khách hàng----------------------------------------------
-create table KhachHang(
+create table Khachhang(
 	Makh varchar(255) primary key,
 	Tenkh nvarchar(125),
 	Email varchar(225),
@@ -24,7 +24,11 @@ create table KhachHang(
 	Matkhaukh varchar(125),
 	Hinh nvarchar(255),
 );
+drop table Khachhang
+
 alter table KhachHang add constraint df_KhachHang_Hinh default (N'user.png') for Hinh
+
+
 ------------------------------------Phòng Chiếu----------------------------------------------
 create table Phong(
 	Mapc int identity(1,1) primary key,
@@ -157,7 +161,7 @@ insert into Nhanvien values
 ('hoanganh',N'Phạm Trần Hoàng Anh','09/23/1993','0987619999','123456',N'Lê Văn Sỹ, P.4, Q.3',N'user.png',0)
 
 
-insert into KhachHang values
+insert into Khachhang values
 ('pteo123',N'Phạm Quang Tèo','pqteo402@gmail.com','0799815474','06/21/1987','123456',N'user.png'),
 ('ngloi231',N'Nguyễn Văn Lợi','ngloi@gmail.com','0485698214','01/22/1999','123456',N'user.png'),
 ('ngta213',N'Nguyễn Hồ Thị Tả','nhtta@gmail.com','0459874521','05/23/1980','123456',N'user.png'),

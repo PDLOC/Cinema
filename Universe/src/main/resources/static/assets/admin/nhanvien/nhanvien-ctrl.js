@@ -3,7 +3,7 @@ app.controller("nhanvien-ctrl",function($scope,$http){
 	$scope.form = {},
 	
 	$scope.initialize = function(){
-		// load Staff
+		// load Nhân viên
 		$http.get("/rest/staff").then(resp => {
 			$scope.items = resp.data;
 			$scope.items.forEach(item =>{
