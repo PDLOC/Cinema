@@ -9,6 +9,6 @@ public class RegisterController {
 	@RequestMapping("register")
 	public String register() {
 		
-		return "home/sign_login/register";
+		return "home/register_login/register";
 	}
 }

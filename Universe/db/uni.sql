@@ -1,32 +1,24 @@
 ﻿create database universe_data
 use universe_data
-------------------------------------Nhân viên----------------------------------------------
-create table Nhanvien(
-	Manv varchar(255) primary key,
-	Tennv nvarchar(225),
-	Ngaysinh date,
-	Sdt varchar(10),
-	Matkhaunv varchar(125),
-	Diachi nvarchar(max),
-	Hinh nvarchar(255),
-	Vaitro bit
-);
-alter table Nhanvien add constraint df_Nhanvien_Hinh default (N'user.png') for Hinh
-
-
-------------------------------------Khách hàng----------------------------------------------
-create table Khachhang(
-	Makh varchar(255) primary key,
-	Tenkh nvarchar(125),
+------------------------------------Tài khoản----------------------------------------------
+create table Taikhoan(
+	Matk varchar(255) primary key,
+	Hoten nvarchar(125),
 	Email varchar(225),
 	Sdt varchar(10),
 	Ngaysinh date,
-	Matkhaukh varchar(125),
-	Hinh nvarchar(255),
+	Matkhau varchar(125),
+	Diachi nvarchar(max) null,
+	Hinh nvarchar(255) null,
+	Mavaitro varchar(10)
 );
-drop table Khachhang
 
-alter table KhachHang add constraint df_KhachHang_Hinh default (N'user.png') for Hinh
+
+------------------------------------Vai trò----------------------------------------------
+create table Vaitro(
+	Mavaitro varchar(10) primary key,
+	Tenvaitro nvarchar(255)
+);
 
 
 ------------------------------------Phòng Chiếu----------------------------------------------
@@ -44,7 +36,6 @@ create table Phim(
 	Namsx int,
 	Hinh nvarchar(225)
 );
-alter table Phim add constraint fk_p_trangt foreign key(Matrangthai) references Trangthaiphim(Stt)
 
 ------------------------------------Chi tiết phim----------------------------------------------
 create table Chitietphim(
@@ -61,7 +52,6 @@ create table Chitietphim(
 	Hinh nvarchar(225),
 );
 
-alter table Chitietphim add constraint fk_ctphim_p foreign key(Maphim) references Phim(Maphim)
 
 ------------------------------------Lịch chiếu----------------------------------------------
 create table Lich(
@@ -71,7 +61,7 @@ create table Lich(
 	Giobatdau time,
 	Gioketthuc time
 );
-alter table Lich add constraint fk_l_ctp foreign key(Mact) references Chitietphim(Mact)
+
 
 ------------------------------------Vé----------------------------------------------
 create table Trangthaiphim(
@@ -96,6 +86,7 @@ create table KhuyenMai (
     NgayBatDau date,
 	NgayKetThuc date
 );
+
 ------------------------------------Đồ Ăn----------------------------------------------
 create table DoAn (
 	Mada int identity(1,1) primary key,
@@ -103,6 +94,7 @@ create table DoAn (
 	Soluong int,
 	Dongia float
 );
+
 ------------------------------------Combo----------------------------------------------
 create table ComBo(
 	STT int identity(1,1) primary key,
@@ -114,8 +106,8 @@ create table ComBo(
 	Dongia float
 );
 
-alter table ComBo add constraint fk_cb_da foreign key(Mada) references DoAn(Mada)
-select * from Chitietphim
+
+
 ------------------------------------Vé----------------------------------------------
 create table Ve(
 	MaVe int identity(1,1) primary key,
@@ -129,50 +121,37 @@ create table Ve(
 	Tongtien float
 );
 
-alter table Ve add constraint fk_ve_lv foreign key(Maloaive) references LoaiVe(Maloaive)
-alter table Ve add constraint fk_ve_nv foreign key(Manv) references NhanVien(Manv)
-alter table Ve add constraint fk_ve_kh foreign key(Makh) references KhachHang(Makh)
-alter table Ve add constraint fk_ve_phim foreign key(Maphim) references Phim(Maphim)
-alter table Ve add constraint fk_ve_km foreign key(Makm) references KhuyenMai(Makm)
-alter table Ve add constraint fk_ve_cb foreign key(STTcombo) references Combo(STT)
 
-create table NhanVien(
-	Manv varchar(255) primary key,
-	Tennv nvarchar(225),
-	Ngaysinh date,
-	Sdt varchar(10),
-	Matkhaunv varchar(125),
-	Diachi nvarchar(255),
-	Hinh varchar(255),
-	Vaitro bit
-);
 -----------------------------------------------------------------------------------
-insert into Nhanvien values
-('phamloc',N'Phạm Đại Lộc','09/21/1999','0799815474','123456',N'53 Trần Quang Khải Q.1',N'user.png',1),
-('huyvu',N'Nguyễn Huy Vũ','09/22/2003','0485698214','123456',N'50 Lê Lợi Q.1',N'user.png',1),
-('duyanh',N'Nguyễn Lâm Duy Anh','09/23/2003','0459874521','123456',N'50 Lê Lợi Q.1',N'user.png',1),
-('hoangviet',N'Phạm Trần Hoàng Việt','09/24/2003','0463215487','123456',N'50 Nguyễn Kiệm Quận Phú Nhuận',N'user.png',1),
-('theky',N'Mai Thế Kỷ','09/25/2000','0415896475','123456',N'59 Hoàng Sa Q.1',N'user.png',0),
-('huyhoai',N'Đào Trần Huy Hoài','09/26/2003','0415689654','123456',N'50 Lê Lợi Q.1',N'user.png',0),
-('long',N'Long Hoàng','09/23/2001','0987612345','123456',N'Nguyễn Xiêu, P.Bến Nghé, Q.1',N'user.png',1),
-('hoangvu',N'Hoàng Vũ','01/20/1997','0987612345','123456',N'Ngô Tât Tố, P.22, Q.Bình Thạnh',N'user.png',0),
-('ducminh',N'Đức Minh','10/25/1991','0987612455','123456',N'Phú Mỹ, P.22, Q.Bình Thạnh',N'user.png',1),
-('minhman',N'Minh Mẫn','09/23/1992','0987614444','123456',N'Hai Bà Trưng, P.Bến Nghé, Q.1',N'user.png',1),
-('hoanganh',N'Phạm Trần Hoàng Anh','09/23/1993','0987619999','123456',N'Lê Văn Sỹ, P.4, Q.3',N'user.png',0)
 
+insert into Vaitro values
+('CUST',N'Khách hàng'),
+('STAFF',N'Nhân viên'),
+('ADMIN',N'Admin');
 
-insert into Khachhang values
-('pteo123',N'Phạm Quang Tèo','pqteo402@gmail.com','0799815474','06/21/1987','123456',N'user.png'),
-('ngloi231',N'Nguyễn Văn Lợi','ngloi@gmail.com','0485698214','01/22/1999','123456',N'user.png'),
-('ngta213',N'Nguyễn Hồ Thị Tả','nhtta@gmail.com','0459874521','05/23/1980','123456',N'user.png'),
-('luyen132',N'Lòi Văn Luyện','loiluyen@gmail.com','0463215487','02/24/1983','123456',N'user.png'),
-('phoa321',N'Phạm Thị Thu Hòa','phoa@gmail.com','0415896475','03/25/1989','123456',N'user.png'),
-('dkhuong312',N'Dương Văn Khương','dkhuong@gmail.com','0415689654','07/26/2000','123456',N'user.png'),
-('lnguyen423',N'Long Nguyễn','longn@gmail.com','0987654321','08/25/1956','123456',N'user.png'),
-('ple432',N'Phụng Lê','phung@gmail.com','0987655555','08/11/1987','123456',N'user.png'),
-('hnguyen324',N'Hoàng Nguyễn','hoangn@gmail.com','0987658888','08/21/1991','123456',N'user.png'),
-('dhao412',N'Đường Hạo','Haod@gmail.com','0987655666','08/17/1980','123456',N'user.png'),
-('thao413',N'Thạch Hạo','haot@gmail.com','0987655111','08/19/1989','123456',N'user.png')
+insert into Taikhoan values
+('phamloc',N'Phạm Đại Lộc','phamloc402@gmail.com','0799815474','09/21/1999','123456',N'53 Trần Quang Khải Q.1',N'user.png','ADMIN'),
+('huyvu',N'Nguyễn Huy Vũ','alexred20151@gmail.com','0485698214','09/22/2003','123456',N'50 Lê Lợi Q.1',N'user.png','ADMIN'),
+('duyanh',N'Nguyễn Lâm Duy Anh','duyanh@gmail.com','0459874521','09/23/2003','123456',N'50 Lê Lợi Q.1',N'user.png','STAFF'),
+('hoangviet',N'Phạm Trần Hoàng Việt','hoangviet@gmail.com','0463215487','09/24/2003','123456',N'50 Nguyễn Kiệm Quận Phú Nhuận',N'user.png','STAFF'),
+('theky',N'Mai Thế Kỷ','theky@gmail.com','0415896475','09/25/2000','123456',N'59 Hoàng Sa Q.1',N'user.png','STAFF'),
+('huyhoai',N'Đào Trần Huy Hoài','huyhoai@gmail.com','0415689654','09/26/2003','123456',N'50 Lê Lợi Q.1',N'user.png','STAFF'),
+('long',N'Long Hoàng','longhoang@gmail.com','0987612345','09/23/2001','123456',N'Nguyễn Xiêu, P.Bến Nghé, Q.1',N'user.png','STAFF'),
+('hoangvu',N'Hoàng Vũ','hoangvu@gmail.com','0987612345','01/20/1997','123456',N'Ngô Tât Tố, P.22, Q.Bình Thạnh',N'user.png','STAFF'),
+('ducminh',N'Đức Minh','ducminh@gmail.com','0987612455','10/25/1991','123456',N'Phú Mỹ, P.22, Q.Bình Thạnh',N'user.png','STAFF'),
+('minhman',N'Minh Mẫn','minhman@gmail.com','0987614444','09/23/1992','123456',N'Hai Bà Trưng, P.Bến Nghé, Q.1',N'user.png','STAFF'),
+('hoanganh',N'Phạm Trần Hoàng Anh','hoanganh@gmail.com','0987619999','09/23/1993','123456',N'Lê Văn Sỹ, P.4, Q.3',N'user.png','STAFF'),
+('pteo123',N'Phạm Quang Tèo','pqteo402@gmail.com','0799815474','06/21/1987','123456','',N'user.png','CUST'),
+('ngloi231',N'Nguyễn Văn Lợi','ngloi@gmail.com','0485698214','01/22/1999','123456','',N'user.png','CUST'),
+('ngta213',N'Nguyễn Hồ Thị Tả','nhtta@gmail.com','0459874521','05/23/1980','123456','',N'user.png','CUST'),
+('luyen132',N'Lòi Văn Luyện','loiluyen@gmail.com','0463215487','02/24/1983','123456','',N'user.png','CUST'),
+('phoa321',N'Phạm Thị Thu Hòa','phoa@gmail.com','0415896475','03/25/1989','123456','',N'user.png','CUST'),
+('dkhuong312',N'Dương Văn Khương','dkhuong@gmail.com','0415689654','07/26/2000','123456','',N'user.png','CUST'),
+('lnguyen423',N'Long Nguyễn','longn@gmail.com','0987654321','08/25/1956','123456','',N'user.png','CUST'),
+('ple432',N'Phụng Lê','phung@gmail.com','0987655555','08/11/1987','123456','',N'user.png','CUST'),
+('hnguyen324',N'Hoàng Nguyễn','hoangn@gmail.com','0987658888','08/21/1991','123456','',N'user.png','CUST'),
+('dhao412',N'Đường Hạo','haodduong@gmail.com','0987655666','08/17/1980','123456','',N'user.png','CUST'),
+('thao413',N'Thạch Hạo','haothach@gmail.com','0987655111','08/19/1989','123456','',N'user.png','CUST')
 
 insert into Phong values
 ('Cine 1'),
@@ -340,3 +319,34 @@ insert into Trangthaiphim values
 (N'Đang chiếu'),
 (N'Sắp chiếu'),
 (N'Hết chiếu')
+
+
+------------------------------------Khóa-----------------------------------
+--Tài khoản--
+alter table Taikhoan add constraint df_Taikhoan_Hinh default (N'user.png') for Hinh
+alter table Taikhoan add constraint fk_tk_vt foreign key(Mavaitro) references Vaitro(Mavaitro)
+
+
+--Chi tiết phim--
+alter table Chitietphim add constraint fk_ctphim_p foreign key(Maphim) references Phim(Maphim)
+
+
+--Phim--
+alter table Phim add constraint fk_p_trangt foreign key(Matrangthai) references Trangthaiphim(Stt)
+
+
+--Lịch--
+alter table Lich add constraint fk_l_ctp foreign key(Mact) references Chitietphim(Mact)
+
+
+--Combo--
+alter table ComBo add constraint fk_cb_da foreign key(Mada) references DoAn(Mada)
+
+
+--Vé--
+alter table Ve add constraint fk_ve_lv foreign key(Maloaive) references LoaiVe(Maloaive)
+alter table Ve add constraint fk_ve_nv foreign key(Manv) references NhanVien(Manv)
+alter table Ve add constraint fk_ve_kh foreign key(Makh) references KhachHang(Makh)
+alter table Ve add constraint fk_ve_phim foreign key(Maphim) references Phim(Maphim)
+alter table Ve add constraint fk_ve_km foreign key(Makm) references KhuyenMai(Makm)
+alter table Ve add constraint fk_ve_cb foreign key(STTcombo) references Combo(STT)
