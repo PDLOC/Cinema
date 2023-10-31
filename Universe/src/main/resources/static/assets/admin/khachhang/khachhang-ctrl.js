@@ -57,7 +57,7 @@ app.controller("khachhang-ctrl",function($scope,$http){
       //Remove khách hàng
     $scope.delete = function(item){
 		$http.delete(`/rest/customers/${item.makh}`).then(resp=>{
-			var index = $scope.items.findIndex(kh=>kh.makh == item.makh);
+			var index = $scope.items.findIndex(kh=> kh.makh == item.makh);
 			$scope.items.splice(index,1);
 			$scope.reset();
 			alert('Xoá sản phẩm thành công!');

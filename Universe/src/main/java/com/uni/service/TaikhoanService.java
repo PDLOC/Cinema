@@ -9,8 +9,6 @@ import com.uni.entity.TaiKhoan;
 @Service
 public interface TaikhoanService {
 
-	TaiKhoan findById(String username);
-
 	List<TaiKhoan> findAll();
 
 	TaiKhoan create(TaiKhoan tk);
@@ -18,5 +16,7 @@ public interface TaikhoanService {
 	TaiKhoan update(TaiKhoan tk);
 
 	void delete(String tk);
+
+	TaiKhoan findById(String matk);
 
 }

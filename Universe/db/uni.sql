@@ -88,11 +88,12 @@ create table KhuyenMai (
 );
 
 ------------------------------------Đồ Ăn----------------------------------------------
-create table DoAn (
+create table Doan (
 	Mada int identity(1,1) primary key,
 	Tenda nvarchar(125),
 	Soluong int,
-	Dongia float
+	Dongia float,
+	Hinh nvarchar(225)
 );
 
 ------------------------------------Combo----------------------------------------------
@@ -299,12 +300,12 @@ insert into KhuyenMai values
 ('KM002', N'Khuyến mãi cuối năm', N'Giảm giá cuối năm', 0.15, '01/20/2023', '12/31/2023'),
 ('KM003', N'Khuyến mãi đón Tết', N'Giảm giá mừng Tết Nguyên Đán', 0.1, '01/01/2024', '03/31/2024');
 
-insert into DoAn values
-(N'Bắp vị phô mai',50,35000),
-(N'Bắp truyền thống',50,30000),
-(N'Bắp vị caramel',50,35000),
-(N'Coca',100,25000),
-(N'Pepsi',100,25000)
+insert into Doan values
+(N'Bắp vị phô mai',50,35000,N'1.JPG'),
+(N'Bắp truyền thống',50,30000,N'2.JPG'),
+(N'Bắp vị caramel',50,35000,N'3.PNG '),
+(N'Coca',100,25000,N'5.JPG'),
+(N'Pepsi',100,25000,N'4.JPG')
 
 insert into ComBo values
 ('CB01',1,N'Ấm áp',N'2 bắp và 1 Pepsi',50,90000),

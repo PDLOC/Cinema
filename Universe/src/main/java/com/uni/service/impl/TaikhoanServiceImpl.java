@@ -15,12 +15,6 @@ public class TaikhoanServiceImpl implements TaikhoanService{
 	@Autowired
 	TaiKhoanDAO taiKhoanDAO;
 
-	@Override
-	public TaiKhoan findById(String username) {
-		// TODO Auto-generated method stub
-		return taiKhoanDAO.findById(username).get();
-	}
-	
 	
 	@Override
 	public List<TaiKhoan> findAll() {
@@ -42,4 +36,13 @@ public class TaikhoanServiceImpl implements TaikhoanService{
 	public void delete(String username) {
 		taiKhoanDAO.deleteById(username);
 	}
+
+
+	@Override
+	public TaiKhoan findById(String matk) {
+		// TODO Auto-generated method stub
+		return taiKhoanDAO.findById(matk).get();
+	}
+
+
 }

@@ -28,7 +28,7 @@ public class TaikhoanRestController {
 		return tkService.findAll();
 	}
 	@GetMapping("{Mada}")
-	public TaiKhoan getOne(@PathVariable("Mada")String mada) {
+	public TaiKhoan findById(@PathVariable("Mada")String mada) {
 		return tkService.findById(mada);
 	}
 	

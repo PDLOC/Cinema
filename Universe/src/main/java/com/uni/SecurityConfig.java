@@ -28,16 +28,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	BCryptPasswordEncoder pe;
 	
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(username -> {
+		auth.userDetailsService((matk) ->{
 			try {
-				TaiKhoan tk = taikhoanService.findById(username);
+				TaiKhoan tk = taikhoanService.findById(matk);
 				String password = pe.encode(tk.getMatkhau());
-				String role = tk.getVaitro().toString();
-				return User.withUsername(username).password(password).roles(role).build();
-				
+				String role = tk.getVaitro().getMavaitro();
+				System.out.println(0);
+				return User.withUsername(matk).password(password).roles(role).build();
 			} catch (NoSuchElementException e) {
 				// TODO: handle exception
-				throw new UsernameNotFoundException(username+"not found!");
+				System.out.println(e);
+				throw new UsernameNotFoundException(matk + " không tìm thấy!");
 			}
 		});
 		
@@ -48,15 +49,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable();
 		http.authorizeRequests()
 			.antMatchers("/home/booking/ticket/**").authenticated()
-			.antMatchers("/admin/**").hasAnyRole("STAFF","ADMIN")
+//			.antMatchers("/admin/**").hasAnyRole("STAFF","ADMIN")
 			.antMatchers("/rest/staff").hasRole("ADMIN")
 			.anyRequest().permitAll();
 		
 		
 		http.formLogin()
-			.loginPage("/home/login")
-			.loginProcessingUrl("/home/register_login/login")
-			.defaultSuccessUrl("/home/film",false)
+			.loginPage("/home/login/form")
+			.loginProcessingUrl("/home/login")
+			.defaultSuccessUrl("/home/index",false)
 			.failureUrl("/home/login/error");
 	}
 	

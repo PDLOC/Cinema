@@ -7,41 +7,39 @@
 </head>
 <body>
 	<main>
-		<br>
-		<br>
+		<br> <br>
 		<div class="login-div">
 			<form class="login" th:action="@{/home/login}" method="POST">
 				<h1 class="sign">Đăng nhập</h1>
-				<div id="errormessage"></div>
 				<span class="seperator"></span>
 				<div class="input-text">
-					<input type="text" name="Matk" placeholder="Tài khoản"/>
+					<input type="text" name="Matk" placeholder="Tài khoản" />
 				</div>
 				<div class="input-text">
 					<input id="pass_signup" type="password" name="Matkhau"
-						placeholder="Password" oninput="change()" /><i
+						placeholder="Mật khẩu"/><i
 						class="fa fa-fw fa-eye field-icon toggle-password"
 						id="togglePassword"></i>
 				</div>
 				<div class="text-center text-danger fw-bolder">[[${message}]]</div>
-				<span class="seperator"></span> 
-				<input class="signin-button"
+				<span class="seperator"></span> <input class="signin-button"
 					type="submit" value="Sign In" />
-				
+
 				<div class="remember-flex">
 					<div>
 						<div class="or">OR</div>
-						<div class="g-signin2 mt-3" data-onsuccess="onSignIn" data-theme="dark"
-							data-width="250" data-height="50" data-longtitle="true"></div>
+						<div class="g-signin2 mt-3" data-onsuccess="onSignIn"
+							data-theme="dark" data-width="250" data-height="50"
+							data-longtitle="true"></div>
 					</div>
 
 				</div>
-				
+
 				<div class="login-face">
 					<br>
 					<div class="new-members">
-						Chưa có tài khoản ? <a th:href="@{|/home/register|}" class="signup-link">Đăng
-							kí tại đây</a>.
+						Chưa có tài khoản ? <a th:href="@{|/home/register|}"
+							class="signup-link">Đăng kí tại đây</a>.
 					</div>
 					<br>
 					<div class="protection color_link help">
@@ -54,26 +52,22 @@
 				</div>
 			</form>
 		</div>
-		
-    <script>
-    $(".toggle-password").click(function() {
-     $(this).toggleClass("fa-eye fa-eye-slash");
-     if ($("#pass_signup").attr("type") == "password") {
-      $("#pass_signup").attr("type", "text");
-     } else {
-       $("#pass_signup").attr("type", "password");
-     }
-    });
-    </script>
-    <script>
-      
-      function onSignIn(googleUser) {
-   
-            document.location.href = 'https://qazimaazarshad.github.io/Movie-Streaming-Website/home.html'
-      
-    }
-      
-    </script>
-    </main>
+
+		<script>
+			$(".toggle-password").click(function() {
+				$(this).toggleClass("fa-eye fa-eye-slash");
+				if ($("#pass_signup").attr("type") == "password") {
+					$("#pass_signup").attr("type", "text");
+				} else {
+					$("#pass_signup").attr("type", "password");
+				}
+			});
+		</script>
+		<script>
+			function onSignIn(googleUser) {
+				document.location.href = 'https://qazimaazarshad.github.io/Movie-Streaming-Website/home.html'
+			}
+		</script>
+	</main>
 </body>
 </html>
