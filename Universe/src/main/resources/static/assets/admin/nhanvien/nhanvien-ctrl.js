@@ -12,6 +12,12 @@ app.controller("nhanvien-ctrl",function($scope,$http){
 		});
 		
 	}
+	    //Hiển thị lên form
+    $scope.edit = function(item){
+		$scope.form = angular.copy(item);
+		$('#pills-home-tab').tab('show');
+    }
+    
 	
 	// Upload hình
 	$scope.imageChanged = function(files){

@@ -15,7 +15,7 @@
 							<th style="font-weight: bolder; font-size: 18px">Tên</th>
 							<th style="font-weight: bolder; font-size: 18px">Email</th>
 							<th style="font-weight: bolder; font-size: 18px">Ngày sinh</th>
-							<th style="font-weight: bolder; font-size: 18px">SĐT</th>
+							<th style="font-weight: bolder; font-size: 18px">Vai trò</th>
 							<th style="font-weight: bolder; font-size: 18px">Action</th>
 						</tr>
 					</thead>
@@ -23,16 +23,16 @@
 						<tr ng-repeat="item in pager.items">
 							<td style="width: 150px;"><img ng-src="/assets/Images/{{item.hinh}}" alt=""
 								width=30% /></td>
-							<td>{{item.makh}}</td>
-							<td>{{item.matkhaukh}}</td>
-							<td>{{item.tenkh}}</td>
+							<td>{{item.matk}}</td>
+							<td>{{item.matkhau}}</td>
+							<td>{{item.hoten}}</td>
 							<td>{{item.email}}</td>
 							<td>{{item.ngaysinh | date:'dd-MM-yyyy'}}</td>
-							<td>{{item.sdt}}</td>
+							<td>{{item.vaitro.tenvaitro}}</td>
 							<td><a class='btn btn-warning' style="font-size: 14px"
-								href="/admin/staff/edit/${item.Manv}"> <span
+								ng-click="edit(item)"> <span
 									class="glyphicon glyphicon-edit"></span> Edit
-							</a> <a href="/admin/staff/delete/${item.Manv}"
+							</a> <a  ng-click="delete(item)" 
 								style="font-size: 14px" class="btn btn-danger btn-xs"> <span
 									class="glyphicon glyphicon-remove"></span> Delete
 							</a></td>

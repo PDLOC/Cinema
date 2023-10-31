@@ -12,7 +12,7 @@
 					<thead>
 						<tr>
 						
-			
+			                <th style="font-weight: bolder; font-size: 18px">Hình ảnh</th>
 							<th style="font-weight: bolder; font-size: 18px">Tên đồ ăn</th>
                             <th style="font-weight: bolder; font-size: 18px">Số lượng</th>
 							<th style="font-weight: bolder; font-size: 18px">Đơn giá</th>
@@ -20,38 +20,34 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="item" items="${page.content}">
-							<tr>
-								<td><img src="/images/${item.image}" alt="" width=50% /></td>
-								<td></td>
-								<td></td>
-								<td><fmt:formatNumber value="${item.price}"
-										pattern="###,###,###">
-									</fmt:formatNumber></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td><a class='btn btn-warning' style="font-size: 14px"
-									href="/admin/product/edit/${item.id}"> <span
-										class="glyphicon glyphicon-edit"></span> Edit
-								</a> <a href="/admin/product/delete/${item.id}"
-									style="font-size: 14px" class="btn btn-danger btn-xs"> <span
-										class="glyphicon glyphicon-remove"></span> Delete
-								</a></td>
+						
+							<tr ng-repeat="item in pager.items">								
+								<td style="width: 350px;"><img ng-src="/assets/Images/dan/{{item.hinh}}" alt=""
+								width=30% /></td>
+								<td style="padding-top: 20px; " class="align-middle">{{item.tenda}}</td>					
+								<td style="padding-top: 20px; " class="align-middle">{{item.soluong}}</td>
+								<td style="padding-top: 20px; " class="align-middle">{{item.dongia}}</td>								
+								<td style="padding-top: 20px; " class="align-middle"><a class='btn btn-warning' style="font-size: 14px"
+								ng-click="edit(item)"> <span
+									class="glyphicon glyphicon-edit"></span> Edit
+							       </a> <a  ng-click="delete(item)" 
+								style="font-size: 14px" class="btn btn-danger btn-xs"> <span
+									class="glyphicon glyphicon-remove"></span> Delete
+							</a></td>
 							</tr>
-						</c:forEach>
+						
 					</tbody>
 				</table>
 				<hr />
 					<div class="d-grid gap-2 d-md-flex justify-content-md-center mt-4">
-					<a class="btn  text-white "  style="width: 100px; background: #0a58ca;" href="/admin/product?p=0">First</a>
-					<a class="btn  text-white" style="width: 100px; background: #0a58ca;"
-						href="/admin/product?p=${page.number-1}">Previous</a> <a
-						class="btn  text-white" style="width: 100px; background: #0a58ca;"
-						href="/admin/product?p=${page.number+1}">Next</a> <a
-						class="btn  text-white" style="width: 100px; background: #0a58ca;"
-						href="/admin/product?p=${page.totalPages-1}">Last</a>
+					<a class="btn  text-white "
+						style="width: 100px; background: #0a58ca;"
+						ng-click="pager.first()">First</a> <a class="btn  text-white"
+						style="width: 100px; background: #0a58ca;" ng-click="pager.prev()">Previous</a>
+					<a class="btn  text-white"
+						style="width: 100px; background: #0a58ca;" ng-click="pager.next()">Next</a>
+					<a class="btn  text-white"
+						style="width: 100px; background: #0a58ca;" ng-click="pager.last()">Last</a>
 				</div>
 				<hr />
 			</div>

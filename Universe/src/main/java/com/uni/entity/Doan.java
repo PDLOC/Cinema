@@ -1,16 +1,13 @@
 package com.uni.entity;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -26,21 +23,13 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter
-@Table(name = "Taikhoan")
-public class TaiKhoan implements Serializable{
+@Table(name = "Doan")
+public class Doan implements Serializable {
 	@Id
-	String Matk;
-	String Hoten;
-	String Email;
-	String Sdt;
-	@Temporal(TemporalType.DATE)
-	Date Ngaysinh;
-	String Matkhau;
-	String Diachi;
-	String Hinh;
-	
-	@OneToOne
-	@JoinColumn(name = "Mavaitro")
-	Vaitro vaitro;
-
+	@GeneratedValue(strategy = GenerationType.IDENTITY )
+	Integer Mada;
+	String Tenda;
+	Integer Soluong;
+    Double Dongia;
+    String Hinh;
 }

@@ -5,9 +5,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("home")
+@RequestMapping("admin")
 public class AdminController {
-	@RequestMapping("admin")
+	@RequestMapping("index")
 	public String admin() {
 		
 		return "redirect:/assets/admin/index.html";
