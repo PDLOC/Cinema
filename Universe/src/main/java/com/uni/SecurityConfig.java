@@ -1,6 +1,7 @@
 package com.uni;
 
-import java.util.NoSuchElementException;
+
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -15,65 +16,67 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.uni.entity.TaiKhoan;
+import com.uni.entity.Taikhoan;
 import com.uni.service.TaikhoanService;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-	@Autowired
+	@Autowired 
 	TaikhoanService taikhoanService;
-	
-	@Autowired
+	@Autowired 
 	BCryptPasswordEncoder pe;
 	
-	@Override
+	//Cung cấp nguồn dữ liệu đăng nhập
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(matk ->{
+		auth.userDetailsService(username->{
 			try {
-				TaiKhoan tk = taikhoanService.findById(matk);
-				String password = pe.encode(tk.getMatkhau());
-				String role = tk.getVaitro().getMavaitro();
-				System.out.println(0);
-				return User.withUsername(matk).password(password).roles(role).build();
+				Taikhoan user = taikhoanService.findById(username);
+				String password = pe.encode(user.getPassword());
+				String[] roles = user.getAuthorities().stream()
+						.map(el->el.getVaitro().getMavaitro())
+						.collect(Collectors.toList()).toArray(new String[0]);
+				System.out.println(1);
+				return User.withUsername(username).password(password).roles(roles).build();
 			} catch (Exception e) {
-				// TODO: handle exception
-				System.out.println(e);
-				throw new UsernameNotFoundException(matk + " không tìm thấy!");
+				System.out.println(0);
+				throw new UsernameNotFoundException(username + "not found!");
 			}
 		});
-		
 	}
 	
 	//Phân quyền sử dụng
-	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
 		http.authorizeRequests()
-			.antMatchers("/home/booking/ticket/**").authenticated()
+//			.antMatchers("/home/booking/ticket/**").authenticated()
 //			.antMatchers("/admin/**").hasAnyRole("STAFF","ADMIN")
 			.antMatchers("/rest/staff").hasRole("ADMIN")
 			.anyRequest().permitAll();
 		
-		
 		http.formLogin()
 			.loginPage("/home/login/form")
 			.loginProcessingUrl("/home/login")
-			.defaultSuccessUrl("/home/login/success",false)
+			.defaultSuccessUrl("/home/index",false)
 			.failureUrl("/home/login/error");
+		
+		
+		http.logout()
+			.logoutUrl("/home/logoff")
+			.logoutSuccessUrl("/home/logoff/success");
 	}
 	
-	
-	// Cơ chế mã hóa mật khẩu
+	//Cơ chế mã hoá mật khẩu
 	@Bean
 	public BCryptPasswordEncoder getPasswordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 	
-	// Cho phép truy xuất REST API từ bên ngoài (domain khác)
-	@Override
-	public void configure(WebSecurity web) throws Exception{
-		web.ignoring().antMatchers(HttpMethod.OPTIONS, "/**");
-	}
+	//Cho phép truy xuất REST API từ bên ngoài (domain khác)
 	
+	@Override 
+	public void configure(WebSecurity web) throws Exception {
+		web.ignoring().antMatchers(HttpMethod.OPTIONS,"/**"); 
+	}
+	 
 }

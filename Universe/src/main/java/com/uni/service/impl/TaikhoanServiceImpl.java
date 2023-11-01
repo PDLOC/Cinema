@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.uni.dao.TaiKhoanDAO;
 
-import com.uni.entity.TaiKhoan;
+import com.uni.entity.Taikhoan;
 import com.uni.service.TaikhoanService;
 
 @Service
@@ -17,18 +17,18 @@ public class TaikhoanServiceImpl implements TaikhoanService{
 
 	
 	@Override
-	public List<TaiKhoan> findAll() {
+	public List<Taikhoan> findAll() {
 		// TODO Auto-generated method stub
 		return taiKhoanDAO.findAll();
 	}
 
 	
 	@Override
-	public TaiKhoan create(TaiKhoan tk) {
+	public Taikhoan create(Taikhoan tk) {
 		return taiKhoanDAO.save(tk);
 	}
 	@Override
-	public TaiKhoan update(TaiKhoan tk) {
+	public Taikhoan update(Taikhoan tk) {
 		return taiKhoanDAO.save(tk);
 	}
 
@@ -39,9 +39,16 @@ public class TaikhoanServiceImpl implements TaikhoanService{
 
 
 	@Override
-	public TaiKhoan findById(String matk) {
+	public Taikhoan findById(String matk) {
 		// TODO Auto-generated method stub
 		return taiKhoanDAO.findById(matk).get();
+	}
+
+
+	@Override
+	public List<Taikhoan> getAdministrators() {
+		// TODO Auto-generated method stub
+		return taiKhoanDAO.getAdministrators();
 	}
 
 

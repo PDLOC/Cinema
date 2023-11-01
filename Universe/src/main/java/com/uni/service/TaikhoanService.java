@@ -4,19 +4,21 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.uni.entity.TaiKhoan;
+import com.uni.entity.Taikhoan;
 
 @Service
 public interface TaikhoanService {
 
-	List<TaiKhoan> findAll();
+	List<Taikhoan> getAdministrators();
+	
+	List<Taikhoan> findAll();
 
-	TaiKhoan create(TaiKhoan tk);
+	Taikhoan create(Taikhoan tk);
 
-	TaiKhoan update(TaiKhoan tk);
+	Taikhoan update(Taikhoan tk);
 
 	void delete(String tk);
 
-	TaiKhoan findById(String matk);
+	Taikhoan findById(String matk);
 
 }

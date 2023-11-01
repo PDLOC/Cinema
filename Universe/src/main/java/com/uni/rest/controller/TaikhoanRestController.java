@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
-import com.uni.entity.TaiKhoan;
+import com.uni.entity.Taikhoan;
 
 import com.uni.service.TaikhoanService;
 
@@ -24,21 +24,21 @@ public class TaikhoanRestController {
 	TaikhoanService tkService;
 	
 	@GetMapping
-	public List<TaiKhoan> getAll() {
+	public List<Taikhoan> getAll() {
 		return tkService.findAll();
 	}
 	@GetMapping("{Mada}")
-	public TaiKhoan findById(@PathVariable("Mada")String mada) {
+	public Taikhoan findById(@PathVariable("Mada")String mada) {
 		return tkService.findById(mada);
 	}
 	
 	@PostMapping
-	public TaiKhoan create(@RequestBody TaiKhoan tk) {
+	public Taikhoan create(@RequestBody Taikhoan tk) {
 		return tkService.create(tk);
 	}
 	
 	@PutMapping("{Mada}")
-	public TaiKhoan update(@RequestBody TaiKhoan tk,@PathVariable("Mada")String id) {
+	public Taikhoan update(@RequestBody Taikhoan tk,@PathVariable("Mada")String id) {
 		return tkService.update(tk);
 	}
 	

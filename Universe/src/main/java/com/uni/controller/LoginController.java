@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.uni.entity.TaiKhoan;
+import com.uni.entity.Taikhoan;
 import com.uni.service.TaikhoanService;
 
 
@@ -20,6 +20,7 @@ public class LoginController {
 	@RequestMapping("login/form")
 	public String login(Model model) {
 		model.addAttribute("message","Vui lòng đăng nhập!");
+		System.out.println(taikhoanService.findAll());
 		return "home/register_login/login";
 	}
 	
