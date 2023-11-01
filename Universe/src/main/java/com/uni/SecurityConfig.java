@@ -27,15 +27,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	BCryptPasswordEncoder pe;
 	
+	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService((matk) ->{
+		auth.userDetailsService(matk ->{
 			try {
 				TaiKhoan tk = taikhoanService.findById(matk);
 				String password = pe.encode(tk.getMatkhau());
 				String role = tk.getVaitro().getMavaitro();
 				System.out.println(0);
 				return User.withUsername(matk).password(password).roles(role).build();
-			} catch (NoSuchElementException e) {
+			} catch (Exception e) {
 				// TODO: handle exception
 				System.out.println(e);
 				throw new UsernameNotFoundException(matk + " không tìm thấy!");
@@ -45,6 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 	
 	//Phân quyền sử dụng
+	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
 		http.authorizeRequests()
@@ -57,7 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.formLogin()
 			.loginPage("/home/login/form")
 			.loginProcessingUrl("/home/login")
-			.defaultSuccessUrl("/home/index",false)
+			.defaultSuccessUrl("/home/login/success",false)
 			.failureUrl("/home/login/error");
 	}
 	
