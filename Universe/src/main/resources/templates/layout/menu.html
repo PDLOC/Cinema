@@ -27,14 +27,15 @@
 								aria-current="page" th:href="@{|/home/index|}"
 								onMouseOver="this.style.color='red'"
 								onMouseOut="this.style.color='white'">Trang chủ</a></li>
-							<li class="nav-item"><a class="nav-link " th:href="@{|/home/movies|}"
-								onMouseOver="this.style.color='red'"
+							<li class="nav-item"><a class="nav-link "
+								th:href="@{|/home/movies|}" onMouseOver="this.style.color='red'"
 								onMouseOut="this.style.color='white'">Lịch chiếu</a></li>
-							<li class="nav-item"><a class="nav-link " th:href="@{|/home/promotion|}"
-								href="web-series.html" onMouseOver="this.style.color='red'"
-								onMouseOut="this.style.color='white'">Khuyến mãi</a></li>
-							<li class="nav-item"><a class="nav-link" th:href="@{|/home/price|}"
+							<li class="nav-item"><a class="nav-link "
+								th:href="@{|/home/promotion|}" href="web-series.html"
 								onMouseOver="this.style.color='red'"
+								onMouseOut="this.style.color='white'">Khuyến mãi</a></li>
+							<li class="nav-item"><a class="nav-link"
+								th:href="@{|/home/price|}" onMouseOver="this.style.color='red'"
 								onMouseOut="this.style.color='white'">Giá vé</a></li>
 							<li class="nav-item"><a class="nav-link"
 								th:href="@{|/home/gioithieu|}"
@@ -44,20 +45,43 @@
 								th:href="@{|/home/contact|}"
 								onMouseOver="this.style.color='red'"
 								onMouseOut="this.style.color='white'">Liên hệ</a></li>
-							<li class="nav-item"><a class="nav-link" th:href="@{|/home/myticket|}"
+							<li class="nav-item"><a class="nav-link"
+								th:href="@{|/home/myticket|}"
 								onMouseOver="this.style.color='red'"
 								onMouseOut="this.style.color='white'">Vé của tôi</a></li>
 						</ul>
-						<div
-							style="position: relative; display: inline-block; padding-right: 15px;">
-							<div class="row">
-								<a th:href="@{|/home/register|}" class="button nut  me-1"
-									style="text-decoration: none;"><span class="gradient"></span>
-								<p>Đăng kí</p></a> <a th:href="@{|/home/login/form|}" class="button nut"
-									style="text-decoration: none;"><span class="gradient"></span>
-								<p>Đăng nhập</p></a>
+
+
+
+						<th:block th:if="${#request.remoteUser}">
+							<div
+								style="position: relative; display: inline-block; padding-right: 15px;">
+								<div class="row">
+									<a th:href="@{/admin/index}"
+										th:if="${#request.isUserInRole('STAFF') or #request.isUserInRole('AD')}"
+										class="button nut" style="text-decoration: none;"><span
+										class="gradient"></span>
+										<p>Quản trị</p></a>
+									<a th:href="@{/home/logoff}" class="button nut  me-1"
+										style="text-decoration: none;"><span class="gradient"></span>
+										<p>Đăng xuất</p></a> 
+								</div>
 							</div>
-						</div>
+						</th:block>
+						<th:block th:unless="${#request.remoteUser}">
+							<div
+								style="position: relative; display: inline-block; padding-right: 15px;">
+								<div class="row">
+									<a th:href="@{|/home/register|}" class="button nut  me-1"
+										style="text-decoration: none;"><span class="gradient"></span>
+										<p>Đăng kí</p></a> 
+									<a th:href="@{|/home/login/form|}"
+										class="button nut" style="text-decoration: none;"><span
+										class="gradient"></span>
+										<p>Đăng nhập</p></a>
+								</div>
+							</div>
+						</th:block>
 					</div>
 				</div>
 		</nav>

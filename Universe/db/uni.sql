@@ -19,7 +19,7 @@ create table Vaitro(
 	Tenvaitro nvarchar(255)
 );
 
-------------------------------------Vai trò----------------------------------------------
+------------------------------------Xác thực----------------------------------------------
 create table Authorities(
 	Id int identity(1,1) primary key,
 	Username nvarchar(50),
@@ -152,6 +152,7 @@ insert into Taikhoan values
 ('hnguyen324',N'Hoàng Nguyễn','hoangn@gmail.com','0987658888','08/21/1991','123456','',N'user.png'),
 ('dhao412',N'Đường Hạo','haodduong@gmail.com','0987655666','08/17/1980','123456','',N'user.png'),
 ('thao413',N'Thạch Hạo','haothach@gmail.com','0987655111','08/19/1989','123456','',N'user.png')
+
 
 insert into Vaitro values
 ('CUST',N'Khách hàng'),

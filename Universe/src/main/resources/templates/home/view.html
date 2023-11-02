@@ -5,6 +5,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="viewport" content="width=device-width">
+<script
+	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.15/dist/sweetalert2.min.js"></script>
 </head>
 
 <!------------------------Scroll to top button------------------------------------------------>
@@ -191,7 +193,7 @@
 											</p>
 
 											<!--<form action="https://youtu.be/YoHD9XEInc0&t=17s"> -->
-											 <button th:each="f1:${f.ctPhims}" class="trailer_i"
+											<button th:each="f1:${f.ctPhims}" class="trailer_i"
 												type="submit" value="" th:data-linkytb="${f1.Linkytb}"
 												onclick="openWin(this.getAttribute('data-linkytb'))">▶Trailer</button>
 											<script type="text/javascript">
@@ -302,6 +304,48 @@
 					</div>
 				</div>
 			</div>
+
+			<script th:if="${swal != null}">
+		// Lấy giá trị của thuộc tính "swal"
+	    var swalType = "[[${swal}]]";
+	    if(swalType === "tc"){
+	    	const Toast = Swal.mixin({
+				  toast: true,
+				  position: 'top',
+				  showConfirmButton: false,
+				  timer: 3000,
+				  timerProgressBar: true,
+				  didOpen: (toast) => {
+				    toast.addEventListener('mouseenter', Swal.stopTimer)
+				    toast.addEventListener('mouseleave', Swal.resumeTimer)
+				  }
+				})
+
+				Toast.fire({
+				  icon: 'success',
+				  title: 'Đăng ký thành công'
+				})
+				
+	    }
+		</script>
+		<script th:if="${#request.remoteUser}">
+	    	const Toast = Swal.mixin({
+				  toast: true,
+				  position: 'top',
+				  showConfirmButton: false,
+				  timer: 3000,
+				  timerProgressBar: true,
+				  didOpen: (toast) => {
+				    toast.addEventListener('mouseenter', Swal.stopTimer)
+				    toast.addEventListener('mouseleave', Swal.resumeTimer)
+				  }
+				})
+
+				Toast.fire({
+				  icon: 'success',
+				  title: 'Đăng nhập thành công'
+				})
+		</script>
 	</main>
 
 </body>

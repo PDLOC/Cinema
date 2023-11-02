@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
 	@RequestMapping("index")
 	public String home(Model model) {
+		
 		return "redirect:film";
 	}
 }

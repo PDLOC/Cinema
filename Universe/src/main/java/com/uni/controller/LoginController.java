@@ -20,19 +20,27 @@ public class LoginController {
 	@RequestMapping("login/form")
 	public String login(Model model) {
 		model.addAttribute("message","Vui lòng đăng nhập!");
-		System.out.println(taikhoanService.findAll());
 		return "home/register_login/login";
 	}
 	
 	@RequestMapping("login/success")
 	public String success(Model model) {
-		model.addAttribute("message","Đăng nhập thành công!");
-		return "home/register_login/login"; 
+		model.addAttribute("swal1", "dn");
+		return "redirect:/home/film"; 
 	}
 	
 	@RequestMapping("login/error")
 	public String error(Model model) {
-		model.addAttribute("message","Đăng nhập không thành công!");
+		model.addAttribute("message","Vui lòng đăng nhập lại!");
 		return "home/register_login/login"; 
 	}
+	
+	
+	@RequestMapping("logoff/success")
+	public String logoffSuccess(Model model) {
+		
+		model.addAttribute("message", "Bạn đã đăng xuất!");
+		return "redirect:/home/film";
+	}
 }
+
