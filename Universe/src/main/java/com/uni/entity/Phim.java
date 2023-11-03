@@ -32,7 +32,7 @@ import lombok.ToString;
 @Table(name = "Phim")
 public class Phim implements Serializable {
 	@Id
-	String Maphim;
+	String Maphim;	
 	String Tenphim;
 	String Thoiluong;
 	Integer Namsx;

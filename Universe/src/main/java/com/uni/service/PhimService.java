@@ -17,4 +17,10 @@ public interface PhimService {
 
 	List<Phim> findPhimSapChieu();
 
+	Phim create(Phim phim);
+
+	Phim update(Phim phim);
+
+	void delete(String phim);
+
 }

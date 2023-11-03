@@ -1,13 +1,13 @@
 package com.uni.rest.controller;
 
 import java.io.File;
-
 import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,11 +18,12 @@ import com.uni.service.UploadService;
 
 @CrossOrigin("*")
 @RestController
+@RequestMapping("rest/upload")
 public class UploadRestController {
 	@Autowired
 	UploadService uploadService;
 	
-	@PostMapping("/rest/upload/{folder}")
+	@PostMapping("{folder}")
 	public JsonNode upload(@PathParam("file") MultipartFile file,
 			@PathVariable("folder")String folder) {
 		File savedFile = uploadService.save(file, folder);

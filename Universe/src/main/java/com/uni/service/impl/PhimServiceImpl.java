@@ -39,6 +39,18 @@ public class PhimServiceImpl implements PhimService {
 	}
 
 
-	
+	@Override
+	public Phim create(Phim phim) {
+		return pDao.save(phim);
+	}
+	@Override
+	public Phim update(Phim phim) {
+		return pDao.save(phim);
+	}
+
+	@Override
+	public void delete(String phim) {
+		pDao.deleteById(phim);
+	}
 	
 }

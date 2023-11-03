@@ -14,9 +14,11 @@
 						<div class="row">
 							<div class="col-sm-4 text-center">
 								<label for="image"> <img
-									ng-src="/assets/Images/dan/{{form.hinh}}"
+									ng-src="/assets/dan/{{form.hinh}}"
 									style="max-width: 100%" height="150px" />
 								</label>
+							<input type="file" class="form-control ms-3"  id="image" 
+    					    onchange="angular.element(this).scope().imageChanged(this.files)" style="display: none;">
 							</div>
 							<div class="col-sm-8">
 								<div class="row">

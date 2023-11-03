@@ -102,14 +102,14 @@ create table Doan (
 );
 
 ------------------------------------Combo----------------------------------------------
-create table ComBo(
+create table Combo(
 	STT int identity(1,1) primary key,
 	Macb varchar(10),
-	Mada int,
 	Tencb nvarchar(125),
 	Mota nvarchar(225),
 	Soluong int,
-	Dongia float
+	Dongia float,
+	Hinh  varchar(225)
 );
 
 
@@ -337,15 +337,10 @@ insert into Doan values
 (N'Coca',100,25000,N'5.JPG'),
 (N'Pepsi',100,25000,N'4.JPG')
 
-insert into ComBo values
-('CB01',1,N'Ấm áp',N'2 bắp và 1 Pepsi',50,90000),
-('CB01',3,N'Ấm áp',N'2 bắp và 1 Pepsi',50,90000),
-('CB01',4,N'Ấm áp',N'2 bắp và 1 Pepsi',50,90000),
-('CB02',2,N'Cô đơn 1',N'1 bắp và 1 Coca',50,50000),
-('CB02',3,N'Cô đơn 1',N'1 bắp và 1 Coca',50,50000),
-('CB03',2,N'Cô đơn 2',N'1 bắp và 1 Pepsi',50,50000),
-('CB03',4,N'Cô đơn 2',N'1 bắp và 1 Pepsi',50,50000)
-
+insert into Combo values
+('CB01',N'Ấm áp',N'1 bắp + 2 Pepsi và 2 gấu bông ',50,90000,'3.JPG'),
+('CB02',N'Cô đơn 1',N'1 bắp và 1 Coca',50,50000,'10.JPG'),
+('CB03',N'Cô đơn 2',N'1 bắp và 1 Pepsi',50,50000,'6.JPG')
 insert into Trangthaiphim values
 (N'Đang chiếu'),
 (N'Sắp chiếu'),

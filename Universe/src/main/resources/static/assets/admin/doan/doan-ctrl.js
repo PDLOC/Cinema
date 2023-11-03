@@ -53,6 +53,21 @@ app.controller("doan-ctrl",function($scope,$http){
 			console.log("Error ",err);
 		})
 	}
+	      //Upload Hình
+    $scope.imageChanged = function(files){
+		var data = new FormData();
+		data.append('file',files[0]);
+		$http.post('/rest/upload/dan',data,{
+			transformRequest:angular.identity,
+			headers:{'Content-Type':undefined}
+		}).then(resp=>{
+			$scope.form.hinh = resp.data.name;
+		}).catch(err=>{
+			alert('Lỗi upload Ảnh');
+			console.log("Error ",err)
+		})
+    }
+	
 	
       //Remove 
     $scope.delete = function(item){
