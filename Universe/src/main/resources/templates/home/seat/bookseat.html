@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	th:replace="~{/layout/index :: dynamic(~{::main})}">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
+
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="viewport" content="width=device-width">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width">
 </head>
+
 <body>
 	<main>
 		<div class="scroll-bar">
@@ -14,14 +15,16 @@
 						<h1 class="fw-bolder text-white mb-3">Đặt vé</h1>
 					</div>
 					<div id="hh"
-						style="background-color: red; color: white; padding: 10px;"
+						style="background-color: red; color: white; padding: 10px; border-radius:10px; margin-bottom:5px;"
 						class="d-flex">
 						<div>
-							<span>Universe Cinema |</span> 
-							<span th:utext="${itemCt.room.Tenpc} + ' |'"></span> 
-							<span id="TotalSeat2">Số ghế (76/76)</span><br> 
-							<div style="display:inline-block;">Giờ bắt đầu <span id="GioBatDau" th:utext="${#strings.substring(itemL.Giobatdau, 0, 5)}"></span></div> 
-							<div style="display:inline-block;">Giờ kết thúc <span id="GioKetThuc" th:utext="${#strings.substring(itemL.Gioketthuc, 0, 5)}"></span></div>
+							<span>Universe Cinema |</span>
+							<span th:utext="${itemCt.room.Tenpc} + ' |'"></span>
+							<span id="TotalSeat2">Số ghế (76/76)</span><br>
+							<div style="display:inline-block;">Giờ bắt đầu <span id="GioBatDau"
+									th:utext="${itemL.getFormattedGiobatdau}"></span></div>
+							<div style="display:inline-block;">Giờ kết thúc <span id="GioKetThuc"
+									th:utext="${itemL.getFormattedGioketthuc}"></span></div>
 						</div>
 						<span class="ml-auto" id="countdown">Count Down: 00:00</span>
 					</div>
@@ -169,158 +172,122 @@
 									<!-- Thêm các ghế khác vào đây -->
 								</div>
 								<div class="seats">
-									<div class="seat" data-row="4" data-col="1" data-name="E1"
-										data-vip="true">
+									<div class="seat" data-row="4" data-col="1" data-name="E1" data-vip="true">
 										<div class="mt-2">E1</div>
 									</div>
-									<div class="seat" data-row="4" data-col="2" data-name="E2"
-										data-vip="true">
+									<div class="seat" data-row="4" data-col="2" data-name="E2" data-vip="true">
 										<div class="mt-2">E2</div>
 									</div>
-									<div class="seat" data-row="4" data-col="3" data-name="E3"
-										data-vip="true">
+									<div class="seat" data-row="4" data-col="3" data-name="E3" data-vip="true">
 										<div class="mt-2">E3</div>
 									</div>
-									<div class="seat" data-row="4" data-col="4" data-name="E4"
-										data-vip="true">
+									<div class="seat" data-row="4" data-col="4" data-name="E4" data-vip="true">
 										<div class="mt-2">E4</div>
 									</div>
-									<div class="seat" data-row="4" data-col="5" data-name="E5"
-										data-vip="true">
+									<div class="seat" data-row="4" data-col="5" data-name="E5" data-vip="true">
 										<div class="mt-2">E5</div>
 									</div>
-									<div class="seat" data-row="4" data-col="6" data-name="E6"
-										data-vip="true">
+									<div class="seat" data-row="4" data-col="6" data-name="E6" data-vip="true">
 										<div class="mt-2">E6</div>
 									</div>
-									<div class="seat" data-row="4" data-col="7" data-name="E7"
-										data-vip="true">
+									<div class="seat" data-row="4" data-col="7" data-name="E7" data-vip="true">
 										<div class="mt-2">E7</div>
 									</div>
-									<div class="seat" data-row="4" data-col="8" data-name="E8"
-										data-vip="true">
+									<div class="seat" data-row="4" data-col="8" data-name="E8" data-vip="true">
 										<div class="mt-2">E8</div>
 									</div>
-									<div class="seat" data-row="4" data-col="9" data-name="E9"
-										data-vip="true">
+									<div class="seat" data-row="4" data-col="9" data-name="E9" data-vip="true">
 										<div class="mt-2">E9</div>
 									</div>
-									<div class="seat" data-row="4" data-col="10" data-name="E10"
-										data-vip="true">
+									<div class="seat" data-row="4" data-col="10" data-name="E10" data-vip="true">
 										<div class="mt-2">E10</div>
 									</div>
 									<!-- Thêm các ghế khác vào đây -->
 								</div>
 								<div class="seats">
-									<div class="seat" data-row="4" data-col="1" data-name="F1"
-										data-vip="true">
+									<div class="seat" data-row="4" data-col="1" data-name="F1" data-vip="true">
 										<div class="mt-2">F1</div>
 									</div>
-									<div class="seat" data-row="4" data-col="2" data-name="F2"
-										data-vip="true">
+									<div class="seat" data-row="4" data-col="2" data-name="F2" data-vip="true">
 										<div class="mt-2">F2</div>
 									</div>
-									<div class="seat" data-row="4" data-col="3" data-name="F3"
-										data-vip="true">
+									<div class="seat" data-row="4" data-col="3" data-name="F3" data-vip="true">
 										<div class="mt-2">F3</div>
 									</div>
-									<div class="seat" data-row="4" data-col="4" data-name="F4"
-										data-vip="true">
+									<div class="seat" data-row="4" data-col="4" data-name="F4" data-vip="true">
 										<div class="mt-2">F4</div>
 									</div>
-									<div class="seat" data-row="4" data-col="5" data-name="F5"
-										data-vip="true">
+									<div class="seat" data-row="4" data-col="5" data-name="F5" data-vip="true">
 										<div class="mt-2">F5</div>
 									</div>
-									<div class="seat" data-row="4" data-col="6" data-name="F6"
-										data-vip="true">
+									<div class="seat" data-row="4" data-col="6" data-name="F6" data-vip="true">
 										<div class="mt-2">F6</div>
 									</div>
-									<div class="seat" data-row="4" data-col="7" data-name="F7"
-										data-vip="true">
+									<div class="seat" data-row="4" data-col="7" data-name="F7" data-vip="true">
 										<div class="mt-2">F7</div>
 									</div>
-									<div class="seat" data-row="4" data-col="8" data-name="F8"
-										data-vip="true">
+									<div class="seat" data-row="4" data-col="8" data-name="F8" data-vip="true">
 										<div class="mt-2">F8</div>
 									</div>
-									<div class="seat" data-row="4" data-col="9" data-name="F9"
-										data-vip="true">
+									<div class="seat" data-row="4" data-col="9" data-name="F9" data-vip="true">
 										<div class="mt-2">F9</div>
 									</div>
-									<div class="seat" data-row="4" data-col="10" data-name="F10"
-										data-vip="true">
+									<div class="seat" data-row="4" data-col="10" data-name="F10" data-vip="true">
 										<div class="mt-2">F10</div>
 									</div>
 									<!-- Thêm các ghế khác vào đây -->
 								</div>
 								<div class="seats">
-									<div class="seat" data-row="4" data-col="1" data-name="G1"
-										data-vip="true">
+									<div class="seat" data-row="4" data-col="1" data-name="G1" data-vip="true">
 										<div class="mt-2">G1</div>
 									</div>
-									<div class="seat" data-row="4" data-col="2" data-name="G2"
-										data-vip="true">
+									<div class="seat" data-row="4" data-col="2" data-name="G2" data-vip="true">
 										<div class="mt-2">G2</div>
 									</div>
-									<div class="seat" data-row="4" data-col="3" data-name="G3"
-										data-vip="true">
+									<div class="seat" data-row="4" data-col="3" data-name="G3" data-vip="true">
 										<div class="mt-2">G3</div>
 									</div>
-									<div class="seat" data-row="4" data-col="4" data-name="G4"
-										data-vip="true">
+									<div class="seat" data-row="4" data-col="4" data-name="G4" data-vip="true">
 										<div class="mt-2">G4</div>
 									</div>
-									<div class="seat" data-row="4" data-col="5" data-name="G5"
-										data-vip="true">
+									<div class="seat" data-row="4" data-col="5" data-name="G5" data-vip="true">
 										<div class="mt-2">G5</div>
 									</div>
-									<div class="seat" data-row="4" data-col="6" data-name="G6"
-										data-vip="true">
+									<div class="seat" data-row="4" data-col="6" data-name="G6" data-vip="true">
 										<div class="mt-2">G6</div>
 									</div>
-									<div class="seat" data-row="4" data-col="7" data-name="G7"
-										data-vip="true">
+									<div class="seat" data-row="4" data-col="7" data-name="G7" data-vip="true">
 										<div class="mt-2">G7</div>
 									</div>
-									<div class="seat" data-row="4" data-col="8" data-name="G8"
-										data-vip="true">
+									<div class="seat" data-row="4" data-col="8" data-name="G8" data-vip="true">
 										<div class="mt-2">G8</div>
 									</div>
-									<div class="seat" data-row="4" data-col="9" data-name="G9"
-										data-vip="true">
+									<div class="seat" data-row="4" data-col="9" data-name="G9" data-vip="true">
 										<div class="mt-2">G9</div>
 									</div>
-									<div class="seat" data-row="4" data-col="10" data-name="G10"
-										data-vip="true">
+									<div class="seat" data-row="4" data-col="10" data-name="G10" data-vip="true">
 										<div class="mt-2">G10</div>
 									</div>
 									<!-- Thêm các ghế khác vào đây -->
 									<!-- Thêm các ghế khác vào đây -->
 								</div>
 								<div class="seats">
-									<div class="seat double" data-row="5" data-name="H1"
-										data-couple="true">
+									<div class="seat double" data-row="5" data-name="H1" data-couple="true">
 										<div class="mt-2">H1</div>
 									</div>
-									<div class="seat double" data-row="5" data-name="H2"
-										data-couple="true">
+									<div class="seat double" data-row="5" data-name="H2" data-couple="true">
 										<div class="mt-2">H2</div>
 									</div>
-									<div class="seat double" data-row="5" data-name="H3"
-										data-couple="true">
+									<div class="seat double" data-row="5" data-name="H3" data-couple="true">
 										<div class="mt-2">H3</div>
 									</div>
-									<div class="seat double" data-row="5" data-name="H4"
-										data-couple="true">
+									<div class="seat double" data-row="5" data-name="H4" data-couple="true">
 										<div class="mt-2">H4</div>
 									</div>
-									<div class="seat double" data-row="5" data-name="H1"
-										data-couple="true">
+									<div class="seat double" data-row="5" data-name="H1" data-couple="true">
 										<div class="mt-2">H5</div>
 									</div>
-									<div class="seat double" data-row="5" data-name="H6"
-										data-couple="true">
+									<div class="seat double" data-row="5" data-name="H6" data-couple="true">
 										<div class="mt-2">H6</div>
 									</div>
 								</div>
@@ -352,38 +319,32 @@
 				</div>
 
 				<!-- page Food -->
-				<div id="displayFood" class="m-auto border mt-3">
-					<!-- <div class="bg-dark text-light">
-						<h4>Bắp nước</h4>
-					</div> -->
+				<div id="displayFood" class="m-auto mt-3" style="box-shadow:0px 0px 5px 1px black;">
+					<h4 id="cartItems"></h4>
 					<div class="food-list">
-						<div class="col-sm-6 d-flex p-4">
-							<img class="w-25" 
-								src="https://www.cgv.vn/media/concession/web/6443fd2e624be_1682177326.png"
-								alt="Đồ ăn">
+						<div class="col-sm-6 d-flex p-4" style="position:relative;">
+							<img style="max-width: 150px; max-height:200px;"
+								src="https://www.cgv.vn/media/concession/web/6443fd2e624be_1682177326.png" alt="Đồ ăn">
 							<div class="" style="text-align: left;">
 								<h5>JUNGLE BROWN MY COMBO</h5>
-								<p>
+								<p >
 									1 bình Jungle Brown + 1 nước siêu lớn <br> **Mua thêm 1
 									bắp ngọt chỉ với 29K tại rạp <br> **Nhận trong ngày xem
 									phim** <br> ***Mẫu ly phụ thuộc vào số lượng hàng tại rạp
 								</p>
-								<div class="price">Giá: $10</div>
-								<div class="quantity-input">
+								<div class="price" style="margin-bottom:50px;">Giá: $10</div>
+								<div class="quantity-input" style="position:absolute; bottom:1px;">
 									<button class="decrease-quantity"
 										style="width: 25px; height: 30px; border: none; background-color: red;">-</button>
-									<input style="margin: 5px;" type="number" class="quantity"
-										value="0" readonly>
-									<button
-										style="width: 25px; height: 30px; border: none; background-color: red;"
+									<input style="margin: 5px;" type="number" class="quantity" value="0" readonly>
+									<button style="width: 25px; height: 30px; border: none; background-color: red;"
 										class="increase-quantity">+</button>
 								</div>
 							</div>
 						</div>
-						<div class="col-sm-6 d-flex p-4">
-							<img class="w-25"
-								src="https://www.cgv.vn/media/concession/web/6426a4fc4b1ca_1680254204.png"
-								alt="Đồ ăn">
+						<div class="col-sm-6 d-flex p-4" style="position:relative;">
+							<img style="max-width: 150px; max-height:200px;"
+								src="https://www.cgv.vn/media/concession/web/6426a4fc4b1ca_1680254204.png" alt="Đồ ăn">
 							<div class="" style="text-align: left;">
 								<h5>JUNGLE BROWN COUPL</h5>
 								<p>
@@ -391,23 +352,19 @@
 									**Nhận trong ngày xem phim** <br> ***Mẫu ly phụ thuộc vào
 									số lượng hàng tại rạp <br>
 								</p>
-								<div class="price">Giá: $15</div>
-								<div class="quantity-input">
-									<button
-										style="width: 25px; height: 30px; border: none; background-color: red;"
+								<div class="price"  style="margin-bottom:50px;">Giá: $15</div>
+								<div class="quantity-input" style="position:absolute; bottom:0px;">
+									<button style="width: 25px; height: 30px; border: none; background-color: red;"
 										class="decrease-quantity">-</button>
-									<input style="margin: 5px;" type="number" class="quantity"
-										value="0" readonly>
-									<button
-										style="width: 25px; height: 30px; border: none; background-color: red;"
+									<input style="margin: 5px;" type="number" class="quantity" value="0" readonly>
+									<button style="width: 25px; height: 30px; border: none; background-color: red;"
 										class="increase-quantity">+</button>
 								</div>
 							</div>
 						</div>
-						<div class="col-sm-6 d-flex p-4">
-							<img class="w-25"
-								src="https://www.cgv.vn/media/concession/web/64d0e5082f836_1691411720.png"
-								alt="Đồ ăn">
+						<div class="col-sm-6 d-flex p-4" style="position:relative;">
+							<img style="max-width: 150px;max-height:200px;"
+								src="https://www.cgv.vn/media/concession/web/64d0e5082f836_1691411720.png" alt="Đồ ăn">
 							<div class="p-3" style="text-align: left;">
 								<h5>MILO COMBO 2023</h5>
 								<p>
@@ -415,46 +372,38 @@
 									Nhận trong ngày xem phim.<br> ** Miễn phí đổi vị bắp
 									Caramel<br> *** Đổi vị phô mai phụ thu thêm tiền <br>
 								</p>
-								<div class="price">Giá: $20</div>
-								<div class="quantity-input">
-									<button
-										style="width: 25px; height: 30px; border: none; background-color: red;"
+								<div class="price"  style="margin-bottom:50px;">Giá: $20</div>
+								<div class="quantity-input" style="position:absolute; bottom:0px;">
+									<button style="width: 25px; height: 30px; border: none; background-color: red;"
 										class="decrease-quantity">-</button>
-									<input style="margin: 5px;" type="number" class="quantity"
-										value="0" readonly>
-									<button
-										style="width: 25px; height: 30px; border: none; background-color: red;"
+									<input style="margin: 5px;" type="number" class="quantity" value="0" readonly>
+									<button style="width: 25px; height: 30px; border: none; background-color: red;"
 										class="increase-quantity">+</button>
 								</div>
 							</div>
 						</div>
-						<div class="col-sm-6 d-flex p-4">
-							<img class="w-25"
-								src="https://www.cgv.vn/media/concession/web/64d315fa964c0_1691555323.png"
-								alt="Đồ ăn">
+						<div class="col-sm-6 d-flex p-4" style="position:relative;">
+							<img style="max-width: 150px; max-height:200px;"
+								src="https://www.cgv.vn/media/concession/web/64d315fa964c0_1691555323.png" alt="Đồ ăn">
 							<div class="p-3" style="text-align: left;">
 								<h5>BLUE BEETLE SCARAB W</h5>
 								<p>
 									1 ly Blue Beetle nắp cánh + 1 nước ngọt siêu lớn + 1 bắp lớn<br>
 									*Nhận trong ngày xem phim<br>
 								</p>
-								<div class="price">Giá: $30</div>
-								<div class="quantity-input">
-									<button
-										style="width: 25px; height: 30px; border: none; background-color: red;"
+								<div class="price" style="margin-bottom:50px;">Giá: $30</div>
+								<div class="quantity-input" style="position:absolute; bottom:0px;">
+									<button style="width: 25px; height: 30px; border: none; background-color: red;"
 										class="decrease-quantity">-</button>
-									<input style="margin: 5px;" type="number" class="quantity"
-										value="0" readonly>
-									<button
-										style="width: 25px; height: 30px; border: none; background-color: red;"
+									<input style="margin: 5px;" type="number" class="quantity" value="0" readonly>
+									<button style="width: 25px; height: 30px; border: none; background-color: red;"
 										class="increase-quantity">+</button>
 								</div>
 							</div>
 						</div>
-						<div class="col-sm-6 d-flex p-4">
-							<img class="w-25"
-								src="https://www.cgv.vn/media/concession/web/64e0cd409b54d_1692454209.png"
-								alt="Đồ ăn">
+						<div class="col-sm-6 d-flex p-4" style="position:relative;">
+							<img style="max-width: 150px; max-height:200px;"
+								src="https://www.cgv.vn/media/concession/web/64e0cd409b54d_1692454209.png" alt="Đồ ăn">
 							<div class="p-3" style="text-align: left;">
 								<h5>PEANUTS COUPLE COME</h5>
 								<p>
@@ -462,15 +411,12 @@
 									ngày xem phim<br> ** Thêm 39,000đ nhận ngay 1 bắp ngọt<br>
 									*** Mẫu ly phụ thuộc vào số lượng của rạp<br>
 								</p>
-								<div class="price">Giá: $40</div>
-								<div class="quantity-input">
-									<button
-										style="width: 25px; height: 30px; border: none; background-color: red;"
+								<div class="price"  style="margin-bottom:50px;">Giá: $40</div>
+								<div class="quantity-input" style="position:absolute; bottom:0px;">
+									<button style="width: 25px; height: 30px; border: none; background-color: red;"
 										class="decrease-quantity">-</button>
-									<input style="margin: 5px;" type="number" class="quantity"
-										value="0" readonly>
-									<button
-										style="width: 25px; height: 30px; border: none; background-color: red;"
+									<input style="margin: 5px;" type="number" class="quantity" value="0" readonly>
+									<button style="width: 25px; height: 30px; border: none; background-color: red;"
 										class="increase-quantity">+</button>
 								</div>
 							</div>
@@ -485,13 +431,13 @@
 
 					<!-- page Pay -->
 					<div id="displayPay" class="m-auto">
-						<div>
-							<h4>THANH TOÁN</h4>
-						</div>
-						<div class="row p-0 m-0">
+						<!-- <div>
+							<h5>Thông Tin Phim</h5>
+							<div></div>
+						</div> -->
+						<div class="row p-0 m-0" style="border:1px solid black;border-radius:10px;box-shadow:0px 0px 5px 1px black;">
 							<div class="col-8">
-								<div
-									style="background-color: #bcbdc0; text-align: left; padding: 5px;">
+								<div style="color:white; text-align: left; padding: 5px; font-weight:600;">
 									<span style="display: inline-block;">Bước 1:</span> <span
 										style="display: inline-block;">GIẢM GIÁ</span>
 								</div>
@@ -501,75 +447,72 @@
 											<h2 class="accordion-header" id="panelsStayOpen-headingTwo">
 												<button class="accordion-button collapsed" type="button"
 													data-bs-toggle="collapse"
-													data-bs-target="#panelsStayOpen-collapseTwo"
-													aria-expanded="false"
+													data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
 													aria-controls="panelsStayOpen-collapseTwo">Mã
 													khuyến mãi</button>
 											</h2>
-											<div id="panelsStayOpen-collapseTwo"
-												class="accordion-collapse collapse"
+											<div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
 												aria-labelledby="panelsStayOpen-headingTwo">
 												<div class="accordion-body">...</div>
 											</div>
 										</div>
 									</div>
 								</div>
-								<div
-									style="background-color: #bcbdc0; text-align: left; padding: 5px;">
+								<div style="color:white; text-align: left; padding: 5px; font-weight:600;">
 									<span style="display: inline-block;">Bước 2:</span> <span
 										style="display: inline-block;">HÌNH THỨC THANH TOÁN</span>
 								</div>
-								<div style="background-color: #fff1ce;">
-									<div class="form-check m-2" style="text-align: left;">
-										<input class="form-check-input mt-3" type="radio"
-											name="flexRadioDefault" id="flexRadioDefault1"> <label
-											class="form-check-label" for="flexRadioDefault1">
+								<div>
+									<div class="form-check m-2" style="text-align: left; color:#00ffff;">
+										<input class="form-check-input mt-3" type="radio" name="flexRadioDefault"
+											id="flexRadioDefault1"> <label class="form-check-label"
+											for="flexRadioDefault1">
 											<div style="display: inline-block; width: 50px;">
-												<img style="width: 100%;"
+												<img style="max-width: 40px;"
 													src="https://www.cgv.vn/media/catalog/product/placeholder/default/atm_icon.png"
 													alt="">
 											</div> ATM card (Thẻ nội địa)
 										</label>
 									</div>
-									<div class="form-check m-2" style="text-align: left;">
-										<input class="form-check-input mt-3" type="radio"
-											name="flexRadioDefault" id="flexRadioDefault2"> <label
-											class="form-check-label" for="flexRadioDefault2">
+									<div class="form-check m-2" style="text-align: left; color:#00ffff;">
+										<input class="form-check-input mt-3" type="radio" name="flexRadioDefault"
+											id="flexRadioDefault2"> <label class="form-check-label"
+											for="flexRadioDefault2">
 											<div style="display: inline-block; width: 50px;">
-												<img style="width: 100%;"
+												<img style="max-width: 40px;"
 													src="https://www.cgv.vn/media/catalog/product/placeholder/default/visa-mastercard-icon.png"
 													alt="">
 											</div> Thẻ quốc tế (Visa, Master, Amex, JCB) (Thẻ nội địa)
 										</label>
 									</div>
-									<div class="form-check m-2" style="text-align: left;">
-										<input class="form-check-input mt-3" type="radio"
-											name="flexRadioDefault" id="flexRadioDefault3"> <label
-											class="form-check-label" for="flexRadioDefault3">
+									<div class="form-check m-2" style="text-align: left; color:#00ffff;">
+										<input class="form-check-input mt-3" type="radio" name="flexRadioDefault"
+											id="flexRadioDefault3"> <label class="form-check-label"
+											for="flexRadioDefault3">
 											<div style="display: inline-block; width: 50px;">
-												<img style="width: 100%;"
+												<img style="max-width: 40px;"
 													src="https://www.cgv.vn/media/catalog/product/placeholder/default/momo_icon.png"
 													alt="">
 											</div> MoMo - Nhập MMCGV -5K/bill, Vé 9K Bạn Mới
 										</label>
 									</div>
-									<div class="form-check m-2" style="text-align: left;">
-										<input class="form-check-input mt-3" type="radio"
-											name="flexRadioDefault" id="flexRadioDefault4"> <label
-											class="form-check-label" for="flexRadioDefault4">
+									<div class="form-check m-2" style="text-align: left; color:#00ffff;">
+										<input class="form-check-input mt-3" type="radio" name="flexRadioDefault"
+											id="flexRadioDefault4"> <label class="form-check-label"
+											for="flexRadioDefault4">
 											<div style="display: inline-block; width: 50px;">
-												<img style="width: 100%;"
+												<img style="max-width: 40px;"
 													src="https://www.cgv.vn/media/catalog/product/placeholder/default/icon-HOT-96x96.png"
 													alt="">
 											</div> ZaloPay: Bạn Mới vé 14K - Bạn Thân 84K
 										</label>
 									</div>
-									<div class="form-check m-2" style="text-align: left;">
-										<input class="form-check-input mt-3" type="radio"
-											name="flexRadioDefault" id="flexRadioDefault5"> <label
-											class="form-check-label" for="flexRadioDefault5">
+									<div class="form-check m-2" style="text-align: left; color:#00ffff;">
+										<input class="form-check-input mt-3" type="radio" name="flexRadioDefault"
+											id="flexRadioDefault5"> <label class="form-check-label"
+											for="flexRadioDefault5">
 											<div style="display: inline-block; width: 50px;">
-												<img style="width: 100%;"
+												<img style="max-width: 40px;"
 													src="https://www.cgv.vn/media/catalog/product/placeholder/default/vnpay_newlogo.png"
 													alt="">
 											</div> VNPAY
@@ -577,8 +520,8 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-4">
-								<div class="m-2 mt-0">
+							<div class="col-4" style="padding:5px;">
+								<!-- <div class="m-2 mt-0">
 									<ul class="list-group">
 										<li style="background-color: #fff1ce; font-weight: 650;"
 											class="list-group-item">Tổng cộng</li>
@@ -603,14 +546,61 @@
 										<li style="background-color: #d0cece;" class="list-group-item"
 											id="Pay">$0.00</li>
 									</ul>
+								</div> -->
+								<div
+									style="background:#162953; color:white; display:flex; flex-direction:column; border-radius:5px; padding:10px 5px 10px 5px;">
+									<div style="margin-bottom:10px;">
+										<span style="font-size:15px; font-weight:700;">Thông tin phim</span>
+										<div>
+											<div style="display:flex; flex-direction:row; margin-bottom:5px;">
+												<div style="width:50%;">Phim:</div>
+												<div id="nameFlimPay" style="width:50%;">Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực</div>
+											</div>
+											<div style="display:flex; flex-direction:row; margin-bottom:5px;">
+												<div style="width:50%;">Ngày Giờ Chiếu:</div>
+												<div id="suatChieuPay" style="width:50%;">10:00 , 25/08/2023</div>
+											</div>
+											<div style="display:flex; flex-direction:row; margin-bottom:5px;">
+												<div style="width:50%;">Ghế:</div>
+												<div id="viTriGhePay" style="width:50%;">G10</div>
+											</div>
+											<div style="display:flex; flex-direction:row; margin-bottom:5px;">
+												<div style="width:50%;">Phòng chiếu:</div>
+												<div id="roomPay" style="width:50%;">Cine 1</div>
+											</div>
+										</div>
+									</div>
+									<hr>
+									<div style="margin-bottom:10px;">
+										<span style="font-size:15px; font-weight:700;">Đồ ăn</span>
+										<div>
+											<div style="display:flex; flex-direction:row;margin-bottom:5px;">
+												<div style="width:50%;">Đồ ăn:</div>
+												<div id="Food" style="width:50%;"></div>
+											</div>
+											<div style="display:flex; flex-direction:row;margin-bottom:5px;">
+												<div style="width:50%;">Tổng:</div>
+												<div id="totalPriceFood" style="width:50%;">$20.00</div>
+											</div>
+										</div>
+									</div>
+									<hr>
+									<div style="display:flex; flex-direction:column;">
+										<span style="margin-bottom:10px;font-size:15px; font-weight:700;">Khuyến mãi: $0.00</span>
+										<span id="toTalPay" style="margin-bottom:10px;font-size:15px; font-weight:700;">Tổng thanh toán</span>
+										<span id="toTalPay2" style="margin-bottom:10px; font-size:15px; font-weight:700;">Thành Tiền</span>
+									</div>
+									<div>
+										<button class="btn btn-primary">Thanh Toán</button>
+										<button id="backButton" class="btn btn-danger">Quay Lại</button>
+									</div>
 								</div>
-								<div class="m-2">
+								<div class="m-2" >
 									<ul class="list-group">
-										<li
-											style="background-color: #e71a0f; font-weight: 650; color: white;"
-											class="list-group-item">Count Down</li>
-										<li style="background-color: #d0cece;" class="list-group-item"
-											id="countdown2">$0.00</li>
+										<li style="background-color: #e71a0f; font-weight: 650; color: white;"
+											class="list-group-item">Đếm ngược</li>
+										<li style="background-color: #d0cece;" class="list-group-item" id="countdown2">
+											$0.00</li>
 									</ul>
 								</div>
 							</div>
@@ -618,8 +608,7 @@
 					</div>
 
 				</div>
-				<div class="row p-0 m-0"
-					style="color: red; background-color: black;">
+				<div id="DieuHuong" class="row p-0 m-0" style="color: red; background-color: black;">
 					<div class="col-2">
 						<button id="prevButton"
 							style="margin-top: 20px; width: 104px; height: 85px; background-color: #343433;"
@@ -628,25 +617,26 @@
 						</button>
 					</div>
 					<div class="col-1">
-						<img style="width: 70px; margin-top: 10px;"
-							th:src="@{|/assets/Images/${itemCt.Hinh}|}"
+						<img style="width: 70px; margin-top: 10px;" th:src="@{|/assets/Images/${itemCt.Hinh}|}"
 							th:alt="${itemCt.Tenphim}">
 					</div>
 					<div class="col-2" style="margin-top: 10px;">
-						<p style="text-align: left; margin-top: 5px;" th:utext="${itemCt.Tenphim}">Tên Phim</p>
+						<p id="nameFilm" style="text-align: left; margin-top: 5px;" th:utext="${itemCt.Tenphim}">Tên Phim</p>
 					</div>
 					<div style="margin-top: 10px;" class="col-3">
 						<div class="row">
 							<p class="col-4 m-0 p-0">Rạp</p>
-							<p class="col-8 m-0 p-0">Universe Cinema</p>
+							<p id="cinema" class="col-8 m-0 p-0">Universe Cinema</p>
 						</div>
 						<div class="row">
 							<p class="col-4 m-0 p-0">Suất chiếu</p>
-							<p class="col-8 m-0 p-0" th:utext="${#strings.concat(#strings.substring(itemL.Giobatdau, 0, 5), ' , ', #dates.format(itemL.Ngaychieu, 'dd/MM/yyyy'))}">18:05, 05/10/2023</p>
+							<p id="suatChieu" class="col-8 m-0 p-0"
+								th:utext="${#strings.concat(#strings.substring(itemL.Giobatdau, 0, 5), ' , ', #dates.format(itemL.Ngaychieu, 'dd/MM/yyyy'))}">
+								18:05, 05/10/2023</p>
 						</div>
 						<div class="row">
 							<p class="col-4 m-0 p-0">Phòng chiếu</p>
-							<p class="col-8 m-0 p-0" th:utext="${itemCt.room.Tenpc}"></p>
+							<p id="room" class="col-8 m-0 p-0" th:utext="${itemCt.room.Tenpc}"></p>
 						</div>
 						<div class="row">
 							<p class="col-4 m-0 p-0">Ghế</p>
@@ -669,8 +659,7 @@
 					</div>
 					<br> <br> <br> <br> <br> <br>
 					<div class="col-2 text-center">
-						<button id="nextButton"
-							style="margin-top: 20px; width: 104px; height: 85px;"
+						<button id="nextButton" style="margin-top: 20px; width: 104px; height: 85px;"
 							class="btn btn-danger">
 							<i class="fa-solid fa-arrow-right fa-2xl"></i><br>Next
 						</button>
