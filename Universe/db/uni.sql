@@ -12,7 +12,7 @@ create table Taikhoan(
 	Hinh nvarchar(255) null,
 );
 
-
+select a.Username from Authorities a where a.Mavaitro in ('AD', 'STAFF')
 ------------------------------------Vai trò----------------------------------------------
 create table Vaitro(
 	Mavaitro varchar(10) primary key,
@@ -111,7 +111,7 @@ create table Combo(
 	Dongia float,
 	Hinh  varchar(225)
 );
-
+select * from Combo
 
 
 ------------------------------------Vé----------------------------------------------
@@ -341,6 +341,7 @@ insert into Combo values
 ('CB01',N'Ấm áp',N'1 bắp + 2 Pepsi và 2 gấu bông ',50,90000,'3.JPG'),
 ('CB02',N'Cô đơn 1',N'1 bắp và 1 Coca',50,50000,'10.JPG'),
 ('CB03',N'Cô đơn 2',N'1 bắp và 1 Pepsi',50,50000,'6.JPG')
+
 insert into Trangthaiphim values
 (N'Đang chiếu'),
 (N'Sắp chiếu'),

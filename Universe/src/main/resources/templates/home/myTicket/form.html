@@ -16,47 +16,58 @@
 						tôi</label> <input id="tab2-1" name="tabs-two" type="radio"
 						checked="checked">
 					<div>
-						<div class="row mb-3 mx-5">
-							<div class="col-6">
-								<h5 style="font-family: Georgia, serif;">Họ</h5>
-								<input type="text"
-									style="background: black; border: 2px solid red;"
-									class="form-control text-white py-4"
-									id="exampleFormControlInput1">
-							</div>
-							<div class="col-6">
-								<h5 style="font-family: Georgia, serif;">Tên</h5>
-								<input type="text"
-									style="background: black; border: 2px solid red"
-									class="form-control text-white py-4"
-									id="exampleFormControlInput1">
-							</div>
-						</div>
-						<div class="row mx-5">
-							<div class="col-6 mt-3" style="font-family: Georgia, serif;">
-								<h5>Số điện thoại</h5>
-								<input type="text"
-									style="background: black; border: 2px solid red"
-									class="form-control text-white py-4"
-									id="exampleFormControlInput1">
-							</div>
-							<div class="col-6 mt-3" style="font-family: Georgia, serif;">
-								<h5>Email</h5>
-								<input type="email"
-									style="background: black; border: 2px solid red"
-									class="form-control text-white py-4"
-									id="exampleFormControlInput1">
-							</div>
-						</div>
-						<br>
+						<form th:object="${acc}" method="POST">
+							<div class="row mb-3 mx-5" th:each="u:${user}">
+								<div class="col-6">
+									<h5 style="font-family: Georgia, serif;">Tài khoản</h5>
+									<input type="text" th:field="*{username}"
+										style="background: black; border: 2px solid red;"
+										class="form-control text-white py-4" id="inputUsername">
 
-						<div class="mt-3" style="margin-left:100px;">
-							<button style="font-size: 17px;" type="button" class="btn btn-secondary me-3" data-bs-toggle="modal" data-bs-target="#exampleModal">Đổi
-								mật khẩu</button>
-							<button style="font-size: 17px;" type="button" 
-								class="btn btn-danger" >Lưu
-								thông tin</button>
-						</div>
+								</div>
+							</div>
+							<div class="row mb-3 mx-5">
+								<div class="col-6">
+									<h5 style="font-family: Georgia, serif;">Họ tên</h5>
+									<input type="text" th:field="*{hoten}"
+										style="background: black; border: 2px solid red;"
+										class="form-control text-white py-4"
+										id="exampleFormControlInput1">
+								</div>
+								<div class="col-6">
+									<h5 style="font-family: Georgia, serif;">Email</h5>
+									<input type="text" th:field="*{email}"
+										style="background: black; border: 2px solid red"
+										class="form-control text-white py-4"
+										id="exampleFormControlInput1">
+								</div>
+							</div>
+							<div class="row mx-5">
+								<div class="col-6 mt-3" style="font-family: Georgia, serif;">
+									<h5>Số điện thoại</h5>
+									<input type="text" th:field="*{sdt}"
+										style="background: black; border: 2px solid red"
+										class="form-control text-white py-4"
+										id="exampleFormControlInput1">
+								</div>
+								<div class="col-6 mt-3" style="font-family: Georgia, serif;">
+									<h5>Ngày sinh</h5>
+									<input type="text" th:field="*{ngaysinh}"
+										style="background: black; border: 2px solid red"
+										class="form-control text-white py-4"
+										id="exampleFormControlInput1">
+								</div>
+							</div>
+							<br>
+
+							<div class="mt-3" style="margin-left: 100px;">
+								<button style="font-size: 17px;" type="button"
+									class="btn btn-secondary me-3" data-bs-toggle="modal"
+									data-bs-target="#exampleModal">Đổi mật khẩu</button>
+								<button style="font-size: 17px;" type="button"
+									class="btn btn-danger">Lưu thông tin</button>
+							</div>
+						</form>
 					</div>
 				</div>
 
@@ -195,6 +206,13 @@
 			});
 		</script>
 
+		<script th:inline="javascript">
+			// Lấy giá trị từ biến Thymeleaf
+			var username = /*[[${u.username}]]*/'';
+			// Gán giá trị vào trường input
+			var inputElement = document.getElementById("inputUsername");
+			inputElement.value = username;
+		</script>
 	</main>
 </body>
 </html>

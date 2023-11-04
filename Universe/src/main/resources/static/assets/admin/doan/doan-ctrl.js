@@ -15,7 +15,7 @@ app.controller("doan-ctrl",function($scope,$http){
 		    //Xoá form
     $scope.reset = function(){
 		$scope.form = {			
-			image:'cloud-upload.jpg',
+			hinh:'cloud-upload.jpg',
 			available:true,
 		}
     }

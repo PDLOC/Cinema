@@ -18,7 +18,7 @@ import com.uni.service.UploadService;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("rest/upload")
+@RequestMapping("/rest/upload")
 public class UploadRestController {
 	@Autowired
 	UploadService uploadService;

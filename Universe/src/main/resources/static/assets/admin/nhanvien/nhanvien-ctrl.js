@@ -1,7 +1,7 @@
 app.controller("nhanvien-ctrl",function($scope,$http){
 	$scope.items = [];
 	$scope.form = {},
-	
+	$scope.role = [];
 	$scope.initialize = function(){
 		// load Nhân viên
 		$http.get("/rest/staff").then(resp => {
@@ -11,6 +11,10 @@ app.controller("nhanvien-ctrl",function($scope,$http){
 			})
 		});
 		
+		 //load vaitro
+        $http.get("/rest/vaitro").then(resp=>{
+            $scope.role = resp.data;
+        })
 	}
 	    //Hiển thị lên form
     $scope.edit = function(item){
@@ -23,7 +27,7 @@ app.controller("nhanvien-ctrl",function($scope,$http){
 	$scope.imageChanged = function(files){
 		var data = new FormData();
 		data.append('file', files[0]);
-		$http.post('/rest/upload/images',data,{
+		$http.post('/rest/upload/Images',data,{
 			transformRequest: angular.identity,
 			headers: {'Content-Type': undefined}
 		}).then(resp => {

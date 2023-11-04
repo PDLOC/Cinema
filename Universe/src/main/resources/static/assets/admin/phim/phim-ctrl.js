@@ -19,8 +19,7 @@ app.controller("phim-ctrl",function($scope,$http){
 		    //Xoá form
     $scope.reset = function(){
 		$scope.form = {			
-			hinh:'cloud-upload.jpg',
-			available:true,
+			hinh:'cloud-upload.jpg'
 		}
     }
 		    //Hiển thị lên form
@@ -117,4 +116,5 @@ app.controller("phim-ctrl",function($scope,$http){
 	}
 	
 	$scope.initialize();
+	$scope.reset();
 });

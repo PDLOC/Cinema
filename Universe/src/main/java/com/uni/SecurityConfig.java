@@ -3,6 +3,9 @@ package com.uni;
 
 import java.util.stream.Collectors;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,11 +30,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired 
 	BCryptPasswordEncoder pe;
 	
+	
+	private Taikhoan user;
+	
 	//Cung cấp nguồn dữ liệu đăng nhập
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(username->{
 			try {
-				Taikhoan user = taikhoanService.findById(username);
+				user = taikhoanService.findById(username);
 				String password = pe.encode(user.getPassword());
 				String[] roles = user.getAuthorities().stream()
 						.map(el->el.getVaitro().getMavaitro())

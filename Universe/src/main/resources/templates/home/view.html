@@ -108,7 +108,7 @@
 							class="d-block w-100" alt="...">
 					</div>
 					<div class="carousel-item">
-						<img src="/assets/Images/nun.png" height="400"
+						<img src="/assets/Images/nun2.png" height="400"
 							class="d-block w-100" alt="...">
 					</div>
 					<div class="carousel-item">
@@ -328,7 +328,7 @@
 				
 	    }
 		</script>
-		<script th:if="${#request.remoteUser}">
+			<script th:if="${#request.remoteUser}">
 	    	const Toast = Swal.mixin({
 				  toast: true,
 				  position: 'top',
@@ -340,7 +340,6 @@
 				    toast.addEventListener('mouseleave', Swal.resumeTimer)
 				  }
 				})
-
 				Toast.fire({
 				  icon: 'success',
 				  title: 'Đăng nhập thành công'

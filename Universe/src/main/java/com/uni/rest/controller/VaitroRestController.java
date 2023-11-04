@@ -7,18 +7,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.uni.entity.Trangthai;
-import com.uni.service.TrangThaiService;
+import com.uni.entity.Vaitro;
+import com.uni.service.VaitroService;
 
 @RestController
-@RequestMapping("/rest/trangthai")
-public class TrangthaiRestController {
+@RequestMapping("/rest/vaitro")
+public class VaitroRestController {
 	@Autowired
-	private TrangThaiService trangThaiService;
+	VaitroService vaitroService;
 
 	@GetMapping
-	public List<Trangthai> getAll() {
-		return trangThaiService.findAll();
+	public List<Vaitro> getAll() {
+		return vaitroService.findAll();
 	}
 
 }

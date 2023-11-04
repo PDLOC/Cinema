@@ -24,13 +24,7 @@
 						<tr ng-repeat="item in pager.items">
 							<td style="width: 150px;"><img ng-src="/assets/Images/{{item.hinh}}" alt=""
 								width=30% /></td>
-							<td>{{item.manv}}</td>
-							<td>{{item.matkhaunv}}</td>
-							<td>{{item.tennv}}</td>
-							<td>{{item.ngaysinh | date:'dd-MM-yyyy'}}</td>
-							<td>{{item.sdt}}</td>
-							<td>{{item.diachi}}</td>
-							<td>{{item.vaitro?'Quản trị':'Nhân viên'}}</td>
+							<td>{{item.taikhoan.username}}</td>
 							<td><a class='btn btn-warning' style="font-size: 14px"
 								ng-click="edit(item)"> <span
 									class="glyphicon glyphicon-edit"></span> Edit

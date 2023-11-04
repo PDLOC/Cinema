@@ -52,4 +52,11 @@ public class TaikhoanServiceImpl implements TaikhoanService{
 	}
 
 
+	@Override
+	public List<Taikhoan> findStaffAndAd() {
+		// TODO Auto-generated method stub
+		return taiKhoanDAO.findStaffandAd();
+	}
+
+
 }

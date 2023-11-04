@@ -1,16 +1,22 @@
 package com.uni.controller;
 
-import java.util.Iterator;
-
+import java.net.URLEncoder;
+import java.security.Principal;
 import java.util.List;
 
+import javax.mail.Session;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.uni.entity.Chitietphim;
 import com.uni.entity.Phim;
 import com.uni.entity.Taikhoan;
 import com.uni.service.ChitietphimService;
@@ -34,24 +40,44 @@ public class PhimController {
 	@Autowired
 	TaikhoanService taikhoanService;
 
+	
 	@RequestMapping("film")
-	public String phim(Model model) {
+	public String phim(Model model, Principal principal, HttpServletResponse response, HttpSession session) throws Exception {
+		// Hiển thị khi đăng ký thành công
 		List<Taikhoan> listTk = taikhoanService.findAll();
 		int a = listTk.size();
 		int flag = 0;
-		System.out.println("" + listTk.size());
 		for (int i = 0; i < listTk.size(); i++) {
-			if(a > listTk.size()) {
+			if (a > listTk.size()) {
 				flag = 1;
 				break;
 			}
 		}
 		if (flag == 1) {
-			model.addAttribute("swal","tc");
-		}else {
-			model.addAttribute("swal",null);
+			model.addAttribute("swal", "tc");
+		} else {
+			model.addAttribute("swal", null);
 		}
-		
+
+		// Tìm qua spring security
+		if (principal != null) {
+			Authentication authentication = (Authentication) principal;
+			User user = (User) authentication.getPrincipal();
+			Taikhoan taikhoan = taikhoanService.findById(user.getUsername());
+			Cookie cookie = new Cookie("username", taikhoan.getUsername());
+			cookie.setMaxAge(24 * 60 * 60);
+			cookie.setPath("/");
+			response.addCookie(cookie);
+			model.addAttribute("displayed", "dn");
+			
+		} else {
+			model.addAttribute("displayed", null);
+			Cookie cookie = new Cookie("username", "");
+			cookie.setMaxAge(0);
+			cookie.setPath("/");
+			response.addCookie(cookie);
+		}
+
 		List<Phim> listPhim = phimService.findAll();
 		List<Phim> listPhimDangChieu = phimService.findPhimDangChieu();
 		List<Phim> listPhimSapChieu = phimService.findPhimSapChieu();

@@ -11,5 +11,6 @@ public interface TaiKhoanDAO extends JpaRepository<Taikhoan, String> {
 	@Query("Select Distinct ar.taikhoan From Authority ar where ar.vaitro.Mavaitro IN ('STAFF','AD')")
 	List<Taikhoan> getAdministrators();
 
-	
+	@Query("Select a.taikhoan From Authority a where a.vaitro.Mavaitro IN ('STAFF','AD')")
+	List<Taikhoan> findStaffandAd();
 }

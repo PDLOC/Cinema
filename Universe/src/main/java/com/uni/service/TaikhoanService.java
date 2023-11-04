@@ -21,4 +21,6 @@ public interface TaikhoanService {
 
 	Taikhoan findById(String matk);
 
+	List<Taikhoan> findStaffAndAd();
+
 }

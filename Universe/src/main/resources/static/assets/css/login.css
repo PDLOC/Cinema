@@ -288,6 +288,10 @@ input[type="submit"]:hover {
 	padding: 0;
 }
 
+.drop-title:hover{
+	background: none;
+}
+
 .field-icon {
 	position: absolute;
 	margin-left: -30px;
