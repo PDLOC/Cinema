@@ -1,5 +1,6 @@
 package com.uni.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -17,10 +18,14 @@ public interface TaikhoanService {
 
 	Taikhoan update(Taikhoan tk);
 
+	
+	
 	void delete(String tk);
 
 	Taikhoan findById(String matk);
 
 	List<Taikhoan> findStaffAndAd();
+
+
 
 }

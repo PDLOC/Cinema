@@ -58,7 +58,7 @@
 												data-bs-toggle="dropdown" aria-expanded="false"> <img
 													th:src="@{/assets/Images/user.png}"
 													style="width: 30px; border-radius: 50%;"> <span
-													class="ms-3">[[${#request.remoteUser}]]</span>
+													class="ms-3" th:utext=${session.login.hoten}></span>
 											</a>
 												<ul class="dropdown-menu"
 													style="width: 220px; font-size: 18px;background:black;">
@@ -69,7 +69,7 @@
 													<li><a class="dropdown-item drop-title"
 														onMouseOver="this.style.color='red'"
 														onMouseOut="this.style.color='white'"
-														th:href="@{|/home/myticket/${#request.remoteUser}|}">Vé của tôi</a></li>
+														th:href="@{|/home/profile/${session.login.username}|}">Vé của tôi</a></li>
 													<li><hr class="dropdown-divider"></li>
 													<li><a class="dropdown-item drop-title" th:href="@{/home/logoff}"
 														onMouseOver="this.style.color='red'"

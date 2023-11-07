@@ -20,8 +20,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.uni.entity.Phim;
 import com.uni.entity.Taikhoan;
 import com.uni.service.ChitietphimService;
+import com.uni.service.CookieService;
 import com.uni.service.PhimService;
 import com.uni.service.PhongChieuService;
+import com.uni.service.SessionService;
 import com.uni.service.TaikhoanService;
 
 @Controller
@@ -40,6 +42,11 @@ public class PhimController {
 	@Autowired
 	TaikhoanService taikhoanService;
 
+	@Autowired
+	SessionService sessionService;
+	
+	@Autowired
+	CookieService cookieService;
 	
 	@RequestMapping("film")
 	public String phim(Model model, Principal principal, HttpServletResponse response, HttpSession session) throws Exception {
@@ -64,18 +71,16 @@ public class PhimController {
 			Authentication authentication = (Authentication) principal;
 			User user = (User) authentication.getPrincipal();
 			Taikhoan taikhoan = taikhoanService.findById(user.getUsername());
-			Cookie cookie = new Cookie("username", taikhoan.getUsername());
-			cookie.setMaxAge(24 * 60 * 60);
-			cookie.setPath("/");
-			response.addCookie(cookie);
+			sessionService.set("login", taikhoan);
+			//System.out.println(""+sessionService.get("login"));
+			cookieService.add("USERNAME", taikhoan.getUsername(), 2);
+			model.addAttribute("hoten", taikhoan.getHoten());
 			model.addAttribute("displayed", "dn");
 			
 		} else {
 			model.addAttribute("displayed", null);
-			Cookie cookie = new Cookie("username", "");
-			cookie.setMaxAge(0);
-			cookie.setPath("/");
-			response.addCookie(cookie);
+			sessionService.remove("login");
+			cookieService.add("USERNAME","",0);
 		}
 
 		List<Phim> listPhim = phimService.findAll();

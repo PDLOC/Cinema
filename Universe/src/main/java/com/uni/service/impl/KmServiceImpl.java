@@ -1,0 +1,32 @@
+package com.uni.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.uni.dao.KmDAO;
+import com.uni.entity.Khuyenmai;
+import com.uni.service.KmService;
+
+@Service
+public class KmServiceImpl implements KmService{
+	@Autowired
+	KmDAO kmDAO;
+
+	@Override
+	public List<Khuyenmai> findAll() {
+		// TODO Auto-generated method stub
+		return kmDAO.findAll();
+	}
+
+	@Override
+	public Khuyenmai findById(String makm) {
+		// TODO Auto-generated method stub
+		if (makm == null) {
+			return null;
+		}
+		return kmDAO.findById(makm).isPresent() ? kmDAO.findById(makm).get() : null;
+	}
+	
+}

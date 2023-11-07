@@ -11,6 +11,7 @@ create table Taikhoan(
 	Diachi nvarchar(max) null,
 	Hinh nvarchar(255) null,
 );
+select * from Taikhoan
 
 select a.Username from Authorities a where a.Mavaitro in ('AD', 'STAFF')
 ------------------------------------Vai trò----------------------------------------------
@@ -83,13 +84,14 @@ create table LoaiGhe(
 );
 
 ------------------------------------Khuyến mãi----------------------------------------------
-create table KhuyenMai (
+create table Khuyenmai (
     Makm varchar(10) primary key,
 	Tenkm nvarchar(225),
-    Mota nvarchar(255),
+    Mota NVARCHAR(MAX)  NULL,
     Giamgia float,
     NgayBatDau date,
-	NgayKetThuc date
+	NgayKetThuc date,
+	Hinh nvarchar(250)
 );
 
 ------------------------------------Đồ Ăn----------------------------------------------
@@ -346,6 +348,68 @@ insert into Trangthaiphim values
 (N'Đang chiếu'),
 (N'Sắp chiếu'),
 (N'Hết chiếu')
+drop table Khuyenmai
+insert into Khuyenmai values
+('km01',N'SIÊU ƯU ĐÃI “PHIM THẬT HAY - COMBO THẬT ĐÃ” CHÍNH THỨC TRỞ LẠI',
+N' <span> Hòa cùng không khí nhộn nhịp giảm giá 10%, tưng bừng của rằm trung thu và hơn cả là phim hay “có chùm”, từ nay đến hết  31.10.2023 đến 30.11.2023, Trung tâm Chiếu phim Quốc gia dành tặng các nhóm khách trường học/ doanh nghiệp... món quà vô cùng hấp dẫn:   </span>
+                              <br>
+                                <br>
+                                <span>
+                              ÁP DỤNG cho các gói: 
+                              <p style="color: chartreuse;" class="mt-3">- Gói 1: 01 bỏng ngọt + 01 pepsi vừa</p>
+                                <p style="color: chartreuse;"> - Gói 2: Set 1 (02 đùi gà + 01 khoai vừa)</p>
+                                    <p style="color: chartreuse;"> - Gói 3: Set 3 (02 miếng gà + 01 khoai vừa)</p>
+                                </span>
+								<br>
+                         
+								 <span>
+    <p> Lưu ý:</p>
+
+
+    <p></p>  ▪️ Chương trình không áp dụng chính sách ưu đãi với các chương trình khuyến mại song song hiện có.</p>
+
+
+    <p>▪️ Chỉ áp dụng cho nhóm khách hàng tại các trường học và có đặt trước.</p>
+
+
+        <p></p>Cùng đến để tận hưởng ưu đãi ngập tràn nào các bạn ơi‼️</p>
+    </span>',
+0.01,'10/31/2023','11/30/2023','1.JPG'),
+('km02',N'Đồng giá 49k bộ phim hoạt hình “Những chú chó hoàng gia',
+N' <span>Từ ngày 17/11/2023 (Thứ 6), Trung tâm chiếu phim Quốc gia  sẽ đồng giá vé 49k cho tất cả các suất chiếu phim hoạt hình “Những chú chó hoàng gia”.  </span>
+                              <br>
+                                <br>
+                                 <span>
+                                    Các bạn nhỏ hãy đón xem                           
+                                </span>
+								',
+0.05,'11/16/2023','11/30/2023','2.JPG'
+),
+('km03',N'XEM PHIM HAY HƯỞNG NGAY ƯU ĐÃI “ĂN THẢ GA – CHƠI CỰC ĐÃ',
+N' <span>Chương trình 2023 thật sôi động, gắn kết hơn và tận hưởng những phút giây mãn nhãn với loạt phim bom tấn mùa hè này. Khi xem phim tại Trung tâm Chiếu phim Quốc gia, các bạn đừng quên các chương trình ưu đãi với combo “ĂN THẢ GA – CHƠI CỰC ĐÃ”:</span>
+                              <br>
+                                <br>
+                                 <span>
+                                   <p style="color: chartreuse;"> - Tặng 02 voucher vé vào cửa Khu vui chơi + 10 xèng khi khách hàng mua 01 gói set: C7, C8, C9. </p>
+<p style="color: chartreuse;">  - Tặng 01 voucher vé vào cửa Khu vui chơi + 05 xèng khi khách mua 01 gói set: C3, C4, C5, C6.</p>                         
+									  <p style="color: chartreuse;">  Thời gian áp dụng: Từ 15/4/2023 đến hết ngày 15/7/2023</p> 
+
+</p>
+                                </span>
+								',
+0.06,'11/16/2023','11/30/2023','3.JPG'
+),('km04',N'SPECIAL MONDAY - ĐỒNG GIÁ 50.000Đ/VÉ 2D THỨ 2 CUỐI THÁNG (TỪ 01/06/2023)',
+N' <span>  Từ 01/06/2023, Trung tâm Chiếu phim tiếp tục áp dụng chương trình đồng giá vé 50.000đ/Vé 2D vào các ngày T2 cuối tháng.  </span>
+                              <br>
+                                <br>
+                                <span>
+                                 Lưu ý:
+                              <p - Chương trình áp dụng cho tất cả các suất chiếu 2D trong ngày, không áp dụng với các chương trình khuyến mãi khác.</p>
+                              
+                                </span>
+								<br>
+                         ',
+0.01,'10/31/2023','11/30/2023','1.JPG')
 
 
 ------------------------------------Khóa-----------------------------------

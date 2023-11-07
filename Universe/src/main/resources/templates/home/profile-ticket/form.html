@@ -4,7 +4,6 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
-
 </head>
 
 <body>
@@ -16,14 +15,20 @@
 						tôi</label> <input id="tab2-1" name="tabs-two" type="radio"
 						checked="checked">
 					<div>
-						<form th:object="${acc}" method="POST">
-							<div class="row mb-3 mx-5" th:each="u:${user}">
+						<form th:object="${acc}" th:action="@{/home/profile/update}" method="POST">
+							<div class="row mb-3 mx-5">
 								<div class="col-6">
 									<h5 style="font-family: Georgia, serif;">Tài khoản</h5>
 									<input type="text" th:field="*{username}"
 										style="background: black; border: 2px solid red;"
-										class="form-control text-white py-4" id="inputUsername">
+										class="form-control text-white py-4" id="inputFullname">
 
+								</div>
+								<div class="col-6">
+									<h5 style="font-family: Georgia, serif;">Mật khẩu</h5>
+									<input type="text" th:field="*{password}"
+										style="background: black; border: 2px solid red"
+										class="form-control text-white py-4" id="inputEmail">
 								</div>
 							</div>
 							<div class="row mb-3 mx-5">
@@ -31,15 +36,14 @@
 									<h5 style="font-family: Georgia, serif;">Họ tên</h5>
 									<input type="text" th:field="*{hoten}"
 										style="background: black; border: 2px solid red;"
-										class="form-control text-white py-4"
-										id="exampleFormControlInput1">
+										class="form-control text-white py-4" id="inputFullname">
+
 								</div>
 								<div class="col-6">
 									<h5 style="font-family: Georgia, serif;">Email</h5>
-									<input type="text" th:field="*{email}"
+									<input type="email" th:field="*{email}"
 										style="background: black; border: 2px solid red"
-										class="form-control text-white py-4"
-										id="exampleFormControlInput1">
+										class="form-control text-white py-4" id="inputEmail">
 								</div>
 							</div>
 							<div class="row mx-5">
@@ -47,15 +51,25 @@
 									<h5>Số điện thoại</h5>
 									<input type="text" th:field="*{sdt}"
 										style="background: black; border: 2px solid red"
-										class="form-control text-white py-4"
-										id="exampleFormControlInput1">
+										class="form-control text-white py-4" id="inputSdt">
 								</div>
 								<div class="col-6 mt-3" style="font-family: Georgia, serif;">
 									<h5>Ngày sinh</h5>
 									<input type="text" th:field="*{ngaysinh}"
 										style="background: black; border: 2px solid red"
-										class="form-control text-white py-4"
-										id="exampleFormControlInput1">
+										class="form-control text-white py-4" id="inputNgaysinh">
+								</div>
+							</div>
+							<div class="row mx-5">
+								<div  class="col-6 mt-3" style="font-family: Georgia, serif;">
+									<input type="hidden" th:field="*{diachi}"
+										style="background: black; border: 2px solid red"
+										class="form-control text-white py-4" id="inputSdt">
+								</div>
+								<div class="col-6 mt-3" style="font-family: Georgia, serif;">
+									<input type="hidden" th:field="*{hinh}"
+										style="background: black; border: 2px solid red"
+										class="form-control text-white py-4" id="inputNgaysinh">
 								</div>
 							</div>
 							<br>
@@ -64,8 +78,9 @@
 								<button style="font-size: 17px;" type="button"
 									class="btn btn-secondary me-3" data-bs-toggle="modal"
 									data-bs-target="#exampleModal">Đổi mật khẩu</button>
-								<button style="font-size: 17px;" type="button"
-									class="btn btn-danger">Lưu thông tin</button>
+								<button style="font-size: 17px;"
+									class="btn btn-danger">Lưu
+									thông tin</button>
 							</div>
 						</form>
 					</div>
@@ -206,13 +221,7 @@
 			});
 		</script>
 
-		<script th:inline="javascript">
-			// Lấy giá trị từ biến Thymeleaf
-			var username = /*[[${u.username}]]*/'';
-			// Gán giá trị vào trường input
-			var inputElement = document.getElementById("inputUsername");
-			inputElement.value = username;
-		</script>
+
 	</main>
 </body>
 </html>

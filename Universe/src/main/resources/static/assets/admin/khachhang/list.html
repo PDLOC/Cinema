@@ -15,7 +15,7 @@
 							<th style="font-weight: bolder; font-size: 18px">Tên</th>
 							<th style="font-weight: bolder; font-size: 18px">Email</th>
 							<th style="font-weight: bolder; font-size: 18px">Ngày sinh</th>
-							<th style="font-weight: bolder; font-size: 18px">Vai trò</th>
+							<th style="font-weight: bolder; font-size: 18px">Địa chỉ</th>
 							<th style="font-weight: bolder; font-size: 18px">Action</th>
 						</tr>
 					</thead>
@@ -27,8 +27,8 @@
 							<td>{{item.password}}</td>
 							<td>{{item.hoten}}</td>
 							<td>{{item.email}}</td>
-							<td>{{item.ngaysinh | date:'dd-MM-yyyy'}}</td>
-							<td>{{item.tenvaitro}}</td>
+							<td>{{item.ngaysinh | date:'dd/MM/yyyy'}}</td>
+							<td>{{item.diachi}}</td>
 							<td><a class='btn btn-warning' style="font-size: 14px"
 								ng-click="edit(item)"> <span
 									class="glyphicon glyphicon-edit"></span> Edit

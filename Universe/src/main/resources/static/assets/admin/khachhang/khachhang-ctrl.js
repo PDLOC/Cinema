@@ -1,7 +1,9 @@
 app.controller("khachhang-ctrl",function($scope,$http){
 	$scope.items = [];
 	$scope.form = {};
-    $scope.cates = [];
+    $scope.roles = [];
+    $scope.selection =[];
+    
 	$scope.initialize = function(){
 		//load Khách hàng
 		$http.get("/rest/customers").then(resp => {
@@ -10,18 +12,38 @@ app.controller("khachhang-ctrl",function($scope,$http){
 				console.log(item);
 			})
 		});
+		 //load vaitro
+        $http.get("/rest/vaitro").then(resp=>{
+            $scope.roles = resp.data;
+        });
 	}
+	
+	//Load Roles on form by clicking Edit
+	$scope.getOneByRole = function(username){
+		$http.get(`/rest/authoritiesOne?username=${username}`).then(resp=>{
+			$scope.selection = [];
+			$scope.roles.forEach(e=>{
+				resp.data.forEach(e1=>{
+					if(e.tenvaitro == e1.vaitro.tenvaitro){
+						console.log(e1)
+						$scope.selection.push(e);
+					}
+				})
+			})
+		})
+	}
+	
+	
 	    //Xoá form
     $scope.reset = function(){
 		$scope.form = {
-			createDate:new Date(),
-			image:'cloud-upload.jpg',
-			available:true,
+			hinh:'cloud-upload.jpg',
 		}
     }
 	    //Hiển thị lên form
     $scope.edit = function(item){
 		$scope.form = angular.copy(item);
+		$scope.getOneByRole(item.username);
 		$('#pills-home-tab').tab('show');
     }
     
@@ -46,10 +68,10 @@ app.controller("khachhang-ctrl",function($scope,$http){
 		$http.put(`/rest/customers/${item.makh}`,item).then(resp=>{
 			var index = $scope.items.findIndex(p=>p.id == item.makh);
 			$scope.items[index] = item;
-			alert('Cập nhật  thành công!');
+			alert('Cập nhật thành công!');
 			console.log(resp.data);
 		}).catch(err=>{
-			alert('Lỗi cập nhật !')
+			alert('Lỗi cập nhật!!!!')
 			console.log("Error ",err);
 		})
 	}
@@ -60,10 +82,10 @@ app.controller("khachhang-ctrl",function($scope,$http){
 			var index = $scope.items.findIndex(kh=> kh.makh == item.makh);
 			$scope.items.splice(index,1);
 			$scope.reset();
-			alert('Xoá sản phẩm thành công!');
+			alert('Xoá sản phẩm thành công');
 			console.log(resp.data);
 		}).catch(err=>{
-			alert('Lỗi xoá sản phẩm!')
+			alert('Lỗi xoá sản phẩm!!!!')
 			console.log("Error ",err);
 		})
 	}
@@ -112,4 +134,5 @@ app.controller("khachhang-ctrl",function($scope,$http){
 	}
 	
 	$scope.initialize();
+	$scope.reset();
 });

@@ -1,5 +1,6 @@
 package com.uni.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,4 +14,5 @@ public interface TaiKhoanDAO extends JpaRepository<Taikhoan, String> {
 
 	@Query("Select a.taikhoan From Authority a where a.vaitro.Mavaitro IN ('STAFF','AD')")
 	List<Taikhoan> findStaffandAd();
+
 }

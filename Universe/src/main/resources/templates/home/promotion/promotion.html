@@ -11,65 +11,20 @@
 			<h2 class="text-center mb-2" style="font-family: 'avantgarde-demi';">Khuyến
 				mãi</h2>
 			<div class="row">
-				<div class="col-3 mb-3">
-					<div class="card" style="width: 18rem;">
-						<div class="zoom-img">
-							<img src="/assets/Images/shin.png" class="card-img-top" alt="...">
+				<div th:each="km: ${listkm}" class="col-3 mb-3">
+					<a th:href="@{|/home/promotion/detail/${km.makm}|}">
+						<div class="card" style="width: 18rem;">
+							<div class="zoom-img">
+								<img th:src="@{|/assets/Images/km/${km.hinh}|}"
+									class="card-img-top" alt="...">
+							</div>
+							<div class="card-body">
+								<h5 class="card-title" th:utext="${km.ngaybatdau}"></h5>
+								<p class="card-text text-white" style="font-size: 20px"
+									th:utext="${km.tenkm}">/p>
+							</div>
 						</div>
-						<div class="card-body">
-							<h5 class="card-title">30/08/2023</h5>
-							<p class="card-text text-white" style="font-size: 20px">NCC
-								TẶNG QUÀ GIÁ TRỊ LÊN TỚI 500K CÙNG HÀNG NGÀN MÃ GIẢM GIÁ</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-3 mb-3">
-					<div class="card" style="width: 18rem;">
-						<div class="zoom-img">
-							<img src="/assets/Images/shin.png" class="card-img-top" alt="...">
-						</div>
-						<div class="card-body">
-							<h5 class="card-title">29/09/2022</h5>
-							<p class="card-text text-white" style="font-size: 20px">SPECIAL
-								MONDAY - ĐỒNG GIÁ 50.000Đ/VÉ 2D THỨ 2 CUỐI THÁNG</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-3 mb-3">
-					<div class="card" style="width: 18rem;">
-						<div class="zoom-img">
-							<img src="/assets/Images/shin.png" class="card-img-top" alt="...">\
-						</div>
-						<div class="card-body">
-							<h5 class="card-title">04/09/2019</h5>
-							<p class="card-text text-white" style="font-size: 20px">SIÊU
-								ƯU ĐÃI “PHIM THẬT HAY - COMBO THẬT ĐÃ” CHÍNH THỨC TRỞ LẠI</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-3 mb-3">
-					<div class="card" style="width: 18rem;">
-						<div class="zoom-img">
-							<img src="/assets/Images/shin.png" class="card-img-top" alt="...">
-						</div>
-						<div class="card-body">
-							<h5 class="card-title">17/05/2023</h5>
-							<p class="card-text text-white" style="font-size: 20px">Đồng
-								giá 49k bộ phim hoạt hình “Những chú chó hoàng gia“</p>
-						</div>
-					</div>
-				</div>
-				<div class=col-3>
-					<div class="card" style="width: 18rem;">
-						<div class="zoom-img">
-							<img src="/assets/Images/shin.png" class="card-img-top" alt="...">
-						</div>
-						<div class="card-body">
-							<h5 class="card-title">23/04/2019</h5>
-							<p class="card-text text-white" style="font-size: 20px">XEM
-								PHIM HAY HƯỞNG NGAY ƯU ĐÃI “ĂN THẢ GA – CHƠI CỰC ĐÃ”</p>
-						</div>
-					</div>
+					</a>
 				</div>
 			</div>
 		</div>

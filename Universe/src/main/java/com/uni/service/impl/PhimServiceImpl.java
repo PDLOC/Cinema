@@ -23,7 +23,10 @@ public class PhimServiceImpl implements PhimService {
 	@Override
 	public Phim findById(String maphim) {
 		// TODO Auto-generated method stub
-		return pDao.findById(maphim).get();
+		if (maphim == null) {
+			return null;
+		}
+		return pDao.findById(maphim).isPresent() ? pDao.findById(maphim).get() : null;
 	}
 
 	@Override
