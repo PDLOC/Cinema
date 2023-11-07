@@ -466,6 +466,7 @@
         var backButton = document.getElementById("backButton");
         backButton.addEventListener("click", function () {
         	countPage = 0;
+        	document.getElementById("headMenu").style.removeProperty("display");
         	document.getElementById("DieuHuong").style.removeProperty("display");
         	document.getElementById("displaySeat").style.display = "block";
             document.getElementById("displayFood").style.display = "none";
