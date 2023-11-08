@@ -80,7 +80,7 @@ create table Trangthaiphim(
 create table LoaiGhe(
 	Maloai int identity(1,1) primary key,
 	Loaive nvarchar(125),
-	Dongia int 
+	Dongia int
 );
 
 ------------------------------------Khuyến mãi----------------------------------------------
@@ -353,10 +353,10 @@ insert into Trangthaiphim values
 
 
 insert into Khuyenmai values
-('km01',N'SIÊU ƯU ĐÃI “PHIM THẬT HAY - COMBO THẬT ĐÃ” CHÍNH THỨC TRỞ LẠI',0.01,'10/31/2023','11/30/2023','1.JPG'),
-('km02',N'Đồng giá 49k bộ phim hoạt hình “Những chú chó hoàng gia',0.05,'11/16/2023','11/30/2023','2.JPG'),
-('km03',N'XEM PHIM HAY HƯỞNG NGAY ƯU ĐÃI “ĂN THẢ GA – CHƠI CỰC ĐÃ',0.06,'11/16/2023','11/30/2023','3.JPG'),
-('km04',N'SPECIAL MONDAY - ĐỒNG GIÁ 50.000Đ/VÉ 2D THỨ 2 CUỐI THÁNG (TỪ 01/06/2023)',0.01,'10/31/2023','11/30/2023','1.JPG')
+('km01',N'SIÊU ƯU ĐÃI “PHIM THẬT HAY - COMBO THẬT ĐÃ” CHÍNH THỨC TRỞ LẠI',10,'10/31/2023','11/30/2023','1.JPG'),
+('km02',N'Đồng giá 49k bộ phim hoạt hình “Những chú chó hoàng gia',5,'11/16/2023','11/30/2023','2.JPG'),
+('km03',N'XEM PHIM HAY HƯỞNG NGAY ƯU ĐÃI “ĂN THẢ GA – CHƠI CỰC ĐÃ',6,'11/16/2023','11/30/2023','3.JPG'),
+('km04',N'SPECIAL MONDAY - ĐỒNG GIÁ 50.000Đ/VÉ 2D THỨ 2 CUỐI THÁNG (TỪ 01/06/2023)',1,'10/31/2023','11/30/2023','1.JPG')
 
 
 insert into Chitietkm values

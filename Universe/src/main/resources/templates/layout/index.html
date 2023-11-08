@@ -157,7 +157,22 @@
         });
     </script>
 
-
+	<script th:inline="javascript">
+		let giamgia = 0;
+		function khuyenMai (){
+			var khuyenMaiList = /*[[${itemKM}]]*/;
+			var input = document.getElementById("khuyenMaiInput");
+	        var inputValue = input.value;
+			khuyenMaiList.map(item =>{
+				if (inputValue === item.makm) {
+					giamgia = item.giamgia;
+					input.value = "";
+				}
+			})
+			updateSelectedSeats();
+		}
+	</script>
+	
     <!-- Ghế -->
     <script>
     
@@ -168,6 +183,7 @@
         const tongGhe = document.getElementById('countSeat')
 
         var countSeat = [];
+       
 
         // Lấy danh sách các ghế
         const seats = document.querySelectorAll('.seat');
@@ -238,14 +254,16 @@
             const SuatChieu = document.getElementById("suatChieu").textContent;
             const RoomCinema = document.getElementById("room").textContent;
             
+            document.getElementById('khuyenMai').textContent = `Khuyến mãi: ${giamgia}%`;
+            
             document.getElementById('viTriGhePay').textContent = `${selectedSeats.join(', ')}`;
             document.getElementById('nameFlimPay').textContent = `${nameFlim}`;
             document.getElementById('suatChieuPay').textContent = `${SuatChieu}`;
             document.getElementById('roomPay').textContent = `${RoomCinema}`;
             
             
-            document.getElementById("toTalPay").textContent = `Tổng Thanh Toán: $${totalPrice} + $${combo}`;
-            document.getElementById("toTalPay2").textContent = `Thành Tiền: $${totalPrice + combo}`;
+            document.getElementById("toTalPay").textContent = `Tổng Thanh Toán: $${totalPrice*(1-(giamgia/100))} + $${combo}`;
+            document.getElementById("toTalPay2").textContent = `Thành Tiền: $${(totalPrice*(1-(giamgia/100))) + combo}`;
             document.getElementById("Pay").textContent = `$${totalPrice + combo}`;
             document.getElementById("TotalSeat2").textContent = `Số ghế ${76 - selectedSeatsCount}/76`
             /* payment */
