@@ -27,9 +27,9 @@ public class TaikhoanRestController {
 	public List<Taikhoan> getAll() {
 		return tkService.findAll();
 	}
-	@GetMapping("{Mada}")
-	public Taikhoan findById(@PathVariable("Mada")String mada) {
-		return tkService.findById(mada);
+	@GetMapping("{Matk}")
+	public Taikhoan findById(@PathVariable("Matk")String matk) {
+		return tkService.findById(matk);
 	}
 	
 	@PostMapping
@@ -37,13 +37,13 @@ public class TaikhoanRestController {
 		return tkService.create(tk);
 	}
 	
-	@PutMapping("{Mada}")
-	public Taikhoan update(@RequestBody Taikhoan tk,@PathVariable("Mada")String id) {
+	@PutMapping("{Matk}")
+	public Taikhoan update(@RequestBody Taikhoan tk,@PathVariable("Matk")String matk) {
 		return tkService.update(tk);
 	}
 	
-	@DeleteMapping("{Mada}")
-	public void delete(@PathVariable("Mada")String tk) {
+	@DeleteMapping("{Matk}")
+	public void delete(@PathVariable("Matk")String tk) {
 		tkService.delete(tk);
 	}
 }

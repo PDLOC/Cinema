@@ -4,13 +4,13 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.uni.entity.Authority;
+import com.uni.entity.Phanquyen;
 
 @Service
 public interface AuthorityService {
 
-	List<Authority> findAll();
+	List<Phanquyen> findAll();
 	
-	List<Authority> getOneByRole(String username);
+	List<Phanquyen> getOneByRole(String username);
 
 }

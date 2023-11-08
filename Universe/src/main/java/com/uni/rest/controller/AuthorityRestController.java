@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.uni.entity.Authority;
+import com.uni.entity.Phanquyen;
 import com.uni.service.AuthorityService;
 
 @RestController
@@ -18,12 +18,12 @@ public class AuthorityRestController {
 	AuthorityService authorityService;
 	
 	@GetMapping("authorities")
-	public List<Authority> getAll() {
+	public List<Phanquyen> getAll() {
 		return authorityService.findAll();
 	}
 	
 	@GetMapping("authoritiesOne")
-	public List<Authority> getOneByRole(@RequestParam("username")String username){
+	public List<Phanquyen> getOneByRole(@RequestParam("username")String username){
 		return authorityService.getOneByRole(username);
 	}
 }

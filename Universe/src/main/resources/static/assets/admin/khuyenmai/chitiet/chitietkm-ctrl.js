@@ -40,8 +40,8 @@ app.controller("chitietkm-ctrl",function($scope,$http){
         //Update
     $scope.update = function(){
 		var item = angular.copy($scope.form);
-		$http.put(`/rest/chitietkm/${item.stt}`,item).then(resp=>{
-			var index = $scope.items.findIndex(p=>p.stt == item.stt);
+		$http.put(`/rest/chitietkm/${item.id}`,item).then(resp=>{
+			var index = $scope.items.findIndex(p=>p.id == item.id);
 			$scope.items[index] = item;
 			alert('Cập nhật thành công!');
 			console.log(resp.data);
@@ -53,8 +53,8 @@ app.controller("chitietkm-ctrl",function($scope,$http){
 	
       //Remove
     $scope.delete = function(item){
-		$http.delete(`/rest/chitietkm/${item.stt}`).then(resp=>{
-			var index = $scope.items.findIndex(ctkm=> ctkm.stt == item.stt);
+		$http.delete(`/rest/chitietkm/${item.id}`).then(resp=>{
+			var index = $scope.items.findIndex(ctkm => ctkm.id == item.id);
 			$scope.items.splice(index,1);
 			$scope.reset();
 			alert('Xoá sản phẩm thành công');

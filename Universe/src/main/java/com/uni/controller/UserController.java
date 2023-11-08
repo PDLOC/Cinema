@@ -55,9 +55,9 @@ public class UserController {
 		Taikhoan taikhoan = taikhoanService.findById(username);
 		model.addAttribute("acc",taikhoan);
 		System.out.println(taikhoan);
-		if(taikhoan.getPassword().equals(oldPassword)) {
+		if(taikhoan.getMatkhau().equals(oldPassword)) {
 			if(newPassword.equals(retypePassword)) {
-				taikhoan.setPassword(newPassword);
+				taikhoan.setMatkhau(newPassword);
 				taikhoanService.update(taikhoan);
 				sessionService.set("login", taikhoan);
 				System.out.println(""+sessionService.get("login"));

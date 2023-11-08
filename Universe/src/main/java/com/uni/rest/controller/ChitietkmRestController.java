@@ -26,9 +26,9 @@ public class ChitietkmRestController {
 		return chitietkmService.findAll();
 	}
 	
-	@GetMapping("{stt}")
-	public Chitietkm findById(@PathVariable("stt")Integer stt) {
-		return chitietkmService.findById(stt);
+	@GetMapping("{id}")
+	public Chitietkm findById(@PathVariable("id")Integer id) {
+		return chitietkmService.findById(id);
 	}
 	
 	@PostMapping
@@ -37,12 +37,12 @@ public class ChitietkmRestController {
 	}
 	
 	@PutMapping("{Makm}")
-	public Chitietkm update(@RequestBody Chitietkm ctkm,@PathVariable("stt")Integer stt) {
+	public Chitietkm update(@RequestBody Chitietkm ctkm,@PathVariable("id")Integer id) {
 		return chitietkmService.update(ctkm);
 	}
 	
-	@DeleteMapping("{stt}")
-	public void delete(@PathVariable("stt")Integer stt) {
-		chitietkmService.delete(stt);
+	@DeleteMapping("{id}")
+	public void delete(@PathVariable("id")Integer id) {
+		chitietkmService.delete(id);
 	}
 }

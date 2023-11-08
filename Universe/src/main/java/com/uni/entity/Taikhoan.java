@@ -41,7 +41,7 @@ import lombok.ToString;
 public class Taikhoan implements Serializable{
 	@Id
 	@NotBlank(message = "* Không được để trống tài khoản")
-	String username;
+	String matk;
 	@NotBlank(message = "* Không được để trống họ tên")
 	String hoten;
 	
@@ -58,13 +58,13 @@ public class Taikhoan implements Serializable{
 	@Temporal(TemporalType.DATE)
 	Date ngaysinh;
 	@NotBlank(message = "* Không được để trống mật khẩu")
-	String password;
+	String matkhau;
 	String diachi;
 	String hinh;
 	
 	@ToString.Exclude
 	@JsonIgnore
 	@OneToMany(mappedBy = "taikhoan", fetch = FetchType.EAGER)
-	List<Authority> authorities;
+	List<Phanquyen> authorities;
 
 }

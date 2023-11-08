@@ -27,9 +27,9 @@ public class ChitietkmServiceImpl implements ChitietkmService{
 	}
 
 	@Override
-	public Chitietkm findById(Integer stt) {
+	public Chitietkm findById(Integer id) {
 		// TODO Auto-generated method stub
-		return chitietkmDAO.findById(stt).get();
+		return chitietkmDAO.findById(id).get();
 	}
 
 	@Override
@@ -45,9 +45,9 @@ public class ChitietkmServiceImpl implements ChitietkmService{
 	}
 
 	@Override
-	public void delete(Integer stt) {
+	public void delete(Integer id) {
 		// TODO Auto-generated method stub
-		chitietkmDAO.deleteById(stt);
+		chitietkmDAO.deleteById(id);
 	}
 	
 	

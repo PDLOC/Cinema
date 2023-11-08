@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uni.dao.AuthorityDAO;
-import com.uni.entity.Authority;
+import com.uni.entity.Phanquyen;
 import com.uni.service.AuthorityService;
 
 @Service
@@ -16,14 +16,14 @@ public class AuthorityServiceImpl implements AuthorityService{
 	
 	
 	@Override
-	public List<Authority> findAll() {
+	public List<Phanquyen> findAll() {
 		// TODO Auto-generated method stub
 		return authorityDAO.findAll();
 	}
 
 
 	@Override
-	public List<Authority> getOneByRole(String username) {
+	public List<Phanquyen> getOneByRole(String username) {
 		// TODO Auto-generated method stub
 		return authorityDAO.getOneByRole(username);
 	}

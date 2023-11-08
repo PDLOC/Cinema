@@ -35,18 +35,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	//Cung cấp nguồn dữ liệu đăng nhập
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(username->{
+		auth.userDetailsService(matk->{
 			try {
-				user = taikhoanService.findById(username);
-				String password = pe.encode(user.getPassword());
+				user = taikhoanService.findById(matk);
+				String password = pe.encode(user.getMatkhau());
 				String[] roles = user.getAuthorities().stream()
 						.map(el->el.getVaitro().getMavaitro())
 						.collect(Collectors.toList()).toArray(new String[0]);
 				System.out.println(1);
-				return User.withUsername(username).password(password).roles(roles).build();
+				return User.withUsername(matk).password(password).roles(roles).build();
 			} catch (Exception e) {
 				System.out.println(0);
-				throw new UsernameNotFoundException(username + "not found!");
+				throw new UsernameNotFoundException(matk + "not found!");
 			}
 		});
 	}

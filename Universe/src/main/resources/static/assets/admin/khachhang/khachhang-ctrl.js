@@ -51,7 +51,6 @@ app.controller("khachhang-ctrl",function($scope,$http){
     $scope.create = function(){
 		var item = angular.copy($scope.form);
 		$http.post(`/rest/customers`,item).then(resp=>{
-			resp.data.createDate = new Date(resp.data.createDate);
 			$scope.items.push(resp.data);
 			$scope.reset();
 			alert('Thêm mới khách hàng thành công!');
@@ -62,11 +61,11 @@ app.controller("khachhang-ctrl",function($scope,$http){
 		})
     }
     
-        //Update khách hàng
+    //Update khách hàng
     $scope.update = function(){
 		var item = angular.copy($scope.form);
-		$http.put(`/rest/customers/${item.makh}`,item).then(resp=>{
-			var index = $scope.items.findIndex(p=>p.id == item.makh);
+		$http.put(`/rest/customers/${item.username}`,item).then(resp=>{
+			var index = $scope.items.findIndex(p=>p.matk == item.matk);
 			$scope.items[index] = item;
 			alert('Cập nhật thành công!');
 			console.log(resp.data);
@@ -76,10 +75,10 @@ app.controller("khachhang-ctrl",function($scope,$http){
 		})
 	}
 	
-      //Remove khách hàng
+    //Remove khách hàng
     $scope.delete = function(item){
-		$http.delete(`/rest/customers/${item.makh}`).then(resp=>{
-			var index = $scope.items.findIndex(kh=> kh.makh == item.makh);
+		$http.delete(`/rest/customers/${item.username}`).then(resp=>{
+			var index = $scope.items.findIndex(kh=> kh.username == item.username);
 			$scope.items.splice(index,1);
 			$scope.reset();
 			alert('Xoá sản phẩm thành công');
@@ -89,6 +88,7 @@ app.controller("khachhang-ctrl",function($scope,$http){
 			console.log("Error ",err);
 		})
 	}
+	
 	 //Upload Hình
     $scope.imageChanged = function(files){
 		var data = new FormData();

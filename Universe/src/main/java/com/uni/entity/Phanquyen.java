@@ -16,16 +16,16 @@ import lombok.Data;
 @SuppressWarnings("serial")
 @Data
 @Entity
-@Table(name = "Authorities", uniqueConstraints = {
-		@UniqueConstraint(columnNames = {"Username", "Mavaitro"})
+@Table(name = "Phanquyen", uniqueConstraints = {
+		@UniqueConstraint(columnNames = {"Matk", "Mavaitro"})
 		})
-public class Authority implements Serializable{
+public class Phanquyen implements Serializable{
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer id;
 	
 	@ManyToOne 
-	@JoinColumn(name = "Username")
+	@JoinColumn(name = "Matk")
 	Taikhoan taikhoan;
 	
 	@ManyToOne  

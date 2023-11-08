@@ -2,18 +2,18 @@
 use universe_data
 ------------------------------------Tài khoản----------------------------------------------
 create table Taikhoan(
-	Username varchar(255) primary key,
+	Matk varchar(255) primary key,
 	Hoten nvarchar(125),
 	Email varchar(225),
 	Sdt varchar(10),
 	Ngaysinh date,
-	Password varchar(125),
+	Matkhau varchar(125),
 	Diachi nvarchar(max) null,
 	Hinh nvarchar(255) null,
 );
-select * from Taikhoan
 
-select a.Username from Authorities a where a.Mavaitro in ('AD', 'STAFF')
+
+
 ------------------------------------Vai trò----------------------------------------------
 create table Vaitro(
 	Mavaitro varchar(10) primary key,
@@ -21,9 +21,9 @@ create table Vaitro(
 );
 
 ------------------------------------Xác thực----------------------------------------------
-create table Authorities(
+create table Phanquyen(
 	Id int identity(1,1) primary key,
-	Username nvarchar(50),
+	Matk nvarchar(50),
 	Mavaitro varchar(10),
 );
 
@@ -119,7 +119,7 @@ create table Combo(
 	Dongia float,
 	Hinh  varchar(225)
 );
-select * from Combo
+
 
 
 ------------------------------------Vé----------------------------------------------
@@ -167,7 +167,7 @@ insert into Vaitro values
 ('STAFF',N'Nhân viên'),
 ('AD',N'Admin');
 
-insert into Authorities values 
+insert into Phanquyen values 
 ('phamloc','AD'),
 ('huyvu','AD'),
 ('duyanh','AD'),
@@ -353,10 +353,13 @@ insert into Trangthaiphim values
 
 
 insert into Khuyenmai values
+
 ('km01',N'SIÊU ƯU ĐÃI “PHIM THẬT HAY - COMBO THẬT ĐÃ” CHÍNH THỨC TRỞ LẠI',10,'10/31/2023','11/30/2023','1.JPG'),
 ('km02',N'Đồng giá 49k bộ phim hoạt hình “Những chú chó hoàng gia',5,'11/16/2023','11/30/2023','2.JPG'),
 ('km03',N'XEM PHIM HAY HƯỞNG NGAY ƯU ĐÃI “ĂN THẢ GA – CHƠI CỰC ĐÃ',6,'11/16/2023','11/30/2023','3.JPG'),
 ('km04',N'SPECIAL MONDAY - ĐỒNG GIÁ 50.000Đ/VÉ 2D THỨ 2 CUỐI THÁNG (TỪ 01/06/2023)',1,'10/31/2023','11/30/2023','1.JPG')
+
+
 
 
 insert into Chitietkm values
@@ -410,9 +413,10 @@ insert into Chitietkm values
 --Tài khoản--
 alter table Taikhoan add constraint df_Taikhoan_Hinh default (N'user.png') for Hinh
 alter table Taikhoan add constraint fk_tk_vt foreign key(Mavaitro) references Vaitro(Mavaitro)
---Authorities--
-alter table Authorities add constraint fk_au_user foreign key(Username) references Taikhoan(Username)
-alter table Authorities add constraint fk_au_vt foreign key(Mavaitro) references Vaitro(Mavaitro)
+
+--Phân quyền--
+alter table Phanquyen add constraint fk_pq_user foreign key(Matk) references Phanquyen(Matk)
+alter table Phanquyen add constraint fk_pq_vt foreign key(Mavaitro) references Vaitro(Mavaitro)
 
 --Chi tiết phim--
 alter table Chitietphim add constraint fk_ctphim_p foreign key(Maphim) references Phim(Maphim)

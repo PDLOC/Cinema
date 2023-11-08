@@ -30,5 +30,5 @@ public class Vaitro{
 	@ToString.Exclude
 	@JsonIgnore
 	@OneToMany(mappedBy = "vaitro")
-	List<Authority> authorities;
+	List<Phanquyen> authorities;
 }
