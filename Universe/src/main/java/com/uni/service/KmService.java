@@ -13,4 +13,10 @@ public interface KmService {
 
 	Khuyenmai findById(String makm);
 
+	Khuyenmai create(Khuyenmai km);
+
+	Khuyenmai update(Khuyenmai km);
+
+	void delete(String makm);
+
 }

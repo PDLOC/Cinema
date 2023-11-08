@@ -72,4 +72,10 @@ public class TaikhoanServiceImpl implements TaikhoanService {
 		return taiKhoanDAO.findStaffandAd();
 	}
 
+	@Override
+	public void updatePass(String password, String username) {
+		// TODO Auto-generated method stub
+		taiKhoanDAO.updatePass(password, username);
+	}
+
 }

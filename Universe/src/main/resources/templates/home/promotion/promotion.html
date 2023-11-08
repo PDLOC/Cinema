@@ -8,19 +8,19 @@
 <body>
 	<main>
 		<div class=container-fluid style="max-width: 1380px">
-			<h2 class="text-center mb-2" style="font-family: 'avantgarde-demi';">Khuyến
+			<h2 class="text-center mb-4" style="font-family: 'avantgarde-demi';">Khuyến
 				mãi</h2>
 			<div class="row">
 				<div th:each="km: ${listkm}" class="col-3 mb-3">
-					<a th:href="@{|/home/promotion/detail/${km.makm}|}">
+					<a class="km" th:href="@{|/home/promotion/detail/${km.makm}|}">
 						<div class="card" style="width: 18rem;">
 							<div class="zoom-img">
 								<img th:src="@{|/assets/Images/km/${km.hinh}|}"
 									class="card-img-top" alt="...">
 							</div>
 							<div class="card-body">
-								<h5 class="card-title" th:utext="${km.ngaybatdau}"></h5>
-								<p class="card-text text-white" style="font-size: 20px"
+								<h5 class="card-title fw-bolder text-secondary h5 mb-3" th:utext="${#dates.format(km.ngaybatdau,'dd/MM/yyyy')}"></h5>
+								<p class="card-text text-white para_i" style="font-size: 20px"
 									th:utext="${km.tenkm}">/p>
 							</div>
 						</div>

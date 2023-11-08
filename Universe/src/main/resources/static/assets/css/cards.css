@@ -6,6 +6,11 @@
 	box-shadow: 0 0 10px red !important;
 }
 
+.km:hover{
+	text-decoration:none;	
+}
+
+
 .flip-card_i {
 	position: relative;
 	background-color: transparent;

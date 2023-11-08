@@ -8,7 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.uni.entity.Chitietkm;
 import com.uni.entity.Khuyenmai;
+import com.uni.service.ChitietkmService;
 import com.uni.service.KmService;
 
 @Controller
@@ -16,6 +18,8 @@ import com.uni.service.KmService;
 public class PromotionController {
 	@Autowired
 	KmService kmService;
+	@Autowired
+	ChitietkmService chitietkmService;
 	
 	@RequestMapping("promotion")
 	public String promotion(Model model) {
@@ -27,8 +31,9 @@ public class PromotionController {
 	
 	@RequestMapping("/promotion/detail/{makm}")
 	public String promotion(Model model,@PathVariable("makm") String makm) {
-		Khuyenmai km = kmService.findById(makm);
-		model.addAttribute("listkm",km);
+		//Khuyenmai km = kmService.findById(makm);
+		Chitietkm chitietkm = chitietkmService.findByMa(makm);
+		model.addAttribute("listkm",chitietkm);
 		return "home/promotion/detail";
 	}
 }

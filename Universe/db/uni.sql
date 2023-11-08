@@ -87,11 +87,17 @@ create table LoaiGhe(
 create table Khuyenmai (
     Makm varchar(10) primary key,
 	Tenkm nvarchar(225),
-    Mota NVARCHAR(MAX)  NULL,
     Giamgia float,
     NgayBatDau date,
 	NgayKetThuc date,
 	Hinh nvarchar(250)
+);
+
+------------------------------------Chi tiết khuyến mãi----------------------------------------------
+create table Chitietkm(
+	Id int identity(1,1) primary key,
+	Makm varchar(10),
+	Mota NVARCHAR(MAX) NULL
 );
 
 ------------------------------------Đồ Ăn----------------------------------------------
@@ -327,10 +333,6 @@ insert into LoaiGhe values
 (N'VIP',110000),
 (N'Couple',250000)
 
-insert into KhuyenMai values
-('KM001', N'Khuyến mãi mùa hè', N'Giảm giá cho sản phẩm mùa hè', 0.2, '01/06/2023', '12/10/2023'),
-('KM002', N'Khuyến mãi cuối năm', N'Giảm giá cuối năm', 0.15, '01/20/2023', '12/31/2023'),
-('KM003', N'Khuyến mãi đón Tết', N'Giảm giá mừng Tết Nguyên Đán', 0.1, '01/01/2024', '03/31/2024');
 
 insert into Doan values
 (N'Bắp vị phô mai',50,35000,N'1.JPG'),
@@ -348,10 +350,17 @@ insert into Trangthaiphim values
 (N'Đang chiếu'),
 (N'Sắp chiếu'),
 (N'Hết chiếu')
-drop table Khuyenmai
+
+
 insert into Khuyenmai values
-('km01',N'SIÊU ƯU ĐÃI “PHIM THẬT HAY - COMBO THẬT ĐÃ” CHÍNH THỨC TRỞ LẠI',
-N' <span> Hòa cùng không khí nhộn nhịp giảm giá 10%, tưng bừng của rằm trung thu và hơn cả là phim hay “có chùm”, từ nay đến hết  31.10.2023 đến 30.11.2023, Trung tâm Chiếu phim Quốc gia dành tặng các nhóm khách trường học/ doanh nghiệp... món quà vô cùng hấp dẫn:   </span>
+('km01',N'SIÊU ƯU ĐÃI “PHIM THẬT HAY - COMBO THẬT ĐÃ” CHÍNH THỨC TRỞ LẠI',0.01,'10/31/2023','11/30/2023','1.JPG'),
+('km02',N'Đồng giá 49k bộ phim hoạt hình “Những chú chó hoàng gia',0.05,'11/16/2023','11/30/2023','2.JPG'),
+('km03',N'XEM PHIM HAY HƯỞNG NGAY ƯU ĐÃI “ĂN THẢ GA – CHƠI CỰC ĐÃ',0.06,'11/16/2023','11/30/2023','3.JPG'),
+('km04',N'SPECIAL MONDAY - ĐỒNG GIÁ 50.000Đ/VÉ 2D THỨ 2 CUỐI THÁNG (TỪ 01/06/2023)',0.01,'10/31/2023','11/30/2023','1.JPG')
+
+
+insert into Chitietkm values
+('km01',N' <span> Hòa cùng không khí nhộn nhịp giảm giá 10%, tưng bừng của rằm trung thu và hơn cả là phim hay “có chùm”, từ nay đến hết  31.10.2023 đến 30.11.2023, Trung tâm Chiếu phim Quốc gia dành tặng các nhóm khách trường học/ doanh nghiệp... món quà vô cùng hấp dẫn:   </span>
                               <br>
                                 <br>
                                 <span>
@@ -364,29 +373,18 @@ N' <span> Hòa cùng không khí nhộn nhịp giảm giá 10%, tưng bừng c�
                          
 								 <span>
     <p> Lưu ý:</p>
-
-
     <p></p>  ▪️ Chương trình không áp dụng chính sách ưu đãi với các chương trình khuyến mại song song hiện có.</p>
-
-
     <p>▪️ Chỉ áp dụng cho nhóm khách hàng tại các trường học và có đặt trước.</p>
-
-
-        <p></p>Cùng đến để tận hưởng ưu đãi ngập tràn nào các bạn ơi‼️</p>
-    </span>',
-0.01,'10/31/2023','11/30/2023','1.JPG'),
-('km02',N'Đồng giá 49k bộ phim hoạt hình “Những chú chó hoàng gia',
-N' <span>Từ ngày 17/11/2023 (Thứ 6), Trung tâm chiếu phim Quốc gia  sẽ đồng giá vé 49k cho tất cả các suất chiếu phim hoạt hình “Những chú chó hoàng gia”.  </span>
+    <p></p>Cùng đến để tận hưởng ưu đãi ngập tràn nào các bạn ơi‼️</p>
+    </span>'),
+('km02',N' <span>Từ ngày 17/11/2023 (Thứ 6), Trung tâm chiếu phim Quốc gia  sẽ đồng giá vé 49k cho tất cả các suất chiếu phim hoạt hình “Những chú chó hoàng gia”.  </span>
                               <br>
                                 <br>
                                  <span>
                                     Các bạn nhỏ hãy đón xem                           
                                 </span>
-								',
-0.05,'11/16/2023','11/30/2023','2.JPG'
-),
-('km03',N'XEM PHIM HAY HƯỞNG NGAY ƯU ĐÃI “ĂN THẢ GA – CHƠI CỰC ĐÃ',
-N' <span>Chương trình 2023 thật sôi động, gắn kết hơn và tận hưởng những phút giây mãn nhãn với loạt phim bom tấn mùa hè này. Khi xem phim tại Trung tâm Chiếu phim Quốc gia, các bạn đừng quên các chương trình ưu đãi với combo “ĂN THẢ GA – CHƠI CỰC ĐÃ”:</span>
+								'),
+('km03',N' <span>Chương trình 2023 thật sôi động, gắn kết hơn và tận hưởng những phút giây mãn nhãn với loạt phim bom tấn mùa hè này. Khi xem phim tại Trung tâm Chiếu phim Quốc gia, các bạn đừng quên các chương trình ưu đãi với combo “ĂN THẢ GA – CHƠI CỰC ĐÃ”:</span>
                               <br>
                                 <br>
                                  <span>
@@ -396,10 +394,8 @@ N' <span>Chương trình 2023 thật sôi động, gắn kết hơn và tận h�
 
 </p>
                                 </span>
-								',
-0.06,'11/16/2023','11/30/2023','3.JPG'
-),('km04',N'SPECIAL MONDAY - ĐỒNG GIÁ 50.000Đ/VÉ 2D THỨ 2 CUỐI THÁNG (TỪ 01/06/2023)',
-N' <span>  Từ 01/06/2023, Trung tâm Chiếu phim tiếp tục áp dụng chương trình đồng giá vé 50.000đ/Vé 2D vào các ngày T2 cuối tháng.  </span>
+								'),
+('km04',N' <span>  Từ 01/06/2023, Trung tâm Chiếu phim tiếp tục áp dụng chương trình đồng giá vé 50.000đ/Vé 2D vào các ngày T2 cuối tháng.  </span>
                               <br>
                                 <br>
                                 <span>
@@ -408,9 +404,7 @@ N' <span>  Từ 01/06/2023, Trung tâm Chiếu phim tiếp tục áp dụng chư
                               
                                 </span>
 								<br>
-                         ',
-0.01,'10/31/2023','11/30/2023','1.JPG')
-
+                         ')
 
 ------------------------------------Khóa-----------------------------------
 --Tài khoản--
@@ -427,6 +421,9 @@ alter table Chitietphim add constraint fk_ctphim_p foreign key(Maphim) reference
 --Phim--
 alter table Phim add constraint fk_p_trangt foreign key(Matrangthai) references Trangthaiphim(Stt)
 
+
+--Chi tiết khuyến mãi--
+alter table Chitietkm add constraint fk_km_ctkm foreign key(Makm) references Khuyenmai(Makm)
 
 --Lịch--
 alter table Lich add constraint fk_l_ctp foreign key(Mact) references Chitietphim(Mact)

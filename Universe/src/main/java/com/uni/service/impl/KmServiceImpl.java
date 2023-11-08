@@ -28,5 +28,23 @@ public class KmServiceImpl implements KmService{
 		}
 		return kmDAO.findById(makm).isPresent() ? kmDAO.findById(makm).get() : null;
 	}
+
+	@Override
+	public Khuyenmai create(Khuyenmai km) {
+		// TODO Auto-generated method stub
+		return kmDAO.save(km);
+	}
+
+	@Override
+	public Khuyenmai update(Khuyenmai km) {
+		// TODO Auto-generated method stub
+		return kmDAO.save(km);
+	}
+
+	@Override
+	public void delete(String makm) {
+		// TODO Auto-generated method stub
+		kmDAO.deleteById(makm);
+	}
 	
 }

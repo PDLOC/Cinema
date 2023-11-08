@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.uni.entity.Taikhoan;
 import com.uni.service.CookieService;
@@ -32,10 +33,41 @@ public class UserController {
 
 	@RequestMapping("profile/update")
 	public String save(Model model, @ModelAttribute("account") Taikhoan taikhoan) {
-		taikhoanService.update(taikhoan);
-		model.addAttribute("acc", taikhoan);
-		sessionService.set("login", taikhoan);
-		System.out.println(""+sessionService.get("login"));
+		try {
+			taikhoanService.update(taikhoan);
+			model.addAttribute("acc", taikhoan);
+			sessionService.set("login", taikhoan);
+			model.addAttribute("message","Cập nhật thành công");
+			System.out.println(""+sessionService.get("login"));
+		} catch (Exception e) {
+			// TODO: handle exception
+			model.addAttribute("message","Cập nhật thất bại");
+		}
+		return "home/profile-ticket/form";
+	}
+	
+	@RequestMapping("profile/change-pass")
+	public String save(
+			@RequestParam("username") String username,
+			@RequestParam("password") String oldPassword,
+            @RequestParam("newpassword") String newPassword,
+            @RequestParam("retypepassword") String retypePassword, Model model) {
+		Taikhoan taikhoan = taikhoanService.findById(username);
+		model.addAttribute("acc",taikhoan);
+		System.out.println(taikhoan);
+		if(taikhoan.getPassword().equals(oldPassword)) {
+			if(newPassword.equals(retypePassword)) {
+				taikhoan.setPassword(newPassword);
+				taikhoanService.update(taikhoan);
+				sessionService.set("login", taikhoan);
+				System.out.println(""+sessionService.get("login"));
+				return "redirect:/home/film";
+			}else {
+				model.addAttribute("message","Không trùng khớp với mật khẩu mới");
+			}
+		}else {
+			model.addAttribute("message","Sai mật khẩu vui lòng nhập lại");
+		}
 		return "home/profile-ticket/form";
 	}
 }
