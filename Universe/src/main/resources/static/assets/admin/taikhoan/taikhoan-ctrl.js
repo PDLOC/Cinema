@@ -1,4 +1,4 @@
-app.controller("khachhang-ctrl",function($scope,$http){
+app.controller("taikhoan-ctrl",function($scope,$http){
 	$scope.items = [];
 	$scope.form = {};
     $scope.roles = [];

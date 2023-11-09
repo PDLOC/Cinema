@@ -19,4 +19,5 @@ public interface TaiKhoanDAO extends JpaRepository<Taikhoan, String> {
 	List<Taikhoan> findStaffandAd();
 
 
+
 }

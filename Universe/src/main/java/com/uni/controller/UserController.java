@@ -48,7 +48,7 @@ public class UserController {
 	
 	@RequestMapping("profile/change-pass")
 	public String save(
-			@RequestParam("username") String username,
+			@RequestParam("matk") String username,
 			@RequestParam("password") String oldPassword,
             @RequestParam("newpassword") String newPassword,
             @RequestParam("retypepassword") String retypePassword, Model model) {

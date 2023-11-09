@@ -76,6 +76,7 @@ public class PhimController {
 			cookieService.add("USERNAME", taikhoan.getMatk(), 2);
 			model.addAttribute("hoten", taikhoan.getHoten());
 			model.addAttribute("displayed", "dn");
+			System.out.println(""+sessionService.get("login"));
 			
 		} else {
 			model.addAttribute("displayed", null);

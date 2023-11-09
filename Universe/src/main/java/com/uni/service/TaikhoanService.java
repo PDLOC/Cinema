@@ -26,8 +26,6 @@ public interface TaikhoanService {
 
 	List<Taikhoan> findStaffAndAd();
 
-	void updatePass(String password, String username);
-
 
 
 }

@@ -23,7 +23,7 @@ create table Vaitro(
 ------------------------------------Xác thực----------------------------------------------
 create table Phanquyen(
 	Id int identity(1,1) primary key,
-	Matk nvarchar(50),
+	Matk nvarchar(255),
 	Mavaitro varchar(10),
 );
 
@@ -124,17 +124,45 @@ create table Combo(
 
 ------------------------------------Vé----------------------------------------------
 create table Ve(
-	MaVe int identity(1,1) primary key,
-	Maloaive int,
-	Manv int,
-	Makh int,
-	Maphim int, 
-	STTcombo int,
-	Makm varchar(10),
-	Ghe varchar(10),
-	Tongtien float
+	MaVe varchar(255) primary key,
+	Matk varchar(255),
+	Lichstt int,
+	STTcombo int null,
+	Makm varchar(10) null,
+	Tenphim nvarchar(255),
+	Ngaychieu date,
+	Giobatdau time,
+	Ghe varchar(30),
+	Soluong int,
+	Thanhtien float,
+	Trangthai bit
 );
+drop table Ve
+insert into Lich values
+('CT01','08/25/2023','07:00','09:00'),
+('CT01','08/25/2023','10:00','12:00'),
+('CT01','08/26/2023','13:00','15:00'),
+('CT02','10/18/2023','10:00','12:00'),
+('CT02','10/19/2023','19:00','21:00'),
+('CT03','09/25/2023','17:00','19:00'),
+('CT03','09/28/2023','21:00','23:00'),
+('CT04','08/26/2023','07:00','09:00'),
+('CT04','08/27/2023','23:00','02:00'),
+('CT05','08/26/2023','07:00','09:00'),
+('CT05','08/29/2023','15:00','17:00');
 
+insert into Ve(Mave,Matk,Lichstt,STTcombo,Makm,Tenphim,Ngaychieu,Giobatdau,Ghe,Soluong,Thanhtien,Trangthai)values
+('UC000001','phamloc',1,null,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','E3,E4,E5',3,330000,1),
+('UC000002','huyvu',1,null,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','E3,E4,E5',3,330000,1),
+('UC000003','huyhoai',1,null,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','E3,E4,E5',3,330000,1),
+('UC000004','theky',1,null,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','E3,E4,E5',3,330000,1),
+('UC000005','hoangviet',1,null,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','E3,E4,E5',3,330000,1),
+('UC000006','duyanh',1,null,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','E3,E4,E5',3,330000,1),
+('UC000007','phamloc',1,null,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','E3,E4,E5',3,330000,1),
+('UC000008','phamloc',1,null,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','E3,E4,E5',3,330000,1),
+('UC000009','phamloc',1,null,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','E3,E4,E5',3,330000,1),
+('UC000010','phamloc',1,null,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','E3,E4,E5',3,330000,1),
+('UC000011','phamloc',1,null,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','E3,E4,E5',3,330000,1);
 
 -----------------------------------------------------------------------------------
 insert into Taikhoan values
@@ -438,9 +466,7 @@ alter table ComBo add constraint fk_cb_da foreign key(Mada) references DoAn(Mada
 
 
 --Vé--
-alter table Ve add constraint fk_ve_lv foreign key(Maloaive) references LoaiVe(Maloaive)
-alter table Ve add constraint fk_ve_nv foreign key(Manv) references NhanVien(Manv)
-alter table Ve add constraint fk_ve_kh foreign key(Makh) references KhachHang(Makh)
-alter table Ve add constraint fk_ve_phim foreign key(Maphim) references Phim(Maphim)
+alter table Ve add constraint fk_ve_tk foreign key(Matk) references Taikhoan(Matk)
+alter table Ve add constraint fk_ve_lich foreign key(Lichstt) references Lich(Stt)
 alter table Ve add constraint fk_ve_km foreign key(Makm) references KhuyenMai(Makm)
 alter table Ve add constraint fk_ve_cb foreign key(STTcombo) references Combo(STT)

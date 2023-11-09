@@ -7,8 +7,8 @@ app.config(function($routeProvider) {
 			controller: "nhanvien-ctrl"
 		})
 		.when("/khachhang", {
-			templateUrl: "/assets/admin/khachhang/index.html",
-			controller: "khachhang-ctrl"
+			templateUrl: "/assets/admin/taikhoan/index.html",
+			controller: "taikhoan-ctrl"
 		})
 		.when("/combo", {
 			templateUrl: "/assets/admin/combo/index.html",
