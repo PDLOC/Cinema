@@ -30,6 +30,10 @@ app.config(function($routeProvider) {
 			templateUrl: "/assets/admin/phim/index.html",
 			controller: "phim-ctrl"
 		})
+		.when("/ctphim", {
+			templateUrl: "/assets/admin/ctphim/index.html",
+			controller: "ctphim-ctrl"
+		})
 		.when("/lichchieu", {
 			templateUrl: "/assets/admin/lichchieu/index.html",
 			controller: "lich-ctrl"

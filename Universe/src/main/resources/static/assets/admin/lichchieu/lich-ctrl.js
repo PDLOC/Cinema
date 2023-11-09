@@ -79,7 +79,7 @@ $scope.updateHinh = function() {
             var selectedPhim = $scope.cates.find(function(phim) {
                 return phim.mact === $scope.form.ctphims.mact;
             });
-            $scope.selectedHinh = '/assets/Images/' + selectedPhim.hinh;
+            $scope.selectedHinh = selectedPhim.hinh;
         };
    
 
