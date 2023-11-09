@@ -31,8 +31,8 @@ app.config(function($routeProvider) {
 			controller: "phim-ctrl"
 		})
 		.when("/lichchieu", {
-			templateUrl: "/assets/admin/admin.html",
-			controller: "lichchieu-ctrl"
+			templateUrl: "/assets/admin/lichchieu/index.html",
+			controller: "lich-ctrl"
 		})
 		.otherwise({
 			templateUrl: "/assets/admin/nhanvien/index.html",

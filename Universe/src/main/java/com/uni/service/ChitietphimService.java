@@ -1,5 +1,7 @@
 package com.uni.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.uni.entity.Chitietphim;
@@ -8,5 +10,13 @@ import com.uni.entity.Chitietphim;
 public interface ChitietphimService {
 	
 	Chitietphim findById(String maCtphim);
+
+	List<Chitietphim> findAll();
+
+	Chitietphim create(Chitietphim maCtphim);
+
+	Chitietphim update(Chitietphim maCtphim);
+
+	void delete(String maCtphim);
 
 }

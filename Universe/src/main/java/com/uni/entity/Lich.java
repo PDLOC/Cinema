@@ -1,6 +1,7 @@
 package com.uni.entity;
 
 import java.io.Serializable;
+import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -34,12 +35,10 @@ public class Lich implements Serializable {
 	@JoinColumn(name = "Ngaychieu")
 	@Temporal(TemporalType.DATE)
 	Date Ngaychieu;
-	@JoinColumn(name = "Giobatdau")
-	@Temporal(TemporalType.TIME)
-	Date Giobatdau;
-	@JoinColumn(name = "Gioketthuc")
-	@Temporal(TemporalType.TIME)
-	Date Gioketthuc;
+	@JoinColumn(name = "Giobatdau")	
+	Time Giobatdau;
+	@JoinColumn(name = "Gioketthuc")	
+	Time Gioketthuc;
 	
 	@ManyToOne
 	@JoinColumn(name = "Mact")
