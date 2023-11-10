@@ -141,7 +141,7 @@
 					<label for="tab2-2" style="font-size: 22px">Lịch sử mua vé</label>
 					<input id="tab2-2" name="tabs-two" type="radio">
 					<div>
-						<table class="table table-bordered"
+						<table class="table"
 							style="border: 3px solid black; background: none;">
 							<thead class="text-center" style="background: none">
 								<tr>
@@ -155,29 +155,14 @@
 										thái</th>
 								</tr>
 							</thead>
-							<tr class="text-center " style="height: 200px">
+							<tr th:each="order:${listOrder}" class="text-center " style="height: 200px">
 								<td><img style="width: 90px;" alt=""
-									src="/assets/Images/shin.png"></td>
-								<td style="padding-bottom: 50px;" class="align-middle">20/10/2023</td>
-								<td style="padding-bottom: 50px;" class=" para_2 align-middle  ">Shin:
-									cậu bé bút chì</td>
-								<td style="padding-bottom: 50px;" class="align-middle">2</td>
-								<td style="padding-bottom: 50px;" class="align-middle">250,000
-									VNĐ</td>
-								<td style="padding-bottom: 50px;" class="align-middle">Đã
-									thanh toán</td>
-							</tr>
-							<tr class="text-center" style="height: 200px">
-								<td><img style="width: 90px;" alt=""
-									src="/assets/Images/shin.png"></td>
-								<td style="padding-bottom: 50px;" class="align-middle">20/10/2023</td>
-								<td style="padding-bottom: 50px;" class="align-middle">Shin:
-									cậu bé bút chì</td>
-								<td style="padding-bottom: 50px;" class="align-middle">2</td>
-								<td style="padding-bottom: 50px;" class="align-middle">250,000
-									VNĐ</td>
-								<td style="padding-bottom: 50px;" class="align-middle">
-									Chưa thanh toán</td>
+									th:src="@{|/assets/Images/${order.hinh}|}"></td>
+								<td style="padding-bottom: 50px;" class="align-middle" th:utext="${order.getFormattedNgaygiaodich}"></td>
+								<td style="padding-bottom: 50px;" class=" para_2 align-middle" th:utext="${order.tenphim}"></td>
+								<td style="padding-bottom: 50px;" class="align-middle" th:utext="${order.soluong}"></td>
+								<td style="padding-bottom: 50px;" class="align-middle" th:utext="${order.getFormattedThanhtien}"></td>
+								<td style="padding-bottom: 50px;" class="align-middle" th:utext="${order.trangthai?'Đã thanh toán':'Chưa thanh toán'}" ></td>
 							</tr>
 						</table>
 

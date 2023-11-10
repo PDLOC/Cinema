@@ -70,6 +70,6 @@ public class Taikhoan implements Serializable{
 	@ToString.Exclude
 	@JsonIgnore
 	@OneToMany(mappedBy = "taikhoan")
-	List<Ve> taikhoans;
+	List<Ve> ves;
 	
 }

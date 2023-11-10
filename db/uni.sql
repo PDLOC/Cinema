@@ -131,6 +131,8 @@ create table Ve(
 	Tenphim nvarchar(255),
 	Ngaychieu date,
 	Giobatdau time,
+	Gioketthuc time,
+	Ngaygiaodich date,
 	Ghe varchar(30),
 	Soluong int,
 	Giamgia int null,
@@ -265,6 +267,38 @@ insert into Lich values
 ('CT10','09/30/2023','16:00','18:00'),
 ('CT10','09/30/2023','19:00','21:00'),
 ('CT10','09/30/2023','22:00','00:00');
+
+create table Ve(
+	MaVe varchar(255) primary key,
+	Matk varchar(255),
+	Lichstt int,
+	Combo nvarchar(max) null,
+	Tenphim nvarchar(255),
+	Ngaychieu date,
+	Giobatdau time,
+	Gioketthuc time,
+	Ngaygiaodich date,
+	Ghe varchar(30),
+	Soluong int,
+	Giamgia int null,
+	Thanhtien float,
+	Hinh varchar(225),
+	Trangthai bit
+);
+select * from Ve
+
+insert into Ve(Mave,Matk,Lichstt,Combo,Tenphim,Ngaychieu,Giobatdau,Gioketthuc,Ngaygiaodich,Ghe,Soluong,Giamgia,Thanhtien,Hinh,Trangthai)values
+('UC000001','phamloc',1,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','09:00','08/24/2023','E3,E4,E5',3,null,330000,'shin.png',1),
+('UC000002','huyvu',1,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','09:00','08/24/2023','E3,E4,E5',3,null,330000,'shin.png',1),
+('UC000003','huyhoai',1,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','09:00','08/24/2023','E3,E4,E5',3,null,330000,'shin.png',1),
+('UC000004','theky',1,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','09:00','08/23/2023','E3,E4,E5',3,null,330000,'shin.png',1),
+('UC000005','hoangviet',1,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','09:00','08/23/2023','E3,E4,E5',3,null,330000,'shin.png',1),
+('UC000006','duyanh',2,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','10:00','12:00','08/24/2023','F3,F4,F5,F6,F7,F8',6,null,660000,'shin.png',1),
+('UC000007','phamloc',11,null,N'Oppenheimer','08/29/2023','15:00','17:00','08/28/2023','E1,E2',2,null,220000,'oppenheimer.png',1),
+('UC000008','phamloc',2,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','10:00','12:00','08/24/2023','E3,E4,E5',3,null,330000,'shin.png',1),
+('UC000009','huyvu',10,null,N'Oppenheimer','08/29/2023','07:00','09:00','08/28/2023','D1,D2',2,null,200000,'oppenheimer.png',1),
+('UC000010','duyanh',6,null,N'Kẻ Ẩn Danh','09/25/2023','17:00','19:00','09/24/2023','E3,E4,E5',3,null,330000,'keandanh.png',1),
+('UC000011','hoangviet',9,null,N'Thiện ác đối đầu 3','08/27/2023','23:00','01:00','08/27/2023','G3,G4',2,null,220000,'thienacdoidau.png',1);
 
 
 insert into Chitietphim(Mact,Maphim,Loaiphim,Mapc,Tenphim,Khoichieu,Daodien,Dienvien,Noidung,Linkytb,Hinh) values
@@ -437,18 +471,7 @@ insert into Chitietkm values
                          ')
 
 
-insert into Ve(Mave,Matk,Lichstt,Combo,Tenphim,Ngaychieu,Giobatdau,Ghe,Soluong,Giamgia,Thanhtien,Trangthai)values
-('UC000001','phamloc',1,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','E3,E4,E5',3,null,330000,1),
-('UC000002','huyvu',1,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','E3,E4,E5',3,null,330000,1),
-('UC000003','huyhoai',1,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','E3,E4,E5',3,null,330000,1),
-('UC000004','theky',1,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','E3,E4,E5',3,null,330000,1),
-('UC000005','hoangviet',1,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','E3,E4,E5',3,null,330000,1),
-('UC000006','duyanh',2,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','10:00','F3,F4,F5,F6,F7,F8',6,null,660000,1),
-('UC000007','phamloc',11,null,N'Oppenheimer','08/29/2023','15:00','E1,E2',2,null,220000,1),
-('UC000008','phamloc',2,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','10:00','E3,E4,E5',3,null,330000,1),
-('UC000009','huyvu',10,null,N'Oppenheimer','08/29/2023','07:00','D1,D2',2,null,200000,1),
-('UC000010','duyanh',6,null,N'Kẻ Ẩn Danh','09/25/2023','17:00','E3,E4,E5',3,null,330000,1),
-('UC000011','hoangviet',9,null,N'Thiện ác đối đầu 3','08/27/2023','23:00','G3,G4',2,null,220000,1);
+
 
 
 ------------------------------------Khóa-----------------------------------

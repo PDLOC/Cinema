@@ -1,5 +1,7 @@
 package com.uni.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.uni.entity.Taikhoan;
+import com.uni.entity.Ve;
 import com.uni.service.CookieService;
 import com.uni.service.SessionService;
 import com.uni.service.TaikhoanService;
+import com.uni.service.VeService;
 
 @Controller
 @RequestMapping("home")
@@ -23,11 +27,18 @@ public class UserController {
 	SessionService sessionService;
 	@Autowired
 	CookieService cookieService;
-
+	@Autowired
+	VeService veService;
 	@RequestMapping("profile/{uname}")
 	public String user(Model model, @PathVariable("uname") String uname) {
+		// Hiện thông tin cá nhân
 		Taikhoan taikhoan = taikhoanService.findById(uname);
 		model.addAttribute("acc", taikhoan);
+		
+		// Hiện lịch sử đặt vé
+		List<Ve> ve = veService.findByMatk(uname);
+		model.addAttribute("listOrder",ve);
+		
 		return "home/profile-ticket/form";
 	}
 
@@ -70,4 +81,6 @@ public class UserController {
 		}
 		return "home/profile-ticket/form";
 	}
+	
+	
 }
