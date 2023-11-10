@@ -77,7 +77,7 @@ create table Trangthaiphim(
 
 
 ------------------------------------Loại vé----------------------------------------------
-create table LoaiGhe(
+create table LGhe(
 	Maloai int identity(1,1) primary key,
 	Loaive nvarchar(125),
 	Dongia int
@@ -358,8 +358,8 @@ hướng ngoại, luôn suy nghĩ tích cực về cuộc sống dù đang ở t
 khiến cả hai trở thành “trái dấu hút nhau”. Sự “trái dấu” này đã đẩy đưa cuộc tình của họ đến vô vàn tình huống “cười ra nước mắt” nhưng cũng không kém phần cảm xúc.','https://www.youtube.com/watch?v=zlPzyxdhQbI','kore.png');
 
 
-insert into LoaiGhe values
-(N'Thường',100000),
+insert into LGhe values
+(N'Regular',100000),
 (N'VIP',110000),
 (N'Couple',250000)
 

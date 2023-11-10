@@ -322,17 +322,17 @@
 				<div id="displayFood" class="m-auto mt-3" style="box-shadow:0px 0px 5px 1px black;">
 					<h4 id="cartItems"></h4>
 					<div class="food-list">
-						<div class="col-sm-6 d-flex p-4" style="position:relative;">
-							<img style="max-width: 150px; max-height:200px;"
-								src="https://www.cgv.vn/media/concession/web/6443fd2e624be_1682177326.png" alt="Đồ ăn">
+						<div th:each="c:${itemComBo}" class="col-sm-6 d-flex p-4" style="position:relative;">
+							<img style="max-width: 150px; max-height:200px; background:none;"
+								th:src="@{|/assets/combo/${c.Hinh}|}" alt="Đồ ăn">
 							<div class="" style="text-align: left;">
-								<h5>JUNGLE BROWN MY COMBO</h5>
+								<h5 th:utext="${c.Mota}">JUNGLE BROWN MY COMBO</h5>
 								<p >
 									1 bình Jungle Brown + 1 nước siêu lớn <br> **Mua thêm 1
 									bắp ngọt chỉ với 29K tại rạp <br> **Nhận trong ngày xem
 									phim** <br> ***Mẫu ly phụ thuộc vào số lượng hàng tại rạp
 								</p>
-								<div class="price" style="margin-bottom:50px;">Giá: $10</div>
+								<div class="price" style="margin-bottom:50px;" th:text="'Giá: ' + ${c.Dongia} + ' VND'">Giá:</div>
 								<div class="quantity-input" style="position:absolute; bottom:1px;">
 									<button class="decrease-quantity"
 										style="width: 25px; height: 30px; border: none; background-color: red;">-</button>
@@ -342,7 +342,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-sm-6 d-flex p-4" style="position:relative;">
+						<!-- <div class="col-sm-6 d-flex p-4" style="position:relative;">
 							<img style="max-width: 150px; max-height:200px;"
 								src="https://www.cgv.vn/media/concession/web/6426a4fc4b1ca_1680254204.png" alt="Đồ ăn">
 							<div class="" style="text-align: left;">
@@ -420,7 +420,7 @@
 										class="increase-quantity">+</button>
 								</div>
 							</div>
-						</div>
+						</div> -->
 					</div>
 					<div class="cart">
 						<ul id="cartItems"></ul>
@@ -644,11 +644,11 @@
 						</div>
 						<div class="row">
 							<p class="col-4 m-0 p-0">Combo</p>
-							<p id="combo" class="col-8 m-0 p-0">$0.00</p>
+							<p id="combo" class="col-8 m-0 p-0">0 VND</p>
 						</div>
 						<div class="row">
 							<p class="col-4 m-0 p-0">Tổng</p>
-							<p class="col-8 m-0 p-0" id="total-price">$0.00</p>
+							<p class="col-8 m-0 p-0" id="total-price">0 VND</p>
 						</div>
 					</div>
 					<br> <br> <br> <br> <br> <br>

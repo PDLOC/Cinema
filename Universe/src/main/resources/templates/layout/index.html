@@ -156,7 +156,8 @@
             }
         });
     </script>
-
+    
+	<!-- data khuyen mai -->
 	<script th:inline="javascript">
 		let giamgia = 0;
 		function khuyenMai (){
@@ -171,6 +172,24 @@
 			})
 			updateSelectedSeats();
 		}
+	</script>
+	
+	<script th:inline="javascript">
+		var itemLGhe = /*[[${itemLGhe}]]*/;
+		let vip = 0;
+		let regular = 0;
+		let couple = 0;
+		itemLGhe.map(item =>{
+			if (item.loaive === "VIP") {
+				vip = item.dongia;
+			}
+			if (item.loaive === "Couple") {
+				couple = item.dongia;
+			}
+			if (item.loaive === "Regular") {
+				regular = item.dongia;
+			}
+		})
 	</script>
 	
     <!-- Ghế -->
@@ -194,9 +213,9 @@
         let selectedRegularSeats = [];
         let selectedCoupleSeats = [];
         // Giá vé
-        let regularSeatPrice = 10;
-        let vipSeatPrice = 100;
-        let coupleSeatPrice = 500;
+        let regularSeatPrice = 0;
+        let vipSeatPrice = 0;
+        let coupleSeatPrice = 0;
 
         /* Quá giờ giảm giá */
         const gioBatDauElement = document.getElementById('GioBatDau');
@@ -212,9 +231,13 @@
         if ((gioBatDauHour > 21 && gioKetThucHour < 7) ||
             (gioBatDauHour === 21 && gioBatDauMinute > 0) ||
             (gioKetThucHour === 7 && gioKetThucMinute < 59)) {
-            regularSeatPrice = 10 * 0.9;
-            vipSeatPrice = 100 * 0.9;
-            coupleSeatPrice = 500 * 0.9;
+            regularSeatPrice = regular * 0.9;
+            vipSeatPrice = vip * 0.9;
+            coupleSeatPrice = couple * 0.9;
+        }else{
+        	regularSeatPrice = regular;
+            vipSeatPrice = vip;
+            coupleSeatPrice = couple;
         }
 
         // Cập nhật số ghế đã chọn và tổng giá vé
@@ -245,8 +268,8 @@
             //const totalPrice = (selectedVipSeatsCount * vipSeatPrice) + (selectedRegularSeatsCount * regularSeatPrice);
             const totalPrice = (selectedVipSeatsCount * vipSeatPrice) + (selectedRegularSeatsCount * regularSeatPrice) + (selectedCoupleSeatsCount * coupleSeatPrice);
             document.getElementById('selected-seats').textContent = `${selectedSeats.join(', ')}`;
-            document.getElementById('total-price').textContent = `$${totalPrice + combo}`;
-            document.getElementById('combo').textContent = `$${combo}`
+            document.getElementById('total-price').textContent = `${formatNumber(totalPrice + combo)} VND`;
+            document.getElementById('combo').textContent = `${formatNumber(combo)} VND`
             tongGhe.textContent = `${selectedSeatsCount}`;
 			
             /* payment */
@@ -262,12 +285,18 @@
             document.getElementById('roomPay').textContent = `${RoomCinema}`;
             
             
-            document.getElementById("toTalPay").textContent = `Tổng Thanh Toán: $${totalPrice*(1-(giamgia/100))} + $${combo}`;
-            document.getElementById("toTalPay2").textContent = `Thành Tiền: $${(totalPrice*(1-(giamgia/100))) + combo}`;
-            document.getElementById("Pay").textContent = `$${totalPrice + combo}`;
+            document.getElementById("toTalPay").textContent = `Tổng Thanh Toán: ${formatNumber(totalPrice*(1-(giamgia/100)))} + ${formatNumber(combo)}`;
+            document.getElementById("toTalPay2").textContent = `Thành Tiền: ${formatNumber(totalPrice*(1-(giamgia/100)) + combo)} VND`;
+            document.getElementById("Pay").textContent = `${formatNumber(totalPrice + combo)} VND`;
             document.getElementById("TotalSeat2").textContent = `Số ghế ${76 - selectedSeatsCount}/76`
             /* payment */
+            
         }
+        
+        
+        function formatNumber(number) {
+				return number.toLocaleString('vi-VN').replace(/,/g, '.');
+		}
 
 
         // Lưu thông tin vào local session
@@ -462,7 +491,7 @@
                 document.getElementById("headMenu").style.display = "none";
                 document.getElementById("DieuHuong").style.display = "none";
                 updatePay();
-                updateSelectedSeats()
+                updateSelectedSeats();
             }
         });
 
@@ -499,21 +528,22 @@
 			function updatePay() {
 	            let index = 0;
 	            let itemTotalQuantity = 0;
-				const filteredItems = itemsArray.filter(item => item.quantity > 0);
-				filteredItems.map(item => {
-				  index++;
-				  let itemName = item.name;
-				  let itemQuantity = item.quantity;
-				  itemTotalQuantity += item.totalQuantity; 
-				  
-				  const nameFood = document.createElement('div');
-				  nameFood.setAttribute('id',`food-${index++}`)
-				  nameFood.innerText = `* ${itemName} x ${itemQuantity}`;
-				  itemNameFood.appendChild(nameFood)
+	            /* let filteredItems = itemsArray.filter(item => item.quantity > 0); */
+	            itemsArray.map(item => {
+				  if (item.quantity > 0) {
+					  index++;
+					  let itemName = item.name;
+					  let itemQuantity = item.quantity;
+					  itemTotalQuantity += item.totalQuantity; 
+					  
+					  const nameFood = document.createElement('div');
+					  nameFood.setAttribute('id',`food-${index++}`)
+					  nameFood.innerText = `* ${itemName} x ${itemQuantity}`;
+					  itemNameFood.appendChild(nameFood)
+				}
 				  
 				});
-				console.log(itemTotalQuantity)
-				let totalFood = document.getElementById("totalPriceFood").textContent = `$${itemTotalQuantity}`
+				let totalFood = document.getElementById("totalPriceFood").textContent = `${formatNumber(itemTotalQuantity)} VND`
         	}
 			
 			
@@ -589,7 +619,6 @@
  		    button.addEventListener('click', function () {
  		      if (quantityInputs[index].value > 0) {
  		        quantityInputs[index].value--;
- 		        console.log(quantityInputs[index].value)
  		        updateCart(index);
  		      }
  		    });
@@ -599,7 +628,6 @@
 		   increaseQuantityButtons.forEach(function (button, index) {
 		     button.addEventListener('click', function () {
 		       quantityInputs[index].value++;
-		       console.log(quantityInputs[index].value)
 		       updateCart(index);
 		     });
 		   });
@@ -608,7 +636,7 @@
 		   function updateCart(index) {
 		     const quantity = parseInt(quantityInputs[index].value);
 		     const priceElement = document.querySelectorAll('.price')[index];
-		     const price = parseFloat(priceElement.innerText.split(':')[1].trim().slice(1));
+		     const price = parseInt(priceElement.innerText.split(':')[1].trim().replace(' VND', ''));
 		     const itemName = document.querySelectorAll('h5')[index].innerText;
 		
 		  // Tìm vị trí của phần tử đã tồn tại trong mảng
@@ -616,7 +644,6 @@
 		     if (existingItemIndex !== -1) {
 		       // Xóa phần tử tại vị trí đã tìm thấy
 		       const existingItem = itemsArray[existingItemIndex];
-		    	console.log("so luong cua vi tri",existingItem.quantity)
 		
 		       
 		       totalPrice -= existingItem.totalQuantity;
@@ -658,6 +685,15 @@
 		   }
  		});
         
+         
+        function formatCurrency(value) {
+		       	const formatter = new Intl.NumberFormat('vi-VN', {
+			       	style: 'currency',
+			        currency: 'VND',
+			        minimumFractionDigits: 0,
+		       	});
+	        return formatter.format(value);
+       	}
         
         /* 3 */
        /*  document.addEventListener('DOMContentLoaded', function () {
