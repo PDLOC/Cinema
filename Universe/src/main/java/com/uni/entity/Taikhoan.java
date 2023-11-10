@@ -67,4 +67,9 @@ public class Taikhoan implements Serializable{
 	@OneToMany(mappedBy = "taikhoan", fetch = FetchType.EAGER)
 	List<Phanquyen> authorities;
 
+	@ToString.Exclude
+	@JsonIgnore
+	@OneToMany(mappedBy = "taikhoan")
+	List<Ve> taikhoans;
+	
 }

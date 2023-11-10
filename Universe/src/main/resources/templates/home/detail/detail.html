@@ -223,7 +223,7 @@ header.scrolled {
 							</div>
 							<br> <br> <br> <br> <br> <br>
 							<div class="container mt-3 "
-								style="width: 1000px; margin-left: -350px">
+								style="width: 1000px; margin-left: -300px">
 								<div id="danhSachNut" style="display: none;"
 									class="mx-auto m-2 mt-3">
 									<div class=" mb-3 text-warning">
@@ -237,9 +237,9 @@ header.scrolled {
 											<a
 												th:href="@{|/home/booking/ticket/${f2.ctphims.Mact}/${f2.getFormattedGiobatdau}|}"
 												type="button" class="btn btn-outline-danger mb-2 text-white"
-												style="border-radius: 12px; width: 120px; height: 50px; font-size: 18px;">
+												style="border-radius: 12px; width: 120px; height: 60px; font-size: 15px;">
 												<p style="margin-top: 5px; margin-left: 1px;"
-													th:utext="${f2.getFormattedGiobatdau}"></p>
+													th:utext="${f2.Ngaychieu} +'<br/>'+ ${f2.getFormattedGiobatdau}"></p>
 											</a>
 										</div>
 									</div>

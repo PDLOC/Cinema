@@ -127,42 +127,17 @@ create table Ve(
 	MaVe varchar(255) primary key,
 	Matk varchar(255),
 	Lichstt int,
-	STTcombo int null,
-	Makm varchar(10) null,
+	Combo nvarchar(max) null,
 	Tenphim nvarchar(255),
 	Ngaychieu date,
 	Giobatdau time,
 	Ghe varchar(30),
 	Soluong int,
+	Giamgia int null,
 	Thanhtien float,
 	Trangthai bit
 );
-drop table Ve
-insert into Lich values
-('CT01','08/25/2023','07:00','09:00'),
-('CT01','08/25/2023','10:00','12:00'),
-('CT01','08/26/2023','13:00','15:00'),
-('CT02','10/18/2023','10:00','12:00'),
-('CT02','10/19/2023','19:00','21:00'),
-('CT03','09/25/2023','17:00','19:00'),
-('CT03','09/28/2023','21:00','23:00'),
-('CT04','08/26/2023','07:00','09:00'),
-('CT04','08/27/2023','23:00','02:00'),
-('CT05','08/26/2023','07:00','09:00'),
-('CT05','08/29/2023','15:00','17:00');
 
-insert into Ve(Mave,Matk,Lichstt,STTcombo,Makm,Tenphim,Ngaychieu,Giobatdau,Ghe,Soluong,Thanhtien,Trangthai)values
-('UC000001','phamloc',1,null,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','E3,E4,E5',3,330000,1),
-('UC000002','huyvu',1,null,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','E3,E4,E5',3,330000,1),
-('UC000003','huyhoai',1,null,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','E3,E4,E5',3,330000,1),
-('UC000004','theky',1,null,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','E3,E4,E5',3,330000,1),
-('UC000005','hoangviet',1,null,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','E3,E4,E5',3,330000,1),
-('UC000006','duyanh',1,null,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','E3,E4,E5',3,330000,1),
-('UC000007','phamloc',1,null,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','E3,E4,E5',3,330000,1),
-('UC000008','phamloc',1,null,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','E3,E4,E5',3,330000,1),
-('UC000009','phamloc',1,null,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','E3,E4,E5',3,330000,1),
-('UC000010','phamloc',1,null,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','E3,E4,E5',3,330000,1),
-('UC000011','phamloc',1,null,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','E3,E4,E5',3,330000,1);
 
 -----------------------------------------------------------------------------------
 insert into Taikhoan values
@@ -250,7 +225,6 @@ insert into Phim values
 ('P019',2,N'Nhân Duyên Tiền Đình','119','2023','kore.png')
 
 
-
 insert into Lich values
 ('CT01','08/25/2023','07:00','09:00'),
 ('CT01','08/25/2023','10:00','12:00'),
@@ -260,9 +234,37 @@ insert into Lich values
 ('CT03','09/25/2023','17:00','19:00'),
 ('CT03','09/28/2023','21:00','23:00'),
 ('CT04','08/26/2023','07:00','09:00'),
-('CT04','08/27/2023','23:00','02:00'),
+('CT04','08/27/2023','23:00','01:00'),
 ('CT05','08/26/2023','07:00','09:00'),
-('CT05','08/29/2023','15:00','17:00');
+('CT05','08/29/2023','15:00','17:00'),
+('CT05','08/29/2023','18:00','20:00'),
+('CT05','08/29/2023','22:00','00:00'),
+('CT05','08/30/2023','15:00','17:00'),
+('CT05','08/30/2023','18:00','20:00'),
+('CT06','08/30/2023','21:00','22:00'),
+('CT06','08/30/2023','23:00','01:00'),
+('CT06','08/31/2023','13:00','15:00'),
+('CT06','08/31/2023','18:00','20:00'),
+('CT06','08/31/2023','19:00','21:00'),
+('CT06','08/31/2023','22:00','00:00'),
+('CT07','08/31/2023','15:00','17:00'),
+('CT07','09/01/2023','15:00','17:00'),
+('CT07','09/02/2023','07:00','09:00'),
+('CT07','09/02/2023','10:00','12:00'),
+('CT08','09/03/2023','13:00','15:00'),
+('CT08','09/27/2023','16:00','18:00'),
+('CT08','09/27/2023','19:00','21:00'),
+('CT08','09/27/2023','22:00','00:00'),
+('CT09','09/28/2023','07:00','09:00'),
+('CT09','09/28/2023','13:00','15:00'),
+('CT09','09/28/2023','16:00','18:00'),
+('CT09','09/29/2023','13:00','15:00'),
+('CT09','09/29/2023','16:00','18:00'),
+('CT09','09/29/2023','19:00','21:00'),
+('CT10','09/30/2023','13:00','15:00'),
+('CT10','09/30/2023','16:00','18:00'),
+('CT10','09/30/2023','19:00','21:00'),
+('CT10','09/30/2023','22:00','00:00');
 
 
 insert into Chitietphim(Mact,Maphim,Loaiphim,Mapc,Tenphim,Khoichieu,Daodien,Dienvien,Noidung,Linkytb,Hinh) values
@@ -381,13 +383,10 @@ insert into Trangthaiphim values
 
 
 insert into Khuyenmai values
-
 ('km01',N'SIÊU ƯU ĐÃI “PHIM THẬT HAY - COMBO THẬT ĐÃ” CHÍNH THỨC TRỞ LẠI',10,'10/31/2023','11/30/2023','1.JPG'),
 ('km02',N'Đồng giá 49k bộ phim hoạt hình “Những chú chó hoàng gia',5,'11/16/2023','11/30/2023','2.JPG'),
 ('km03',N'XEM PHIM HAY HƯỞNG NGAY ƯU ĐÃI “ĂN THẢ GA – CHƠI CỰC ĐÃ',6,'11/16/2023','11/30/2023','3.JPG'),
 ('km04',N'SPECIAL MONDAY - ĐỒNG GIÁ 50.000Đ/VÉ 2D THỨ 2 CUỐI THÁNG (TỪ 01/06/2023)',1,'10/31/2023','11/30/2023','1.JPG')
-
-
 
 
 insert into Chitietkm values
@@ -436,6 +435,21 @@ insert into Chitietkm values
                                 </span>
 								<br>
                          ')
+
+
+insert into Ve(Mave,Matk,Lichstt,Combo,Tenphim,Ngaychieu,Giobatdau,Ghe,Soluong,Giamgia,Thanhtien,Trangthai)values
+('UC000001','phamloc',1,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','E3,E4,E5',3,null,330000,1),
+('UC000002','huyvu',1,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','E3,E4,E5',3,null,330000,1),
+('UC000003','huyhoai',1,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','E3,E4,E5',3,null,330000,1),
+('UC000004','theky',1,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','E3,E4,E5',3,null,330000,1),
+('UC000005','hoangviet',1,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','E3,E4,E5',3,null,330000,1),
+('UC000006','duyanh',2,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','10:00','F3,F4,F5,F6,F7,F8',6,null,660000,1),
+('UC000007','phamloc',11,null,N'Oppenheimer','08/29/2023','15:00','E1,E2',2,null,220000,1),
+('UC000008','phamloc',2,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','10:00','E3,E4,E5',3,null,330000,1),
+('UC000009','huyvu',10,null,N'Oppenheimer','08/29/2023','07:00','D1,D2',2,null,200000,1),
+('UC000010','duyanh',6,null,N'Kẻ Ẩn Danh','09/25/2023','17:00','E3,E4,E5',3,null,330000,1),
+('UC000011','hoangviet',9,null,N'Thiện ác đối đầu 3','08/27/2023','23:00','G3,G4',2,null,220000,1);
+
 
 ------------------------------------Khóa-----------------------------------
 --Tài khoản--

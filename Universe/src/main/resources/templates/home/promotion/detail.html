@@ -10,7 +10,7 @@
 		<div class="container fw-bolder text-white" th:each="km : ${listkm}">
 			<div th:utext="${km.mota}">
 			</div>
-			<img style="width:60%;" th:src="@{|/assets/Images/km/${km.khuyenmai.hinh}|}">
+			<img style="width:60%;" th:src="@{|/assets/km-images/${km.khuyenmai.hinh}|}">
 		</div>
 	</main>
 </body>
