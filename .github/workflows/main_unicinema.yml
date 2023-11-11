@@ -28,7 +28,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: java-app
-          path: '${{ github.workspace }}/target/*.jar'
+          path: '${{ github.workspace }}/target/*.war'
 
   deploy:
     runs-on: windows-latest
@@ -42,7 +42,6 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: java-app
-          run: ls -R
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
@@ -51,4 +50,4 @@ jobs:
           app-name: 'unicinema'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_70092EB8ABE746CA9467D50BA1D62C9D }}
-          package: '*.jar'
+          package: '*.war'
