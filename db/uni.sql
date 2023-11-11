@@ -268,24 +268,6 @@ insert into Lich values
 ('CT10','09/30/2023','19:00','21:00'),
 ('CT10','09/30/2023','22:00','00:00');
 
-create table Ve(
-	MaVe varchar(255) primary key,
-	Matk varchar(255),
-	Lichstt int,
-	Combo nvarchar(max) null,
-	Tenphim nvarchar(255),
-	Ngaychieu date,
-	Giobatdau time,
-	Gioketthuc time,
-	Ngaygiaodich date,
-	Ghe varchar(30),
-	Soluong int,
-	Giamgia int null,
-	Thanhtien float,
-	Hinh varchar(225),
-	Trangthai bit
-);
-select * from Ve
 
 insert into Ve(Mave,Matk,Lichstt,Combo,Tenphim,Ngaychieu,Giobatdau,Gioketthuc,Ngaygiaodich,Ghe,Soluong,Giamgia,Thanhtien,Hinh,Trangthai)values
 ('UC000001','phamloc',1,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','09:00','08/24/2023','E3,E4,E5',3,null,330000,'shin.png',1),
