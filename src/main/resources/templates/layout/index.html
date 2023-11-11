@@ -140,6 +140,8 @@
         // Lấy tham chiếu đến các phần tử DOM
         var btnOpen = document.getElementById("btnOpen");
         var danhSachNut = document.getElementById("danhSachNut");
+        var btnOpen2 = document.getElementById("btnOpen2");
+        var danhSachNut2 = document.getElementById("danhSachNut2");
 
         // Lắng nghe sự kiện click vào nút bấm
         btnOpen.addEventListener("click", function () {
@@ -150,6 +152,18 @@
             } else {
                 // Nếu đang hiển thị, ẩn dàn nút
                 danhSachNut.style.display = "none";
+            }
+        });
+        
+        // Lắng nghe sự kiện click vào nút bấm
+        btnOpen2.addEventListener("click", function () {
+            // Kiểm tra trạng thái hiển thị của dàn nút
+            if (danhSachNut2.style.display === "none") {
+                // Nếu đang ẩn, hiển thị dàn nút
+                danhSachNut2.style.display = "block";
+            } else {
+                // Nếu đang hiển thị, ẩn dàn nút
+                danhSachNut2.style.display = "none";
             }
         });
     </script>
