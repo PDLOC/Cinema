@@ -42,6 +42,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: java-app
+          run: ls -R
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
