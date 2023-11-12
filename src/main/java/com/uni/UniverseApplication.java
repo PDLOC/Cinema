@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class UniverseApplication {
 	
 	public static void main(String[] args) {
-		System.out.println(1);
 		SpringApplication.run(UniverseApplication.class, args);
 	}
 
