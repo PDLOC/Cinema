@@ -12,7 +12,7 @@ public class UniverseApplication {
 	
 	@GetMapping("/")
 	public String message() {
-		return "home/index";
+		return "redirect:/home/index";
 	}
 	
 	
