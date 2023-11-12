@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 public class UniverseApplication {
 	
-	@GetMapping("/message")
+	@GetMapping("/")
 	public String message() {
-		return "hello";
+		return "home/index";
 	}
 	
 	
