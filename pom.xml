@@ -10,7 +10,7 @@
 	<groupId>com.uni</groupId>
 	<artifactId>com.uni</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>Universe</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
@@ -96,6 +96,8 @@
 						<exclude>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
+							<version>1.18.24</version>
+							<scope>provided</scope>
 						</exclude>
 					</excludes>
 				</configuration>
