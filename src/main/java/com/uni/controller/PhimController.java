@@ -90,7 +90,7 @@ public class PhimController {
 		model.addAttribute("imageF", listPhim);
 		model.addAttribute("items", listPhimDangChieu);
 		model.addAttribute("items1", listPhimSapChieu);
-		return "home/view.html";
+		return "home/view";
 	}
 
 	@RequestMapping("film/detail/{maphim}")
