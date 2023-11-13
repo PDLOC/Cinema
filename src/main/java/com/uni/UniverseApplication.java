@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @SpringBootApplication
 public class UniverseApplication {
-	@GetMapping("/")
+	@GetMapping("/message")
 	public String message() {
 		return "HELLO!!!!!";
 	}
