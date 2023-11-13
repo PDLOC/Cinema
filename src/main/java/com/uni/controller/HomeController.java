@@ -10,10 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("home")
 public class HomeController {
 	
-	
 	@RequestMapping("index")
 	public String home(Model model) {
-		
-		return "home/view.html";
+		return "redirect:/home/film";
 	}
 }
