@@ -1,5 +1,7 @@
 package com.uni.service.impl;
 
+import java.sql.Time;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +40,16 @@ public class LichServiceImpl implements LichService {
 	@Override
 	public void delete(Integer lich) {
 		lichDao.deleteById(lich);
+	}
+	@Override
+	public List<Date> findByMact(String mact) {
+		// TODO Auto-generated method stub
+		return lichDao.findByMact(mact);
+	}
+	@Override
+	public List<Lich> findByNgay(Date date, String mact) {
+		// TODO Auto-generated method stub
+		return lichDao.findByNgay(date,mact);
 	}
 
 }

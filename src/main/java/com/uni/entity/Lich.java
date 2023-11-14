@@ -15,6 +15,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -32,8 +34,9 @@ public class Lich implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer Stt;
-	@JoinColumn(name = "Ngaychieu")
 	@Temporal(TemporalType.DATE)
+	@JoinColumn(name = "Ngaychieu")
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	Date Ngaychieu;
 	@JoinColumn(name = "Giobatdau")	
 	Time Giobatdau;
@@ -44,6 +47,12 @@ public class Lich implements Serializable {
 	@JoinColumn(name = "Mact")
 	Chitietphim ctphims;
 
+	public String getFormattedNgaychieu() {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		return formatter.format(Ngaychieu);
+    }
+	
+	
 	public String getFormattedGiobatdau() {
         SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
         return formatter.format(Giobatdau);

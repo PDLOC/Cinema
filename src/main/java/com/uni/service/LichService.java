@@ -1,5 +1,7 @@
 package com.uni.service;
 
+import java.sql.Time;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -22,6 +24,14 @@ public interface LichService {
 	Lich update(Lich lich);
 
 	void delete(Integer lich);
+
+	List<Date> findByMact(String mact);
+
+	List<Lich> findByNgay(Date date, String mact);
+
+
+
+
 
 
 

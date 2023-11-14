@@ -15,7 +15,8 @@ import com.uni.service.XDate;
 public class VeServiceImpl implements VeService {
 	@Autowired
 	VeDAO veDAO;
-	@Autowired private XDate xdate;
+	@Autowired 
+	private XDate xdate;
 	@Override
 	public List<Ve> findAll() {
 		// TODO Auto-generated method stub

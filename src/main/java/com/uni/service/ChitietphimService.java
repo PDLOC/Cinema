@@ -19,4 +19,6 @@ public interface ChitietphimService {
 
 	void delete(String maCtphim);
 
+	Chitietphim findByPhim(String maphim);
+
 }

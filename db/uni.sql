@@ -12,8 +12,6 @@ create table Taikhoan(
 	Hinh nvarchar(255) null,
 );
 
-
-
 ------------------------------------Vai trò----------------------------------------------
 create table Vaitro(
 	Mavaitro varchar(10) primary key,
@@ -30,7 +28,9 @@ create table Phanquyen(
 ------------------------------------Phòng Chiếu----------------------------------------------
 create table Phong(
 	Mapc int identity(1,1) primary key,
-	Tenpc nvarchar(225)
+	Tenpc nvarchar(225),
+	Ghe varchar(10),
+	Trangthai bit
 );
 
 ------------------------------------Phim----------------------------------------------
@@ -67,8 +67,10 @@ create table Lich(
 	Giobatdau time,
 	Gioketthuc time
 );
-drop table lich
 
+select * from Lich
+select * from Lich where ngaychieu like '2023-08-31' and mact like 'CT06'
+select * from Chitietphim
 ------------------------------------Vé----------------------------------------------
 create table Trangthaiphim(
 	Stt int identity(1,1) primary key,
@@ -120,7 +122,7 @@ create table Combo(
 	Hinh  varchar(225)
 );
 
-
+select * from Combo
 
 ------------------------------------Vé----------------------------------------------
 create table Ve(
@@ -137,10 +139,11 @@ create table Ve(
 	Soluong int,
 	Giamgia int null,
 	Thanhtien float,
+	Hinh varchar(225),
 	Trangthai bit
 );
 
-
+drop table Ve
 -----------------------------------------------------------------------------------
 insert into Taikhoan values
 ('phamloc',N'Phạm Đại Lộc','phamloc402@gmail.com','0799815474','09/21/1999','123456',N'53 Trần Quang Khải Q.1',N'user.png'),
@@ -264,10 +267,10 @@ insert into Lich values
 ('CT09','09/29/2023','13:00','15:00'),
 ('CT09','09/29/2023','16:00','18:00'),
 ('CT09','09/29/2023','19:00','21:00'),
-('CT10','09/30/2023','13:00','15:00'),
-('CT10','09/30/2023','16:00','18:00'),
-('CT10','09/30/2023','19:00','21:00'),
-('CT10','09/30/2023','22:00','00:00');
+('CT010','09/30/2023','13:00','15:00'),
+('CT010','09/30/2023','16:00','18:00'),
+('CT010','09/30/2023','19:00','21:00'),
+('CT010','09/30/2023','22:00','00:00');
 
 
 insert into Ve(Mave,Matk,Lichstt,Combo,Tenphim,Ngaychieu,Giobatdau,Gioketthuc,Ngaygiaodich,Ghe,Soluong,Giamgia,Thanhtien,Hinh,Trangthai)values

@@ -133,13 +133,9 @@ header.scrolled {
 									width="100%" height="520px">
 							</div>
 						</div>
-
 						<div th:each="f1:${f.ctPhims}" class="col-sm-6 col-6  ">
-
-
 							<div style="min-height: 400px">
 								<h4 class="mt-3"></h4>
-
 								<div class="ms-1 mb-2">
 									<span class="fs-6 text-warning">Khởi chiếu : </span><span
 										class="fs-6 text-white" th:utext="${f1.Khoichieu}"></span>
@@ -156,7 +152,6 @@ header.scrolled {
 									<span class="fs-6 text-warning">Đạo diễn : </span><span
 										th:utext=${f1.Daodien} class="fs-6 text-white"></span>
 								</div>
-
 								<div class="film-item-type">
 									<span class="icon-2d"></span><span class="icon-am3d"></span><span
 										class="icon-3d"></span>
@@ -226,35 +221,33 @@ header.scrolled {
 								style="width: 1000px; margin-left: -300px">
 								<div id="danhSachNut" style="display: none;"
 									class="mx-auto m-2 mt-3">
-										<div class="row" style="display: flex;">
-										<div  class="cus-sty col-md-2"
-											style="margin:0.05px">
-											
-									<a id="btnOpen2" type="button"
-										class="btn btn-outline-danger mb-2 text-white"
-										style="border-radius: 12px; width: 140px; height: 60px; font-size: 15px;" data-toggle="tooltip" title=""
-										data-original-title="Add to cart">7-11-2023</a>
-											</div>
-										</div>
-									<div id="danhSachNut2" style="display: none;">
-									<div class="mt-3 mb-3 text-warning">
-										<p style="font-size: 14px">Lưu ý: Khán giả dưới 13 tuổi
-											chỉ chọn suất chiếu kết thúc trước 22h và Khán giả dưới 16
-											tuổi chỉ chọn suất chiếu kết thúc trước 23h.</p>
-									</div>
 									<div class="row" style="display: flex;">
-										<div th:each="f2:${f1.listlich}" class="cus-sty col-md-2"
-											style="margin:0.05px">
-											
-											<a
-												th:href="@{|/home/booking/ticket/${f2.ctphims.Mact}/${f2.getFormattedGiobatdau}|}"
-												type="button" class="btn btn-outline-danger mb-2 text-white"
-												style="border-radius: 12px; width: 140px; height: 60px; font-size: 15px;">
-												<p style="margin-top: 5px;"
-													th:utext="${f2.Ngaychieu} +'<br/>'+ ${f2.getFormattedGiobatdau}"></p>
-											</a>
-											</div>
+										<div class="cus-sty col-md-2" style="margin: 0.05px" th:each="l:${listL}"> 
+											<a  class="btn btn-outline-danger mb-2 text-white btnOpen2" type="button"
+												style="border-radius: 12px; width: 140px; height: 60px; font-size: 15px;"
+												data-toggle="tooltip" title="" th:utext= "${#dates.format(l, 'dd/MM/yyyy')}"
+												th:data-ng="${#dates.format(l, 'dd/MM/yyyy')}"></a>
 										</div>
+									</div>
+									<div id="danhSachNut2" style="display: none;">
+									
+										<div class="mt-3 mb-3 text-warning">
+											<p style="font-size: 14px">Lưu ý: Khán giả dưới 13 tuổi
+												chỉ chọn suất chiếu kết thúc trước 22h và Khán giả dưới 16
+												tuổi chỉ chọn suất chiếu kết thúc trước 23h.</p>
+										</div>
+										<div class="row" style="display: flex;">
+											<div th:each="f2:${f1.listlich}" class="cus-sty col-md-2"
+												style="margin: 0.05px">
+												<a
+													th:href="@{|/home/booking/ticket/${f2.ctphims.Mact}/${f2.getFormattedGiobatdau}|}"
+													type="button"
+													class="btn btn-outline-danger mb-2 text-white"
+													style="border-radius: 12px; width: 140px; height: 60px; font-size: 15px;">
+													<p style="margin-top: 5px;" 
+														th:utext="${f2.getFormattedGiobatdau}"></p>
+												</a>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -263,6 +256,7 @@ header.scrolled {
 					</div>
 				</div>
 			</div>
+		</div>
 	</main>
 </body>
 </html>

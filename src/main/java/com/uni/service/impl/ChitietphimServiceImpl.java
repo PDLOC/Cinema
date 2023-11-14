@@ -41,4 +41,10 @@ public class ChitietphimServiceImpl implements ChitietphimService {
 		ctDAO.deleteById(maCtphim);
 	}
 
+	@Override
+	public Chitietphim findByPhim(String maphim) {
+		// TODO Auto-generated method stub
+		return ctDAO.findByPhim(maphim);
+	}
+
 }
