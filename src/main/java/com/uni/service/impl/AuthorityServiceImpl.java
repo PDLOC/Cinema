@@ -28,4 +28,10 @@ public class AuthorityServiceImpl implements AuthorityService{
 		return authorityDAO.getOneByRole(username);
 	}
 	
+	/*Summary*/
+	@Override
+	public Long getTotalCustomer() {
+		return authorityDAO.findAll().stream().filter(e->e.getVaitro().getTenvaitro().equals("Khách hàng")).count();
+	}
+	
 }

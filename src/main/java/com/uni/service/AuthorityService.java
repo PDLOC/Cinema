@@ -13,4 +13,6 @@ public interface AuthorityService {
 	
 	List<Phanquyen> getOneByRole(String username);
 
+	Long getTotalCustomer();
+
 }

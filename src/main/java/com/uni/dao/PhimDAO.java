@@ -15,4 +15,11 @@ public interface PhimDAO extends JpaRepository<Phim, String> {
 	@Query("SELECT p FROM Phim p WHERE p.trangthai.Stt=2")
 	List<Phim> findPhimSapChieu();
 	
+
+	
+	@Query(value="Select top 10 ve.Tenphim, count(MaVe) as mostSold \r\n"
+			+ "			From Ve \r\n"
+			+ "			GROUP BY  ve.Tenphim\r\n"
+			+ "			Order by mostSold desc",nativeQuery = true)
+	List<Object[]> top10phim();
 }

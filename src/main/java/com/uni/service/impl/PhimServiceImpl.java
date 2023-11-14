@@ -55,5 +55,16 @@ public class PhimServiceImpl implements PhimService {
 	public void delete(String phim) {
 		pDao.deleteById(phim);
 	}
+	@Override
+	public List<Object[]> top10phim() {
+		return pDao.top10phim();
+	}
+	
+
+	@Override
+	public Long getTotalPhim() {
+		return pDao.count();
+	}
+
 	
 }

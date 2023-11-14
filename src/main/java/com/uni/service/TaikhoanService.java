@@ -26,6 +26,10 @@ public interface TaikhoanService {
 
 	List<Taikhoan> findStaffAndAd();
 
+	List<Object[]> top10Customer();
+
+	Long getTotalTK();
+
 
 
 }

@@ -23,4 +23,8 @@ public interface PhimService {
 
 	void delete(String phim);
 
+	List<Object[]> top10phim();
+
+	Long getTotalPhim();
+
 }

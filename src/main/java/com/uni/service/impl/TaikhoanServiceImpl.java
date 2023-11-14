@@ -72,5 +72,12 @@ public class TaikhoanServiceImpl implements TaikhoanService {
 		return taiKhoanDAO.findStaffandAd();
 	}
 
-
+	@Override
+	public Long getTotalTK() {
+		return taiKhoanDAO.count();
+	}
+	@Override
+	public List<Object[]> top10Customer() {
+		return taiKhoanDAO.top10Customer();
+	}
 }

@@ -38,9 +38,13 @@ app.config(function($routeProvider) {
 			templateUrl: "/assets/admin/lichchieu/index.html",
 			controller: "lich-ctrl"
 		})
+		.when("/thongke", {
+			templateUrl: "/assets/admin/thongke/index.html",
+			controller: "thongke-ctrl"
+		})
 		.otherwise({
-			templateUrl: "/assets/admin/nhanvien/index.html",
-			controller: "nhanvien-ctrl"
+			templateUrl: "/assets/admin/thongke/index.html",
+			controller: "thongke-ctrl"
 		});
 })
 
