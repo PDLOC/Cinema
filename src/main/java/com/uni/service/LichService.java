@@ -27,7 +27,7 @@ public interface LichService {
 
 	List<Date> findByMact(String mact);
 
-	List<Lich> findByNgay(Date date, String mact);
+	List<Lich> findByMatct(String mact);
 
 
 

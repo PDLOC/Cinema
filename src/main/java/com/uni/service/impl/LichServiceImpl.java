@@ -47,9 +47,9 @@ public class LichServiceImpl implements LichService {
 		return lichDao.findByMact(mact);
 	}
 	@Override
-	public List<Lich> findByNgay(Date date, String mact) {
+	public List<Lich> findByMatct(String mact) {
 		// TODO Auto-generated method stub
-		return lichDao.findByNgay(date,mact);
+		return lichDao.findByMatct(mact);
 	}
 
 }

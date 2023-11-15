@@ -230,22 +230,20 @@ header.scrolled {
 										</div>
 									</div>
 									<div id="danhSachNut2" style="display: none;">
-									
 										<div class="mt-3 mb-3 text-warning">
 											<p style="font-size: 14px">Lưu ý: Khán giả dưới 13 tuổi
 												chỉ chọn suất chiếu kết thúc trước 22h và Khán giả dưới 16
 												tuổi chỉ chọn suất chiếu kết thúc trước 23h.</p>
 										</div>
 										<div class="row" style="display: flex;">
-											<div th:each="f2:${f1.listlich}" class="cus-sty col-md-2"
+											<div class="cus-sty col-md-2"
 												style="margin: 0.05px">
+													<!-- th:href="@{|/home/booking/ticket/${lich.ctphims.Mact}/${lich.getFormattedGiobatdau}|}" -->
 												<a
-													th:href="@{|/home/booking/ticket/${f2.ctphims.Mact}/${f2.getFormattedGiobatdau}|}"
 													type="button"
 													class="btn btn-outline-danger mb-2 text-white"
 													style="border-radius: 12px; width: 140px; height: 60px; font-size: 15px;">
-													<p style="margin-top: 5px;" 
-														th:utext="${f2.getFormattedGiobatdau}"></p>
+													<p style="margin-top: 5px;" class="giobatdau"></p>
 												</a>
 											</div>
 										</div>

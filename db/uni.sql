@@ -69,7 +69,7 @@ create table Lich(
 );
 
 select * from Lich
-select * from Lich where ngaychieu like '2023-08-31' and mact like 'CT06'
+select * from Lich where ngaychieu like '2023-08-30' AND Mact like 'CT06' 
 select * from Chitietphim
 ------------------------------------Vé----------------------------------------------
 create table Trangthaiphim(

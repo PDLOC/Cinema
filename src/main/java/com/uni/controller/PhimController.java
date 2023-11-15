@@ -4,6 +4,7 @@ import java.net.URLEncoder;
 import java.security.Principal;
 import java.sql.Time;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.mail.Session;
@@ -16,6 +17,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -110,7 +112,9 @@ public class PhimController {
 		Chitietphim ct = chitietphimService.findByPhim(maphim);
 		List<Date> ngay = lichService.findByMact(ct.getMact());
 		model.addAttribute("listL", ngay);
+		List<Lich> list = lichService.findByMatct(ct.getMact());
+		model.addAttribute("listLich2", list);
 		return "home/detail/detail";
 	}
-
+	
 }

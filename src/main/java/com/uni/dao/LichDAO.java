@@ -15,8 +15,8 @@ public interface LichDAO extends JpaRepository<Lich, Integer> {
 	List<Date> findByMact(String mact);
 
 	
-	@Query("SELECT l FROM Lich l WHERE l.Ngaychieu=?1 AND l.ctphims.Mact=?2")
-	List<Lich> findByNgay(Date date, String mact);
+	@Query("SELECT l FROM Lich l WHERE l.ctphims.Mact=?1")
+	List<Lich> findByMatct(String mact);
 
 	
 }
