@@ -149,7 +149,7 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
         })
     </script>
 
-<!---------------------------- Lịch chiếu trong chi tiết --------------------------------------------->
+	<!---------------------------- Lịch chiếu trong chi tiết --------------------------------------------->
 	<script th:inline="javascript">
         // Lấy tham chiếu đến các phần tử DOM
         var btnOpen = document.getElementById("btnOpen");
@@ -169,32 +169,76 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
             }
         });
         for(var i = 0; i < btnOpen2.length; i++){
-	        	var a = btnOpen2[i];
-	        	// Lắng nghe sự kiện click vào nút bấm
-	        	a.addEventListener("click", function () {
-        		 // Lấy giá trị của thuộc tính "ngaychieu" từ phần tử a
-                var ngaychieu = this.getAttribute("data-ng");
-				var lich = /*[[${listLich2}]]*/'';
-				var giobatdauArray = [];
-				// Lặp qua mảng lich và hiển thị giờ bắt đầu của mỗi item
-			    lich.map(item=> {
-			      // Kiểm tra nếu ngày chiếu của item khớp với ngày được chọn
-			      var ngaychieuFormatted = formatNgayChieu(item.ngaychieu);
-			      if (ngaychieuFormatted === ngaychieu) {
-			        giobatdauArray.push(item.giobatdau);
-					console.log(giobatdauArray)							
-			      }
-			    });
-	            // Kiểm tra trạng thái hiển thị của dàn nút
-	            if (danhSachNut2.style.display === "none") {
-	                // Nếu đang ẩn, hiển thị dàn nút
-	                danhSachNut2.style.display = "block";
-	            } else {
-	                // Nếu đang hiển thị, ẩn dàn nút
-	                danhSachNut2.style.display = "none";
-	            }
-	        });
-        }
+        	var a = btnOpen2[i];
+        	// Lắng nghe sự kiện click vào nút bấm
+        	a.addEventListener("click", function () {
+    		 // Lấy giá trị của thuộc tính "ngaychieu" từ phần tử a
+            var ngaychieu = this.getAttribute("data-ng");
+			var lich = /*[[${listLich2}]]*/'';
+			var giobatdauArray = [];
+			// Lặp qua mảng lich và hiển thị giờ bắt đầu của mỗi item
+		    lich.map(item=> {
+		      // Kiểm tra nếu ngày chiếu của item khớp với ngày được chọn
+		      var ngaychieuFormatted = formatNgayChieu(item.ngaychieu);
+		      if (ngaychieuFormatted === ngaychieu) {
+		        giobatdauArray.push(item.giobatdau);
+				console.log(item)							
+		      }
+		    });
+		 
+
+			var giobatdauArrayElement = document.getElementById("giobatdauArray");
+			var giobatdauContainerElement = document.getElementById("giobatdauContainer");
+			//Remove existing buttons
+			while (giobatdauContainerElement.firstChild) {
+			giobatdauContainerElement.removeChild(giobatdauContainerElement.firstChild);
+			}
+			
+			//Create and add new buttons
+			for (var i = 0; i < giobatdauArray.length; i++) {
+			var giobatdau = giobatdauArray[i];
+			
+			var buttonElement = document.createElement("button");
+			buttonElement.type = "button";
+			buttonElement.className = "btn btn-outline-danger mb-2 text-white";
+			buttonElement.style.borderRadius = "12px";
+			buttonElement.style.width = "140px";
+			buttonElement.style.height = "60px";
+			buttonElement.style.fontSize = "15px";
+			buttonElement.textContent = giobatdau;
+			
+			var linkElement = document.createElement("a");
+			  lich.map(function (item) {
+			    if (item.ctphims && item.ctphims.mact && item.giobatdau === giobatdau) {
+			      var hrefValue =
+			        "/home/booking/ticket/" +
+			        item.ctphims.mact +
+			        "/" +
+			        item.formattedGiobatdau;
+			      linkElement.setAttribute("href", hrefValue);
+			    }
+			  });
+
+			linkElement.appendChild(buttonElement);
+	
+			var divElement = document.createElement("div");
+			divElement.className = "cus-sty col-md-2";
+			divElement.style.margin = "0.05px";
+			divElement.style.display = "inline-block";
+			divElement.appendChild(linkElement);
+			
+			giobatdauContainerElement.appendChild(divElement);
+			}
+            // Kiểm tra trạng thái hiển thị của dàn nút
+            if (danhSachNut2.style.display === "none") {
+                // Nếu đang ẩn, hiển thị dàn nút
+                danhSachNut2.style.display = "block";
+            } else {
+                // Nếu đang hiển thị, ẩn dàn nút
+                danhSachNut2.style.display = "none";
+            }
+        });
+    }
 
 	     // Hàm để định dạng lại giá trị ngày chiếu
 	     function formatNgayChieu(ngaychieu) {
@@ -217,7 +261,7 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 
 
 
-<!------------------- data khuyen mai ---------------------------------->
+	<!------------------- data khuyen mai ---------------------------------->
 	<script th:inline="javascript">
 		let giamgia = 0;
 		function khuyenMai (){
@@ -234,7 +278,7 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 		}
 	</script>
 
-<!---------------- Loại ghế ----------------------->
+	<!---------------- Loại ghế ----------------------->
 	<script th:inline="javascript">
 		var itemLGhe = /*[[${itemLGhe}]]*/'';
 		let vip = 0;
@@ -253,7 +297,7 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 		})
 	</script>
 
-<!---------------------------- Ghế ------------------------------------------>
+	<!---------------------------- Ghế ------------------------------------------>
 	<script>
     
     	let itemsArray = [];

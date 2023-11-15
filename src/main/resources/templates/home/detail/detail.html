@@ -222,10 +222,13 @@ header.scrolled {
 								<div id="danhSachNut" style="display: none;"
 									class="mx-auto m-2 mt-3">
 									<div class="row" style="display: flex;">
-										<div class="cus-sty col-md-2" style="margin: 0.05px" th:each="l:${listL}"> 
-											<a  class="btn btn-outline-danger mb-2 text-white btnOpen2" type="button"
+										<div class="cus-sty col-md-2" style="margin: 0.05px"
+											th:each="l:${listL}">
+											<a class="btn btn-outline-danger mb-2 text-white btnOpen2"
+												type="button"
 												style="border-radius: 12px; width: 140px; height: 60px; font-size: 15px;"
-												data-toggle="tooltip" title="" th:utext= "${#dates.format(l, 'dd/MM/yyyy')}"
+												data-toggle="tooltip" title=""
+												th:utext="${#dates.format(l, 'dd/MM/yyyy')}"
 												th:data-ng="${#dates.format(l, 'dd/MM/yyyy')}"></a>
 										</div>
 									</div>
@@ -236,9 +239,13 @@ header.scrolled {
 												tuổi chỉ chọn suất chiếu kết thúc trước 23h.</p>
 										</div>
 										<div class="row" style="display: flex;">
+											<div id="giobatdauContainer"></div>
+										</div>
+
+										<!-- <div class="row" style="display: flex;">
 											<div class="cus-sty col-md-2"
 												style="margin: 0.05px">
-													<!-- th:href="@{|/home/booking/ticket/${lich.ctphims.Mact}/${lich.getFormattedGiobatdau}|}" -->
+													th:href="@{|/home/booking/ticket/${lich.ctphims.Mact}/${lich.getFormattedGiobatdau}|}"
 												<a
 													type="button"
 													class="btn btn-outline-danger mb-2 text-white"
@@ -246,7 +253,7 @@ header.scrolled {
 													<p style="margin-top: 5px;" class="giobatdau"></p>
 												</a>
 											</div>
-										</div>
+										</div> -->
 									</div>
 								</div>
 							</div>
