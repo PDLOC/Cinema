@@ -10,6 +10,10 @@ app.config(function($routeProvider) {
 			templateUrl: "/assets/admin/taikhoan/index.html",
 			controller: "taikhoan-ctrl"
 		})
+		.when("/ve", {
+			templateUrl: "/assets/admin/ve/index.html",
+			controller: "ve-ctrl"
+		})
 		.when("/combo", {
 			templateUrl: "/assets/admin/combo/index.html",
 			controller: "combo-ctrl"
