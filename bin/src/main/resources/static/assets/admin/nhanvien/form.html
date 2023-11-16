@@ -1,0 +1,125 @@
+<!-- Content Wrapper -->
+<div class="page-wrapper w-100">
+	<!-- Container fluid  -->
+	<div class="container-fluid">
+		<!-- Sales Cards  -->
+		<div class="row">
+			<div class="col-10 mx-auto">
+				<form name="qryform" id="qryform" 
+					enctype="multipart/form-data" class="px-3" modelAttribute="item">
+					<div class="card">
+						<h3 class="alert alert-info text-center">Nhân viên</h3>
+						<!-- <div class="bg-success text-light px-3">${message}</div> -->
+						<div class="card-body">
+						<div class="row">
+							<div class="col-sm-4 text-center">
+								<label for="image"> <img
+									ng-src="/assets/Images/{{form.hing}}"
+									style="max-width: 100%" height="150px" />
+								</label>
+							</div>
+							<div class="col-sm-8">
+								<div class="row">
+									<div class="form-group col-sm-6">
+										<label>Mã nhân viên</label> <input ng-model="form.manv"
+											class="form-control" />
+									</div>
+									<div class="form-group col-sm-6">
+										<label>Mật khẩu</label> <input ng-model="form.matkhaunv"
+											class="form-control" />
+									</div>
+								</div>
+								<div class="row">
+								<div class="form-group col-sm-6">
+										<label>Họ tên</label> <input ng-model="form.tennv"
+											type="text" class="form-control" />
+									</div>
+									<div class="form-group col-sm-6">
+										<label>Số điện thoại</label> <input ng-model="form.sdt" 
+											class="form-control" />
+									</div>
+
+									
+								</div>
+								<div class="row">
+									<div class="form-group col-sm-6">
+										<label>Ngày sinh</label> <input ng-model="form.ngaysinh" 
+											class="form-control" />
+									</div>
+
+									<div class="form-group col-sm-6">
+										<label>Địa chỉ</label> <input ng-model="form.diachi"
+											type="text" class="form-control" />
+									</div>
+								</div>
+								<div class="row">
+									<div class="form-group col-sm-6">
+										<label>Hình ảnh</label> <input type="file" class="form-control"
+											id="image"
+											onchange="angular.element(this).scope().imageChanged(this.files)">
+									</div>
+									<div class="form-group col-sm-6">
+										<label>Vai trò</label>
+										<div class="form-control">
+											<div class="form-check ps-0">
+												<label ng-repeat="r in roles" class="form-check-label me-2" for="inlineFormCheck">
+													<input ng-model="selectedRole" ng-value="r" class="form-check-input1" type="checkbox" id="inlineFormCheck" ng-checked="selection.indexOf(r)>-1" ng-click="toggleRole(r)">
+													{{r.name}}
+												</label>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					</div>
+					<div class="d-grid gap-2 d-md-flex justify-content-md-center mt-4">
+						<button style="width: 100px; background: #0a58ca;" type="submit"
+							class="btn text-white fw-bolder"
+							formaction="/admin/product/form/create">Insert</button>
+						<button style="width: 100px; background: #0a58ca;" type="submit"
+							class="btn text-white fw-bolder"
+							formaction="/admin/product/form/update">Update</button>
+						<button style="width: 100px; background: #0a58ca;" type="submit"
+							class="btn text-white fw-bolder"
+							formaction="/admin/product/form/delete">Delete</button>
+						<button style="width: 100px; background: #0a58ca;" type="submit"
+							class="btn text-white fw-bolder"ng-click="reset()">Reset</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top"> <i
+	class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+				<button class="close" type="button" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+			</div>
+			<div class="modal-body">Select "Logout" below if you are ready
+				to end your current session.</div>
+			<div class="modal-footer">
+				<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+				<a class="btn btn-primary" href="login.html">Logout</a>
+			</div>
+		</div>
+	</div>
+</div>

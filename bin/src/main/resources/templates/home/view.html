@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/index :: dynamic(~{::main})}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width">
+</head>
+
+<!------------------------Scroll to top button------------------------------------------------>
+<style>
+.poster {
+	box-shadow: 0 0 15px red !important;
+}
+
+.buddy {
+	cursor: pointer;
+}
+
+.navbar-nav {
+	display: flex;
+	align-items: center;
+	padding: 0px 7.5px;
+}
+
+.maincontainer h3 {
+	color: white;
+	text-align: center;
+}
+
+.container {
+	text-align: center;
+}
+
+#navbarNav.nav-item.nav-link a:hover {
+	color: red;
+}
+
+.nav-link:hover {
+	color: red;
+}
+
+.nav-item :hover {
+	margin-bottom: 10px;
+	/* background-color: aquamarine; */
+	border-bottom: 3px;
+	border-color: red;
+	border-bottom-style: solid;
+}
+
+#header-nav .nav-link a:hover {
+	color: red;
+}
+
+.newsImg {
+	min-width: 200px;
+	min-height: 275px;
+	max-width: 200px;
+	max-height: 275px;
+	margin-left: 6px;
+}
+
+.singleNewsComponent {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.desc {
+	margin: 8px;
+	font-size: 16px;
+}
+
+.descContainer {
+	padding: 10px;
+}
+
+.newsTitle {
+	color: white;
+}
+
+.carousel-inner {
+	cursor: pointer;
+}
+</style>
+<script>
+	setTimeout(function() {
+		$('.section').fadeToggle();
+	}, 1000);
+</script>
+<body>
+	<main>
+		<!-- Banner Starts Here -->
+		<div class="main-content py-0">
+
+			<div id="carouselExampleFade"
+				class="carousel slide carousel-fade mx-auto" data-bs-ride="carousel"
+				style="height: auto; width: 85%;">
+				<div class="carousel-inner ">
+					<div class="carousel-item active ">
+						<img src="/assets/Images/ddance.jpg" height="400"
+							class="d-block w-100" alt="...">
+					</div>
+					<div class="carousel-item">
+						<img src="/assets/Images/5night.png" height="400"
+							class="d-block w-100" alt="...">
+					</div>
+					<div class="carousel-item">
+						<img src="/assets/Images/nun2.png" height="400"
+							class="d-block w-100" alt="...">
+					</div>
+					<div class="carousel-item">
+						<img src="/assets/Images/amhon.png" height="400"
+							class="d-block w-100" alt="...">
+					</div>
+					<div class="carousel-item">
+						<img src="/assets/Images/smite.jpg" height="400"
+							class="d-block w-100" alt="...">
+					</div>
+				</div>
+				<a class="carousel-control-prev" href="#carouselExampleFade"
+					role="button" data-bs-slide="prev"> <span
+					class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+					class="visually-hidden">Previous</span>
+				</a> <a class="carousel-control-next" href="#carouselExampleFade"
+					role="button" data-bs-slide="next"> <span
+					class="carousel-control-next-icon" aria-hidden="true"></span> <span
+					class="visually-hidden">Next</span>
+				</a>
+			</div>
+
+		</div>
+
+
+		<!-- Banner Ends Here -->
+		<br> <br>
+		<div class="scroll-bar">
+
+			<!-- <marquee>Welcome To <i>ApnaTheatre</i>.com<sup>&reg;</sup></marquee> -->
+			<!-- <label class="online">Stream Latest Movies Now!</label> -->
+			<div class="buddy">
+				<div class="slider container">
+					<div class="slide_track ">
+						<div th:each="f:${imageF}" class="slide">
+							<img style="height: 300px;"
+								th:src="@{|/assets/Images/${f.Hinh}|}" alt="" />
+						</div>
+					</div>
+				</div>
+			</div>
+			<br>
+			<ul class="nav nav-pills justify-content-center mt-3 mb-2"
+				id="pills-tab" role="tablist">
+				<li class="nav-item" role="presentation">
+					<button class="nav-link active" style="width: 580px;"
+						id="pills-hcm-tab" data-bs-toggle="pill"
+						data-bs-target="#pills-hcm" type="button" role="tab"
+						aria-controls="pills-hcm" aria-selected="true">Phim đang
+						chiếu</button>
+				</li>
+				<li class="nav-item" role="presentation">
+					<button class="nav-link" style="width: 580px;" id="pills-hn-tab"
+						data-bs-toggle="pill" data-bs-target="#pills-hn" type="button"
+						role="tab" aria-controls="pills-hn" aria-selected="false">Phim
+						sắp chiếu</button>
+				</li>
+			</ul>
+			<div class="tab-content" id="pills-tabContent">
+				<div class="tab-pane fade show active" id="pills-hcm"
+					role="tabpanel" aria-labelledby="pills-hcm-tab" tabindex="0">
+					<div class="suck shadow-lg pt-2 pb-4 px-5">
+						<div class="text-center text-warning mb-3"></div>
+						<div class="container" id="Movies">
+							<hr>
+							<div th:each="f:${items}" class="poster">
+								<div class="flip-card_i">
+									<div class="flip-card-inner_i">
+										<div class="flip-card-front_i">
+											<img th:src="@{|/assets/Images/${f.Hinh}|}" alt="Avatar"
+												style="width: 250px; height: 360px;">
+										</div>
+										<div class="flip-card-back_i">
+											<h5 th:utext=${f.Tenphim} class="mt-3"></h5>
+											<button th:utext=${f.Namsx} class="btn_i b3_i mt-3"
+												title="Year" style="color: white; width: 100px"></button>
+											<button th:utext="${f.Thoiluong}+' phút'" class="btn_i b2_i"
+												title="Minutes" style="color: white; width: 100px"></button>
+											<br /> <br />
+											<p class="para_i" th:each="f1:${f.ctPhims}">
+												<span class="ms-1 mb-3 fs-6" th:utext="${f1.Noidung}"></span>
+											</p>
+
+											<!--<form action="https://youtu.be/YoHD9XEInc0&t=17s"> -->
+											<button th:each="f1:${f.ctPhims}" class="trailer_i"
+												type="submit" value="" th:data-linkytb="${f1.Linkytb}"
+												onclick="openWin(this.getAttribute('data-linkytb'))">▶Trailer</button>
+											<script type="text/javascript">
+												function openWin(f1) {
+													var width = 600;
+													var height = 400;
+													var left = (window.innerWidth - width) / 2;
+													var top = (window.innerHeight - height) / 2;
+													var newWindow = window
+															.open(
+																	f1,
+																	"_blank",
+																	"top="
+																			+ top
+																			+ ",left="
+																			+ left
+																			+ ",height="
+																			+ height
+																			+ ",width="
+																			+ width
+																			+ ",channelmode=yes,fullscreen=yes,menubar=no,toolbar=no,location=no,status=no,scrollbars=no,noopener=no");
+												}
+											</script>
+
+
+											<!-- </form> -->
+											<br> <br> <a
+												th:href="@{|/home/film/detail/${f.Maphim}|}"><button
+													class="btn_i b4_i">Chi tiết</button></a>
+
+										</div>
+									</div>
+									<div class="flim">
+										<!-- <b>Inception</b><br>IMDb - 8.8 -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="pills-hn" role="tabpanel"
+					aria-labelledby="pills-hn-tab" tabindex="0">
+					<div class="khung shadow-lg pt-2 pb-4 px-5">
+						<div class="container-fluid" id="Movies">
+							<div class="newsContentWrapper">
+								<div class="container" id="Movies">
+									<hr>
+									<div th:each="f:${items1}" class="poster">
+										<div class="flip-card_i">
+											<div class="flip-card-inner_i">
+												<div class="flip-card-front_i">
+													<img th:src="@{|/assets/Images/${f.Hinh}|}" alt="Avatar"
+														style="width: 250px; height: 360px;">
+												</div>
+												<div class="flip-card-back_i">
+													<h5 th:utext=${f.Tenphim} class="mt-3"></h5>
+													<button th:utext=${f.Namsx} class="btn_i b3_i mt-3"
+														title="Year" style="color: white; width: 100px"></button>
+													<button th:utext="${f.Thoiluong}+' phút'"
+														class="btn_i b2_i" title="Minutes"
+														style="color: white; width: 100px"></button>
+													<br /> <br />
+
+													<p class="para_i" th:each="f1:${f.ctPhims}">
+														<span class="ms-1 mb-3 fs-6" th:utext="${f1.Noidung}"></span>
+													</p>
+
+													<!--<form action="https://youtu.be/YoHD9XEInc0&t=17s"> -->
+													<button th:each="f1:${f.ctPhims}" class="trailer_i"
+														type="submit" value="" th:data-linkytb="${f1.Linkytb}"
+														onclick="openWin(this.getAttribute('data-linkytb'))">▶Trailer</button>
+													<script type="text/javascript">
+														function openWin(f1) {
+															var width = 600;
+															var height = 400;
+															var left = (window.innerWidth - width) / 2;
+															var top = (window.innerHeight - height) / 2;
+															var newWindow = window
+																	.open(
+																			f1,
+																			"_blank",
+																			"top="
+																					+ top
+																					+ ",left="
+																					+ left
+																					+ ",height="
+																					+ height
+																					+ ",width="
+																					+ width
+																					+ ",channelmode=yes,fullscreen=yes,menubar=no,toolbar=no,location=no,status=no,scrollbars=no,noopener=no");
+														}
+													</script>
+													<!-- </form> -->
+													<br> <br> <a
+														th:href="@{|/home/film/detail/${f.Maphim}|}"><button
+															class="btn_i b4_i">Chi tiết</button></a>
+
+												</div>
+											</div>
+											<div class="flim">
+												<!-- <b>Inception</b><br>IMDb - 8.8 -->
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<script th:if="${swal != null}">
+		// Lấy giá trị của thuộc tính "swal"
+	    var swalType = "[[${swal}]]";
+	    if(swalType === "tc"){
+	    	const Toast = Swal.mixin({
+				  toast: true,
+				  position: 'top',
+				  showConfirmButton: false,
+				  timer: 3000,
+				  timerProgressBar: true,
+				  didOpen: (toast) => {
+				    toast.addEventListener('mouseenter', Swal.stopTimer)
+				    toast.addEventListener('mouseleave', Swal.resumeTimer)
+				  }
+				})
+
+				Toast.fire({
+				  icon: 'success',
+				  title: 'Đăng ký thành công'
+				})
+				
+	    }
+		</script>
+		<!-- <script th:if="${#request.remoteUser}">
+	    	const Toast = Swal.mixin({
+				  toast: true,
+				  position: 'top',
+				  showConfirmButton: false,
+				  timer: 3000,
+				  timerProgressBar: true,
+				  didOpen: (toast) => {
+				    toast.addEventListener('mouseenter', Swal.stopTimer)
+				    toast.addEventListener('mouseleave', Swal.resumeTimer)
+				  }
+				})
+				Toast.fire({
+				  icon: 'success',
+				  title: 'Đăng nhập thành công'
+				})
+		</script> -->
+	</main>
+
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="/assets/css/headcss.css">
+</head>
+
+<body>
+	<header style="width: 100%;">
+		<nav class="navbar navbar-expand-lg navbar-light bg-dark"
+			id="header-nav">
+			<div class="container-fluid">
+				<div class="container-fluid" style="height: 80px;">
+					<a class="navbar-brand" th:href="@{|/home/film|}"><img
+						class="logo" src="/assets/Images/2.png" alt="" width="30"
+						height="24"></a>
+					<button id="nav" class="navbar-toggler"
+						style="background-color: #8b0000" type="button"
+						data-bs-toggle="collapse" data-bs-target="#navbarNav"
+						aria-controls="navbarNav" aria-expanded="false"
+						aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"
+							style="background-color: dark-grey;"></span>
+					</button>
+
+					<div class="collapse navbar-collapse" id="navbarNav">
+						<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+							<li class="nav-item "><a class="nav-link active s"
+								aria-current="page" th:href="@{|/home/index|}"
+								onMouseOver="this.style.color='red'"
+								onMouseOut="this.style.color='white'">Trang chủ</a></li>
+							<li class="nav-item"><a class="nav-link "
+								th:href="@{|/home/movies|}" onMouseOver="this.style.color='red'"
+								onMouseOut="this.style.color='white'">Lịch chiếu</a></li>
+							<li class="nav-item"><a class="nav-link "
+								th:href="@{|/home/promotion|}" href="web-series.html"
+								onMouseOver="this.style.color='red'"
+								onMouseOut="this.style.color='white'">Khuyến mãi</a></li>
+							<li class="nav-item"><a class="nav-link"
+								th:href="@{|/home/price|}" onMouseOver="this.style.color='red'"
+								onMouseOut="this.style.color='white'">Giá vé</a></li>
+							<li class="nav-item"><a class="nav-link"
+								th:href="@{|/home/gioithieu|}"
+								onMouseOver="this.style.color='red'"
+								onMouseOut="this.style.color='white'">Giới thiệu</a></li>
+							<li class="nav-item"><a class="nav-link"
+								th:href="@{|/home/contact|}"
+								onMouseOver="this.style.color='red'"
+								onMouseOut="this.style.color='white'">Liên hệ</a></li>
+						</ul>
+						<th:block th:if="${#request.remoteUser}">
+							<nav class="navbar navbar-expand-lg">
+								<div class="container">
+									<div class="collapse navbar-collapse"
+										id="navbarSupportedContent">
+										<ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+											<li class="nav-item dropdown"><a style="width: 250px;"
+												class="nav-link dropdown-toggle" href="#" role="button"
+												data-bs-toggle="dropdown" aria-expanded="false"> <img
+													th:src="@{/assets/Images/user.png}"
+													style="width: 30px; border-radius: 50%;"> <span
+													class="ms-3" th:utext=${session.login.hoten}></span>
+											</a>
+												<ul class="dropdown-menu"
+													style="width: 220px; font-size: 18px;background:black;">
+													<li><a class="dropdown-item drop-title" th:href="@{/admin/index}"
+														th:if="${#request.isUserInRole('STAFF') or #request.isUserInRole('AD')}"
+														onMouseOver="this.style.color='red'"
+														onMouseOut="this.style.color='white'">Quản trị</a></li>
+													<li><a class="dropdown-item drop-title"
+														onMouseOver="this.style.color='red'"
+														onMouseOut="this.style.color='white'"
+														th:href="@{|/home/profile/${session.login.matk}|}">Vé của tôi</a></li>
+													<li><hr class="dropdown-divider"></li>
+													<li><a class="dropdown-item drop-title" th:href="@{/home/logoff}"
+														onMouseOver="this.style.color='red'"
+														onMouseOut="this.style.color='white'">Đăng xuất</a></li>
+												</ul></li>
+										</ul>
+									</div>
+								</div>
+							</nav>
+						</th:block>
+						<th:block th:unless="${#request.remoteUser}">
+							<div
+								style="position: relative; display: inline-block; padding-right: 15px;">
+								<div class="row">
+									<a th:href="@{|/home/register|}" class="button nut"
+										style="text-decoration: none;"><span class="gradient"></span>
+										<p>Đăng kí</p></a> <a th:href="@{|/home/login/form|}"
+										class="button nut mx-4" style="text-decoration: none;"><span
+										class="gradient"></span>
+										<p>Đăng nhập</p></a>
+								</div>
+							</div>
+						</th:block>
+					</div>
+				</div>
+		</nav>
+	</header>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+</body>
+</html>

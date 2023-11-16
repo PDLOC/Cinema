@@ -61,4 +61,6 @@ public class TicketController {
 		return "home/seat/bookseat";
 	}
 	
+	
+	
 }

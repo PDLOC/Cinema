@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/index :: dynamic(~{::main})}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+</head>
+<body>
+	<main>
+		<div class="login-div">
+			<form class="login" th:object="${acc}" method="POST">
+				<h1 class="sign mb-4">Đăng kí</h1>
+				<span class="seperator"></span>
+				<div class="input-text">
+					<input type="text" th:field="*{matk}" name="matk"
+						placeholder="Nhập tài khoản" />
+					<div class="mt-3 text-danger fw-bolder"
+						th:if="${#fields.hasErrors('matk')}" th:errors="*{matk}"></div>
+				</div>
+				<div class="input-text">
+					<input type="text" th:field="*{hoten}" name="hoten"
+						placeholder="Nhập họ tên" />
+					<div class="mt-3 text-danger fw-bolder"
+						th:if="${#fields.hasErrors('hoten')}" th:errors="*{hoten}"></div>
+				</div>
+				<div class="input-text">
+					<input type="text" th:field="*{sdt}" name="sdt"
+						placeholder="Nhập số điện thoại" />
+					<div class="mt-3 text-danger fw-bolder"
+						th:if="${#fields.hasErrors('sdt')}" th:errors="*{sdt}"></div>
+				</div>
+				<div class="input-text">
+					<input type="text" th:field="*{email}" name="email"
+						placeholder="Nhập email" />
+					<div class="mt-3 text-danger fw-bolder"
+						th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+				</div>
+				<div class="input-text">
+					<input type="text" th:field="*{ngaysinh}" name="ngaysinh"
+						placeholder="dd/MM/yyyy" />
+					<div class="mt-3 text-danger fw-bolder"
+						th:if="${#fields.hasErrors('ngaysinh')}" th:errors="*{ngaysinh}"></div>
+				</div>
+				<div class="input-text">
+					<input id="pass_signup" type="password" name="matkhau"
+						th:field="*{matkhau}" placeholder="Nhập mật khẩu" /><i
+						class="fa fa-fw fa-eye field-icon toggle-password"
+						id="togglePassword"></i>
+					<div class="mt-3 text-danger fw-bolder"
+						th:if="${#fields.hasErrors('matkhau')}" th:errors="*{matkhau}"></div>
+				</div>
+				<input class="signin-button" th:formaction="@{/home/register/save}"
+					type="submit" value="Đăng kí" />
+				<div class="remember-flex">
+					<div></div>
+				</div>
+				<div class="login-face">
+					<br>
+					<div class="new-members">
+						Đã có tài khoản. <a th:href="@{|/home/login/form|}" class="signup-link">Đăng
+							nhập tại đây</a>.
+					</div>
+					<br>
+					<div class="protection color_link help">
+						This page is protected by Google reCAPTCHA to ensure you're not a
+						bot.
+						<div class="learnmore">
+							<a href="#">Learn more.</a>
+						</div>
+					</div>
+				</div>
+			</form>
+			<span class="seperator"></span>
+		</div>
+		<script>
+			$(".toggle-password").click(function() {
+				$(this).toggleClass("fa-eye fa-eye-slash");
+				if ($("#pass_signup").attr("type") == "password") {
+					$("#pass_signup").attr("type", "text");
+				} else {
+					$("#pass_signup").attr("type", "password");
+				}
+			});
+		</script>
+		<script th:if="${swal != null}">
+		// Lấy giá trị của thuộc tính "swal"
+	    var swalType = "${swal}";
+	    
+	    if(swalType === "tc"){
+	    	const Toast = Swal.mixin({
+				  toast: true,
+				  position: 'top',
+				  showConfirmButton: false,
+				  timer: 2000,
+				  timerProgressBar: true,
+				  didOpen: (toast) => {
+				    toast.addEventListener('mouseenter', Swal.stopTimer)
+				    toast.addEventListener('mouseleave', Swal.resumeTimer)
+				  }
+				})
+
+				Toast.fire({
+				  icon: 'success',
+				  title: 'Đăng ký thành công'
+				})
+	    }else{
+	    	const Toast = Swal.mixin({
+				  toast: true,
+				  position: 'top',
+				  showConfirmButton: false,
+				  timer: 2000,
+				  timerProgressBar: true,
+				  didOpen: (toast) => {
+				    toast.addEventListener('mouseenter', Swal.stopTimer)
+				    toast.addEventListener('mouseleave', Swal.resumeTimer)
+				  }
+				})
+				Toast.fire({
+				  icon: 'error',
+				  title: 'Đăng ký không thành công. \n Vui lòng kiểm tra lại thông tin!!!!'
+				})
+	    }
+		</script>
+		<script src="https://smtpjs.com/v3/smtp.js"></script>
+	</main>
+</body>
+</html>

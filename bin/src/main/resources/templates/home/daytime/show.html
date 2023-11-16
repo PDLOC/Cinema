@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/index :: dynamic(~{::main})}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+</head>
+<body>
+	<main>
+		<div class="container-fluid" style="max-width: 1400px">
+			<h2 class="text-center" style="font-family: 'avantgarde-demi';">Lịch
+				Chiếu</h2>
+			<div class=" mb-3 text-center text-warning">
+				<p style="font-size: 14px">Lưu ý: Khán giả dưới 13 tuổi chỉ chọn
+					suất chiếu kết thúc trước 22h và Khán giả dưới 16 tuổi chỉ chọn
+					suất chiếu kết thúc trước 23h.</p>
+			</div>
+
+			<div class="row">
+				<div th:each="movie:${listMovies}" class="col-sm-6 mb-3 mb-sm-0">
+					<div class="card mb-3"
+						style="max-width: 750px; background: none; border: 2px solid black">
+						<div class="row g-0">
+							<div class="col-md-4">
+								<div class="zoom-img">
+									<img th:src="@{|/assets/Images/${movie.Hinh}|}"
+										class="img-fluid rounded-start h-100" alt="...">
+								</div>
+							</div>
+							<div th:each="inforM:${movie.ctPhims}" class="col-8">
+								<div class="card-body">
+									<div class="row">
+										<p  class="col-5 fw-bolder"
+											style="font-family: 'Montserrat'; color: gray; font-size: 15px" th:utext="${inforM.Loaiphim}"></p>
+										<p class="col-3 fw-bolder"
+											style="font-family: 'Montserrat'; color: gray; font-size: 15px" th:utext="${movie.Thoiluong}+' phút'"></p>
+									</div>
+									<h5 class="card-text text-white fw-border"
+										style="font-size: 26px;" th:utext="${movie.Tenphim}"></h5>
+									<div>
+										<span class="text-white fw-border" style="font-size: 18px;">Đạo diễn: </span>
+										<span class="fs-6 text-white" style="font-size: .14px" th:text="${inforM.Daodien}"></span>
+									</div>
+									<div class="mb-2">
+										<span class="text-white fw-border" style="font-size: 18px;">Khởi
+											chiếu : </span><span style="font-size: .14px;"
+											class="fs-6 text-white" th:utext="${inforM.Khoichieu}"></span>
+									</div>
+									<div class="mb-2">
+										<span class="text-white fw-border" style="font-size: 18px;">Lịch
+											Chiếu:</span>
+									</div>
+									<div class="showtime">
+										<button th:each="time:${inforM.listlich}"  type="button"
+											class="btn btn-outline-dark text-white me-2 mb-1" th:utext="${#strings.substring(time.Giobatdau, 0, 5)}"></button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</main>
+</body>
+</html>
