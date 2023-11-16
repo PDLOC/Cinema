@@ -296,10 +296,22 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 			}
 		})
 	</script>
-
+	
+	<!-- Pay -->
+	<script>
+		function pay(){
+			window.location.href="/home/booking/ticket/pay/"+ totalPay
+		}
+	</script>
+	
+	
+	
 	<!---------------------------- Ghế ------------------------------------------>
 	<script>
-    
+    	
+		let totalPay = null;
+	
+	
     	let itemsArray = [];
     
         let combo = 0;
@@ -392,6 +404,7 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
             
             document.getElementById("toTalPay").textContent = `Tổng Thanh Toán: ${formatNumber(totalPrice*(1-(giamgia/100)))} + ${formatNumber(combo)}`;
             document.getElementById("toTalPay2").textContent = `Thành Tiền: ${formatNumber(totalPrice*(1-(giamgia/100)) + combo)} VND`;
+            totalPay = totalPrice*(1-(giamgia/100)) + combo;
             document.getElementById("Pay").textContent = `${formatNumber(totalPrice + combo)} VND`;
             document.getElementById("TotalSeat2").textContent = `Số ghế ${76 - selectedSeatsCount}/76`
             /* payment */

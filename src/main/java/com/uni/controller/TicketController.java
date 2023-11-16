@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
+import com.uni.controller.PaymentController;
 import com.uni.service.ChitietphimService;
 import com.uni.entity.Chitietphim;
 import com.uni.entity.Lich;
@@ -62,5 +64,15 @@ public class TicketController {
 	}
 	
 	
-	
+	@RequestMapping("booking/ticket/pay/{totalPay}")
+	public String payment(@PathVariable("totalPay") long totalpay) {
+		PaymentController pc = new PaymentController();
+		String urlpay = null;
+		try {
+			urlpay = pc.payment(totalpay);
+		} catch (Exception e) {
+			System.out.print(e);
+		}
+		return "redirect:"+urlpay;
+	}
 }

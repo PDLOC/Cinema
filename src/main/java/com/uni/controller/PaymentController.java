@@ -25,16 +25,13 @@ import java.util.Map;
 import java.util.TimeZone;
 
 
-@RestController
 public class PaymentController {
-	@GetMapping("/pay")
-	public String payment() throws UnsupportedEncodingException{
-		
+	public String payment(long mount) throws Exception{
 		
 		String vnp_Version = "2.1.0";
         String vnp_Command = "pay";
         String orderType = "other";
-        long amount = 10000*100;
+        long amount = mount*100;
         String bankCode = "NCB";
         
         String vnp_TxnRef = config.getRandomNumber(8);
