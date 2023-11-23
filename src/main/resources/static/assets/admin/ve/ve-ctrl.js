@@ -13,6 +13,12 @@ app.controller("ve-ctrl",function($scope,$http){
 		});
 		
 	}
+		    //Hiển thị lên form
+    $scope.edit = function(item){
+		$scope.form = angular.copy(item);
+		
+    }
+	
 		  
 	      //Upload Hình
     $scope.imageChanged = function(files){

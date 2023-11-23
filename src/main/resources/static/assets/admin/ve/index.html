@@ -39,6 +39,12 @@
 							    <td style="padding-top: 20px; " class="align-middle">{{item.soluong}}</td>
 							    <td style="padding-top: 20px; " class="align-middle">{{item.thanhtien}}</td>
 							      <td style="padding-top: 20px; " class="align-middle">{{item.trangthai?'thanh toán':'chưa thanh toán'}}</td>
+							      <td>                         
+<a class='btn btn-warning' style="font-size: 14px" data-bs-toggle="modal" data-bs-target="#exampleModal"
+								ng-click="edit(item)"> <span
+									class="glyphicon glyphicon-edit"></span> Edit
+							</a> 
+</td>
 								
 							</tr>
 						
@@ -62,8 +68,105 @@
 	<!-- End Container fluid  -->
 </div>
 <!-- End of Content Wrapper -->
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+     
+      <div class="modal-body">
+        <div class="card">
+						
+						<div class="card-body">
+							<div class="row">
+								<div class="col-sm-4 mt-5 text-center">
+									<label for="image"> <img
+										ng-src="/assets/Images/{{form.hinh}}" style="max-width: 100%"
+										height="400px" />
+									</label>
+							
+
+								</div>
+								<div class="col-sm-8">
+									<div class="row">
+										<div class="form-group col-sm-6">
+											<label>Mã vé</label> <input ng-model="form.mave" disabled
+												class="form-control" />
+										</div>
+										<div class="form-group col-sm-6">
+											<label>Tên phim</label> <input ng-model="form.tenphim" disabled
+												class="form-control" />
+										</div>
+									</div>
+									<div class="row">
+										<div class="form-group col-sm-6">
+											<label>Họ tên</label> <input ng-model="form.taikhoan.hoten"disabled
+												type="text" class="form-control" />
+										</div>
+										<div class="form-group col-sm-6">
+											<label>Ngày chiếu</label> <input ng-model="form.ngaychieu"disabled
+												class="form-control" />
+										</div>
 
 
+									</div>
+									<div class="row">
+										<div class="form-group col-sm-6">
+											<label>Giờ bắt đầu</label> <input ng-model="form.giobatdau"disabled
+												class="form-control" />
+										</div>
+
+										<div class="form-group col-sm-6">
+											<label>Giờ kết thúc</label> <input ng-model="form.gioketthuc" disabled
+												class="form-control" />
+										</div>
+									</div>
+									<div class="row">
+										<div class="form-group col-sm-6">
+											<label>Ngày giao dịch</label> <input ng-model="form.ngaygiaodich"disabled
+												type="text" class="form-control" />
+										</div>
+									<div class="form-group col-sm-6">
+											<label>Ghế</label> <input ng-model="form.ghe"disabled
+												type="text" class="form-control" />
+										</div>
+									</div>
+									<div class="row">
+										<div class="form-group col-sm-6">
+											<label>Số lượng vé</label> <input ng-model="form.soluong"disabled
+												type="text" class="form-control" />
+										</div>
+									<div class="form-group col-sm-6">
+											<label>Tổng tiền</label> <input ng-model="form.thanhtien"disabled
+												type="text" class="form-control" />
+										</div>
+									</div>
+										<div class="row">
+										<div class="form-group col-sm-6">
+											<label>Trạng thái</label> <input ng-model="form.trangthai?'thanh toán':'chưa thanh toán'"disabled
+												type="text" class="form-control" />
+										</div>
+									<div class="form-group col-sm-6">
+											<label>Combo</label> <input ng-model="form.combo?'null':''"disabled
+												type="text" class="form-control" />
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+	const myModal = document.getElementById('myModal')
+const myInput = document.getElementById('myInput')
+
+myModal.addEventListener('shown.bs.modal', () => {
+  myInput.focus()
+})
+	
+</script>
 <!-- Scroll to Top Button-->
 <a class="scroll-to-top rounded" href="#page-top"> <i
 	class="fas fa-angle-up"></i>
