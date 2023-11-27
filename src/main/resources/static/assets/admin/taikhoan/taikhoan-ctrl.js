@@ -44,7 +44,7 @@ app.controller("taikhoan-ctrl",function($scope,$http){
     $scope.edit = function(item){
 		$scope.form = angular.copy(item);
 		$scope.getOneByRole(item.username);
-		$('#pills-home-tab').tab('show');
+		/*$('#pills-home-tab').tab('show');*/
     }
     
         //Thêm khách hàng
@@ -77,14 +77,14 @@ app.controller("taikhoan-ctrl",function($scope,$http){
 	
     //Remove khách hàng
     $scope.delete = function(item){
-		$http.delete(`/rest/customers/${item.username}`).then(resp=>{
-			var index = $scope.items.findIndex(kh=> kh.username == item.username);
+		$http.delete(`/rest/customers/${item.matk}`).then(resp=>{
+			var index = $scope.items.findIndex(kh=> kh.matk == item.matk);
 			$scope.items.splice(index,1);
 			$scope.reset();
-			alert('Xoá sản phẩm thành công');
+			alert('Xoá thành công');
 			console.log(resp.data);
 		}).catch(err=>{
-			alert('Lỗi xoá sản phẩm!!!!')
+			alert('Lỗi xoá !!!!')
 			console.log("Error ",err);
 		})
 	}
