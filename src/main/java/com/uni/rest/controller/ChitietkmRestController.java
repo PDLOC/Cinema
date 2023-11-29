@@ -36,7 +36,7 @@ public class ChitietkmRestController {
 		return chitietkmService.create(ctkm);
 	}
 	
-	@PutMapping("{Makm}")
+	@PutMapping("{id}")
 	public Chitietkm update(@RequestBody Chitietkm ctkm,@PathVariable("id")Integer id) {
 		return chitietkmService.update(ctkm);
 	}
