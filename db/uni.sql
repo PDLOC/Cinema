@@ -125,10 +125,12 @@ create table Ve(
 	Ngaygiaodich date,
 	Ghe varchar(30),
 	Soluong int,
+	Giamgia int null,
 	Thanhtien float,
 	Hinh varchar(225),
 	Trangthai bit
 );
+
 
 -----------------------------------------------------------------------------------
 insert into Taikhoan values
