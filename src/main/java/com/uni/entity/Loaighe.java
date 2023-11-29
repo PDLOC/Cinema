@@ -23,6 +23,6 @@ import lombok.Setter;
 public class Loaighe {
 	@Id
 	Integer Maloai;
-	String Loaive;
+	String Loaighe;
 	Integer Dongia;
 }

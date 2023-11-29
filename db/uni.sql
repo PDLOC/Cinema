@@ -29,8 +29,6 @@ create table Phanquyen(
 create table Phong(
 	Mapc int identity(1,1) primary key,
 	Tenpc nvarchar(225),
-	Ghe varchar(10),
-	Trangthai bit
 );
 
 ------------------------------------Phim----------------------------------------------
@@ -69,17 +67,17 @@ create table Lich(
 );
 
 
-------------------------------------Vé----------------------------------------------
+------------------------------------Trạng thái phim----------------------------------------------
 create table Trangthaiphim(
 	Stt int identity(1,1) primary key,
 	Trangthai nvarchar(255)
 );
 
 
-------------------------------------Loại vé----------------------------------------------
+------------------------------------Loại ghế----------------------------------------------
 create table LGhe(
 	Maloai int identity(1,1) primary key,
-	Loaive nvarchar(125),
+	Loaighe nvarchar(125),
 	Dongia int
 );
 
@@ -100,14 +98,6 @@ create table Chitietkm(
 	Mota NVARCHAR(MAX) NULL
 );
 
-------------------------------------Đồ Ăn----------------------------------------------
-create table Doan (
-	Mada int identity(1,1) primary key,
-	Tenda nvarchar(125),
-	Soluong int,
-	Dongia float,
-	Hinh nvarchar(225)
-);
 
 ------------------------------------Combo----------------------------------------------
 create table Combo(
@@ -120,13 +110,13 @@ create table Combo(
 	Hinh  varchar(225)
 );
 
-select * from Combo
 
 ------------------------------------Vé----------------------------------------------
 create table Ve(
-	MaVe varchar(255) primary key,
+	MaVe int identity(1,1) primary key,
 	Matk varchar(255),
 	Lichstt int,
+	Makm varchar(10) null,
 	Combo nvarchar(max) null,
 	Tenphim nvarchar(255),
 	Ngaychieu date,
@@ -135,13 +125,11 @@ create table Ve(
 	Ngaygiaodich date,
 	Ghe varchar(30),
 	Soluong int,
-	Giamgia int null,
 	Thanhtien float,
 	Hinh varchar(225),
 	Trangthai bit
 );
 
-drop table Ve
 -----------------------------------------------------------------------------------
 insert into Taikhoan values
 ('phamloc',N'Phạm Đại Lộc','phamloc402@gmail.com','0799815474','09/21/1999','123456',N'53 Trần Quang Khải Q.1',N'user.png'),
@@ -270,20 +258,39 @@ insert into Lich values
 ('CT010','09/30/2023','19:00','21:00'),
 ('CT010','09/30/2023','22:00','00:00');
 
+create table Ve(
+	MaVe int identity(1,1) primary key,
+	Matk varchar(255),
+	Lichstt int,
+	Makm varchar(10) null,
+	Combo nvarchar(max) null,
+	Tenphim nvarchar(255),
+	Ngaychieu date,
+	Giobatdau time,
+	Gioketthuc time,
+	Ngaygiaodich date,
+	Ghe varchar(30),
+	Soluong int,
+	Giamgia int null,
+	Thanhtien float,
+	Hinh varchar(225),
+	Trangthai bit
+);
 
-insert into Ve(Mave,Matk,Lichstt,Combo,Tenphim,Ngaychieu,Giobatdau,Gioketthuc,Ngaygiaodich,Ghe,Soluong,Giamgia,Thanhtien,Hinh,Trangthai)values
-('UC000001','phamloc',1,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','09:00','08/24/2023','E3,E4,E5',3,null,330000,'shin.png',1),
-('UC000002','huyvu',1,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','09:00','08/24/2023','E3,E4,E5',3,null,330000,'shin.png',1),
-('UC000003','huyhoai',1,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','09:00','08/24/2023','E3,E4,E5',3,null,330000,'shin.png',1),
-('UC000004','theky',1,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','09:00','08/23/2023','E3,E4,E5',3,null,330000,'shin.png',1),
-('UC000005','hoangviet',1,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','09:00','08/23/2023','E3,E4,E5',3,null,330000,'shin.png',1),
-('UC000006','duyanh',2,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','10:00','12:00','08/24/2023','F3,F4,F5,F6,F7,F8',6,null,660000,'shin.png',1),
-('UC000007','phamloc',11,null,N'Oppenheimer','08/29/2023','15:00','17:00','08/28/2023','E1,E2',2,null,220000,'oppenheimer.png',1),
-('UC000008','phamloc',2,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','10:00','12:00','08/24/2023','E3,E4,E5',3,null,330000,'shin.png',1),
-('UC000009','huyvu',10,null,N'Oppenheimer','08/29/2023','07:00','09:00','08/28/2023','D1,D2',2,null,200000,'oppenheimer.png',1),
-('UC000010','duyanh',6,null,N'Kẻ Ẩn Danh','09/25/2023','17:00','19:00','09/24/2023','E3,E4,E5',3,null,330000,'keandanh.png',1),
-('UC000011','hoangviet',9,null,N'Thiện ác đối đầu 3','08/27/2023','23:00','01:00','08/27/2023','G3,G4',2,null,220000,'thienacdoidau.png',1);
-
+SET IDENTITY_INSERT Ve ON 
+insert into Ve(Mave,Matk,Lichstt,Makm,Combo,Tenphim,Ngaychieu,Giobatdau,Gioketthuc,Ngaygiaodich,Ghe,Soluong,Giamgia,Thanhtien,Hinh,Trangthai)values
+(1000100,'phamloc',1,'km01',null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','09:00','08/24/2023','E3,E4,E5',3,10,330000,'shin.png',1),
+(1000101,'huyvu',1,'km01',null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','09:00','08/24/2023','E3,E4,E5',3,10,330000,'shin.png',1),
+(1000102,'huyhoai',1,'km01',null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','09:00','08/24/2023','E3,E4,E5',3,10,330000,'shin.png',1),
+(1000103,'theky',1,'km01',null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','09:00','08/23/2023','E3,E4,E5',3,10,330000,'shin.png',1),
+(1000104,'hoangviet',1,'km01',null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','09:00','08/23/2023','E3,E4,E5',3,10,330000,'shin.png',1),
+(1000105,'duyanh',2,'km01',null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','10:00','12:00','08/24/2023','F3,F4,F5,F6,F7,F8',6,10,660000,'shin.png',1),
+(1000106,'phamloc',11,null,null,N'Oppenheimer','08/29/2023','15:00','17:00','08/28/2023','E1,E2',2,null,220000,'oppenheimer.png',1),
+(1000107,'phamloc',2,null,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','10:00','12:00','08/24/2023','E3,E4,E5',3,null,330000,'shin.png',1),
+(1000108,'huyvu',10,null,null,N'Oppenheimer','08/29/2023','07:00','09:00','08/28/2023','D1,D2',2,null,200000,'oppenheimer.png',1),
+(1000109,'duyanh',6,null,null,N'Kẻ Ẩn Danh','09/25/2023','17:00','19:00','09/24/2023','E3,E4,E5',3,null,330000,'keandanh.png',1),
+(1000110,'hoangviet',9,'km01',null,N'Thiện ác đối đầu 3','08/27/2023','23:00','01:00','08/27/2023','G3,G4',2,10,220000,'thienacdoidau.png',1);
+SET IDENTITY_INSERT Ve OFF 
 
 insert into Chitietphim(Mact,Maphim,Loaiphim,Mapc,Tenphim,Khoichieu,Daodien,Dienvien,Noidung,Linkytb,Hinh) values
 ('CT01','P01',N'Hoạt hình',1,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023',N'Hitoshi Ohne',N'Yumiko Kobayashi, Miki Narahashi, Aoi Morikawa, Satomi Kourogi, Suzuki Mogura',N'3DCG! Shin - Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực ~ Sushi Bay ~. Xoay quanh câu chuyện về hai nguồn sáng 

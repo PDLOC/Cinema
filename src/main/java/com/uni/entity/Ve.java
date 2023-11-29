@@ -6,6 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -27,9 +29,11 @@ import lombok.NoArgsConstructor;
 @Table(name = "Ve")
 public class Ve implements Serializable {
 	@Id
-	String mave;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	Integer mave;
 	String tenphim;
 	String combo;
+	String makm;
 	@Temporal(TemporalType.DATE)
 	@JoinColumn(name = "Ngaychieu")
 	Date ngaychieu;
