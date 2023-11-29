@@ -21,7 +21,7 @@ app.controller("khuyenmai-ctrl", function($scope, $http) {
 	//Hiển thị lên form
 	$scope.edit = function(item) {
 		$scope.form = angular.copy(item);
-		$('#pills-home-tab').tab('show');
+		/*$('#pills-home-tab').tab('show');*/
 	}
 
 	//Thêm
