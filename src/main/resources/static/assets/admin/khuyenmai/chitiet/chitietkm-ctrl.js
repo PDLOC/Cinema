@@ -14,7 +14,9 @@ app.controller("chitietkm-ctrl",function($scope,$http){
 	
 	    //Xoá form
     $scope.reset = function(){
-		
+		$scope.form = {
+			
+		}
     }
     
 	    //Hiển thị lên form
