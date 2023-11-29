@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/index :: dynamic(~{::main})}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+</head>
+<body>
+	<main>
+		<div class=container-fluid style="max-width: 1380px">
+			<h2 class="text-center mb-4" style="font-family: 'avantgarde-demi';">Khuyến
+				mãi</h2>
+			<div class="row">
+				<div th:each="km: ${listkm}" class="col-3 mb-3">
+					<a class="km" th:href="@{|/home/promotion/detail/${km.makm}|}">
+						<div class="card" style="width: 18rem;">
+							<div class="zoom-img">
+								<img th:src="@{|/assets/km-images/${km.hinh}|}"
+									class="card-img-top" alt="...">
+							</div>
+							<div class="card-body">
+								<h5 class="card-title fw-bolder text-secondary h5 mb-3" th:utext="${#dates.format(km.ngaybatdau,'dd/MM/yyyy')}"></h5>
+								<p class="card-text text-white para_i" style="font-size: 20px"
+									th:utext="${km.tenkm}">/p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+	</main>
+</body>
+</html>

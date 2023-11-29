@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Đặt đồ ăn</title>
+    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+</head>
+<style>
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .food-list {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .food-item {
+        width: 30%;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .food-item img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    .food-item h3 {
+        margin-bottom: 10px;
+    }
+
+    .quantity-input {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .quantity-input .quantity {
+        width: 40px;
+        text-align: center;
+    }
+
+    .price {
+        margin-bottom: 10px;
+    }
+
+    .cart {
+        margin-top: 40px;
+    }
+
+    .cart h2 {
+        text-align: center;
+    }
+
+    .cartItems {
+        list-style-type: none;
+        padding: 0;
+        margin-top: 10px;
+    }
+
+    .cartItems li {
+        margin-bottom: 5px;
+    }
+
+    .total {
+        text-align: right;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+
+    .checkout {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Chọn đồ ăn</h1>
+        </div>
+        <div class="food-list">
+            <div class="food-item">
+                <img src="food1.jpg" alt="Đồ ăn 1">
+                <h3>Đồ ăn 1</h3>
+                <div class="quantity-input">
+                    <button class="decrease-quantity">-</button>
+                    <input type="number" class="quantity" value="1">
+                    <button class="increase-quantity">+</button>
+                </div>
+                <div class="price">Giá: $10</div>
+            </div>
+            <div class="food-item">
+                <img src="food2.jpg" alt="Đồ ăn 2">
+                <h3>Đồ ăn 2</h3>
+                <div class="quantity-input">
+                    <button class="decrease-quantity">-</button>
+                    <input type="number" class="quantity" value="1">
+                    <button class="increase-quantity">+</button>
+                </div>
+                <div class="price">Giá: $15</div>
+            </div>
+            <div class="food-item">
+                <img src="food3.jpg" alt="Đồ ăn 3">
+                <h3>Đồ ăn 3</h3>
+                <div class="quantity-input">
+                    <button class="decrease-quantity">-</button>
+                    <input type="number" class="quantity" value="1">
+                    <button class="increase-quantity">+</button>
+                </div>
+                <div class="price">Giá: $12</div>
+            </div>
+        </div>
+        <div class="cart">
+            <h2>Giỏ hàng</h2>
+            <ul id="cartItems"></ul>
+            <div class="total">Tổng cộng: $<span id="totalAmount">0</span></div>
+            <button class="checkout">Thanh toán</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const decreaseQuantityButtons = document.querySelectorAll('.decrease-quantity');
+            const increaseQuantityButtons = document.querySelectorAll('.increase-quantity');
+            const quantityInputs = document.querySelectorAll('.quantity');
+            const cartItems = document.getElementById('cartItems');
+            const totalAmount = document.getElementById('totalAmount');
+            let totalPrice = 0;
+
+            // Xử lý khi người dùng giảm số lượng
+            decreaseQuantityButtons.forEach(function (button, index) {
+                button.addEventListener('click', function () {
+                    if (quantityInputs[index].value > 1) {
+                        quantityInputs[index].value--;
+                        updateCart(index);
+                    }
+                });
+            });
+
+            // Xử lý khi người dùng tăng số lượng
+            increaseQuantityButtons.forEach(function (button, index) {
+                button.addEventListener('click', function () {
+                    quantityInputs[index].value++;
+                    updateCart(index);
+                });
+            });
+
+            // Cập nhật giỏ hàng và tổng cộng
+            function updateCart(index) {
+                const quantity = parseInt(quantityInputs[index].value);
+                const priceElement = document.querySelectorAll('.price')[index];
+                const price = parseFloat(priceElement.innerText.split(':')[1].trim().slice(1));
+                const itemName = document.querySelectorAll('h3')[index].innerText;
+
+                // Xóa sản phẩm nếu đã tồn tại trong giỏ hàng
+                const existingItem = document.getElementById(`cartItem-${index}`);
+                if (existingItem) {
+                    totalPrice -= parseFloat(existingItem.dataset.price);
+                    existingItem.remove();
+                }
+
+                // Tạo một mục mới trong giỏ hàng
+                const cartItem = document.createElement('li');
+                cartItem.setAttribute('id', `cartItem-${index}`);
+                cartItem.setAttribute('data-price', (price * quantity).toFixed(2));
+                cartItem.innerText = `${itemName} x ${quantity} - $${(price * quantity).toFixed(2)}`;
+                cartItems.appendChild(cartItem);
+
+                // Cập nhật tổng cộng
+                totalPrice += price * quantity;
+                totalAmount.innerText = totalPrice.toFixed(2);
+            }
+
+            // Xử lý khi người dùng nhấp vào nút Thanh toán
+            document.querySelector('.checkout').addEventListener('click', function () {
+                // Thực hiện quá trình thanh toán, ví dụ: chuyển đến trang thanh toán, lưu thông tin đơn hàng, vv.
+                console.log('Thực hiện thanh toán');
+            });
+        });
+    </script>
+</body>
+
+</html>

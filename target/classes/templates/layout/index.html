@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="dynamic(main)">
+
+<head>
+<meta charset="UTF-8">
+<title>Universe</title>
+<link rel="shortcut icon" href="/assets/Images/2.png "
+	type="image/x-icon">
+
+<!-- Font  -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap"
+	rel="stylesheet">
+
+<!-- FontAweSome -->
+<script src="https://kit.fontawesome.com/f41adfc48f.js"
+	crossorigin="anonymous"></script>
+
+<!-- Bootstrap CSS -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+	crossorigin="anonymous">
+<link href="/assets/statics/style.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+	integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<link rel="stylesheet" href="/assets/statics/bootstrap.min.css">
+<link rel="stylesheet" href="/assets/statics/style-min.css">
+<link rel="stylesheet" href="/assets/css/cards.css">
+<link rel="stylesheet" href="/assets/css/ghe.css">
+<link rel="stylesheet" href="/assets/css/faq.css">
+<link rel="stylesheet" href="/assets/css/login.css">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.15/dist/sweetalert2.min.js"></script>
+</head>
+<style>
+#scrollToTopButton {
+	position: fixed;
+	bottom: 40px;
+	right: 25px;
+	font-size: 25px;
+	z-index: 99;
+	width: 50px;
+	height: 50px;
+	background-color: red;
+	color: black;
+	border: none;
+	cursor: pointer;
+	outline: none;
+	padding: 6px;
+	border-radius: 50%;
+}
+
+#scrollToTopButton:hover, i:hover {
+	background-color: white;
+	color: red;
+}
+
+/* Ẩn nút tăng giảm của input kiểu số */
+input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button
+	{
+	-webkit-appearance: none;
+	margin: 0;
+}
+</style>
+
+<body ng-app="cinema-app" ng-controller="cinema-ctrl"
+	style="background-image: url(/assets/Images/back.jpg); background-size: cover;">
+	<div th:replace="/layout/menu.html"></div>
+	<article>
+		<div th:replace="${main}"></div>
+	</article>
+
+	<div th:replace="/layout/footer.html"></div>
+
+	<!----------------------scroll back to top button-->
+	<button id="scrollToTopButton" title="Go to top">
+		<i class="fa fa-angle-double-up" aria-hidden="true"></i>
+	</button>
+	<script>
+        $(document).ready(function () {
+            var scrollTopButton = document.getElementById("scrollToTopButton");
+            window.onscroll = function () { scrollFunction() };
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    scrollTopButton.style.display = "block";
+                } else {
+                    scrollTopButton.style.display = "none";
+                }
+            }
+
+            $("#scrollToTopButton").click(function () {
+                $('html ,body').animate({ scrollTop: 0 }, 800)
+            });
+        });
+    </script>
+
+	<!-- footer scripts -->
+
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script src="https://daniellaharel.com/raindrops/js/raindrops.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="/assets/js/main-min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
+		integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+	<script>
+        function logout() {
+            window.location.replace("login.html");
+        }
+    </script>
+
+	<script>
+        document.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 0) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        })
+    </script>
+
+	<!---------------------------- Lịch chiếu trong chi tiết --------------------------------------------->
+	<script th:inline="javascript">
+        // Lấy tham chiếu đến các phần tử DOM
+        var btnOpen = document.getElementById("btnOpen");
+        var danhSachNut = document.getElementById("danhSachNut");
+        var btnOpen2 = document.getElementsByClassName("btnOpen2");
+        var danhSachNut2 = document.getElementById("danhSachNut2");
+
+        // Lắng nghe sự kiện click vào nút bấm
+        btnOpen.addEventListener("click", function () {
+            // Kiểm tra trạng thái hiển thị của dàn nút
+            if (danhSachNut.style.display === "none") {
+                // Nếu đang ẩn, hiển thị dàn nút
+                danhSachNut.style.display = "block";
+            } else {
+                // Nếu đang hiển thị, ẩn dàn nút
+                danhSachNut.style.display = "none";
+            }
+        });
+        for(var i = 0; i < btnOpen2.length; i++){
+        	var a = btnOpen2[i];
+        	// Lắng nghe sự kiện click vào nút bấm
+        	a.addEventListener("click", function () {
+    		 // Lấy giá trị của thuộc tính "ngaychieu" từ phần tử a
+            var ngaychieu = this.getAttribute("data-ng");
+			var lich = /*[[${listLich2}]]*/'';
+			var giobatdauArray = [];
+			// Lặp qua mảng lich và hiển thị giờ bắt đầu của mỗi item
+		    lich.map(item=> {
+		      // Kiểm tra nếu ngày chiếu của item khớp với ngày được chọn
+		      var ngaychieuFormatted = formatNgayChieu(item.ngaychieu);
+		      if (ngaychieuFormatted === ngaychieu) {
+		        giobatdauArray.push(item.giobatdau);
+				console.log(item)							
+		      }
+		    });
+		 
+
+			var giobatdauArrayElement = document.getElementById("giobatdauArray");
+			var giobatdauContainerElement = document.getElementById("giobatdauContainer");
+			//Remove existing buttons
+			while (giobatdauContainerElement.firstChild) {
+			giobatdauContainerElement.removeChild(giobatdauContainerElement.firstChild);
+			}
+			
+			//Create and add new buttons
+			for (var i = 0; i < giobatdauArray.length; i++) {
+			var giobatdau = giobatdauArray[i];
+			
+			var buttonElement = document.createElement("button");
+			buttonElement.type = "button";
+			buttonElement.className = "btn btn-outline-danger mb-2 text-white";
+			buttonElement.style.borderRadius = "12px";
+			buttonElement.style.width = "140px";
+			buttonElement.style.height = "60px";
+			buttonElement.style.fontSize = "15px";
+			buttonElement.textContent = formatGiobatdau(giobatdau);
+			
+			var linkElement = document.createElement("a");
+			  lich.map(function (item) {
+			    if (item.ctphims && item.ctphims.mact && item.giobatdau === giobatdau) {
+			      var hrefValue =
+			        "/home/booking/ticket/" +
+			        item.ctphims.mact +
+			        "/" +
+			        item.formattedGiobatdau;
+			      linkElement.setAttribute("href", hrefValue);
+			    }
+			  });
+
+			linkElement.appendChild(buttonElement);
+	
+			var divElement = document.createElement("div");
+			divElement.className = "cus-sty col-md-2";
+			divElement.style.margin = "0.05px";
+			divElement.style.display = "inline-block";
+			divElement.appendChild(linkElement);
+			
+			giobatdauContainerElement.appendChild(divElement);
+			}
+            // Kiểm tra trạng thái hiển thị của dàn nút
+            if (danhSachNut2.style.display === "none") {
+                // Nếu đang ẩn, hiển thị dàn nút
+                danhSachNut2.style.display = "block";
+            } else {
+                // Nếu đang hiển thị, ẩn dàn nút
+                danhSachNut2.style.display = "none";
+            }
+        });
+    }
+
+	     // Hàm để định dạng lại giá trị ngày chiếu
+	     function formatNgayChieu(ngaychieu) {
+	       var date = new Date(ngaychieu);
+	       var day = date.getDate();
+	       var month = date.getMonth() + 1;
+	       var year = date.getFullYear();
+	
+	       // Đảm bảo rằng các giá trị ngày và tháng có 2 chữ số
+	       if (day < 10) {
+	         day = "0" + day;
+	       }
+	       if (month < 10) {
+	         month = "0" + month;
+	       }
+	
+	       return day + "/" + month + "/" + year;
+	     }
+	     
+	  // Hàm để định dạng giá trị giờ bắt đầu thành "HH:mm"
+	     function formatGiobatdau(giobatdau) {
+	       var date = new Date();
+	       var parts = giobatdau.split(":");
+	       date.setHours(parts[0]);
+	       date.setMinutes(parts[1]);
+	       
+	       var giobatdauFormatted = date.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' });
+	       return giobatdauFormatted;
+	     }
+    </script>
+
+
+
+	<!------------------- data khuyen mai ---------------------------------->
+	<script th:inline="javascript">
+		let giamgia = 0;
+		function khuyenMai (){
+			var khuyenMaiList = /*[[${itemKM}]]*/'';
+			var input = document.getElementById("khuyenMaiInput");
+	        var inputValue = input.value;
+			khuyenMaiList.map(item =>{
+				if (inputValue === item.makm) {
+					giamgia = item.giamgia;
+					input.value = "";
+				}
+			})
+			updateSelectedSeats();
+		}
+	</script>
+
+	<!---------------- Loại ghế ----------------------->
+	<script th:inline="javascript">
+		var itemLGhe = /*[[${itemLGhe}]]*/'';
+		let vip = 0;
+		let regular = 0;
+		let couple = 0;
+		itemLGhe.map(item =>{
+			if (item.loaive === "VIP") {
+				vip = item.dongia;
+			}
+			if (item.loaive === "Couple") {
+				couple = item.dongia;
+			}
+			if (item.loaive === "Regular") {
+				regular = item.dongia;
+			}
+		})
+	</script>
+	
+	<!-- Pay -->
+	<script>
+		function pay(){
+			window.location.href="/home/booking/ticket/pay/"+ totalPay
+		}
+	</script>
+	
+	
+	
+	<!---------------------------- Ghế ------------------------------------------>
+	<script>
+    	
+		let totalPay = null;
+	
+	
+    	let itemsArray = [];
+    
+        let combo = 0;
+
+        const tongGhe = document.getElementById('countSeat')
+
+        var countSeat = [];
+       
+
+        // Lấy danh sách các ghế
+        const seats = document.querySelectorAll('.seat');
+
+        // Số lượng ghế đã chọn
+        let selectedSeats = [];
+        let selectedVipSeats = [];
+        let selectedRegularSeats = [];
+        let selectedCoupleSeats = [];
+        // Giá vé
+        let regularSeatPrice = 0;
+        let vipSeatPrice = 0;
+        let coupleSeatPrice = 0;
+
+        /* Quá giờ giảm giá */
+        const gioBatDauElement = document.getElementById('GioBatDau');
+        const gioBatDau = gioBatDauElement.innerText;
+        const gioKetThucElement = document.getElementById('GioKetThuc');
+        const gioKetThuc = gioKetThucElement.innerText;
+
+        const gioBatDauHour = parseInt(gioBatDau.split(":")[0]);
+        const gioBatDauMinute = parseInt(gioBatDau.split(":")[1]);
+        const gioKetThucHour = parseInt(gioKetThuc.split(":")[0]);
+        const gioKetThucMinute = parseInt(gioKetThuc.split(":")[1]);
+
+        if ((gioBatDauHour > 21 && gioKetThucHour < 7) ||
+            (gioBatDauHour === 21 && gioBatDauMinute > 0) ||
+            (gioKetThucHour === 7 && gioKetThucMinute < 59)) {
+            regularSeatPrice = regular * 0.9;
+            vipSeatPrice = vip * 0.9;
+            coupleSeatPrice = couple * 0.9;
+        }else{
+        	regularSeatPrice = regular;
+            vipSeatPrice = vip;
+            coupleSeatPrice = couple;
+        }
+
+        // Cập nhật số ghế đã chọn và tổng giá vé
+        function updateSelectedSeats() {
+
+            const selected = document.querySelectorAll('.seat.selected');
+            // selectedSeats = Array.from(selected).map(seat => Array.from(seats).indexOf(seat) + 1);
+            selectedSeats = Array.from(selected).map(seat => seat.getAttribute('data-name'));
+            selectedVipSeats = Array.from(selected).filter(seat => seat.getAttribute('data-vip') === 'true');
+            selectedRegularSeats = Array.from(selected).filter(seat => seat.getAttribute('data-vip') !== 'true' && seat.getAttribute('data-couple') !== 'true');
+            selectedCoupleSeats = Array.from(selected).filter(seat => seat.getAttribute('data-couple') === 'true');
+            const selectedSeatsCount = selectedSeats.length;
+            const selectedVipSeatsCount = selectedVipSeats.length;
+            const selectedRegularSeatsCount = selectedRegularSeats.length;
+            const selectedCoupleSeatsCount = selectedCoupleSeats.length;
+
+            /* Giới hạn số lượng chọn ghế */
+            if (selectedSeatsCount > 8) {
+                alert("Bạn chỉ được chọn tối đa 8 ghế.");
+                // Bỏ chọn các ghế vượt quá giới hạn
+                selected.forEach(seat => {
+                    if (selectedSeats.indexOf(seat.getAttribute('data-name')) > 7) {
+                        seat.classList.remove('selected');
+                    }
+                });
+            }
+            //const totalPrice = selectedSeatsCount * seatPrice;
+            //const totalPrice = (selectedVipSeatsCount * vipSeatPrice) + (selectedRegularSeatsCount * regularSeatPrice);
+            const totalPrice = (selectedVipSeatsCount * vipSeatPrice) + (selectedRegularSeatsCount * regularSeatPrice) + (selectedCoupleSeatsCount * coupleSeatPrice);
+            document.getElementById('selected-seats').textContent = `${selectedSeats.join(', ')}`;
+            document.getElementById('total-price').textContent = `${formatNumber(totalPrice + combo)} VND`;
+            document.getElementById('combo').textContent = `${formatNumber(combo)} VND`
+            tongGhe.textContent = `${selectedSeatsCount}`;
+			
+            /* payment */
+            const nameFlim = document.getElementById("nameFilm").textContent;
+            const SuatChieu = document.getElementById("suatChieu").textContent;
+            const RoomCinema = document.getElementById("room").textContent;
+            
+            document.getElementById('khuyenMai').textContent = `Khuyến mãi: ${giamgia}%`;
+            
+            document.getElementById('viTriGhePay').textContent = `${selectedSeats.join(', ')}`;
+            document.getElementById('nameFlimPay').textContent = `${nameFlim}`;
+            document.getElementById('suatChieuPay').textContent = `${SuatChieu}`;
+            document.getElementById('roomPay').textContent = `${RoomCinema}`;
+            
+            
+            document.getElementById("toTalPay").textContent = `Tổng Thanh Toán: ${formatNumber(totalPrice*(1-(giamgia/100)))} + ${formatNumber(combo)}`;
+            document.getElementById("toTalPay2").textContent = `Thành Tiền: ${formatNumber(totalPrice*(1-(giamgia/100)) + combo)} VND`;
+            totalPay = totalPrice*(1-(giamgia/100)) + combo;
+            document.getElementById("Pay").textContent = `${formatNumber(totalPrice + combo)} VND`;
+            document.getElementById("TotalSeat2").textContent = `Số ghế ${76 - selectedSeatsCount}/76`
+            /* payment */
+            
+        }
+        
+        
+        function formatNumber(number) {
+				return number.toLocaleString('vi-VN').replace(/,/g, '.');
+		}
+
+
+        // Lưu thông tin vào local session
+        function saveBookingInformation(seatPosition, totalSeat, movieName, timeMovie, room, totalAmount, foodAmount) {
+            const bookingInfo = {
+                seatPosition: seatPosition,
+                totalSeat: totalSeat,
+                movieName: movieName,
+                timeMovie: timeMovie,
+                room: room,
+                totalAmount: totalAmount,
+                foodAmount: foodAmount
+            };
+            sessionStorage.setItem('bookingInformation', JSON.stringify(bookingInfo));
+        }
+
+        function getBookingInformation() {
+            const bookingInfo = sessionStorage.getItem('bookingInformation');
+            return bookingInfo ? JSON.parse(bookingInfo) : null;
+        }
+
+
+        let selectedSeatType = null;
+
+        function selectSeat() {
+            const isVip = this.getAttribute('data-vip') === 'true';
+            const isCouple = this.getAttribute('data-couple') === 'true';
+
+            // Kiểm tra xem đã chọn ghế vip hay ghế đôi hay không
+            const isVipSeatSelected = selectedVipSeats.length > 0;
+            const isCoupleSeatSelected = selectedCoupleSeats.length > 0;
+            const isRegularSeatSelected = selectedRegularSeats.length > 0;
+
+            // Nếu người dùng chọn ghế vip
+            if (isVip) {
+                if (isCoupleSeatSelected || isRegularSeatSelected) {
+                    alert("Chỉ được chọn một loại ghế");
+                    return;
+                }
+
+                // Bỏ chọn tất cả các ghế đôi nếu có
+                if (isCoupleSeatSelected) {
+                    selectedCoupleSeats.forEach(seat => seat.classList.remove('selected'));
+                    selectedCoupleSeats = [];
+                }
+
+                // Bỏ chọn tất cả các ghế thường nếu có
+                if (isRegularSeatSelected) {
+                    selectedRegularSeats.forEach(seat => seat.classList.remove('selected'));
+                    selectedRegularSeats = [];
+                }
+
+                // Thực hiện chọn/ bỏ chọn ghế vip
+                this.classList.toggle('selected');
+                if (this.classList.contains('selected')) {
+                    selectedSeatType = 'vip';
+                } else {
+                    selectedSeatType = null;
+                }
+                updateSelectedSeats();
+                return;
+            }
+
+            // Nếu người dùng chọn ghế đôi
+            if (isCouple) {
+                if (isVipSeatSelected || isRegularSeatSelected) {
+                    alert("Chỉ được chọn một loại ghế");
+                    return;
+                }
+
+                // Bỏ chọn tất cả các ghế vip nếu có
+                if (isVipSeatSelected) {
+                    selectedVipSeats.forEach(seat => seat.classList.remove('selected'));
+                    selectedVipSeats = [];
+                }
+
+                // Bỏ chọn tất cả các ghế thường nếu có
+                if (isRegularSeatSelected) {
+                    selectedRegularSeats.forEach(seat => seat.classList.remove('selected'));
+                    selectedRegularSeats = [];
+                }
+
+                // Thực hiện chọn/ bỏ chọn ghế đôi
+                this.classList.toggle('selected');
+                if (this.classList.contains('selected')) {
+                    selectedSeatType = 'couple';
+                } else {
+                    selectedSeatType = null;
+                }
+                updateSelectedSeats();
+                return;
+            }
+
+            // Nếu người dùng chọn ghế thường
+            if (isVipSeatSelected || isCoupleSeatSelected) {
+                alert("Chỉ được chọn một loại ghế");
+                return;
+            }
+
+            // Thực hiện chọn/ bỏ chọn ghế thường
+            this.classList.toggle('selected');
+            if (this.classList.contains('selected')) {
+                selectedSeatType = null; // Đặt selectedSeatType thành null để cho phép chọn một loại ghế khác
+            }
+            updateSelectedSeats();
+        }
+
+        // Đăng ký sự kiện cho từng ghế
+        seats.forEach(seat => {
+            seat.addEventListener('click', selectSeat);
+        });
+
+
+        // Xử lý sự kiện khi người dùng nhấn nút Book
+        // document.getElementById('book-btn').addEventListener('click', () => {
+        //     alert(`Booked seats: ${selectedSeats.join(', ')}`);
+        // });
+
+        function updateSelectedSeatsVip() {
+            // Gán giá tiền cho từng loại ghế
+            seats.forEach(seat => {
+                const isVip = seat.getAttribute('data-vip') === "true";
+                const isCouple = seat.getAttribute('data-couple') === 'true';
+                let seatPrice;
+                if (isVip) {
+                    seatPrice = vipSeatPrice;
+                } else if (isCouple) {
+                    seatPrice = coupleSeatPrice;
+                } else {
+                    seatPrice = regularSeatPrice;
+                }
+                // Áp dụng giá tiền vào ghế
+                seat.setAttribute('data-price', seatPrice);
+            });
+        }
+
+        /* đếm thời gian */
+        var countPage = 0;
+        let remainingTime = 20 * 60 + 59; // Tổng thời gian còn lại trong giây
+        function countdown() {
+            const countdownElement = document.getElementById('countdown');
+            const countdownElement2 = document.getElementById('countdown2');
+
+            // Kiểm tra xem đã đạt được thời gian đích đến chưa
+            if (remainingTime <= 0) {
+                clearInterval(timer);
+                countdownElement.textContent = 'Count Down 00:00';
+                countdownElement2.textContent = '00:00';
+                window.location.href = "/home/film"
+                countPage = 0;
+                return;
+            }
+
+            // Chuyển đổi thời gian còn lại thành giờ, phút, giây
+            const minutes = Math.floor(remainingTime / 60);
+            const seconds = remainingTime % 60;
+
+            // Hiển thị kết quả
+            countdownElement.textContent = `Count Down: ${minutes} phút, ${seconds} giây`;
+            countdownElement2.textContent = `${minutes} phút, ${seconds} giây`;
+
+            // Giảm thời gian còn lại
+            remainingTime--;
+        }
+
+        // Cập nhật đồng hồ đếm ngược mỗi giây
+        const timer = setInterval(countdown, 1000);
+        countdown()
+
+
+        // chuyển hướng khi đặt xong ghế
+        document.getElementById("displaySeat").style.display = "block";
+        document.getElementById("displayFood").style.display = "none";
+        document.getElementById("displayPay").style.display = "none";
+
+        var nextButton = document.getElementById("nextButton");
+        var prevButton = document.getElementById("prevButton");
+
+        nextButton.addEventListener("click", function () {
+            if (selectedSeats.length > 0) {
+                document.getElementById("displaySeat").style.display = "none";
+                document.getElementById("displayFood").style.display = "block";
+                document.getElementById("displayPay").style.display = "none";
+                countPage++;
+            } else {
+                alert("bạn chưa chọn bất kỳ ghế nào vui lòng chọn ghế")
+            }
+            if (countPage > 1) {
+                document.getElementById("displaySeat").style.display = "none";
+                document.getElementById("displayFood").style.display = "none";
+                document.getElementById("displayPay").style.display = "block";
+                document.getElementById("headMenu").style.display = "none";
+                document.getElementById("DieuHuong").style.display = "none";
+                updatePay();
+                updateSelectedSeats();
+            }
+        });
+
+        prevButton.addEventListener("click", function () {
+            if (countPage == 1) {
+                document.getElementById("displaySeat").style.display = "block"
+                document.getElementById("displayFood").style.display = "none"
+                document.getElementById("displayPay").style.display = "none";
+                document.getElementById("headMenu").style.display = "block";
+                countPage = 0;
+            } else if (countPage > 1) {
+                document.getElementById("displaySeat").style.display = "none"
+                document.getElementById("displayFood").style.display = "block"
+                document.getElementById("displayPay").style.display = "none";
+                document.getElementById("headMenu").style.display = "block";
+                countPage = 1;
+            }
+        })
+        
+        var backButton = document.getElementById("backButton");
+        backButton.addEventListener("click", function () {
+        	countPage = 0;
+        	document.getElementById("headMenu").style.removeProperty("display");
+        	document.getElementById("DieuHuong").style.removeProperty("display");
+        	document.getElementById("displaySeat").style.display = "block";
+            document.getElementById("displayFood").style.display = "none";
+            document.getElementById("displayPay").style.display = "none";
+        })
+        
+        
+        	/* update Food */
+			let itemNameFood = document.getElementById("Food");
+        	let total
+			function updatePay() {
+	            let index = 0;
+	            let itemTotalQuantity = 0;
+	            /* let filteredItems = itemsArray.filter(item => item.quantity > 0); */
+	            itemsArray.map(item => {
+				  if (item.quantity > 0) {
+					  index++;
+					  let itemName = item.name;
+					  let itemQuantity = item.quantity;
+					  itemTotalQuantity += item.totalQuantity; 
+					  
+					  const nameFood = document.createElement('div');
+					  nameFood.setAttribute('id',`food-${index++}`)
+					  nameFood.innerText = `* ${itemName} x ${itemQuantity}`;
+					  itemNameFood.appendChild(nameFood)
+				}
+				  
+				});
+				let totalFood = document.getElementById("totalPriceFood").textContent = `${formatNumber(itemTotalQuantity)} VND`
+        	}
+			
+			
+			
+			
+        // thao tác đặt food
+        /* document.addEventListener('DOMContentLoaded', function () {
+            const decreaseQuantityButtons = document.querySelectorAll('.decrease-quantity');
+            const increaseQuantityButtons = document.querySelectorAll('.increase-quantity');
+            const quantityInputs = document.querySelectorAll('.quantity');
+            const cartItems = document.getElementById('cartItems');
+            const totalAmount = document.getElementById('totalAmount');
+            let totalPrice = 0;
+            //Xử lý khi người dùng giảm số lượng
+            decreaseQuantityButtons.forEach(function (button, index) {
+                button.addEventListener('click', function () {
+                    if (quantityInputs[index].value > 0) {
+                        quantityInputs[index].value--;
+                        updateCart(index);
+                    }
+                });
+            });
+
+            // Xử lý khi người dùng tăng số lượng
+            increaseQuantityButtons.forEach(function (button, index) {
+                button.addEventListener('click', function () {
+                    quantityInputs[index].value++;
+                    updateCart(index);
+                });
+            });
+
+            // Cập nhật giỏ hàng và tổng cộng
+            function updateCart(index) {
+                const quantity = parseInt(quantityInputs[index].value);
+                const priceElement = document.querySelectorAll('.price')[index];
+                const price = parseFloat(priceElement.innerText.split(':')[1].trim().slice(1));
+                const itemName = document.querySelectorAll('h5')[index].innerText;
+
+                // Xóa sản phẩm nếu đã tồn tại trong giỏ hàng
+                const existingItem = document.getElementById(`cartItem-${index}`);
+                if (existingItem) {
+                    totalPrice -= parseFloat(existingItem.dataset.price);
+                    existingItem.remove();
+                }
+
+                // Tạo một mục mới trong giỏ hàng
+                const cartItem = document.createElement('li');
+                cartItem.setAttribute('id', `cartItem-${index}`);
+                cartItem.setAttribute('data-price', (price * quantity).toFixed(2));
+                cartItem.innerText = `${itemName} x ${quantity} - $${(price * quantity).toFixed(2)}`;
+                cartItems.appendChild(cartItem);
+                
+
+                // Cập nhật tổng cộng
+                totalPrice += price * quantity;
+                combo = totalPrice;
+                // totalAmount.innerText = totalPrice.toFixed(2);
+                updateSelectedSeats()
+            };
+        });
+         */
+        
+        
+        /* 2 */
+        document.addEventListener('DOMContentLoaded', function () {
+ 		  const decreaseQuantityButtons = document.querySelectorAll('.decrease-quantity');
+ 		  const increaseQuantityButtons = document.querySelectorAll('.increase-quantity');
+ 		  const quantityInputs = document.querySelectorAll('.quantity');
+ 		  let totalPrice = 0;
+
+ 		  //Xử lý khi người dùng giảm số lượng
+ 		  decreaseQuantityButtons.forEach(function (button, index) {
+ 		    button.addEventListener('click', function () {
+ 		      if (quantityInputs[index].value > 0) {
+ 		        quantityInputs[index].value--;
+ 		        updateCart(index);
+ 		      }
+ 		    });
+ 		  });
+
+		   // Xử lý khi người dùng tăng số lượng
+		   increaseQuantityButtons.forEach(function (button, index) {
+		     button.addEventListener('click', function () {
+		       quantityInputs[index].value++;
+		       updateCart(index);
+		     });
+		   });
+
+		   // Cập nhật giỏ hàng và tổng cộng
+		   function updateCart(index) {
+		     const quantity = parseInt(quantityInputs[index].value);
+		     const priceElement = document.querySelectorAll('.price')[index];
+		     const price = parseInt(priceElement.innerText.split(':')[1].trim().replace(' VND', ''));
+		     const itemName = document.querySelectorAll('h5')[index].innerText;
+		
+		  // Tìm vị trí của phần tử đã tồn tại trong mảng
+		     const existingItemIndex = itemsArray.findIndex(item => item.name === itemName);
+		     if (existingItemIndex !== -1) {
+		       // Xóa phần tử tại vị trí đã tìm thấy
+		       const existingItem = itemsArray[existingItemIndex];
+		
+		       
+		       totalPrice -= existingItem.totalQuantity;
+		       itemsArray.splice(existingItemIndex, 1); // Xóa phần tử
+		       // Cập nhật thông tin cho phần tử mới
+		       const newItem = {
+		         name: itemName,
+		         quantity: quantity,
+		         totalQuantity: price * quantity
+		       };
+		       itemsArray.push(newItem);
+		       console.log(existingItem)
+		       if (existingItem === 0) {
+		    	   itemsArray.splice(existingItemIndex, 1);
+			   }// Thêm phần tử mới vào mảng
+		     } else {
+		       // Tạo phần tử mới trong mảng
+		       const newItem = {
+		         name: itemName,
+		         quantity: quantity,
+		         totalQuantity: price * quantity
+		       };
+		       itemsArray.push(newItem);
+		     }
+			
+			
+		     // Cập nhật tổng cộng
+		     totalPrice = itemsArray.reduce((total, item) => total + item.totalQuantity, 0);
+		     combo = totalPrice
+		     
+		     console.log("danh sách",itemsArray)
+		     // Gọi hàm để lấy thông tin đồ ăn từ mảng
+		     updateSelectedSeats()
+		   }
+		
+		   // Hàm lấy thông tin đồ ăn từ mảng
+		   function getItemsArray() {
+		     console.log(itemsArray); // In mảng thông tin đồ ăn ra ngoài
+		   }
+ 		});
+        
+         
+        function formatCurrency(value) {
+		       	const formatter = new Intl.NumberFormat('vi-VN', {
+			       	style: 'currency',
+			        currency: 'VND',
+			        minimumFractionDigits: 0,
+		       	});
+	        return formatter.format(value);
+       	}
+        
+        /* 3 */
+       /*  document.addEventListener('DOMContentLoaded', function () {
+        	  const decreaseQuantityButtons = document.querySelectorAll('.decrease-quantity');
+        	  const increaseQuantityButtons = document.querySelectorAll('.increase-quantity');
+        	  const quantityInputs = document.querySelectorAll('.quantity');
+        	  const cartItems = document.getElementById('cartItems');
+        	  const totalAmount = document.getElementById('totalAmount');
+        	  let totalPrice = 0;
+
+        	  // Xử lý khi người dùng giảm số lượng
+        	  decreaseQuantityButtons.forEach(function (button, index) {
+        	    button.addEventListener('click', function () {
+        	      if (quantityInputs[index].value > 0) {
+        	        quantityInputs[index].value--;
+        	        updateCart(index);
+        	      }
+        	    });
+        	  });
+
+        	  // Xử lý khi người dùng tăng số lượng
+        	  increaseQuantityButtons.forEach(function (button, index) {
+        	    button.addEventListener('click', function () {
+        	      quantityInputs[index].value++;
+        	      updateCart(index);
+        	    });
+        	  });
+
+        	  // Cập nhật giỏ hàng và tổng cộng
+        	  function updateCart(index) {
+        	    const quantity = parseInt(quantityInputs[index].value);
+        	    const priceElement = document.querySelectorAll('.price')[index];
+        	    const price = parseFloat(priceElement.innerText.split(':')[1].trim().slice(1));
+        	    const itemName = document.querySelectorAll('h5')[index].innerText;
+
+        	    // Xóa sản phẩm nếu đã tồn tại trong giỏ hàng
+        	    const existingItem = document.getElementById(`cartItem-${index}`);
+        	    if (existingItem) {
+        	      totalPrice -= parseFloat(existingItem.dataset.price);
+        	      existingItem.remove();
+        	    }
+
+        	    // Tạo một mục mới trong giỏ hàng
+        	    const cartItem = document.createElement('li');
+        	    cartItem.setAttribute('id', `cartItem-${index}`);
+        	    cartItem.setAttribute('data-price', (price * quantity).toFixed(2));
+        	    cartItem.innerText = `${itemName} x ${quantity} - $${(price * quantity).toFixed(2)}`;
+        	    cartItems.appendChild(cartItem);
+
+        	    // Cập nhật tổng cộng
+        	    totalPrice += price * quantity;
+        	    combo = totalPrice;
+        	    totalAmount.innerText = totalPrice.toFixed(2);
+        	  }
+        	}); */
+    </script>
+	<!-- bootsstrap JS -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+		crossorigin="anonymous"></script>
+	<script src="/assets/statics/script.js"></script>
+
+	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+	<script>
+        AOS.init();
+    </script>
+
+
+</body>
+
+</html>

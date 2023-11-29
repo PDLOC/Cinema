@@ -1,0 +1,50 @@
+.button {
+  display: block;
+  width:150px;
+  height:20px;
+  max-width: 100%;
+  margin: 0 auto;
+  margin-bottom: 0;
+  overflow: hidden;
+  position: relative;
+  transform: translatez(0);
+  text-decoration: none;
+  box-sizing: border-box;
+  font-size: 15px;
+  font-weight: normal;
+  box-shadow: 0 9px 18px rgba(0,0,0,0.2);
+}
+
+.nut{
+  text-align: center;
+  border-radius: 50px;
+  padding: 22px;
+  color: white;
+  background: #424949;
+  transition: all 0.2s ease-out 0s;
+}
+
+.nut:hover{
+	background-color: #E74C3C;
+	font-weight:bold;
+	color:white;
+}
+p{ 
+	margin-top:-10px;
+}
+p:hover{
+	text-decoration:none;
+}
+
+.gradient {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  bottom: auto;
+  margin: auto;
+  z-index: -1;
+  transition: all 0s ease-out 0s;
+}

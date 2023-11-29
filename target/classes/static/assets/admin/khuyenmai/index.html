@@ -1,0 +1,186 @@
+<!-- Content Wrapper -->
+<div class="page-wrapper py-2 w-100">
+	<!-- Container fluid  -->
+	<div class="container-fluid">
+		<!-- Sales Cards  -->
+		<div class="row">
+			<div class="col-md-12">
+			          
+<div class="d-flex align-items-center ">
+    <h3 class="alert me-auto text-right  text-primary col-7">Danh sách khuyến mãi</h3>
+    <a class='btn btn-primary  ' style="font-size: 15px;" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <span class="glyphicon glyphicon-edit"></span> Thêm khuyến mãi
+    </a>
+</div>
+				<table class="table text-center">
+					<thead>
+						<tr>
+							<th style="font-weight: bolder; font-size: 18px">Hình</th>
+							<th style="font-weight: bolder; font-size: 18px">Mã</th>
+							<th style="font-weight: bolder; font-size: 18px">Tiêu đề</th>
+							<th style="font-weight: bolder; font-size: 18px">Giảm giá</th>
+							<th style="font-weight: bolder; font-size: 18px">Ngày bắt
+								đầu</th>
+							<th style="font-weight: bolder; font-size: 18px">Ngày kết
+								thúc</th>
+							<th style="font-weight: bolder; font-size: 18px">Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in pager.items">
+							<td style="width: 150px;"><img
+								ng-src="/assets/km-images/{{item.hinh}}" alt="" width=60% /></td>
+							<td>{{item.makm}}</td>
+							<td style="width:200px;">{{item.tenkm}}</td>
+							<td>{{item.giamgia}}</td>
+							<td>{{item.ngaybatdau | date:'dd/MM/yyyy'}}</td>
+							<td>{{item.ngayketthuc | date:'dd/MM/yyyy'}}</td>
+							<td><a class='btn btn-warning' style="font-size: 14px"
+							 data-bs-toggle="modal" data-bs-target="#exampleModal"
+								ng-click="edit(item)"> <span
+									class="glyphicon glyphicon-edit"></span> Edit
+							</a> <a ng-click="delete(item)" style="font-size: 14px"
+								class="btn btn-danger btn-xs"> <span
+									class="glyphicon glyphicon-remove"></span> Delete
+							</a></td>
+						</tr>
+					</tbody>
+				</table>
+				<hr />
+				<div class="d-grid gap-2 d-md-flex justify-content-md-center mt-4">
+					<a class="btn  text-white "
+						style="width: 100px; background: #0a58ca;"
+						ng-click="pager.first()">First</a> <a class="btn  text-white"
+						style="width: 100px; background: #0a58ca;" ng-click="pager.prev()">Previous</a>
+					<a class="btn  text-white"
+						style="width: 100px; background: #0a58ca;" ng-click="pager.next()">Next</a>
+					<a class="btn  text-white"
+						style="width: 100px; background: #0a58ca;" ng-click="pager.last()">Last</a>
+				</div>
+				<hr />
+			</div>
+		</div>
+	</div>
+	<!-- End Container fluid  -->
+</div>
+<!-- End of Content Wrapper -->
+
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top"> <i
+	class="fas fa-angle-up"></i>
+</a>
+<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered modal-xl">
+			<div class="modal-content">
+				<button type="button" class="btn-close ms-auto my-2 me-2"
+					data-bs-dismiss="modal" aria-label="Close"></button>
+				<div class="modal-body">
+					<form name="qryform" id="qryform" 
+					enctype="multipart/form-data" class="px-3" modelAttribute="item">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-sm-4 mt-5 text-center">
+									<label for="image"> <img
+										ng-src="/assets/km-images/{{form.hinh}}"
+										style="max-width: 100%" height="200px" />
+									</label>
+									<div class="form-group ">
+
+										<input type="file" class="form-control ms-3" id="image"
+											onchange="angular.element(this).scope().imageChanged(this.files)"
+											style="display: none;">
+									</div>
+								</div>
+								<div class="col-sm-8">
+									<div class="row">
+										<div class="form-group">
+											<label>Tiêu đề</label> <input ng-model="form.tenkm"
+												class="form-control" />
+										</div>
+									</div>
+									<div class="row">
+										<div class="form-group col-sm-6">
+											<label>Mã</label> <input ng-model="form.makm"
+												class="form-control" />
+										</div>
+										<div class="form-group col-sm-6">
+											<label>Giá</label> <input ng-model="form.giamgia" type="text"
+												class="form-control" placeholder="giảm giá / 100" />
+										</div>
+									</div>
+									<div class="row">
+
+										<div class="form-group col-sm-6">
+											<label>Ngày bắt đầu</label> <input ng-model="form.ngaybatdau"
+												type="text" class="form-control" placeholder="yyyy-MM-dd" />
+										</div>
+
+										<div class="form-group col-sm-6">
+											<label>Ngày kết thúc</label> <input
+												ng-model="form.ngayketthuc" type="text" class="form-control" placeholder="yyyy-MM-dd" />
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							
+								<div class="d-grid gap-2 d-md-flex justify-content-md-center mt-4">
+						<button style="width: 100px; background: #0a58ca;" type="submit"
+							class="btn text-white fw-bolder"
+							ng-click="create()">Insert</button>
+						<button style="width: 100px; background: #0a58ca;" type="submit"
+							class="btn text-white fw-bolder"
+							ng-click="update()">Update</button>
+						<button style="width: 100px; background: #0a58ca;" type="submit"
+							class="btn text-white fw-bolder"
+							ng-click="delete(form)">Delete</button>
+						<button style="width: 100px; background: #0a58ca;" type="submit"
+							class="btn text-white fw-bolder" ng-click="reset()">Reset</button>
+					</div>
+					</div>
+					</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+	const myModal = document.getElementById('myModal')
+	const myInput = document.getElementById('myInput')
+	
+	myModal.addEventListener('shown.bs.modal', () => {
+	  myInput.focus()
+	})
+	</script>
+	<!-- Scroll to Top Button-->
+	<a class="scroll-to-top rounded" href="#page-top"> <i
+		class="fas fa-angle-up"></i>
+	</a>
+
+	<!-- Logout Modal-->
+	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+					<button class="close" type="button" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">Select "Logout" below if you are ready
+					to end your current session.</div>
+				<div class="modal-footer">
+					<button class="btn btn-secondary" type="button"
+						data-dismiss="modal">Cancel</button>
+					<a class="btn btn-primary" href="login.html">Logout</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
