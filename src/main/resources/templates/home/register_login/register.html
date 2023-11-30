@@ -9,7 +9,7 @@
 	<main>
 		<div class="login-div">
 			<form class="login" th:object="${acc}" method="POST">
-				<h1 class="sign mb-4">Đăng kí</h1>
+				<h1 class="sign mb-4">Đăng ký</h1>
 				<span class="seperator"></span>
 				<div class="input-text">
 					<input type="text" th:field="*{matk}" name="matk"
@@ -50,7 +50,7 @@
 						th:if="${#fields.hasErrors('matkhau')}" th:errors="*{matkhau}"></div>
 				</div>
 				<input class="signin-button" th:formaction="@{/home/register/save}"
-					type="submit" value="Đăng kí" />
+					type="submit" value="Đăng ký" />
 				<div class="remember-flex">
 					<div></div>
 				</div>
