@@ -48,7 +48,7 @@ public class ForgetPasswordController {
                 "</head>" +
                 "<body>" +
                 "<div class=\"container\">" +
-                "<h1>Gear Shop</h1>"+
+                "<h1>Universe Cinema</h1>"+
                 "<p>Chào bạn</p>"+
                 "Bạn đã đươc cấp mật khẩu mới: <b>"+randomPassword+"</b>"+
                 "<p>Vui lòng hoàn thành xác nhận trong vòng 30 phút.</p>"+
