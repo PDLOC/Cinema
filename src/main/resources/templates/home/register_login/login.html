@@ -44,8 +44,8 @@
 					</div>
 					<br>
 						<div class="new-members">
-						Quên mật khẩu:<a  data-bs-toggle="modal" data-bs-target="#exampleModal"
-							class="signup-link">Gửi email tại đây</a>.
+						<a  data-bs-toggle="modal" data-bs-target="#exampleModal"
+							class="signup-link">Quên mật khẩu?</a>
 					</div>
 					<br>
 					<div class="protection color_link help">
@@ -77,15 +77,18 @@
 			<!-- Modal -->
 	<div class="modal fade" id="exampleModal" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered modal-xl">
+		<div class="modal-dialog modal-dialog-centered modal-ms">
 			<div class="modal-content">
-				<button type="button" class="btn-close ms-auto my-2 me-2"
-					data-bs-dismiss="modal" aria-label="Close"></button>
+			<h1 class="sign text-center text-white fw-bolder mt-auto">Quên mật
+											khẩu</h1> 
+				
 				<div class="modal-body">
 					<form th:action="@{/home/forget-pass}" 
 								method="POST">
+								
 					<div class="card-body">
 						<div class="form-floating mb-3">
+										
 												<input type="text" class="form-control" id="varify" name="matk"
 													 placeholder="name"> <label
 													for="floatingInput">Tên Đăng Nhập</label>
@@ -98,10 +101,12 @@
 								
 											
 
-											<div class="d-grid">
+											<div class="d-grid gap-2 d-md-block">
 												<button
-													class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2"
+													class="btn btn-danger" style="height: 50px; width: 100px"
 													type="submit">Send</button>
+												<button type="button" style="height: 50px; width: 100px"
+													class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 												
 											</div>
 
