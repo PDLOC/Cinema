@@ -34,12 +34,18 @@
 					</div>
 
 				</div>
+				
 
 				<div class="login-face">
 					<br>
 					<div class="new-members">
 						Chưa có tài khoản ? <a th:href="@{|/home/register|}"
 							class="signup-link">Đăng kí tại đây</a>.
+					</div>
+					<br>
+						<div class="new-members">
+						Quên mật khẩu:<a  data-bs-toggle="modal" data-bs-target="#exampleModal"
+							class="signup-link">Gửi email tại đây</a>.
 					</div>
 					<br>
 					<div class="protection color_link help">
@@ -68,6 +74,83 @@
 				document.location.href = 'https://qazimaazarshad.github.io/Movie-Streaming-Website/home.html'
 			}
 		</script> -->
+			<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered modal-xl">
+			<div class="modal-content">
+				<button type="button" class="btn-close ms-auto my-2 me-2"
+					data-bs-dismiss="modal" aria-label="Close"></button>
+				<div class="modal-body">
+					<form th:action="@{/home/forget-pass}" 
+								method="POST">
+					<div class="card-body">
+						<div class="form-floating mb-3">
+												<input type="text" class="form-control" id="varify" name="matk"
+													 placeholder="name"> <label
+													for="floatingInput">Tên Đăng Nhập</label>
+											</div>
+											<div class="form-floating mb-3">
+												<input type="email" id="email" name="email" class="form-control"
+												 placeholder="Password"> <label
+													for="floatingPassword">Email</label>
+											</div>
+								
+											
+
+											<div class="d-grid">
+												<button
+													class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2"
+													type="submit">Send</button>
+												
+											</div>
+
+							
+							
+					</div>
+					</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+	const myModal = document.getElementById('myModal')
+	const myInput = document.getElementById('myInput')
+	
+	myModal.addEventListener('shown.bs.modal', () => {
+	  myInput.focus()
+	})
+	</script>
+	<!-- Scroll to Top Button-->
+	<a class="scroll-to-top rounded" href="#page-top"> <i
+		class="fas fa-angle-up"></i>
+	</a>
+
+	<!-- Logout Modal-->
+	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+					<button class="close" type="button" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">Select "Logout" below if you are ready
+					to end your current session.</div>
+				<div class="modal-footer">
+					<button class="btn btn-secondary" type="button"
+						data-dismiss="modal">Cancel</button>
+					<a class="btn btn-primary" href="login.html">Logout</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	</main>
 </body>
 </html>
