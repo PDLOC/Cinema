@@ -14,13 +14,15 @@ app.controller("chitietkm-ctrl",function($scope,$http){
 	
 	    //Xoá form
     $scope.reset = function(){
-		
+		$scope.form = {
+			
+		}
     }
     
 	    //Hiển thị lên form
     $scope.edit = function(item){
 		$scope.form = angular.copy(item);
-		$('#pills-home-tab').tab('show');
+//		$('#pills-home-tab').tab('show');
     }
     
         //Thêm
@@ -57,10 +59,10 @@ app.controller("chitietkm-ctrl",function($scope,$http){
 			var index = $scope.items.findIndex(ctkm => ctkm.id == item.id);
 			$scope.items.splice(index,1);
 			$scope.reset();
-			alert('Xoá sản phẩm thành công');
+			alert('Xoá thành công');
 			console.log(resp.data);
 		}).catch(err=>{
-			alert('Lỗi xoá sản phẩm!!!!')
+			alert('Lỗi xoá !!!!')
 			console.log("Error ",err);
 		})
 	}

@@ -1,0 +1,200 @@
+
+<div class="tab-content mb-5" id="pills-tabContent">
+
+	<!-- Content Wrapper -->
+	<div class="page-wrapper py-2 w-100">
+		<!-- Container fluid  -->
+		<div class="container-fluid">
+			<!-- Sales Cards  -->
+			<div class="row">
+				<div class="col-md-12">
+					<h3 class="alert text-center text-primary">Danh sách vé</h3>
+					<table class="table text-center">
+						<thead>
+							<tr>
+
+								<th style="font-weight: bolder; font-size: 18px">Mã</th>
+								<th style="font-weight: bolder; font-size: 18px">Tên phim</th>
+								<th style="font-weight: bolder; font-size: 18px">Combo</th>
+								<th style="font-weight: bolder; font-size: 18px">Ngày giao
+									dịch</th>
+								<th style="font-weight: bolder; font-size: 18px">Ghế</th>
+								<th style="font-weight: bolder; font-size: 18px">Số lượng
+									vé</th>
+								<th style="font-weight: bolder; font-size: 18px">Giá tiền</th>
+								<th style="font-weight: bolder; font-size: 18px">Trạng thái
+									đơn hàng</th>
+
+
+							</tr>
+						</thead>
+						<tbody>
+
+							<tr ng-repeat="item in pager.items">
+
+								<td style="padding-top: 20px;" class="align-middle">{{item.mave}}</td>
+								<td style="padding-top: 20px;" class="align-middle">{{item.tenphim}}</td>
+								<td style="padding-top: 20px;" class="align-middle">{{item.combo}}</td>
+								<td style="padding-top: 20px;" class="align-middle">{{item.ngaygiaodich}}</td>
+								<td style="padding-top: 20px;" class="align-middle">{{item.ghe}}</td>
+								<td style="padding-top: 20px;" class="align-middle">{{item.soluong}}</td>
+								<td style="padding-top: 20px;" class="align-middle">{{item.thanhtien}}</td>
+								<td style="padding-top: 20px;" class="align-middle">{{item.trangthai?'Thanh
+									toán':'Đang xử lý'}}</td>
+								<td><a class='btn btn-warning' style="font-size: 14px"
+									data-bs-toggle="modal" data-bs-target="#exampleModal"
+									ng-click="edit(item)"> <span
+										class="glyphicon glyphicon-edit"></span> Edit
+								</a></td>
+
+							</tr>
+
+						</tbody>
+					</table>
+					<hr />
+					<div class="d-grid gap-2 d-md-flex justify-content-md-center mt-4">
+						<a class="btn  text-white "
+							style="width: 100px; background: #0a58ca;"
+							ng-click="pager.first()">First</a> <a class="btn  text-white"
+							style="width: 100px; background: #0a58ca;"
+							ng-click="pager.prev()">Previous</a> <a class="btn  text-white"
+							style="width: 100px; background: #0a58ca;"
+							ng-click="pager.next()">Next</a> <a class="btn  text-white"
+							style="width: 100px; background: #0a58ca;"
+							ng-click="pager.last()">Last</a>
+					</div>
+					<hr />
+				</div>
+			</div>
+		</div>
+		<!-- End Container fluid  -->
+	</div>
+	<!-- End of Content Wrapper -->
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered modal-xl">
+			<div class="modal-content">
+				<button type="button" class="btn-close ms-auto my-2 me-2"
+					data-bs-dismiss="modal" aria-label="Close"></button>
+				<div class="modal-body">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-sm-4 mt-5 text-center">
+								<label for="image"> <img
+									ng-src="/assets/Images/{{form.hinh}}" style="max-width: 100%"
+									height="400px" />
+								</label>
+
+
+							</div>
+							<div class="col-sm-8">
+								<div class="row">
+									<div class="form-group col-sm-6">
+										<label>Mã vé</label> <input ng-model="form.mave" disabled
+											class="form-control" />
+									</div>
+									<div class="form-group col-sm-6">
+										<label>Tên phim</label> <input ng-model="form.tenphim"
+											disabled class="form-control" />
+									</div>
+								</div>
+								<div class="row">
+									<div class="form-group col-sm-6">
+										<label>Họ tên</label> <input ng-model="form.taikhoan.hoten"
+											disabled type="text" class="form-control" />
+									</div>
+									<div class="form-group col-sm-6">
+										<label>Ngày chiếu</label> <input ng-model="form.ngaychieu"
+											disabled class="form-control" />
+									</div>
+
+
+								</div>
+								<div class="row">
+									<div class="form-group col-sm-6">
+										<label>Giờ bắt đầu</label> <input ng-model="form.giobatdau"
+											disabled class="form-control" />
+									</div>
+
+									<div class="form-group col-sm-6">
+										<label>Giờ kết thúc</label> <input ng-model="form.gioketthuc"
+											disabled class="form-control" />
+									</div>
+								</div>
+								<div class="row">
+									<div class="form-group col-sm-6">
+										<label>Ngày giao dịch</label> <input
+											ng-model="form.ngaygiaodich" disabled type="text"
+											class="form-control" />
+									</div>
+									<div class="form-group col-sm-6">
+										<label>Ghế</label> <input ng-model="form.ghe" disabled
+											type="text" class="form-control" />
+									</div>
+								</div>
+								<div class="row">
+									<div class="form-group col-sm-6">
+										<label>Số lượng vé</label> <input ng-model="form.soluong"
+											disabled type="text" class="form-control" />
+									</div>
+									<div class="form-group col-sm-6">
+										<label>Tổng tiền</label> <input ng-model="form.thanhtien"
+											disabled type="text" class="form-control" />
+									</div>
+								</div>
+								<div class="row">
+									<div class="form-group col-sm-6">
+										<label>Trạng thái</label> <input
+											ng-model="form.trangthai?'Thanh toán':'Đang xử lý'"
+											disabled type="text" class="form-control" />
+									</div>
+									<div class="form-group col-sm-6">
+										<label>Combo</label> <input ng-model="form.combo?'null':''"
+											disabled type="text" class="form-control" />
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+	const myModal = document.getElementById('myModal')
+	const myInput = document.getElementById('myInput')
+	
+	myModal.addEventListener('shown.bs.modal', () => {
+	  myInput.focus()
+	})
+	</script>
+	<!-- Scroll to Top Button-->
+	<a class="scroll-to-top rounded" href="#page-top"> <i
+		class="fas fa-angle-up"></i>
+	</a>
+
+	<!-- Logout Modal-->
+	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+					<button class="close" type="button" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">Select "Logout" below if you are ready
+					to end your current session.</div>
+				<div class="modal-footer">
+					<button class="btn btn-secondary" type="button"
+						data-dismiss="modal">Cancel</button>
+					<a class="btn btn-primary" href="login.html">Logout</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>

@@ -2,13 +2,13 @@ var app = angular.module("admin-app", ["ngRoute"]);
 
 app.config(function($routeProvider) {
 	$routeProvider
-		.when("/nhanvien", {
-			templateUrl: "/assets/admin/nhanvien/index.html",
-			controller: "nhanvien-ctrl"
-		})
-		.when("/khachhang", {
+		.when("/taikhoan", {
 			templateUrl: "/assets/admin/taikhoan/index.html",
 			controller: "taikhoan-ctrl"
+		})
+		.when("/ve", {
+			templateUrl: "/assets/admin/ve/index.html",
+			controller: "ve-ctrl"
 		})
 		.when("/combo", {
 			templateUrl: "/assets/admin/combo/index.html",
