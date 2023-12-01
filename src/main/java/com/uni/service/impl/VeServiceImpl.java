@@ -51,4 +51,11 @@ public class VeServiceImpl implements VeService {
 	public Double getTotalIncome() {
 		return veDAO.findAll().stream().mapToDouble(item->item.getThanhtien()).sum();
 	}
+
+	@Override
+	public Ve create(Ve ve) {
+		// TODO Auto-generated method stub
+		return veDAO.save(ve);
+	}
+
 }

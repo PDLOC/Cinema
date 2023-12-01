@@ -5,6 +5,7 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,6 +17,11 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonValueFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,19 +39,20 @@ public class Ve implements Serializable {
 	Integer mave;
 	String tenphim;
 	String combo;
-	String makm;
+	String tenpc;
+	
 	@Temporal(TemporalType.DATE)
 	@JoinColumn(name = "Ngaychieu")
 	Date ngaychieu;
+	
+	@JsonFormat(shape = Shape.STRING , pattern="HH:mm:ss", timezone="CET")
 	@Temporal(TemporalType.TIME)
 	@JoinColumn(name = "Giobatdau")
 	Date giobatdau;
-	@Temporal(TemporalType.TIME)
-	@JoinColumn(name = "Gioketthuc")
-	Date gioketthuc;
+	
 	@Temporal(TemporalType.DATE)
 	@JoinColumn(name = "Ngaygiaodich")
-	Date ngaygiaodich;
+	Date ngaygiaodich = new Date();
 	String ghe;
 	Integer soluong;
 	Integer giamgia;
@@ -53,14 +60,21 @@ public class Ve implements Serializable {
 	String hinh;
 	Boolean trangthai;
 
+	@JsonDeserialize(using = TaikhoanDeserializer.class)
 	@ManyToOne
 	@JoinColumn(name = "Matk")
 	Taikhoan taikhoan;
 
+	@JsonDeserialize(using = LichDeserializer.class)
 	@OneToOne
 	@JoinColumn(name = "Lichstt")
 	Lich lich;
 
+	@JsonDeserialize(using = KhuyenmaiDeserializer.class)
+	@OneToOne
+	@JoinColumn(name = "Makm")
+	Khuyenmai khuyenmai;
+	
 	public String getFormattedThanhtien() {
 		DecimalFormat decimalFormat = new DecimalFormat("#,### VNĐ");
 		return decimalFormat.format(thanhtien);
@@ -81,9 +95,5 @@ public class Ve implements Serializable {
 		return formatter.format(giobatdau);
 	}
 
-	public String getFormattedGioketthuc() {
-		SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
-		return formatter.format(gioketthuc);
-	}
 
 }

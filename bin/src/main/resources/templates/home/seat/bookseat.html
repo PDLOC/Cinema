@@ -674,8 +674,8 @@
 						<div class="row">
 							<p class="col-4 m-0 p-0">Suất chiếu</p>
 							<p id="suatChieu" class="col-8 m-0 p-0"
-								th:utext="${#strings.concat(#strings.substring(itemL.Giobatdau, 0, 5), ' , ', #dates.format(itemL.Ngaychieu, 'dd/MM/yyyy'))}">
-								18:05, 05/10/2023</p>
+								th:utext="${#strings.concat(#strings.substring(itemL.Giobatdau, 0, 5)}">
+							</p>
 						</div>
 						<div class="row">
 							<p class="col-4 m-0 p-0">Phòng chiếu</p>
@@ -688,6 +688,12 @@
 						</div>
 					</div>
 					<div style="margin-top: 10px;" class="col-2">
+						<div class="row">
+							<p class="col-4 m-0 p-0">Ngày chiếu</p>
+							<p id="suatChieu" class="col-8 m-0 p-0"
+								th:utext="${#dates.format(itemL.Ngaychieu, 'dd/MM/yyyy'))}">
+							</p>
+						</div>
 						<div class="row">
 							<p class="col-4 m-0 p-0">Tổng ghế</p>
 							<p class="col-8 m-0 p-0" id="countSeat">0</p>

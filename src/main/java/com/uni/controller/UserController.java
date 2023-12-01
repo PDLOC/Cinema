@@ -29,16 +29,17 @@ public class UserController {
 	CookieService cookieService;
 	@Autowired
 	VeService veService;
+
 	@RequestMapping("profile/{uname}")
 	public String user(Model model, @PathVariable("uname") String uname) {
 		// Hiện thông tin cá nhân
 		Taikhoan taikhoan = taikhoanService.findById(uname);
 		model.addAttribute("acc", taikhoan);
-		
+
 		// Hiện lịch sử đặt vé
 		List<Ve> ve = veService.findByMatk(uname);
-		model.addAttribute("listOrder",ve);
-		
+		model.addAttribute("listOrder", ve);
+
 		return "home/profile-ticket/form";
 	}
 
@@ -48,39 +49,38 @@ public class UserController {
 			taikhoanService.update(taikhoan);
 			model.addAttribute("acc", taikhoan);
 			sessionService.set("login", taikhoan);
-			model.addAttribute("message","Cập nhật thành công");
-			System.out.println(""+sessionService.get("login"));
+			model.addAttribute("message", "Cập nhật thành công");
+			System.out.println("" + sessionService.get("login"));
 		} catch (Exception e) {
 			// TODO: handle exception
-			model.addAttribute("message","Cập nhật thất bại");
+			model.addAttribute("message", "Cập nhật thất bại");
 		}
 		return "home/profile-ticket/form";
 	}
-	
+
 	@RequestMapping("profile/change-pass")
-	public String save(
-			@RequestParam("matk") String username,
-			@RequestParam("password") String oldPassword,
-            @RequestParam("newpassword") String newPassword,
-            @RequestParam("retypepassword") String retypePassword, Model model) {
+	public String save(@RequestParam("matk") String username, @RequestParam("password") String oldPassword,
+			@RequestParam("newpassword") String newPassword, @RequestParam("retypepassword") String retypePassword,
+			Model model) {
 		Taikhoan taikhoan = taikhoanService.findById(username);
-		model.addAttribute("acc",taikhoan);
+		model.addAttribute("acc", taikhoan);
 		System.out.println(taikhoan);
-		if(taikhoan.getMatkhau().equals(oldPassword)) {
-			if(newPassword.equals(retypePassword)) {
+		if (taikhoan.getMatkhau().equals(oldPassword)) {
+			if (newPassword.equals("")) {
+				model.addAttribute("message", "Mật khẩu mới không được để trống");
+			} else if (newPassword.equals(retypePassword)) {
 				taikhoan.setMatkhau(newPassword);
 				taikhoanService.update(taikhoan);
 				sessionService.set("login", taikhoan);
-				System.out.println(""+sessionService.get("login"));
+				System.out.println("" + sessionService.get("login"));
 				return "redirect:/home/film";
-			}else {
-				model.addAttribute("message","Không trùng khớp với mật khẩu mới");
+			} else {
+				model.addAttribute("message", "Không trùng khớp với mật khẩu mới!!!");
 			}
-		}else {
-			model.addAttribute("message","Sai mật khẩu vui lòng nhập lại");
+		} else {
+			model.addAttribute("message", "Vui lòng nhập mật khẩu cũ !!!");
 		}
 		return "home/profile-ticket/form";
 	}
-	
-	
+
 }

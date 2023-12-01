@@ -23,4 +23,6 @@ public interface VeService {
 
 	Double getTotalIncome();
 
+	Ve create(Ve ve);
+
 }

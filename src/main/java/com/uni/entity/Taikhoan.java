@@ -54,8 +54,8 @@ public class Taikhoan implements Serializable{
 	@Length(max = 10, message = "* Số điện thoại không được dài hơn 10")
 	String sdt;
 	@NotNull(message = "* Không được để trống ngày sinh")
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	Date ngaysinh;
 	@NotBlank(message = "* Không được để trống mật khẩu")
 	String matkhau;

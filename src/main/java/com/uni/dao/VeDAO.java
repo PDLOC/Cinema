@@ -10,7 +10,7 @@ import com.uni.entity.Ve;
 
 public interface VeDAO extends JpaRepository<Ve, String>{
 
-	@Query("SELECT a FROM Ve a WHERE a.taikhoan.matk=?1")
+	@Query(value = "SELECT * FROM Ve  WHERE matk=?1", nativeQuery = true)
 	List<Ve> findByMatk(String uname);
 	
 	

@@ -275,6 +275,7 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 	<!------------------- data khuyen mai ---------------------------------->
 	<script th:inline="javascript">
 		let giamgia = 0;
+		var makm;
 		function khuyenMai (){
 			var khuyenMaiList = /*[[${itemKM}]]*/'';
 			var input = document.getElementById("khuyenMaiInput");
@@ -282,6 +283,7 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 			khuyenMaiList.map(item =>{
 				if (inputValue === item.makm) {
 					giamgia = item.giamgia;
+					makm = item.makm;
 					input.value = "";
 				}
 			})
@@ -322,7 +324,6 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
     	
 		let totalPay = null;
 	
-	
     	let itemsArray = [];
     
         let combo = 0;
@@ -331,7 +332,7 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 
         var countSeat = [];
        
-
+		
         // Lấy danh sách các ghế
         const seats = document.querySelectorAll('.seat');
 
@@ -403,16 +404,19 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
             /* payment */
             const nameFlim = document.getElementById("nameFilm").textContent;
             const SuatChieu = document.getElementById("suatChieu").textContent;
+            const NgayChieu = document.getElementById("ngayChieu").textContent;
             const RoomCinema = document.getElementById("room").textContent;
             
             document.getElementById('khuyenMai').textContent = `Khuyến mãi: ${giamgia}%`;
-            
+            document.getElementById('maKhuyenMai').textContent = `${makm}`;
+            document.getElementById('giamGia').textContent = `${giamgia}`;
             document.getElementById('viTriGhePay').textContent = `${selectedSeats.join(', ')}`;
             document.getElementById('nameFlimPay').textContent = `${nameFlim}`;
             document.getElementById('suatChieuPay').textContent = `${SuatChieu}`;
+            document.getElementById('ngayChieuPay').textContent = `${NgayChieu}`;
             document.getElementById('roomPay').textContent = `${RoomCinema}`;
             
-            
+            document.getElementById("toTalPayNoFormat").textContent = `${totalPrice*(1-(giamgia/100)) + combo}`;
             document.getElementById("toTalPay").textContent = `Tổng Thanh Toán: ${formatNumber(totalPrice*(1-(giamgia/100)))} + ${formatNumber(combo)}`;
             document.getElementById("toTalPay2").textContent = `Thành Tiền: ${formatNumber(totalPrice*(1-(giamgia/100)) + combo)} VND`;
             totalPay = totalPrice*(1-(giamgia/100)) + combo;
@@ -445,44 +449,64 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 			}
         
      // Lưu thông tin vào local session
-     function saveBookingInformation1() {
+     function saveBookingInformation() {
     	 	var username = getCookieValue('USERNAME');
     	 	var seatPosition = document.getElementById('selected-seats').textContent;
     	 	var totalSeat = document.getElementById('countSeat').textContent;
     	 	var movieName = document.getElementById('nameFilm').textContent;
-    	 	var timeMovie = document.getElementById('suatChieu').textContent;
+    	 	var timeMovie = document.getElementById('timeShow').textContent;
+    	 	var dateMovie = document.getElementById('dateShow').textContent;
     	 	var room = document.getElementById('room').textContent;
-    	 	var totalAmount = document.getElementById('total-price').textContent;
+    	 	var totalAmount = document.getElementById('toTalPayNoFormat').textContent;
     	 	var nameFood = document.getElementById('Food').textContent;
-    	 	var foodAmount = document.getElementById('totalPriceFood').textContent;
+    	 	//var foodAmount = document.getElementById('totalPriceFood').textContent;
+    	 	var imageMovie = document.getElementById('imageMovie').alt;
+    	 	var lichSTT = document.getElementById('lichSTT').textContent;
+    	 	var iddiscount = document.getElementById('maKhuyenMai').textContent;
+    	 	var discount = document.getElementById('giamGia').textContent;
             const bookingInfo = {
-            	username: username,
-                seatPosition: seatPosition,
-                totalSeat: totalSeat,
-                movieName: movieName,
-                timeMovie: timeMovie,
-                room: room,
-                totalAmount: totalAmount,
-                nameFood: nameFood,
-                foodAmount: foodAmount
+            	taikhoan: username,
+            	lich: lichSTT,
+            	khuyenmai: iddiscount,
+            	giamgia: discount,
+            	ghe: seatPosition,
+            	soluong: totalSeat,
+            	tenphim: movieName,
+            	giobatdau: timeMovie,
+            	ngaychieu: dateMovie,
+            	tenpc: room,
+            	thanhtien: totalAmount,
+            	combo: nameFood,
+            	hinh: imageMovie,
+            	trangthai: true
             };
             sessionStorage.setItem('bookingInformation', JSON.stringify(bookingInfo));
+            
+         // Gọi API đặt vé
+            fetch('/rest/ve', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(bookingInfo)
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Booking created successfully.');
+					console.log(bookingInfo);
+                    // Xử lý khi đặt vé thành công
+                } else {
+                    console.error('Error creating booking.');
+                    // Xử lý khi có lỗi đặt vé
+                }
+            })
+            .catch(error => {
+                console.error('Error creating booking:', error);
+                // Xử lý khi có lỗi kết nối hoặc lỗi xử lý
+            });
+            
         }
      
-        function saveBookingInformation(seatPosition, totalSeat, movieName, timeMovie, room, totalAmount, foodAmount) {
-    	 	var seatPosition = document.getElementById("selected-seats")
-    	 
-            const bookingInfo = {
-                seatPosition: seatPosition,
-                totalSeat: totalSeat,
-                movieName: movieName,
-                timeMovie: timeMovie,
-                room: room,
-                totalAmount: totalAmount,
-                foodAmount: foodAmount
-            };
-            sessionStorage.setItem('bookingInformation', JSON.stringify(bookingInfo));
-        }
 
         function getBookingInformation() {
             const bookingInfo = sessionStorage.getItem('bookingInformation');

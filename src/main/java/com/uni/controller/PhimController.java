@@ -84,11 +84,10 @@ public class PhimController {
 			User user = (User) authentication.getPrincipal();
 			Taikhoan taikhoan = taikhoanService.findById(user.getUsername());
 			sessionService.set("login", taikhoan);
-			// System.out.println(""+sessionService.get("login"));
 			cookieService.add("USERNAME", taikhoan.getMatk(), 2);
 			model.addAttribute("hoten", taikhoan.getHoten());
 			model.addAttribute("displayed", "dn");
-			System.out.println("" + sessionService.get("login"));
+			//System.out.println("" + sessionService.get("login"));
 
 		} else {
 			model.addAttribute("displayed", null);

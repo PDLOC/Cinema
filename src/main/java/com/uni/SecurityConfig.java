@@ -42,10 +42,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				String[] roles = user.getAuthorities().stream()
 						.map(el->el.getVaitro().getMavaitro())
 						.collect(Collectors.toList()).toArray(new String[0]);
-				System.out.println(1);
 				return User.withUsername(matk).password(password).roles(roles).build();
 			} catch (Exception e) {
-				System.out.println(0);
 				throw new UsernameNotFoundException(matk + "not found!");
 			}
 		});

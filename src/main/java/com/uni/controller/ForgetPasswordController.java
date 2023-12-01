@@ -23,15 +23,14 @@ public class ForgetPasswordController {
 
 	@Autowired
 	MailerServiceImpl mailer;
+	
 	@Autowired
 	TaikhoanService taikhoanService;
 
 
 	@RequestMapping("forget-pass")
 	public String forgetpass(Model model,@RequestParam("matk") String username,@RequestParam("email") String email) {
-
 		String subject = "Send your Password!";
-		String password;
 		String randomPassword = RandomString.make(6);
 		String body = "<html>" +
                 "<head>" +

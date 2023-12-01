@@ -21,8 +21,8 @@ create table Vaitro(
 ------------------------------------Xác thực----------------------------------------------
 create table Phanquyen(
 	Id int identity(1,1) primary key,
-	Matk nvarchar(255),
-	Mavaitro varchar(10),
+	Matk varchar(255),
+	Mavaitro varchar(10)
 );
 
 ------------------------------------Phòng Chiếu----------------------------------------------
@@ -119,9 +119,9 @@ create table Ve(
 	Makm varchar(10) null,
 	Combo nvarchar(max) null,
 	Tenphim nvarchar(255),
+	Tenpc nvarchar(255),
 	Ngaychieu date,
 	Giobatdau time,
-	Gioketthuc time,
 	Ngaygiaodich date,
 	Ghe varchar(30),
 	Soluong int,
@@ -130,7 +130,6 @@ create table Ve(
 	Hinh varchar(225),
 	Trangthai bit
 );
-
 
 -----------------------------------------------------------------------------------
 insert into Taikhoan values
@@ -155,15 +154,16 @@ insert into Taikhoan values
 ('ple432',N'Phụng Lê','phung@gmail.com','0987655555','08/11/1987','123456','',N'user.png'),
 ('hnguyen324',N'Hoàng Nguyễn','hoangn@gmail.com','0987658888','08/21/1991','123456','',N'user.png'),
 ('dhao412',N'Đường Hạo','haodduong@gmail.com','0987655666','08/17/1980','123456','',N'user.png'),
-('thao413',N'Thạch Hạo','haothach@gmail.com','0987655111','08/19/1989','123456','',N'user.png')
-
+('thao413',N'Thạch Hạo','haothach@gmail.com','0987655111','08/19/1989','123456','',N'user.png'),
+('admin',N'Admin','ad@gmail.com','0987655111','08/19/1989','admin','',N'user.png')
 
 insert into Vaitro values
 ('CUST',N'Khách hàng'),
 ('STAFF',N'Nhân viên'),
 ('AD',N'Admin');
 
-insert into Phanquyen values 
+insert into Phanquyen values
+('admin','AD'),
 ('phamloc','AD'),
 ('huyvu','AD'),
 ('duyanh','AD'),
@@ -218,7 +218,6 @@ insert into Phim values
 ('P019',2,N'Nhân Duyên Tiền Đình','119','2023','kore.png')
 
 
-
 insert into Lich values
 ('CT01','08/25/2023','07:00','09:00'),
 ('CT01','08/25/2023','10:00','12:00'),
@@ -260,39 +259,21 @@ insert into Lich values
 ('CT010','09/30/2023','19:00','21:00'),
 ('CT010','09/30/2023','22:00','00:00');
 
-create table Ve(
-	MaVe int identity(1,1) primary key,
-	Matk varchar(255),
-	Lichstt int,
-	Makm varchar(10) null,
-	Combo nvarchar(max) null,
-	Tenphim nvarchar(255),
-	Ngaychieu date,
-	Giobatdau time,
-	Gioketthuc time,
-	Ngaygiaodich date,
-	Ghe varchar(30),
-	Soluong int,
-	Giamgia int null,
-	Thanhtien float,
-	Hinh varchar(225),
-	Trangthai bit
-);
-
+select * from Ve where matk like 'phamloc'
 SET IDENTITY_INSERT Ve ON 
-insert into Ve(Mave,Matk,Lichstt,Makm,Combo,Tenphim,Ngaychieu,Giobatdau,Gioketthuc,Ngaygiaodich,Ghe,Soluong,Giamgia,Thanhtien,Hinh,Trangthai)values
-(1000100,'phamloc',1,'km01',null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','09:00','08/24/2023','E3,E4,E5',3,10,330000,'shin.png',1),
-(1000101,'huyvu',1,'km01',null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','09:00','08/24/2023','E3,E4,E5',3,10,330000,'shin.png',1),
-(1000102,'huyhoai',1,'km01',null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','09:00','08/24/2023','E3,E4,E5',3,10,330000,'shin.png',1),
-(1000103,'theky',1,'km01',null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','09:00','08/23/2023','E3,E4,E5',3,10,330000,'shin.png',1),
-(1000104,'hoangviet',1,'km01',null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','07:00','09:00','08/23/2023','E3,E4,E5',3,10,330000,'shin.png',1),
-(1000105,'duyanh',2,'km01',null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','10:00','12:00','08/24/2023','F3,F4,F5,F6,F7,F8',6,10,660000,'shin.png',1),
-(1000106,'phamloc',11,null,null,N'Oppenheimer','08/29/2023','15:00','17:00','08/28/2023','E1,E2',2,null,220000,'oppenheimer.png',1),
-(1000107,'phamloc',2,null,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023','10:00','12:00','08/24/2023','E3,E4,E5',3,null,330000,'shin.png',1),
-(1000108,'huyvu',10,null,null,N'Oppenheimer','08/29/2023','07:00','09:00','08/28/2023','D1,D2',2,null,200000,'oppenheimer.png',1),
-(1000109,'duyanh',6,null,null,N'Kẻ Ẩn Danh','09/25/2023','17:00','19:00','09/24/2023','E3,E4,E5',3,null,330000,'keandanh.png',1),
-(1000110,'hoangviet',9,'km01',null,N'Thiện ác đối đầu 3','08/27/2023','23:00','01:00','08/27/2023','G3,G4',2,10,220000,'thienacdoidau.png',1);
-SET IDENTITY_INSERT Ve OFF 
+insert into Ve(Mave,Matk,Lichstt,Makm,Combo,Tenphim,Tenpc,Ngaychieu,Giobatdau,Ngaygiaodich,Ghe,Soluong,Giamgia,Thanhtien,Hinh,Trangthai)values
+(1000100,'phamloc',1,'km01',null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực',N'Cine 1','08/25/2023','07:00','08/24/2023','E3,E4,E5',3,10,330000,'shin.png',1),
+(1000101,'huyvu',1,'km01',null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực',N'Cine 1','08/25/2023','07:00','08/24/2023','E3,E4,E5',3,10,330000,'shin.png',1),
+(1000102,'huyhoai',1,'km01',null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực',N'Cine 1','08/25/2023','07:00','08/24/2023','E3,E4,E5',3,10,330000,'shin.png',1),
+(1000103,'theky',1,'km01',null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực',N'Cine 1','08/25/2023','07:00','08/23/2023','E3,E4,E5',3,10,330000,'shin.png',1),
+(1000104,'hoangviet',1,'km01',null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực',N'Cine 1','08/25/2023','07:00','08/23/2023','E3,E4,E5',3,10,330000,'shin.png',1),
+(1000105,'duyanh',2,'km01',null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực',N'Cine 1','08/25/2023','10:00','08/24/2023','F3,F4,F5,F6,F7,F8',6,10,660000,'shin.png',1),
+(1000106,'phamloc',11,null,null,N'Oppenheimer',N'Cine 1','08/29/2023','15:00','08/28/2023','E1,E2',2,null,220000,'oppenheimer.png',1),
+(1000107,'phamloc',2,null,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực',N'Cine 1','08/25/2023','10:00','08/24/2023','E3,E4,E5',3,null,330000,'shin.png',1),
+(1000108,'huyvu',10,null,null,N'Oppenheimer',N'Cine 1','08/29/2023','07:00','08/28/2023','D1,D2',2,null,200000,'oppenheimer.png',1),
+(1000109,'duyanh',6,null,null,N'Kẻ Ẩn Danh',N'Cine 1','09/25/2023','17:00','09/24/2023','E3,E4,E5',3,null,330000,'keandanh.png',1),
+(1000110,'hoangviet',9,'km01',null,N'Thiện ác đối đầu 3',N'Cine 1','08/27/2023','23:00','08/27/2023','G3,G4',2,10,220000,'thienacdoidau.png',1);
+SET IDENTITY_INSERT Ve OFF
 
 insert into Chitietphim(Mact,Maphim,Loaiphim,Mapc,Tenphim,Khoichieu,Daodien,Dienvien,Noidung,Linkytb,Hinh) values
 ('CT01','P01',N'Hoạt hình',1,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','08/25/2023',N'Hitoshi Ohne',N'Yumiko Kobayashi, Miki Narahashi, Aoi Morikawa, Satomi Kourogi, Suzuki Mogura',N'3DCG! Shin - Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực ~ Sushi Bay ~. Xoay quanh câu chuyện về hai nguồn sáng 
@@ -391,13 +372,6 @@ insert into LGhe values
 (N'Couple',250000)
 
 
-insert into Doan values
-(N'Bắp vị phô mai',50,35000,N'1.JPG'),
-(N'Bắp truyền thống',50,30000,N'2.JPG'),
-(N'Bắp vị caramel',50,35000,N'3.PNG '),
-(N'Coca',100,25000,N'5.JPG'),
-(N'Pepsi',100,25000,N'4.JPG')
-
 insert into Combo values
 ('CB01',N'Ấm áp',N'1 bắp + 2 Pepsi và 2 gấu bông ',50,90000,'3.JPG'),
 ('CB02',N'Cô đơn 1',N'1 bắp và 1 Coca',50,50000,'10.JPG'),
@@ -470,10 +444,9 @@ insert into Chitietkm values
 ------------------------------------Khóa-----------------------------------
 --Tài khoản--
 alter table Taikhoan add constraint df_Taikhoan_Hinh default (N'user.png') for Hinh
-alter table Taikhoan add constraint fk_tk_vt foreign key(Mavaitro) references Vaitro(Mavaitro)
 
 --Phân quyền--
-alter table Phanquyen add constraint fk_pq_user foreign key(Matk) references Phanquyen(Matk)
+alter table Phanquyen add constraint fk_pq_tk foreign key(Matk) references Taikhoan(Matk)
 alter table Phanquyen add constraint fk_pq_vt foreign key(Mavaitro) references Vaitro(Mavaitro)
 
 --Chi tiết phim--
@@ -490,13 +463,7 @@ alter table Chitietkm add constraint fk_km_ctkm foreign key(Makm) references Khu
 --Lịch--
 alter table Lich add constraint fk_l_ctp foreign key(Mact) references Chitietphim(Mact)
 
-
---Combo--
-alter table ComBo add constraint fk_cb_da foreign key(Mada) references DoAn(Mada)
-
-
 --Vé--
 alter table Ve add constraint fk_ve_tk foreign key(Matk) references Taikhoan(Matk)
 alter table Ve add constraint fk_ve_lich foreign key(Lichstt) references Lich(Stt)
 alter table Ve add constraint fk_ve_km foreign key(Makm) references KhuyenMai(Makm)
-alter table Ve add constraint fk_ve_cb foreign key(STTcombo) references Combo(STT)

@@ -48,9 +48,17 @@ app.config(function($routeProvider) {
 		});
 })
 
-app.controller("myController", function($scope, $http) {
+app.controller("myController", function($scope, $http, $window) {
 	$http.get('/api/session').then(function(response) {
 		$scope.username = response.data.username;
 		$scope.profileImage = response.data.profileImage;
-	});
+	}),
+	
+	$scope.logout = function() {
+        $http.get('/api/logout').then(function(response) {
+            // Xóa session thành công, chuyển hướng người dùng đến trang đăng xuất
+            $window.location.href = '/home/index';
+        });
+    };
 });
+

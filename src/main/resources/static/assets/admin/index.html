@@ -73,7 +73,7 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="/admin/index">
+				href="/home/index">
 				<div class="sidebar-brand-icon">
 					<img style="width: 70%;" src="/assets/Images/2.png ">
 				</div>
@@ -242,8 +242,8 @@
 									Activity Log
 								</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#" data-toggle="modal"
-									data-target="#logoutModal"> <i
+								<a class="dropdown-item" href="#" data-toggle="modal"	
+								data-target="#logoutModal"> <i
 									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
 									Logout
 								</a>
@@ -284,7 +284,7 @@
 					<div class="modal-footer">
 						<button class="btn btn-secondary" type="button"
 							data-dismiss="modal">Cancel</button>
-						<a class="btn btn-primary" href="login.html">Logout</a>
+						<button class="btn btn-primary" ng-click="logout()">Logout</button>
 					</div>
 				</div>
 			</div>

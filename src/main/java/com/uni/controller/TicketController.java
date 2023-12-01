@@ -44,6 +44,7 @@ public class TicketController {
 		for (Lich L : CtPhim.getListlich()) {
 			if (L.getGiobatdau().toString().contains(Giobatdau)) {
 				model.addAttribute("itemL",L);
+				System.out.println(L.getStt());
 			}
 		}
 		model.addAttribute("itemCt",CtPhim);
