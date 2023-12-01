@@ -258,8 +258,9 @@ insert into Lich values
 ('CT010','09/30/2023','16:00','18:00'),
 ('CT010','09/30/2023','19:00','21:00'),
 ('CT010','09/30/2023','22:00','00:00');
-select * from ve
-select * from Ve where matk like 'phamloc'
+select * from Lich
+
+select * from Ve
 SET IDENTITY_INSERT Ve ON 
 insert into Ve(Mave,Matk,Lichstt,Makm,Combo,Tenphim,Tenpc,Ngaychieu,Giobatdau,Ngaygiaodich,Ghe,Soluong,Giamgia,Thanhtien,Hinh,Trangthai)values
 (1000100,'phamloc',1,'km01',null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực',N'Cine 1','08/25/2023','07:00','08/24/2023','E3,E4,E5',3,10,330000,'shin.png',1),
@@ -268,10 +269,10 @@ insert into Ve(Mave,Matk,Lichstt,Makm,Combo,Tenphim,Tenpc,Ngaychieu,Giobatdau,Ng
 (1000103,'theky',1,'km01',null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực',N'Cine 1','08/25/2023','07:00','08/23/2023','E3,E4,E5',3,10,330000,'shin.png',1),
 (1000104,'hoangviet',1,'km01',null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực',N'Cine 1','08/25/2023','07:00','08/23/2023','E3,E4,E5',3,10,330000,'shin.png',1),
 (1000105,'duyanh',2,'km01',null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực',N'Cine 1','08/25/2023','10:00','08/24/2023','F3,F4,F5,F6,F7,F8',6,10,660000,'shin.png',1),
-(1000106,'phamloc',11,null,null,N'Oppenheimer',N'Cine 1','08/29/2023','15:00','08/28/2023','E1,E2',2,null,220000,'oppenheimer.png',1),
-(1000107,'phamloc',2,null,null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực',N'Cine 1','08/25/2023','10:00','08/24/2023','E3,E4,E5',3,null,330000,'shin.png',1),
-(1000108,'huyvu',10,null,null,N'Oppenheimer',N'Cine 1','08/29/2023','07:00','08/28/2023','D1,D2',2,null,200000,'oppenheimer.png',1),
-(1000109,'duyanh',6,null,null,N'Kẻ Ẩn Danh',N'Cine 1','09/25/2023','17:00','09/24/2023','E3,E4,E5',3,null,330000,'keandanh.png',1),
+(1000106,'phamloc',11,'km00',null,N'Oppenheimer',N'Cine 1','08/29/2023','15:00','08/28/2023','E1,E2',2,null,220000,'oppenheimer.png',1),
+(1000107,'phamloc',2,'km00',null,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực',N'Cine 1','08/25/2023','10:00','08/24/2023','E3,E4,E5',3,null,330000,'shin.png',1),
+(1000108,'huyvu',10,'km00',null,N'Oppenheimer',N'Cine 1','08/29/2023','07:00','08/28/2023','D1,D2',2,null,200000,'oppenheimer.png',1),
+(1000109,'duyanh',6,'km00',null,N'Kẻ Ẩn Danh',N'Cine 1','09/25/2023','17:00','09/24/2023','E3,E4,E5',3,null,330000,'keandanh.png',1),
 (1000110,'hoangviet',9,'km01',null,N'Thiện ác đối đầu 3',N'Cine 1','08/27/2023','23:00','08/27/2023','G3,G4',2,10,220000,'thienacdoidau.png',1);
 SET IDENTITY_INSERT Ve OFF
 
@@ -384,6 +385,7 @@ insert into Trangthaiphim values
 
 
 insert into Khuyenmai values
+('km00',N'',0,'','',''),
 ('km01',N'SIÊU ƯU ĐÃI “PHIM THẬT HAY - COMBO THẬT ĐÃ” CHÍNH THỨC TRỞ LẠI',10,'10/31/2023','11/30/2023','1.JPG'),
 ('km02',N'Đồng giá 49k bộ phim hoạt hình “Những chú chó hoàng gia',5,'11/16/2023','11/30/2023','2.JPG'),
 ('km03',N'XEM PHIM HAY HƯỞNG NGAY ƯU ĐÃI “ĂN THẢ GA – CHƠI CỰC ĐÃ',6,'11/16/2023','11/30/2023','3.JPG'),

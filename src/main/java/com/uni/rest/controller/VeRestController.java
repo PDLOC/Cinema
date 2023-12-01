@@ -36,7 +36,7 @@ public class VeRestController {
 		if (bookingInfo != null) {
 			try {
 				ve = objectMapper.readValue(bookingInfo, Ve.class);
-
+				
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

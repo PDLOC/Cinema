@@ -19,6 +19,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.Cascade;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -71,7 +73,7 @@ public class Ve implements Serializable {
 	@OneToOne
 	@JoinColumn(name = "Lichstt")
 	Lich lich;
-
+	
 	@JsonDeserialize(using = KhuyenmaiDeserializer.class)
 	@OneToOne
 	@JoinColumn(name = "Makm")

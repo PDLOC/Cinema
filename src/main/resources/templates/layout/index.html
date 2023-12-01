@@ -275,7 +275,7 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 	<!------------------- data khuyen mai ---------------------------------->
 	<script th:inline="javascript">
 		let giamgia = 0;
-		var makm;
+		var makm = 'km00';
 		function khuyenMai (){
 			var khuyenMaiList = /*[[${itemKM}]]*/'';
 			var input = document.getElementById("khuyenMaiInput");
@@ -467,7 +467,6 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
             const bookingInfo = {
             	taikhoan: username,
             	lich: lichSTT,
-            	khuyenmai: iddiscount,
             	giamgia: discount,
             	ghe: seatPosition,
             	soluong: totalSeat,
@@ -478,6 +477,7 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
             	thanhtien: totalAmount,
             	combo: nameFood,
             	hinh: imageMovie,
+            	khuyenmai: iddiscount,
             	trangthai: true
             };
             sessionStorage.setItem('bookingInformation', JSON.stringify(bookingInfo));
