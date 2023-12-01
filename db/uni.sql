@@ -258,7 +258,7 @@ insert into Lich values
 ('CT010','09/30/2023','16:00','18:00'),
 ('CT010','09/30/2023','19:00','21:00'),
 ('CT010','09/30/2023','22:00','00:00');
-
+select * from ve
 select * from Ve where matk like 'phamloc'
 SET IDENTITY_INSERT Ve ON 
 insert into Ve(Mave,Matk,Lichstt,Makm,Combo,Tenphim,Tenpc,Ngaychieu,Giobatdau,Ngaygiaodich,Ghe,Soluong,Giamgia,Thanhtien,Hinh,Trangthai)values

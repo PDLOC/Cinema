@@ -3,6 +3,7 @@ package com.uni.entity;
 import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -20,6 +21,7 @@ import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonValueFormat;
 
@@ -75,24 +77,37 @@ public class Ve implements Serializable {
 	@JoinColumn(name = "Makm")
 	Khuyenmai khuyenmai;
 	
+	@JsonIgnore
 	public String getFormattedThanhtien() {
-		DecimalFormat decimalFormat = new DecimalFormat("#,### VNĐ");
-		return decimalFormat.format(thanhtien);
+	    if (thanhtien != null) {
+	        DecimalFormat decimalFormat = new DecimalFormat("#.### VNĐ");
+	        return decimalFormat.format(thanhtien);
+	    }
+	    return ""; // hoặc giá trị mặc định khác tùy thuộc vào yêu cầu của bạn
 	}
 
+	@JsonIgnore
 	public String getFormattedNgaygiaodich() {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		return formatter.format(ngaygiaodich);
 	}
 
+	@JsonIgnore
 	public String getFormattedNgaychieu() {
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-		return formatter.format(ngaychieu);
+	    if (ngaychieu != null) {
+	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	        return formatter.format(ngaychieu.toInstant());
+	    }
+	    return "";
 	}
 
+	@JsonIgnore
 	public String getFormattedGiobatdau() {
-		SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
-		return formatter.format(giobatdau);
+	    if (giobatdau != null) {
+	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+	        return formatter.format(giobatdau.toInstant());
+	    }
+	    return "";
 	}
 
 

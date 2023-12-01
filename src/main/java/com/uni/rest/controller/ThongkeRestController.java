@@ -30,8 +30,8 @@ public class ThongkeRestController {
 		map.put("totalVe", veService.totalVe());
 		map.put("totalPhim", phimService.getTotalPhim());
 		map.put("totalProduct", phimService.getTotalPhim());
-		map.put("todayIncome", veService.getTodayIncome());
-		map.put("totalIncome", veService.getTotalIncome());
+		//map.put("todayIncome", veService.getTodayIncome());
+		//map.put("totalIncome", veService.getTotalIncome());
 		map.put("totalCustomer", auService.getTotalCustomer());
 		map.put("totalAccount", taikhoanService.getTotalTK());
 		return map;

@@ -161,8 +161,8 @@
 								<td style="padding-bottom: 50px;" class="align-middle" th:utext="${order.getFormattedNgaygiaodich}"></td>
 								<td style="padding-bottom: 50px;" class=" para_2 align-middle" th:utext="${order.tenphim}"></td>
 								<td style="padding-bottom: 50px;" class="align-middle" th:utext="${order.soluong}"></td>
-								<td style="padding-bottom: 50px;" class="align-middle" th:utext="${order.getFormattedThanhtien}"></td>
-								<td style="padding-bottom: 50px;" class="align-middle" th:utext="${order.trangthai?'Đã thanh toán':'Chưa thanh toán'}" ></td>
+								<td style="padding-bottom: 50px;" class="align-middle" th:utext="${order.thanhtien}"></td>
+								<td style="padding-bottom: 50px;" class="align-middle" th:utext="${order.trangthai != null ?'Đã thanh toán':'Chưa thanh toán'}" ></td>
 							</tr>
 						</table>
 

@@ -1,7 +1,6 @@
 app.controller("ve-ctrl", function($scope, $http) {
 	$scope.items = [];
 	$scope.form = {};
-	$scope.cates = [];
 
 	$scope.initialize = function() {
 		//load vé
@@ -18,23 +17,6 @@ app.controller("ve-ctrl", function($scope, $http) {
 		$scope.form = angular.copy(item);
 
 	}
-
-
-	//Upload Hình
-	$scope.imageChanged = function(files) {
-		var data = new FormData();
-		data.append('file', files[0]);
-		$http.post('/rest/upload/Images', data, {
-			transformRequest: angular.identity,
-			headers: { 'Content-Type': undefined }
-		}).then(resp => {
-			$scope.form.hinh = resp.data.name;
-		}).catch(err => {
-			alert('Lỗi upload Ảnh');
-			console.log("Error ", err)
-		})
-	}
-
 
 	$scope.pager = {
 		page: 0,

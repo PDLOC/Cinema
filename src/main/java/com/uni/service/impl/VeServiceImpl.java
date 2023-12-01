@@ -47,6 +47,7 @@ public class VeServiceImpl implements VeService {
 	public Double getTodayIncome() {
 		return veDAO.findAll().stream().filter(e->e.getNgaygiaodich().toString().equals(xdate.convertToPattern(new Date(), "yyyy-MM-dd"))).mapToDouble(item->item.getThanhtien()).sum();
 	}
+	
 	@Override
 	public Double getTotalIncome() {
 		return veDAO.findAll().stream().mapToDouble(item->item.getThanhtien()).sum();

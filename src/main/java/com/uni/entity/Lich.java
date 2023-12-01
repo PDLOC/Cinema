@@ -48,18 +48,27 @@ public class Lich implements Serializable {
 	Chitietphim ctphims;
 
 	public String getFormattedNgaychieu() {
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-		return formatter.format(Ngaychieu);
-    }
-	
-	
+	    if (Ngaychieu != null) {
+	        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+	        return formatter.format(Ngaychieu);
+	    }
+	    return null;
+	}
+
 	public String getFormattedGiobatdau() {
-        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
-        return formatter.format(Giobatdau);
-    }
+	    if (Giobatdau != null) {
+	        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
+	        return formatter.format(Giobatdau);
+	    }
+	    return null;
+	}
+
 	public String getFormattedGioketthuc() {
-        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
-        return formatter.format(Gioketthuc);
-    }
+	    if (Gioketthuc != null) {
+	        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
+	        return formatter.format(Gioketthuc);
+	    }
+	    return null;
+	}
 
 }

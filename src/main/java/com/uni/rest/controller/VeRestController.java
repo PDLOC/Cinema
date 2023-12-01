@@ -32,17 +32,16 @@ public class VeRestController {
 	}
 
 	@PostMapping
-	public String booking(@RequestBody String bookingInfo, HttpSession session) {
+	public Ve booking(@RequestBody Ve ve, HttpSession session, String bookingInfo) {
 		if (bookingInfo != null) {
 			try {
-				Ve ve = objectMapper.readValue(bookingInfo, Ve.class);
-				
-				veService.create(ve);
+				ve = objectMapper.readValue(bookingInfo, Ve.class);
+
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-		return "redirect:/home/index";
+		return veService.create(ve);
 	}
 
 }
