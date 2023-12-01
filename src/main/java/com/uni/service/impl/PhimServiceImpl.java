@@ -17,7 +17,7 @@ public class PhimServiceImpl implements PhimService {
 	@Override
 	public List<Phim> findAll() {
 		// TODO Auto-generated method stub
-		return pDao.findAll();
+		return pDao.findAllPhim();
 	}
 
 	@Override

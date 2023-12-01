@@ -5,14 +5,14 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-
 import com.uni.entity.Ve;
 
 public interface VeDAO extends JpaRepository<Ve, String>{
 
 	@Query(value = "SELECT * FROM Ve  WHERE matk=?1", nativeQuery = true)
 	List<Ve> findByMatk(String uname);
-	
+	@Query(value ="SELECT * FROM  Ve ORDER BY mave DESC", nativeQuery = true)
+	List<Ve> findAllVeByDescending();
 	
 	@Query(value = "Select count(*) from Ve where Ngaygiaodich = CAST( GETDATE() AS Date)",nativeQuery= true)
 	Long getTodayVe();		
@@ -37,7 +37,7 @@ public interface VeDAO extends JpaRepository<Ve, String>{
 			+ "    UNION ALL\r\n"
 			+ "    SELECT DATEADD(DAY, -7, CAST(GETDATE() AS DATE))\r\n"
 			+ ") t\r\n"
-			+ "LEFT JOIN Ve t1 ON CAST(t1.Ngaychieu AS DATE) = CAST(t.last7Days AS DATE)\r\n"
+			+ "LEFT JOIN Ve t1 ON CAST(t1.Ngaygiaodich AS DATE) = CAST(t.last7Days AS DATE)\r\n"
 			+ "GROUP BY CAST(t.last7Days AS DATE)", nativeQuery = true)
 	List<Object[]> getRevenueLast7Days();
 

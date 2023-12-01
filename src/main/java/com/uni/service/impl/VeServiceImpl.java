@@ -20,7 +20,7 @@ public class VeServiceImpl implements VeService {
 	@Override
 	public List<Ve> findAll() {
 		// TODO Auto-generated method stub
-		return veDAO.findAll();
+		return veDAO.findAllVeByDescending();
 	}
 
 	@Override
