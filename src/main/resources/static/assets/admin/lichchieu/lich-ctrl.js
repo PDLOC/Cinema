@@ -19,6 +19,7 @@ app.controller("lich-ctrl", function($scope, $http) {
 				})
         });
 	}
+	
 	//Reset form
 	$scope.reset = function() {
 		$scope.form = {

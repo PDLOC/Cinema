@@ -32,7 +32,26 @@ app.controller("taikhoan-ctrl",function($scope,$http){
 			})
 		})
 	}
-	
+	  $scope.search = function(keyword) {
+          if (keyword == null) {
+            return;
+          }
+
+          $http.get("/rest/customers").then(function(response) {
+            var tk = response.data;
+            var matching = tk.filter(function(matk) {
+              var maMatch = matk.matk.toLowerCase().indexOf(keyword.toLowerCase()) !== -1;
+              var tenMatch = matk.hoten.toLowerCase().indexOf(keyword.toLowerCase()) !== -1;
+              var email = matk.email.toLowerCase().indexOf(keyword.toLowerCase()) !== -1;             
+              var sdtmatch = matk.sdt.toLowerCase().indexOf(keyword.toLowerCase()) !== -1;
+             
+              return maMatch || tenMatch||email||sdtmatch;
+            });
+            $scope.items = matching;
+          }).catch(function(error) {
+            console.error("Error fetching data:", error);
+          });
+        };
 	
 	    //Xoá form
     $scope.reset = function(){

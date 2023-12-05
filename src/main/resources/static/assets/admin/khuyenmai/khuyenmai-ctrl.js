@@ -11,7 +11,25 @@ app.controller("khuyenmai-ctrl", function($scope, $http) {
 			})
 		});
 	}
+ $scope.search = function(keyword) {
+          if (keyword == null) {
+            return;
+          }
 
+          $http.get("/rest/khuyenmai").then(function(response) {
+            var tk = response.data;
+            var matching = tk.filter(function(matk) {
+              var maMatch = matk.makm.toLowerCase().indexOf(keyword.toLowerCase()) !== -1;
+              var tenMatch = matk.tenkm.toLowerCase().indexOf(keyword.toLowerCase()) !== -1;
+              
+             
+              return maMatch || tenMatch;
+            });
+            $scope.items = matching;
+          }).catch(function(error) {
+            console.error("Error fetching data:", error);
+          });
+        };
 	//Xoá form
 	$scope.reset = function() {
 		$scope.form = {

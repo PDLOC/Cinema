@@ -12,6 +12,26 @@ app.controller("ve-ctrl", function($scope, $http) {
 		});
 
 	}
+	  $scope.search = function(keyword) {
+          if (keyword == null) {
+            return;
+          }
+
+          $http.get("/rest/ve").then(function(response) {
+            var ve = response.data;
+            var mavechinh = ve.filter(function(ve) {
+				var maveString = ve.mave.toString();
+              var mavematch = maveString.toLowerCase().indexOf(keyword.toLowerCase()) !== -1;
+              var tenphimMatch = ve.tenphim.toLowerCase().indexOf(keyword.toLowerCase()) !== -1;
+              var gheMatch = ve.ghe.toLowerCase().indexOf(keyword.toLowerCase()) !== -1;
+              var pcMatch = ve.tenpc.toLowerCase().indexOf(keyword.toLowerCase()) !== -1;
+              return mavematch || tenphimMatch||gheMatch||pcMatch;
+            });
+            $scope.items = mavechinh;
+          }).catch(function(error) {
+            console.error("Error fetching data:", error);
+          });
+        };
 	//Hiển thị lên form
 	$scope.edit = function(item) {
 		$scope.form = angular.copy(item);

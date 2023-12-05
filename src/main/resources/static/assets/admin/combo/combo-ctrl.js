@@ -18,7 +18,24 @@ app.controller("combo-ctrl", function($scope, $http) {
 			hinh: 'cloud-upload.jpg',
 		}
 	}
-	
+	$scope.search = function(keyword) {
+          if (keyword == null) {
+            return;
+          }
+
+          $http.get("/rest/combo").then(function(response) {
+            var tk = response.data;
+            var matching = tk.filter(function(combo) {
+              var maMatch = combo.macb.toLowerCase().indexOf(keyword.toLowerCase()) !== -1;
+              var tenMatch = combo.tencb.toLowerCase().indexOf(keyword.toLowerCase()) !== -1;         
+              
+              return maMatch || tenMatch;
+            });
+            $scope.items = matching;
+          }).catch(function(error) {
+            console.error("Error fetching data:", error);
+          });
+        };
 	//Hiển thị lên form
 	$scope.edit = function(item) {
 		$scope.form = angular.copy(item);

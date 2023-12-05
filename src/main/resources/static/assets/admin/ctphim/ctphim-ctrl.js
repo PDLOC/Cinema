@@ -16,6 +16,24 @@ app.controller("ctphim-ctrl",function($scope,$http){
             $scope.cates = resp.data;
         })
 	}
+		  $scope.search = function(keyword) {
+          if (keyword == null) {
+            return;
+          }
+
+          $http.get("/rest/ctphim").then(function(response) {
+            var tk = response.data;
+            var matching = tk.filter(function(matk) {
+              var ten = matk.tenphim.toLowerCase().indexOf(keyword.toLowerCase()) !== -1;
+             
+             
+              return ten ;
+            });
+            $scope.items = matching;
+          }).catch(function(error) {
+            console.error("Error fetching data:", error);
+          });
+        };
 		    //Xoá form
     $scope.reset = function(){
 		$scope.form = {			

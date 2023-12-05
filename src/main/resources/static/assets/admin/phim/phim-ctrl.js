@@ -16,6 +16,23 @@ app.controller("phim-ctrl",function($scope,$http){
             $scope.cates = resp.data;
         })
 	}
+    $scope.search = function(keyword) {
+          if (keyword == null) {
+            return;
+          }
+
+          $http.get("/rest/phim").then(function(response) {
+            var phims = response.data;
+            var matchingPhims = phims.filter(function(phim) {
+              var maphimMatch = phim.maphim.toLowerCase().indexOf(keyword.toLowerCase()) !== -1;
+              var tenphimMatch = phim.tenphim.toLowerCase().indexOf(keyword.toLowerCase()) !== -1;
+              return maphimMatch || tenphimMatch;
+            });
+            $scope.items = matchingPhims;
+          }).catch(function(error) {
+            console.error("Error fetching data:", error);
+          });
+        };
 		    //Xoá form
     $scope.reset = function(){
 		$scope.form = {			
