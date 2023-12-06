@@ -23,7 +23,7 @@ public class ChitietkmServiceImpl implements ChitietkmService{
 	@Override
 	public List<Chitietkm> findAll() {
 		// TODO Auto-generated method stub
-		return chitietkmDAO.findAll();
+		return chitietkmDAO.findAllChitietkmByDescending();
 	}
 
 	@Override

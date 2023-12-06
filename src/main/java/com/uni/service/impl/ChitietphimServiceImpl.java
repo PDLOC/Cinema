@@ -25,7 +25,7 @@ public class ChitietphimServiceImpl implements ChitietphimService {
 	@Override
 	public List<Chitietphim> findAll() {
 		// TODO Auto-generated method stub
-		return ctDAO.findAll();
+		return ctDAO.findAllChitietphim();
 	}
 	@Override
 	public Chitietphim create(Chitietphim maCtphim) {

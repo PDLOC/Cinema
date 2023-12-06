@@ -21,7 +21,7 @@ public class LichServiceImpl implements LichService {
 	@Override
 	public List<Lich> findAll() {
 		// TODO Auto-generated method stub
-		return lichDao.findAll();
+		return lichDao.findAllByLichDescending();
 	}
 	@Override
 	public Lich findById(Integer stt) {

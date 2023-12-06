@@ -17,7 +17,7 @@ public class ComboServiceImpl implements ComboService {
 	@Override
 	public List<Combo> findAll() {
 		// TODO Auto-generated method stub
-		return combodao.findAll();
+		return combodao.findAllComboByDescending();
 	}
 	@Override
 	public Combo findById(Integer stt) {

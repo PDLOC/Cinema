@@ -17,7 +17,7 @@ public class KmServiceImpl implements KmService{
 	@Override
 	public List<Khuyenmai> findAll() {
 		// TODO Auto-generated method stub
-		return kmDAO.findAll();
+		return kmDAO.findAllKhuyenmaiByDescending();
 	}
 
 	@Override
