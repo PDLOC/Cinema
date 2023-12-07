@@ -9,7 +9,7 @@ import com.uni.entity.Ve;
 
 public interface VeDAO extends JpaRepository<Ve, String>{
 
-	@Query(value = "SELECT * FROM Ve  WHERE matk=?1", nativeQuery = true)
+	@Query(value = "SELECT * FROM Ve  WHERE matk=?1 ORDER BY mave DESC", nativeQuery = true)
 	List<Ve> findByMatk(String uname);
 	@Query(value ="SELECT * FROM  Ve ORDER BY mave DESC", nativeQuery = true)
 	List<Ve> findAllVeByDescending();
