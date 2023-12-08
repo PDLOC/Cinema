@@ -1,122 +1,119 @@
   
   /* Màn hình screen */
-  .screen {
-    background-color: white;
-    height: 120px;
-    width: 100%;
-    margin: 15px 0;
-    transform: rotateX(-48deg);
-    box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
-  }
-  
-  /* Chú thích hàng ghế */
-  .showcase {
-    background: rgba(0, 0, 0, 0.1);
-    padding: 5px 10px;
-    border-radius: 5px;
-    color: #777;
-    list-style-type: none;
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .showcase li {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 10px;
-  }
-  
-  .showcase li small {
-    margin-left: 2px;
-  }
-  
-  .showcase .seat:not(.sold):hover {
-    cursor: default;
-    transform: scale(1);
-  }
-  
-  .commentSeat {
-    width: 40px;
-    height: 40px;
-    margin: 5px;
-    background-color: #d3d3d3;
-    border-radius: 10px 10px 0px 0px;
-    cursor: pointer;
-  }
-  
-  .commentSeat.selected {
-    background-color: #ffa07a;
-  }
-  
-  
-  .commentSeat.soled {
-    background-color: #fff;
-  }
-  
-  .commentSeat.vip {
-    background-color: #ebda65;
-  }  
+.screen {
+	background-color: white;
+	height: 120px;
+	width: 100%;
+	transform: rotateX(-48deg);
+	box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
+}
 
-  
-  
-  /* Ghế ngồi */
-  .seat-map {
-    display: inline-block;
-    margin-top: 20px;
-  }
-  
-  .seats {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  .seat {
-    width: 40px;
-    height: 40px;
-    margin: 5px;
-    background-color: #d3d3d3;
-    border-radius: 10px 10px 0px 0px;
-    color: black;
-    cursor: pointer;
-  }
-  
-  .seat.selected {
-    background-color: #ffa07a;
-  }
-  
-  .seat:nth-of-type(2) {
-    margin-right: 30px;
-  }
-  
-  .seat:nth-last-of-type(2) {
-    margin-left: 30px;
-  }
-  
-  /* Hiệu ứng cho ghế VIP */
-  .seat[data-vip="true"] {
-    color: black;
-    font-weight: bold;
-    background-color: #ebda65;
-  }
+/* Chú thích hàng ghế */
+.showcase {
+	background: rgba(0, 0, 0, 0.1);
+	padding: 5px 10px;
+	border-radius: 5px;
+	color: #777;
+	list-style-type: none;
+	display: flex;
+	justify-content: space-between;
+}
 
-  .seat[data-vip="true"].selected{
-    background-color: #ffa07a;
-  }
-  .seat-row {
-    display: flex;
-  }
+.showcase li {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0 10px;
+}
 
+.showcase li small {
+	margin-left: 2px;
+}
 
-  .double {
-    background-color: pink;
-    width: 90px;
-  }
-  
-  .couple.selected {
-    background-color: #ffa07a;
-  }
+.showcase .seat:not(.sold):hover {
+	cursor: default;
+	transform: scale(1);
+}
+
+.commentSeat {
+	width: 40px;
+	height: 40px;
+	margin: 5px;
+	background-color: #d3d3d3;
+	border-radius: 10px 10px 0px 0px;
+	cursor: pointer;
+}
+
+.commentSeat.selected {
+	background-color: #ffa07a;
+}
+
+.commentSeat.sold {
+	background-color: #BB0000;
+}
+
+.commentSeat.vip {
+	background-color: #ebda65;
+}
+
+.commentSeat.couple{
+	background-color: pink;
+	width: 90px;
+}
+
+/* Ghế ngồi */
+.seat-map {
+	display: inline-block;
+}
+
+.seats {
+	display: flex;
+	width: 400px;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin-left: 120px;
+}
+
+.seat {
+	width: 40px;
+	height: 40px;
+	margin: 5px;
+	background-color: #d3d3d3;
+	border-radius: 10px 10px 0px 0px;
+	color: black;
+	cursor: pointer;
+}
+
+.seat.sold{
+	background-color: #BB0000;
+}
+
+.seat.selected {
+	background-color: #ffa07a;
+}
+
+/* Hiệu ứng cho ghế VIP */
+.vip {
+	color: black;
+	background-color: #ebda65;
+}
+
+.vip.selected {
+	background-color: #ffa07a;
+}
+
+.seat-row {
+	display: flex;
+}
+
+.couple {
+	background-color: pink;
+	width: 90px;
+}
+
+.couple.selected {
+	background-color: #ffa07a;
+}
   
   #selected-seats {
     font-weight: bold;

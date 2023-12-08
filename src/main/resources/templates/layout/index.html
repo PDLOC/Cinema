@@ -211,15 +211,14 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 			  lich.map(function (item) {
 			    if (item.ctphims && item.ctphims.mact && item.giobatdau === giobatdau) {
 			      var hrefValue =
-			        "/home/booking/ticket/" +
+			        "/home/booking/ticket/"+item.ctphims.room.mapc+"/"+
 			        item.ctphims.mact +
 			        "/" +
 			        item.formattedGiobatdau;
 			      linkElement.setAttribute("href", hrefValue);
 			    }
 			  });
-
-			linkElement.appendChild(buttonElement);
+linkElement.appendChild(buttonElement);
 	
 			var divElement = document.createElement("div");
 			divElement.className = "cus-sty col-md-2";
@@ -293,19 +292,19 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 
 	<!---------------- Loại ghế ----------------------->
 	<script th:inline="javascript">
-		var itemLGhe = /*[[${itemLGhe}]]*/'';
+		var itemLGhe = /*[[${listGhe}]]*/'';
 		let vip = 0;
 		let regular = 0;
 		let couple = 0;
 		itemLGhe.map(item =>{
-			if (item.loaighe === "VIP") {
-				vip = item.dongia;
+			if (item.loaighe.maloai === 'V') {
+				vip = item.loaighe.dongia;
 			}
-			if (item.loaighe === "Couple") {
-				couple = item.dongia;
+			if (item.loaighe.maloai === 'C') {
+				couple = item.loaighe.dongia;
 			}
-			if (item.loaighe === "Regular") {
-				regular = item.dongia;
+			if (item.loaighe.maloai === 'R') {
+				regular = item.loaighe.dongia;
 			}
 		})
 	</script>
@@ -320,27 +319,27 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 
 
 	<!---------------------------- Ghế ------------------------------------------>
-	<script>
+	<script th:inline="javascript">
     	
 		let totalPay = null;
 	
     	let itemsArray = [];
     
         let combo = 0;
-
-        const tongGhe = document.getElementById('countSeat')
+const tongGhe = document.getElementById('countSeat')
 
         var countSeat = [];
-       
 		
         // Lấy danh sách các ghế
         const seats = document.querySelectorAll('.seat');
-
+        const totalSeats = document.getElementById('TotalSeat2');
+        totalSeats.textContent = `Số ghế ${seats.length}/${seats.length}`;        
         // Số lượng ghế đã chọn
         let selectedSeats = [];
         let selectedVipSeats = [];
         let selectedRegularSeats = [];
         let selectedCoupleSeats = [];
+        let selectedSeatType = null;
         // Giá vé
         let regularSeatPrice = 0;
         let vipSeatPrice = 0;
@@ -371,28 +370,34 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 
         // Cập nhật số ghế đã chọn và tổng giá vé
         function updateSelectedSeats() {
+        	const selected = document.querySelectorAll('.seat.selected');
+        	selectedSeats = Array.from(selected).map(seat => seat.getAttribute('data-name'));
+        	selectedVipSeats = Array.from(selected).filter(seat => seat.classList.contains('vip'));
+        	selectedRegularSeats = Array.from(selected).filter(seat => !seat.classList.contains('vip') && !seat.classList.contains('couple'));
+        	selectedCoupleSeats = Array.from(selected).filter(seat => seat.classList.contains('couple'));
+        	const selectedSeatsCount = selectedSeats.length;
+        	const selectedVipSeatsCount = selectedVipSeats.length;
+        	const selectedRegularSeatsCount = selectedRegularSeats.length;
+        	const selectedCoupleSeatsCount = selectedCoupleSeats.length;
+        	if (selectedSeatsCount > 8) {
+        		  alert("Bạn chỉ được chọn tối đa 8 ghế.");
 
-            const selected = document.querySelectorAll('.seat.selected');
-            // selectedSeats = Array.from(selected).map(seat => Array.from(seats).indexOf(seat) + 1);
-            selectedSeats = Array.from(selected).map(seat => seat.getAttribute('data-name'));
-            selectedVipSeats = Array.from(selected).filter(seat => seat.getAttribute('data-vip') === 'true');
-            selectedRegularSeats = Array.from(selected).filter(seat => seat.getAttribute('data-vip') !== 'true' && seat.getAttribute('data-couple') !== 'true');
-            selectedCoupleSeats = Array.from(selected).filter(seat => seat.getAttribute('data-couple') === 'true');
-            const selectedSeatsCount = selectedSeats.length;
-            const selectedVipSeatsCount = selectedVipSeats.length;
-            const selectedRegularSeatsCount = selectedRegularSeats.length;
-            const selectedCoupleSeatsCount = selectedCoupleSeats.length;
+        		  // Bỏ chọn các ghế vượt quá giới hạn
+        		  selectedSeats.forEach(seat => {
+        		    if (selectedSeats.indexOf(seat.getAttribute('data-name')) > 7) {
+        		      const lastClickedSeat = seat.classList.contains('selected') ? seat : null;
+if (lastClickedSeat && !selectedSeats.includes(lastClickedSeat)) {
+        		        lastClickedSeat.classList.remove('selected');
+        		      }
+        		    }
+        		  });
 
-            /* Giới hạn số lượng chọn ghế */
-            if (selectedSeatsCount > 8) {
-                alert("Bạn chỉ được chọn tối đa 8 ghế.");
-                // Bỏ chọn các ghế vượt quá giới hạn
-                selected.forEach(seat => {
-                    if (selectedSeats.indexOf(seat.getAttribute('data-name')) > 7) {
-                        seat.classList.remove('selected');
-                    }
-                });
-            }
+        		  // Cập nhật lại mảng selectedSeats
+        		  selectedSeats = document.querySelectorAll('.seat.selected');
+
+        		  // Cập nhật lại selectedSeatsCount
+        		  selectedSeatsCount = selectedSeats.length;
+        		}
             //const totalPrice = selectedSeatsCount * seatPrice;
             //const totalPrice = (selectedVipSeatsCount * vipSeatPrice) + (selectedRegularSeatsCount * regularSeatPrice);
             const totalPrice = (selectedVipSeatsCount * vipSeatPrice) + (selectedRegularSeatsCount * regularSeatPrice) + (selectedCoupleSeatsCount * coupleSeatPrice);
@@ -420,18 +425,15 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
             document.getElementById("toTalPay").textContent = `Tổng Thanh Toán: ${formatNumber(totalPrice*(1-(giamgia/100)))} + ${formatNumber(combo)}`;
             document.getElementById("toTalPay2").textContent = `Thành Tiền: ${formatNumber(totalPrice*(1-(giamgia/100)) + combo)} VND`;
             totalPay = totalPrice*(1-(giamgia/100)) + combo;
-            document.getElementById("Pay").textContent = `${formatNumber(totalPrice + combo)} VND`;
-            document.getElementById("TotalSeat2").textContent = `Số ghế ${76 - selectedSeatsCount}/76`
-            /* payment */
-            
+            document.getElementById("TotalSeat2").textContent = `Số ghế ${seats.length - selectedSeatsCount}/${seats.length}`;
+
         }
         
         
         function formatNumber(number) {
 				return number.toLocaleString('vi-VN').replace(/,/g, '.');
 		}
-
-        function getCookieValue(cookieName) {
+function getCookieValue(cookieName) {
 			  var name = cookieName + "=";
 			  var decodedCookie = decodeURIComponent(document.cookie);
 			  var cookieArray = decodedCookie.split(";");
@@ -448,13 +450,106 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 			  return null;
 			}
         
+       
+
+        function selectSeat() {
+        	  const isVip = this.classList.contains('vip');
+        	  const isCouple = this.classList.contains('couple');
+
+        	  // Kiểm tra xem đã chọn ghế vip hay ghế đôi hay không
+        	  const isVipSeatSelected = selectedVipSeats.length > 0;
+        	  const isCoupleSeatSelected = selectedCoupleSeats.length > 0;
+        	  const isRegularSeatSelected = selectedRegularSeats.length > 0;
+
+        	  // Nếu người dùng chọn ghế vip
+        	  if (isVip) {
+        	    if (isCoupleSeatSelected || isRegularSeatSelected) {
+        	      alert("Chỉ được chọn một loại ghế");
+        	      return;
+        	    }
+
+        	    // Bỏ chọn tất cả các ghế đôi nếu có
+        	    selectedCoupleSeats.forEach(seat => seat.classList.remove('selected'));
+        	    selectedCoupleSeats = [];
+
+        	    // Bỏ chọn tất cả các ghế thường nếu có
+        	    selectedRegularSeats.forEach(seat => seat.classList.remove('selected'));
+        	    selectedRegularSeats = [];
+
+        	    // Thực hiện chọn/ bỏ chọn ghế vip
+        	    this.classList.toggle('selected');
+        	    if (this.classList.contains('selected')) {
+        	      selectedVipSeats.push(this);
+        	    } else {
+        	      const index = selectedVipSeats.indexOf(this);
+        	      if (index > -1) {
+        	        selectedVipSeats.splice(index, 1);
+        	      }
+        	    }
+        	    updateSelectedSeats();
+        	    return;
+        	  }
+
+        	  // Nếu người dùng chọn ghế đôi
+        	  if (isCouple) {
+        	    if (isVipSeatSelected || isRegularSeatSelected) {
+        	      alert("Chỉ được chọn một loại ghế");
+        	      return;
+        	    }
+
+        	    // Bỏ chọn tất cả các ghế vip nếu có
+        	    selectedVipSeats.forEach(seat => seat.classList.remove('selected'));
+        	    selectedVipSeats = [];
+
+        	    // Bỏ chọn tất cả các ghế thường nếu có
+        	    selectedRegularSeats.forEach(seat => seat.classList.remove('selected'));
+        	    selectedRegularSeats = [];
+
+        	    // Thực hiện chọn/ bỏ chọn ghế đôi
+        	    this.classList.toggle('selected');
+        	    if (this.classList.contains('selected')) {
+        	      selectedCoupleSeats.push(this);
+        	    } else {
+        	      const index = selectedCoupleSeats.indexOf(this);
+        	      if (index > -1) {
+selectedCoupleSeats.splice(index, 1);
+        	      }
+        	    }
+        	    updateSelectedSeats();
+        	    return;
+        	  }
+
+        	  // Nếu người dùng chọn ghế thường
+        	  if (isVipSeatSelected || isCoupleSeatSelected) {
+        	    alert("Chỉ được chọn một loại ghế");
+        	    return;
+        	  }
+
+        	  // Thực hiện chọn/ bỏ chọn ghế thường
+        	  this.classList.toggle('selected');
+        	  if (this.classList.contains('selected')) {
+        	    selectedRegularSeats.push(this);
+        	  } else {
+        	    const index = selectedRegularSeats.indexOf(this);
+        	    if (index > -1) {
+        	      selectedRegularSeats.splice(index, 1);
+        	    }
+        	  }
+        	  updateSelectedSeats();
+        	}
+
+        // Đăng ký sự kiện cho từng ghế
+        seats.forEach(seat => {
+            seat.addEventListener('click', selectSeat);
+        });
+
+        
      // Lưu thông tin vào local session
      function saveBookingInformation() {
     	 	var username = getCookieValue('USERNAME');
-    	 	var seatPosition = document.getElementById('selected-seats').textContent;
     	 	var totalSeat = document.getElementById('countSeat').textContent;
     	 	var movieName = document.getElementById('nameFilm').textContent;
-    	 	var timeMovie = document.getElementById('timeShow').innerHTML;
+    	 	var timeMovie = document.getElementById('timeShow').textContent;
     	 	var dateMovie = document.getElementById('dateShow').innerHTML;
     	 	var room = document.getElementById('room').textContent;
     	 	var totalAmount = document.getElementById('toTalPayNoFormat').textContent;
@@ -464,11 +559,74 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
     	 	var lichSTT = document.getElementById('lichSTT').textContent;
     	 	var iddiscount = document.getElementById('maKhuyenMai').textContent;
     	 	var discount = document.getElementById('giamGia').textContent;
+    	 	
+    	 	var seatPositionElement = document.getElementById('selected-seats');
+    	 	var seatPosition = seatPositionElement.textContent.split(',').map(position => position.trim());
+    	 	var elementSeats = document.getElementById("seats");
+    	 	var listGhe = /*[[${listGhe}]]*/ [];
+    	 	var ghetrungkhop = listGhe.filter(item => seatPosition.includes(item.tenghe));
+    	 	
+    	 	if (ghetrungkhop.length > 0) {
+    	 	  //console.log('Các ghế  trùng khớp với vị trí ghế', seatPosition, ':');
+    	 	  seatPosition.forEach(position => {
+    	 	  //console.log('Vị trí ghế:', position);
+				
+    	 	    // Thực hiện xử lý cho từng vị trí ghế
+    	 	    var gheTrungKhop = ghetrungkhop.find(item => item.tenghe === position);
+    	 	    if (gheTrungKhop) {
+    	 	      // Thực hiện xử lý cho từng ghế trùng khớp
+    	 	     fetch(`/rest/ghe/${gheTrungKhop.maghe}`, {
+    	 	        method: 'PUT',
+    	 	        headers: {
+    	 	          'Content-Type': 'application/json'
+    	 	        },
+body: JSON.stringify({maghe: gheTrungKhop.maghe,
+    	 	        	tenghe: gheTrungKhop.tenghe,
+    	 	        	loaighe: gheTrungKhop.loaighe.maloai,
+    	 	        	room: gheTrungKhop.room.mapc,
+    	 	        	hang: gheTrungKhop.hang,
+    	 	        	cot: gheTrungKhop.cot,
+    	 	        	trangthai: true})
+    	 	      })
+    	 	      .then(response => {
+    	 	        if (response.ok) {
+    	 	          // Xử lý khi cập nhật trạng thái ghế thành công
+    	 	          console.log(`Seat ${gheTrungKhop.maghe} updated successfully.`);
+    	 	         var selectedSeatElements = document.querySelectorAll('.selected');
+    	 	        if (gheTrungKhop.trangthai === true) {
+    	 	        	  // Change the color of the selected seat element
+    	 	        	  var selectedSeatElement = document.querySelector('.selected[data-id="' + gheTrungKhop.maghe + '"]');
+    	 	        	  console.log(selectedSeatElement);
+    	 	        	 	selectedSeatElement.style.color = 'white';
+    	                    selectedSeatElement.style.backgroundColor = '#BB0000';
+    	                    selectedSeatElement.removeEventListener('click', selectSeat);
+    	                    console.log("Chức mừng đã bán");
+    	 	        	}
+    	 	        } else {
+    	 	          // Xử lý khi có lỗi cập nhật trạng thái ghế
+    	 	          console.error(`Error updating seat ${gheTrungKhop.maghe}.`);
+    	 	        }
+    	 	      })
+    	 	      .catch(error => {
+    	 	        // Xử lý khi có lỗi kết nối hoặc lỗi xử lý
+    	 	        console.error(`Error updating seat ${gheTrungKhop.maghe}:`, error);
+    	 	      });
+    	 	    } else {
+    	 	      console.log('Không tìm thấy ghế trùng khớp với vị trí ghế', position);
+    	 	    }
+    	 		// Store selected seat positions in local storage
+    	 	   	var seatCodes = ghetrungkhop.map(item => item.maghe);
+    	 	  	localStorage.setItem('selectedSeats', JSON.stringify(seatCodes));
+    	 	  });
+    	 	} else {
+    	 	  console.log('Không tìm thấy ghế nào trùng khớp với vị trí ghế', seatPosition);
+    	 	}
+    	 	
             const bookingInfo = {
             	taikhoan: username,
             	lich: lichSTT,
             	giamgia: discount,
-            	ghe: seatPosition,
+            	ghe: seatPositionElement.textContent,
             	soluong: totalSeat,
             	tenphim: movieName,
             	giobatdau: timeMovie,
@@ -489,7 +647,7 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(bookingInfo)
-            })
+})
             .then(response => {
                 if (response.ok) {
                     console.log('Booking created successfully.');
@@ -513,120 +671,6 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
             return bookingInfo ? JSON.parse(bookingInfo) : null;
         }
 
-
-        let selectedSeatType = null;
-
-        function selectSeat() {
-            const isVip = this.getAttribute('data-vip') === 'true';
-            const isCouple = this.getAttribute('data-couple') === 'true';
-
-            // Kiểm tra xem đã chọn ghế vip hay ghế đôi hay không
-            const isVipSeatSelected = selectedVipSeats.length > 0;
-            const isCoupleSeatSelected = selectedCoupleSeats.length > 0;
-            const isRegularSeatSelected = selectedRegularSeats.length > 0;
-
-            // Nếu người dùng chọn ghế vip
-            if (isVip) {
-                if (isCoupleSeatSelected || isRegularSeatSelected) {
-                    alert("Chỉ được chọn một loại ghế");
-                    return;
-                }
-
-                // Bỏ chọn tất cả các ghế đôi nếu có
-                if (isCoupleSeatSelected) {
-                    selectedCoupleSeats.forEach(seat => seat.classList.remove('selected'));
-                    selectedCoupleSeats = [];
-                }
-
-                // Bỏ chọn tất cả các ghế thường nếu có
-                if (isRegularSeatSelected) {
-                    selectedRegularSeats.forEach(seat => seat.classList.remove('selected'));
-                    selectedRegularSeats = [];
-                }
-
-                // Thực hiện chọn/ bỏ chọn ghế vip
-                this.classList.toggle('selected');
-                if (this.classList.contains('selected')) {
-                    selectedSeatType = 'vip';
-                } else {
-                    selectedSeatType = null;
-                }
-                updateSelectedSeats();
-                return;
-            }
-
-            // Nếu người dùng chọn ghế đôi
-            if (isCouple) {
-                if (isVipSeatSelected || isRegularSeatSelected) {
-                    alert("Chỉ được chọn một loại ghế");
-                    return;
-                }
-
-                // Bỏ chọn tất cả các ghế vip nếu có
-                if (isVipSeatSelected) {
-                    selectedVipSeats.forEach(seat => seat.classList.remove('selected'));
-                    selectedVipSeats = [];
-                }
-
-                // Bỏ chọn tất cả các ghế thường nếu có
-                if (isRegularSeatSelected) {
-                    selectedRegularSeats.forEach(seat => seat.classList.remove('selected'));
-                    selectedRegularSeats = [];
-                }
-
-                // Thực hiện chọn/ bỏ chọn ghế đôi
-                this.classList.toggle('selected');
-                if (this.classList.contains('selected')) {
-                    selectedSeatType = 'couple';
-                } else {
-                    selectedSeatType = null;
-                }
-                updateSelectedSeats();
-                return;
-            }
-
-            // Nếu người dùng chọn ghế thường
-            if (isVipSeatSelected || isCoupleSeatSelected) {
-                alert("Chỉ được chọn một loại ghế");
-                return;
-            }
-
-            // Thực hiện chọn/ bỏ chọn ghế thường
-            this.classList.toggle('selected');
-            if (this.classList.contains('selected')) {
-                selectedSeatType = null; // Đặt selectedSeatType thành null để cho phép chọn một loại ghế khác
-            }
-            updateSelectedSeats();
-        }
-
-        // Đăng ký sự kiện cho từng ghế
-        seats.forEach(seat => {
-            seat.addEventListener('click', selectSeat);
-        });
-
-
-        // Xử lý sự kiện khi người dùng nhấn nút Book
-        // document.getElementById('book-btn').addEventListener('click', () => {
-        //     alert(`Booked seats: ${selectedSeats.join(', ')}`);
-        // });
-
-        function updateSelectedSeatsVip() {
-            // Gán giá tiền cho từng loại ghế
-            seats.forEach(seat => {
-                const isVip = seat.getAttribute('data-vip') === "true";
-                const isCouple = seat.getAttribute('data-couple') === 'true';
-                let seatPrice;
-                if (isVip) {
-                    seatPrice = vipSeatPrice;
-                } else if (isCouple) {
-                    seatPrice = coupleSeatPrice;
-                } else {
-                    seatPrice = regularSeatPrice;
-                }
-                // Áp dụng giá tiền vào ghế
-                seat.setAttribute('data-price', seatPrice);
-            });
-        }
 
         /* đếm thời gian */
         var countPage = 0;
@@ -678,7 +722,7 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
                 countPage++;
             } else {
                 alert("bạn chưa chọn bất kỳ ghế nào vui lòng chọn ghế")
-            }
+}
             if (countPage > 1) {
                 document.getElementById("displaySeat").style.display = "none";
                 document.getElementById("displayFood").style.display = "none";
@@ -741,70 +785,10 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 				let totalFood = document.getElementById("totalPriceFood").textContent = `${formatNumber(itemTotalQuantity)} VND`
         	}
 			
-			
-			
-			
-        // thao tác đặt food
-        /* document.addEventListener('DOMContentLoaded', function () {
-            const decreaseQuantityButtons = document.querySelectorAll('.decrease-quantity');
-            const increaseQuantityButtons = document.querySelectorAll('.increase-quantity');
-            const quantityInputs = document.querySelectorAll('.quantity');
-            const cartItems = document.getElementById('cartItems');
-            const totalAmount = document.getElementById('totalAmount');
-            let totalPrice = 0;
-            //Xử lý khi người dùng giảm số lượng
-            decreaseQuantityButtons.forEach(function (button, index) {
-                button.addEventListener('click', function () {
-                    if (quantityInputs[index].value > 0) {
-                        quantityInputs[index].value--;
-                        updateCart(index);
-                    }
-                });
-            });
-
-            // Xử lý khi người dùng tăng số lượng
-            increaseQuantityButtons.forEach(function (button, index) {
-                button.addEventListener('click', function () {
-                    quantityInputs[index].value++;
-                    updateCart(index);
-                });
-            });
-
-            // Cập nhật giỏ hàng và tổng cộng
-            function updateCart(index) {
-                const quantity = parseInt(quantityInputs[index].value);
-                const priceElement = document.querySelectorAll('.price')[index];
-                const price = parseFloat(priceElement.innerText.split(':')[1].trim().slice(1));
-                const itemName = document.querySelectorAll('h5')[index].innerText;
-
-                // Xóa sản phẩm nếu đã tồn tại trong giỏ hàng
-                const existingItem = document.getElementById(`cartItem-${index}`);
-                if (existingItem) {
-                    totalPrice -= parseFloat(existingItem.dataset.price);
-                    existingItem.remove();
-                }
-
-                // Tạo một mục mới trong giỏ hàng
-                const cartItem = document.createElement('li');
-                cartItem.setAttribute('id', `cartItem-${index}`);
-                cartItem.setAttribute('data-price', (price * quantity).toFixed(2));
-                cartItem.innerText = `${itemName} x ${quantity} - $${(price * quantity).toFixed(2)}`;
-                cartItems.appendChild(cartItem);
-                
-
-                // Cập nhật tổng cộng
-                totalPrice += price * quantity;
-                combo = totalPrice;
-                // totalAmount.innerText = totalPrice.toFixed(2);
-                updateSelectedSeats()
-            };
-        });
-         */
-        
         
         /* 2 */
         document.addEventListener('DOMContentLoaded', function () {
- 		  const decreaseQuantityButtons = document.querySelectorAll('.decrease-quantity');
+const decreaseQuantityButtons = document.querySelectorAll('.decrease-quantity');
  		  const increaseQuantityButtons = document.querySelectorAll('.increase-quantity');
  		  const quantityInputs = document.querySelectorAll('.quantity');
  		  let totalPrice = 0;
@@ -887,90 +871,58 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 			        currency: 'VND',
 			        minimumFractionDigits: 0,
 		       	});
-	        return formatter.format(value);
+return formatter.format(value);
        	}
         
-        /* 3 */
-       /*  document.addEventListener('DOMContentLoaded', function () {
-        	  const decreaseQuantityButtons = document.querySelectorAll('.decrease-quantity');
-        	  const increaseQuantityButtons = document.querySelectorAll('.increase-quantity');
-        	  const quantityInputs = document.querySelectorAll('.quantity');
-        	  const cartItems = document.getElementById('cartItems');
-        	  const totalAmount = document.getElementById('totalAmount');
-        	  let totalPrice = 0;
+        function toggleSeatStatus() {
+            const lockButton = document.getElementById('lockButton');
+            const seats = document.getElementsByClassName('seat');
+            var elementSeats = document.getElementById("seats");
+            lockButton.addEventListener('click', () => {
+              Array.from(seats).forEach(seat => {
+                if (seat.classList.contains('selected')) {
+                  if (!seat.classList.contains('sold')) {
+                    seat.classList.add('sold');
+                    seat.style.color = 'white';
+                    if(elementSeats){
+	                    var idGhe = seat.getAttribute('data-id');
+	            	 	console.log(idGhe);
+                    }
+                    console.log("Chức mừng đã bán");
+                    seat.style.backgroundColor = '#BB0000';
+                    seat.removeEventListener('click', selectSeat);
+                  } else {
+                    seat.classList.remove('sold');
+                    seat.style.color = 'black';
+                    console.log("Xui quá bán không được");
+                    seat.style.backgroundColor = '';
+                    seat.addEventListener('click', selectSeat);
+                  }
+                }
+              });
+            });
+          }
+        toggleSeatStatus();
 
-        	  // Xử lý khi người dùng giảm số lượng
-        	  decreaseQuantityButtons.forEach(function (button, index) {
-        	    button.addEventListener('click', function () {
-        	      if (quantityInputs[index].value > 0) {
-        	        quantityInputs[index].value--;
-        	        updateCart(index);
-        	      }
-        	    });
-        	  });
+        
+     // Retrieve selected seat positions from local storage
+        window.addEventListener('load', function() {
+          var selectedSeats = JSON.parse(localStorage.getItem('selectedSeats')) || [];
+          var seatElements = document.getElementsByClassName('seat'); // Select all seat elements
 
-        	  // Xử lý khi người dùng tăng số lượng
-        	  increaseQuantityButtons.forEach(function (button, index) {
-        	    button.addEventListener('click', function () {
-        	      quantityInputs[index].value++;
-        	      updateCart(index);
-        	    });
-        	  });
+          Array.from(seatElements).forEach(seatElement => {
+            var seatId = seatElement.getAttribute('data-id');
 
-        	  // Cập nhật giỏ hàng và tổng cộng
-        	  function updateCart(index) {
-        	    const quantity = parseInt(quantityInputs[index].value);
-        	    const priceElement = document.querySelectorAll('.price')[index];
-        	    const price = parseFloat(priceElement.innerText.split(':')[1].trim().slice(1));
-        	    const itemName = document.querySelectorAll('h5')[index].innerText;
-
-        	    // Xóa sản phẩm nếu đã tồn tại trong giỏ hàng
-        	    const existingItem = document.getElementById(`cartItem-${index}`);
-        	    if (existingItem) {
-        	      totalPrice -= parseFloat(existingItem.dataset.price);
-        	      existingItem.remove();
-        	    }
-
-        	    // Tạo một mục mới trong giỏ hàng
-        	    const cartItem = document.createElement('li');
-        	    cartItem.setAttribute('id', `cartItem-${index}`);
-        	    cartItem.setAttribute('data-price', (price * quantity).toFixed(2));
-        	    cartItem.innerText = `${itemName} x ${quantity} - $${(price * quantity).toFixed(2)}`;
-        	    cartItems.appendChild(cartItem);
-
-        	    // Cập nhật tổng cộng
-        	    totalPrice += price * quantity;
-        	    combo = totalPrice;
-        	    totalAmount.innerText = totalPrice.toFixed(2);
-        	  }
-        	}); */
+            if (selectedSeats.includes(seatId)) {
+              seatElement.style.color = 'white';
+              seatElement.style.backgroundColor = '#BB0000';
+              seatElement.removeEventListener('click', selectSeat);
+            }
+          });
+        });
     </script>
-    <script type="text/javascript">
-		
-		/* axios.post('/rest/ve',{
-			Matk: getCookieValue("USERNAME"),
-			Lichstt:,
-			Makm:,
-			Combo: "hello",
-			Tenphim: "shin"
-			Ngaychieu:,
-			Giobatdau: gioBatDau,
-			Gioketthuc: gioKetThuc,
-			Ngaygiaodich: new Date().getDate(),
-			Ghe:,
-			Soluong:,
-			Thanhtien:,
-			Hinh:,
-			Trangthai:
-		}).then(function (response) {
-			// Xử lý dữ liệu trả về
-			console.log(response.data);
-		}).catch(function (error) {
-			// Xử lý lỗi
-			console.log(error);
-		}); */
 
-		
+	<script type="text/javascript">
 		//phương thức lấy tên tk
 		function getCookieValue(cookieName) {
 			  var name = cookieName + "=";
@@ -988,7 +940,6 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 			  }
 			  return null;
 			}
-	
 	</script>
 	<!-- bootsstrap JS -->
 	<script

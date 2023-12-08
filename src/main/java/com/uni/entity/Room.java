@@ -25,12 +25,16 @@ import lombok.ToString;
 @Table(name = "Phong")
 public class Room implements Serializable{
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY )
-	Integer Mapc;
+	String Mapc;
 	String Tenpc;
 	
 	@ToString.Exclude
 	@JsonIgnore
 	@OneToMany(mappedBy = "room")
 	List<Chitietphim> ctphim;
+	
+	@ToString.Exclude
+	@JsonIgnore
+	@OneToMany(mappedBy = "room")
+	List<Ghe> ghes;
 }
