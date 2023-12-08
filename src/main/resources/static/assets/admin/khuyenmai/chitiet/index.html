@@ -76,8 +76,11 @@
 							<div class="row">
 								<div class="col-sm-12">
 									<div class="form-group col-sm-12">
-											<label for="makm">Mã</label> <input ng-model="form.khuyenmai.makm"
-												id="makm" class="form-control" />
+											<label for="makm">Mã</label> <!--<input ng-model="form.khuyenmai.makm"
+												id="makm" class="form-control" />-->
+											<select ng-model="form.khuyenmai.makm" class="form-control">
+												<option ng-repeat="tt in items" ng-value="tt.khuyenmai.makm">{{tt.khuyenmai.makm}}</option>
+											</select>
 									</div>
 									<div class="form-group col-sm-12">
 											<label for="mota">Mô tả</label> <textarea ng-model="form.mota"

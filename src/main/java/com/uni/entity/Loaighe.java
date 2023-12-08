@@ -22,7 +22,7 @@ import lombok.Setter;
 @Table(name = "LGhe")
 public class Loaighe {
 	@Id
-	Integer Maloai;
-	String Loaighe;
+	String Maloai;
+	String Tenloaighe;
 	Integer Dongia;
 }

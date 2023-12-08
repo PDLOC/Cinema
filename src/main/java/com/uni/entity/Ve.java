@@ -49,10 +49,8 @@ public class Ve implements Serializable {
 	@JoinColumn(name = "Ngaychieu")
 	Date ngaychieu;
 	
-	@JsonFormat(shape = Shape.STRING , pattern="HH:mm:ss", timezone="CET")
-	@Temporal(TemporalType.TIME)
 	@JoinColumn(name = "Giobatdau")
-	Date giobatdau;
+	String giobatdau;
 	
 	@Temporal(TemporalType.DATE)
 	@JoinColumn(name = "Ngaygiaodich")
@@ -99,15 +97,6 @@ public class Ve implements Serializable {
 	    if (ngaychieu != null) {
 	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	        return formatter.format(ngaychieu.toInstant());
-	    }
-	    return "";
-	}
-
-	@JsonIgnore
-	public String getFormattedGiobatdau() {
-	    if (giobatdau != null) {
-	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-	        return formatter.format(giobatdau.toInstant());
 	    }
 	    return "";
 	}

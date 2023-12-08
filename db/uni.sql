@@ -366,6 +366,7 @@ lập trình sẵn mà không hề mắc lỗi dù chỉ một giây. Trong lúc
 hướng ngoại, luôn suy nghĩ tích cực về cuộc sống dù đang ở trong hoàn cảnh khó khăn của một bà mẹ đơn thân. Khác biệt về tính cách lẫn ngoại hình 
 khiến cả hai trở thành “trái dấu hút nhau”. Sự “trái dấu” này đã đẩy đưa cuộc tình của họ đến vô vàn tình huống “cười ra nước mắt” nhưng cũng không kém phần cảm xúc.','https://www.youtube.com/watch?v=zlPzyxdhQbI','kore.png');
 
+
 insert into Combo values
 ('CB01',N'Ấm áp',N'1 bắp + 2 Pepsi và 2 gấu bông ',50,90000,'3.JPG'),
 ('CB02',N'Cô đơn 1',N'1 bắp và 1 Coca',50,50000,'10.JPG'),
