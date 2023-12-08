@@ -25,11 +25,6 @@ create table Phanquyen(
 	Mavaitro varchar(10)
 );
 
-------------------------------------Phòng Chiếu----------------------------------------------
-create table Phong(
-	Mapc int identity(1,1) primary key,
-	Tenpc nvarchar(225),
-);
 
 ------------------------------------Phim----------------------------------------------
 create table Phim(
@@ -74,11 +69,28 @@ create table Trangthaiphim(
 );
 
 
+------------------------------------Phòng Chiếu----------------------------------------------
+create table Phong(
+	Mapc varchar(10) primary key,
+	Tenpc nvarchar(255),
+	Trangthai bit
+);
 ------------------------------------Loại ghế----------------------------------------------
 create table LGhe(
-	Maloai int identity(1,1) primary key,
-	Loaighe nvarchar(125),
+	Maloai varchar(5) primary key,
+	Tenloaighe nvarchar(125),
 	Dongia int
+);
+
+------------------------------------Ghế----------------------------------------------
+create table Ghe(
+	Maghe int identity(1,1) primary key,
+	Tenghe varchar(10),
+	Loaigheid varchar(5),
+	Phongchieuid varchar(10),
+	Hang int,
+	Cot int,
+	Trangthai bit
 );
 
 ------------------------------------Khuyến mãi----------------------------------------------
@@ -187,14 +199,6 @@ insert into Phanquyen values
 ('dhao412','CUST'),
 ('thao413','CUST')
 
-
-insert into Phong values
-('Cine 1'),
-('Cine 2'),
-('Cine 3'),
-('Cine 4'),
-('Cine 5'),
-('Cine 6')
 
 insert into Phim values
 ('P01',1,N'Cậu Bé Bút Chì: Đại Chiến Siêu Năng Lực','94','2023','shin.png'),
@@ -367,11 +371,6 @@ hướng ngoại, luôn suy nghĩ tích cực về cuộc sống dù đang ở t
 khiến cả hai trở thành “trái dấu hút nhau”. Sự “trái dấu” này đã đẩy đưa cuộc tình của họ đến vô vàn tình huống “cười ra nước mắt” nhưng cũng không kém phần cảm xúc.','https://www.youtube.com/watch?v=zlPzyxdhQbI','kore.png');
 
 
-insert into LGhe values
-(N'Regular',100000),
-(N'VIP',110000),
-(N'Couple',250000)
-
 
 insert into Combo values
 ('CB01',N'Ấm áp',N'1 bắp + 2 Pepsi và 2 gấu bông ',50,90000,'3.JPG'),
@@ -442,6 +441,128 @@ insert into Chitietkm values
 
 
 
+insert into LGhe values
+('R',N'Regular',100000),
+('V',N'VIP',110000),
+('C',N'Couple',250000)
+
+
+insert into Phong values
+('C1',N'Cinema 1',1),
+('C2',N'Cinema 2',1),
+('C3',N'Cinema 3',1),
+('C4',N'Cinema 4',1),
+('C5',N'Cinema 5',1),
+('C6',N'Cinema 6',1)
+
+
+insert into Ghe(tenghe,loaigheid,phongchieuid,hang,cot,trangthai) values
+('A1','R','C1',1,1,0),
+('A2','R','C1',1,2,0),
+('A3','R','C1',1,3,0),
+('A4','R','C1',1,4,0),
+('A5','R','C1',1,5,0),
+('A6','R','C1',1,6,0),
+('A7','R','C1',1,7,0),
+('A8','R','C1',1,8,0),
+('B1','R','C1',2,1,0),
+('B2','R','C1',2,2,0),
+('B3','R','C1',2,3,0),
+('B4','R','C1',2,4,0),
+('B5','R','C1',2,5,0),
+('B6','R','C1',2,6,0),
+('B7','R','C1',2,7,0),
+('B8','R','C1',2,8,0),
+('C1','R','C1',3,1,0),
+('C2','R','C1',3,2,0),
+('C3','R','C1',3,3,0),
+('C4','R','C1',3,4,0),
+('C5','R','C1',3,5,0),
+('C6','R','C1',3,6,0),
+('C7','R','C1',3,7,0),
+('C8','R','C1',3,8,0),
+('D1','R','C1',4,1,0),
+('D2','R','C1',4,2,0),
+('D3','R','C1',4,3,0),
+('D4','R','C1',4,4,0),
+('D5','R','C1',4,5,0),
+('D6','R','C1',4,6,0),
+('D7','R','C1',4,7,0),
+('D8','R','C1',4,8,0),
+('E1','V','C1',5,1,0),
+('E2','V','C1',5,2,0),
+('E3','V','C1',5,3,0),
+('E4','V','C1',5,4,0),
+('E5','V','C1',5,5,0),
+('E6','V','C1',5,6,0),
+('E7','V','C1',5,7,0),
+('E8','V','C1',5,8,0),
+('F1','V','C1',6,1,0),
+('F2','V','C1',6,2,0),
+('F3','V','C1',6,3,0),
+('F4','V','C1',6,4,0),
+('F5','V','C1',6,5,0),
+('F6','V','C1',6,6,0),
+('F7','V','C1',6,7,0),
+('F8','V','C1',6,8,0),
+('G1','C','C1',7,1,0),
+('G2','C','C1',7,2,0),
+('G3','C','C1',7,3,0),
+('G4','C','C1',7,4,0),
+('G5','C','C1',7,5,0),
+('G6','C','C1',7,6,0),
+('G7','C','C1',7,7,0),
+('G8','C','C1',7,8,0),
+---------------
+('A1','R','C2',1,1,0),
+('A2','R','C2',1,2,0),
+('A3','R','C2',1,3,0),
+('A4','R','C2',1,4,0),
+('A5','R','C2',1,5,0),
+('A6','R','C2',1,6,0),
+('A7','R','C2',1,7,0),
+('A8','R','C2',1,8,0),
+('B1','R','C2',2,1,0),
+('B2','R','C2',2,2,0),
+('B3','R','C2',2,3,0),
+('B4','R','C2',2,4,0),
+('B5','R','C2',2,5,0),
+('B6','R','C2',2,6,0),
+('B7','R','C2',2,7,0),
+('B8','R','C2',2,8,0),
+('C1','R','C2',3,1,0),
+('C2','R','C2',3,2,0),
+('C3','R','C2',3,3,0),
+('C4','R','C2',3,4,0),
+('C5','R','C2',3,5,0),
+('C6','R','C2',3,6,0),
+('C7','R','C2',3,7,0),
+('C8','R','C2',3,8,0),
+('D1','R','C2',4,1,0),
+('D2','R','C2',4,2,0),
+('D3','R','C2',4,3,0),
+('D4','R','C2',4,4,0),
+('D5','R','C2',4,5,0),
+('D6','R','C2',4,6,0),
+('D7','R','C2',4,7,0),
+('D8','R','C2',4,8,0),
+('E1','V','C2',5,1,0),
+('E2','V','C2',5,2,0),
+('E3','V','C2',5,3,0),
+('E4','V','C2',5,4,0),
+('E5','V','C2',5,5,0),
+('E6','V','C2',5,6,0),
+('E7','V','C2',5,7,0),
+('E8','V','C2',5,8,0),
+('F1','C','C2',6,1,0),
+('F2','C','C2',6,2,0),
+('F3','C','C2',6,3,0),
+('F4','C','C2',6,4,0),
+('F5','C','C2',6,5,0),
+('F6','C','C2',6,6,0),
+('F7','C','C2',6,7,0),
+('F8','C','C2',6,8,0)
+
 
 ------------------------------------Khóa-----------------------------------
 --Tài khoản--
@@ -469,3 +590,6 @@ alter table Lich add constraint fk_l_ctp foreign key(Mact) references Chitietphi
 alter table Ve add constraint fk_ve_tk foreign key(Matk) references Taikhoan(Matk)
 alter table Ve add constraint fk_ve_lich foreign key(Lichstt) references Lich(Stt)
 alter table Ve add constraint fk_ve_km foreign key(Makm) references KhuyenMai(Makm)
+---- Ghế------
+alter table Ghe add constraint fk_g_p foreign key(Phongchieuid) references Phong(Mapc)
+alter table Ghe add constraint fk_g_lghe foreign key(Loaigheid) references LGhe(Maloai)
