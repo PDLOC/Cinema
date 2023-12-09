@@ -10,13 +10,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.uni.controller.PaymentController;
+import com.uni.dao.TaiKhoanDAO;
 import com.uni.service.ChitietphimService;
 import com.uni.entity.Chitietphim;
 import com.uni.entity.Lich;
 import com.uni.entity.Loaighe;
+import com.uni.entity.Taikhoan;
 import com.uni.entity.Combo;
 import com.uni.entity.Ghe;
 import com.uni.entity.Khuyenmai;
@@ -33,6 +36,9 @@ public class TicketController {
 	
 	@Autowired
 	ChitietphimService CtphimService;
+	
+	@Autowired
+	TaiKhoanDAO accountDao;
 	
 	@Autowired
 	KmService khuyenMaiService;
@@ -99,13 +105,20 @@ public class TicketController {
 		return "redirect:"+urlpay;
 	}
 	
-	@RequestMapping("booking/SendBill")
-	public String sendMail() {
+	@RequestMapping("booking/SendBill/{username}/{nameMovie}/{timeMovie}/{dateMovie}")
+	public String sendMail(@PathVariable("username") String username,@PathVariable("nameMovie") String nameMovie,@PathVariable("timeMovie") String timeMovie,@PathVariable("dateMovie") String dateMovie) {
 		 
 		try {
-			String username = sessionService.get("tenphim");
 //			mailer.send("hoaidthps21446@fpt.edu.vn", "test", "hello");
-			System.out.print(username);
+			if (username != null) {
+				System.out.print("\n\n"+username+"\n\n");
+				Taikhoan acc = accountDao.findById(username).get();
+				mailer.send(acc.getEmail(), 
+						"Thông Tin Vé", 
+						"Tên Phim: "+nameMovie+"\n"+
+						"Giờ: "+timeMovie+"\n"+
+						"Ngày: "+dateMovie);
+			}
 		} catch (Exception e) {
 			System.out.print("error");
 		}
