@@ -106,23 +106,45 @@ public class TicketController {
 	}
 	
 	@RequestMapping("booking/SendBill/{username}/{nameMovie}/{timeMovie}/{dateMovie}")
-	public String sendMail(@PathVariable("username") String username,@PathVariable("nameMovie") String nameMovie,@PathVariable("timeMovie") String timeMovie,@PathVariable("dateMovie") String dateMovie) {
-		 
-		try {
-//			mailer.send("hoaidthps21446@fpt.edu.vn", "test", "hello");
-			if (username != null) {
-				System.out.print("\n\n"+username+"\n\n");
-				Taikhoan acc = accountDao.findById(username).get();
-				mailer.send(acc.getEmail(), 
-						"Thông Tin Vé", 
-						"Tên Phim: "+nameMovie+"\n"+
-						"Giờ: "+timeMovie+"\n"+
-						"Ngày: "+dateMovie);
-			}
-		} catch (Exception e) {
-			System.out.print("error");
-		}
-		
-		return "redirect:/home/film";
+	public String sendMail(@PathVariable("username") String username,
+	                       @PathVariable("nameMovie") String nameMovie,
+	                       @PathVariable("timeMovie") String timeMovie,
+	                       @PathVariable("dateMovie") String dateMovie) {
+	    try {
+	        if (username != null) {
+	            Taikhoan acc = accountDao.findById(username).get();
+	            
+	            String subject = "Thông Tin Vé";
+	            String content = "<html>" +
+	                                "<head>" +
+	                                    "<style>" +
+	                                        "body {" +
+	                                            "font-family: Arial, sans-serif;" +
+	                                        "}" +
+	                                        ".info-row {" +
+	                                            "display: flex;" +
+	                                            "justify-content: space-between;" +
+	                                        "}" +
+	                                    "</style>" +
+	                                "</head>" +
+	                                "<body>" +
+	                                    "<h2 style='color: #333333;'>Thông Tin Vé</h2>" +
+	                                    "<div class='info-row'>" +
+	                                        "<strong>Tên Phim:</strong> " + nameMovie +
+	                                    "</div>" +
+	                                    "<br>" +
+	                                    "<p><strong>Giờ:</strong> " + timeMovie + "</p>" +
+	                                    "<br>" +
+	                                    "<p><strong>Ngày:</strong> " + dateMovie + "</p>" +
+	                                "</body>" +
+	                             "</html>";
+	            
+	            mailer.send(acc.getEmail(), subject, content);
+	        }
+	    } catch (Exception e) {
+	        System.out.print("error");
+	    }
+	    
+	    return "redirect:/home/film";
 	}
 }
