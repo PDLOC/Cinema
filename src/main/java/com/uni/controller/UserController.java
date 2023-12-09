@@ -39,7 +39,6 @@ public class UserController {
 		// Hiện lịch sử đặt vé
 		List<Ve> ve = veService.findByMatk(uname);
 		model.addAttribute("listOrder", ve);
-
 		return "home/profile-ticket/form";
 	}
 
@@ -55,11 +54,11 @@ public class UserController {
 			// TODO: handle exception
 			model.addAttribute("message", "Cập nhật thất bại");
 		}
-		return "home/profile-ticket/form";
+		return "redirect:/home/profile/"+taikhoan.getMatk();
 	}
 
 	@RequestMapping("profile/change-pass")
-	public String save(@RequestParam("matk") String username, @RequestParam("password") String oldPassword,
+	public String save1(@RequestParam("matk") String username, @RequestParam("password") String oldPassword,
 			@RequestParam("newpassword") String newPassword, @RequestParam("retypepassword") String retypePassword,
 			Model model) {
 		Taikhoan taikhoan = taikhoanService.findById(username);
@@ -68,7 +67,8 @@ public class UserController {
 		if (taikhoan.getMatkhau().equals(oldPassword)) {
 			if (newPassword.equals("")) {
 				model.addAttribute("message", "Mật khẩu mới không được để trống");
-			} else if (newPassword.equals(retypePassword)) {
+			}
+			if (newPassword.equals(retypePassword)) {
 				taikhoan.setMatkhau(newPassword);
 				taikhoanService.update(taikhoan);
 				sessionService.set("login", taikhoan);
@@ -80,7 +80,7 @@ public class UserController {
 		} else {
 			model.addAttribute("message", "Vui lòng nhập mật khẩu cũ !!!");
 		}
-		return "home/profile-ticket/form";
+		return "redirect:/home/profile/"+username;
 	}
 
 }

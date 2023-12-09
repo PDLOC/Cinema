@@ -27,6 +27,7 @@ public class Room implements Serializable{
 	@Id
 	String Mapc;
 	String Tenpc;
+	Boolean Trangthai;
 	
 	@ToString.Exclude
 	@JsonIgnore

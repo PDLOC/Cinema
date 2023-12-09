@@ -1,0 +1,187 @@
+<!-- Content Wrapper -->
+<div class="page-wrapper py-2 w-100">
+	<!-- Container fluid  -->
+	<div class="container-fluid">
+		<!-- Sales Cards  -->
+		<div class="row">
+			<div class="col-md-12">
+				<div class="d-flex align-items-center ">
+					<h3 class="alert me-auto text-right  text-primary col-7"
+						style="margin-bottom: -30px">Danh sách phòng</h3>
+				</div>
+				<!--  -->
+				<div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4"
+					style="padding-right: 15px; padding-top: 10px; padding-bottom: 15px">
+					<input type="text" ng-model="keyword"
+						class="form-control border-0 col-4" placeholder="Search for..."
+						aria-label="Search" aria-describedby="basic-addon2">
+					<div class="input-group-append">
+						<button class="btn btn-primary" ng-click="search(keyword)">
+							<i class="fas fa-search fa-sm"></i>
+						</button>
+					</div>
+					<a class='btn btn-primary btn-small col-4  '
+						style="font-size: 15px; width: 170px;" data-bs-toggle="modal"
+						data-bs-target="#staticBackdrop"> <span
+						class="glyphicon glyphicon-edit col-4 text-center">Thêm
+							phòng</span>
+					</a>
+				</div>
+				<!--  -->
+
+				<table class="table text-center">
+					<thead>
+						<tr>
+							<th style="font-weight: bolder; font-size: 18px">Mã phòng</th>
+							<th style="font-weight: bolder; font-size: 18px">Tên phòng</th>
+							<th style="font-weight: bolder; font-size: 18px">Trạng thái</th>
+							<th style="font-weight: bolder; font-size: 18px">Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in pager.items">
+							<td style="padding-top: 20px;" class="align-middle">{{item.mapc}}</td>
+							<td style="padding-top: 20px;" class="align-middle">{{item.tenpc}}</td>
+							<td style="padding-top: 20px;" class="align-middle">{{item.trangthai?
+								'Hoạt động' : 'Đóng cửa'}}</td>
+							<td style="padding-top: 20px;" class="align-middle"><a
+								class='btn btn-warning' style="font-size: 14px"
+								data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+								ng-click="edit(item)"> <span
+									class="glyphicon glyphicon-edit"></span> Edit
+							</a> <a ng-click="delete(item)" style="font-size: 14px"
+								class="btn btn-danger btn-xs"> <span
+									class="glyphicon glyphicon-remove"></span> Delete
+							</a></td>
+						</tr>
+
+					</tbody>
+				</table>
+				<hr />
+				<div class="d-grid gap-2 d-md-flex justify-content-md-center mt-4">
+					<a class="btn  text-white "
+						style="width: 100px; background: #0a58ca;"
+						ng-click="pager.first()">First</a> <a class="btn  text-white"
+						style="width: 100px; background: #0a58ca;" ng-click="pager.prev()">Previous</a>
+					<a class="btn  text-white"
+						style="width: 100px; background: #0a58ca;" ng-click="pager.next()">Next</a>
+					<a class="btn  text-white"
+						style="width: 100px; background: #0a58ca;" ng-click="pager.last()">Last</a>
+				</div>
+				<hr />
+			</div>
+		</div>
+	</div>
+	<!-- End Container fluid  -->
+</div>
+<!-- End of Content Wrapper -->
+
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top"> <i
+	class="fas fa-angle-up"></i>
+</a>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+	data-bs-keyboard="false" tabindex="-1"
+	aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<button type="button" class="btn-close ms-auto my-2 me-2"
+				data-bs-dismiss="modal" aria-label="Close"></button>
+			<div class="modal-body">
+				<form name="qryform" id="qryform" enctype="multipart/form-data"
+					class="px-3" modelAttribute="item">
+					<div class="card-body">
+						<div class="row">
+							<div class="mx-auto">
+								<div class="row">
+									<div class="form-group col-sm-6">
+										<label>Mã phim</label> <input ng-model="form.mapc" type="text"
+											class="form-control" />
+									</div>
+									<div class="form-group col-sm-6">
+										<label>Tên phim</label> <input ng-model="form.tenpc"
+											class="form-control" />
+									</div>
+								</div>
+								<div class="row">
+									<div class="form-group col-sm-8 mb-5 mt-3">
+										<label>Trạng thái</label><br>
+										<div class="form-check">
+											<input class="form-check-input" type="radio" ng-model="form.trangthai" ng-value="true"
+												name="flexRadioDefault" id="flexRadioDefault1"> <label
+												class="form-check-label" for="flexRadioDefault1">
+												Hoạt động </label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input" type="radio" ng-model="form.trangthai"
+											ng-value="false"
+												name="flexRadioDefault" id="flexRadioDefault2" checked>
+											<label class="form-check-label" for="flexRadioDefault2">
+												Không hoạt động </label>
+										</div>
+									</div>
+								</div>
+								<div
+									class="d-grid gap-2 d-md-flex justify-content-md-center my-4 md-3">
+									<button style="width: 100px; background: #0a58ca;"
+										type="submit" class="btn text-white fw-bolder"
+										ng-click="create()">Insert</button>
+									<button style="width: 100px; background: #0a58ca;"
+										type="submit" class="btn text-white fw-bolder"
+										ng-click="update()">Update</button>
+									<button style="width: 100px; background: #0a58ca;"
+										type="submit" class="btn text-white fw-bolder"
+										ng-click="delete(form)">Delete</button>
+									<button style="width: 100px; background: #0a58ca;"
+										type="submit" class="btn text-white fw-bolder"
+										ng-click="reset()">Reset</button>
+								</div>
+							</div>
+						</div>
+					</div>
+			</div>
+			</form>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+	const myModal = document.getElementById('myModal')
+	const myInput = document.getElementById('myInput')
+	
+	myModal.addEventListener('shown.bs.modal', () => {
+	  myInput.focus()
+	})
+	</script>
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top"> <i
+	class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+				<button class="close" type="button" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+			</div>
+			<div class="modal-body">Select "Logout" below if you are ready
+				to end your current session.</div>
+			<div class="modal-footer">
+				<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+				<a class="btn btn-primary" href="login.html">Logout</a>
+			</div>
+		</div>
+	</div>
+</div>
+

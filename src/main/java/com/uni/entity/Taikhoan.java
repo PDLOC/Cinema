@@ -12,7 +12,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Future;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
@@ -53,7 +52,6 @@ public class Taikhoan implements Serializable{
 	String sdt;
 	
 	@NotNull(message = "* Không được để trống ngày sinh")
-	@Past(message = "* Ngày sinh không hợp lệ")
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	Date ngaysinh;

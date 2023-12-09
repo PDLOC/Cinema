@@ -11,7 +11,7 @@ public class PhongchieuDeserializer extends JsonDeserializer<Room> {
     public Room deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
         String roomValue = jsonParser.getValueAsString();
         // Xử lý logic để tạo instance Taikhoan từ giá trị taikhoanValue
-        Room room = new Room(roomValue, roomValue, null, null);
+        Room room = new Room(roomValue, roomValue, null, null, null);
         return room;
     }
 }

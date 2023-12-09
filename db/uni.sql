@@ -442,6 +442,7 @@ insert into LGhe values
 ('C',N'Couple',250000)
 
 
+
 insert into Phong values
 ('C1',N'Cinema 1',1),
 ('C2',N'Cinema 2',1),
@@ -785,7 +786,7 @@ insert into Ghe(tenghe,loaigheid,phongchieuid,hang,cot,trangthai) values
 ('H4','C','C6',8,4,0)
 
 
-
+select * from Phong
 ------------------------------------Khóa-----------------------------------
 --Tài khoản--
 alter table Taikhoan add constraint df_Taikhoan_Hinh default (N'user.png') for Hinh

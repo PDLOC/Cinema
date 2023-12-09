@@ -13,28 +13,18 @@
 				<h1 class="sign">Đăng nhập</h1>
 				<span class="seperator"></span>
 				<div class="input-text">
-					<input type="text" name="username" placeholder="Tài khoản" autocomplete="username"/>
+					<input type="text" name="username" placeholder="Tài khoản"
+						autocomplete="username" />
 				</div>
 				<div class="input-text">
 					<input id="pass_signup" type="password" name="password"
-						placeholder="Mật khẩu" autocomplete="current-password"/><i
+						placeholder="Mật khẩu" autocomplete="current-password" /><i
 						class="fa fa-fw fa-eye field-icon toggle-password"
 						id="togglePassword"></i>
 				</div>
 				<div class="text-center text-danger fw-bolder">[[${message}]]</div>
 				<span class="seperator"></span> <input class="signin-button"
 					type="submit" value="Đăng nhập" />
-
-				<div class="remember-flex">
-					<div>
-						<div class="or">OR</div>
-						<div class="g-signin2 mt-3" data-onsuccess="onSignIn"
-							data-theme="dark" data-width="250" data-height="50"
-							data-longtitle="true"></div>
-					</div>
-
-				</div>
-				
 
 				<div class="login-face">
 					<br>
@@ -43,8 +33,8 @@
 							class="signup-link">Đăng ký tại đây</a>.
 					</div>
 					<br>
-						<div class="new-members">
-						<a  data-bs-toggle="modal" data-bs-target="#exampleModal"
+					<div class="new-members">
+						<a data-bs-toggle="modal" data-bs-target="#exampleModal"
 							class="signup-link">Quên mật khẩu?</a>
 					</div>
 					<br>
@@ -74,50 +64,40 @@
 				document.location.href = 'https://qazimaazarshad.github.io/Movie-Streaming-Website/home.html'
 			}
 		</script> -->
-			<!-- Modal -->
-	<div class="modal fade" id="exampleModal" tabindex="-1"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered modal-ms">
-			<div class="modal-content">
-			<h1 class="sign text-center text-white fw-bolder mt-auto">Quên mật
-											khẩu</h1> 
-				
-				<div class="modal-body">
-					<form th:action="@{/home/forget-pass}" 
-								method="POST">
-								
-					<div class="card-body">
-						<div class="form-floating mb-3">
-										
-												<input type="text" class="form-control" id="varify" name="matk"
-													 placeholder="name"> <label
-													for="floatingInput">Tên Đăng Nhập</label>
-											</div>
-											<div class="form-floating mb-3">
-												<input type="email" id="email" name="email" class="form-control"
-												 placeholder="Password"> <label
-													for="floatingPassword">Email</label>
-											</div>
-								
-											
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-ms">
+				<div class="modal-content">
+					<h1 class="sign text-center text-white fw-bolder mt-auto">Quên
+						mật khẩu</h1>
+					<div class="modal-body">
+						<form th:action="@{/home/forget-pass}" method="POST">
+							<div class="card-body">
+								<div class="form-floating mb-3">
+									<input type="text" class="form-control" id="varify" name="matk"
+										placeholder="name"> <label for="floatingInput">Tên
+										Đăng Nhập</label>
+								</div>
+								<div class="form-floating mb-3">
+									<input type="email" id="email" name="email"
+										class="form-control" placeholder="Password"> <label
+										for="floatingPassword">Email</label>
+								</div>
 
-											<div class="d-grid gap-2 d-md-block" style="margin-left:170px">
-												<button
-													class="btn btn-danger" style="height: 50px; width: 100px"
-													type="submit">Send</button>
-												<button type="button" style="height: 50px; width: 100px"
-													class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-												
-											</div>
-					</div>
-					</form>
-						</div>
+								<div class="d-grid gap-2 d-md-block" style="margin-left: 170px">
+									<button class="btn btn-danger"
+										style="height: 50px; width: 100px" type="submit">Send</button>
+									<button type="button" style="height: 50px; width: 100px"
+										class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+								</div>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<script>
+		<script>
 	const myModal = document.getElementById('myModal')
 	const myInput = document.getElementById('myInput')
 	
@@ -125,33 +105,34 @@
 	  myInput.focus()
 	})
 	</script>
-	<!-- Scroll to Top Button-->
-	<a class="scroll-to-top rounded" href="#page-top"> <i
-		class="fas fa-angle-up"></i>
-	</a>
+		<!-- Scroll to Top Button-->
+		<a class="scroll-to-top rounded" href="#page-top"> <i
+			class="fas fa-angle-up"></i>
+		</a>
 
-	<!-- Logout Modal-->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">Select "Logout" below if you are ready
-					to end your current session.</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="login.html">Logout</a>
+		<!-- Logout Modal-->
+		<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Ready to
+							Leave?</h5>
+						<button class="close" type="button" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">×</span>
+						</button>
+					</div>
+					<div class="modal-body">Select "Logout" below if you are
+						ready to end your current session.</div>
+					<div class="modal-footer">
+						<button class="btn btn-secondary" type="button"
+							data-dismiss="modal">Cancel</button>
+						<a class="btn btn-primary" href="login.html">Logout</a>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
 	</main>
 </body>

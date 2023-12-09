@@ -309,17 +309,6 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 		})
 	</script>
 	
-	<script type="text/javascript">
-	var sessionValue = "Hello, Java!"; // Giá trị session trong JavaScript
-
-	// Sử dụng AJAX để gửi giá trị session đến máy chủ Java
-	var xhr = new XMLHttpRequest();
-	xhr.open("POST", "/api/session", true);
-	xhr.setRequestHeader("Content-Type", "application/json");
-	xhr.send(JSON.stringify({ sessionValue: sessionValue }));
-
-	</script>
-	
 	<!-- Pay -->
 	<script>
 		function pay(){
@@ -327,7 +316,6 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 			window.location.href = "/home/booking/SendBill"
 		}
 	</script>
-
 
 
 	<!---------------------------- Ghế ------------------------------------------>
