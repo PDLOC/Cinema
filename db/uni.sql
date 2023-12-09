@@ -17,7 +17,7 @@ create table Vaitro(
 	Mavaitro varchar(10) primary key,
 	Tenvaitro nvarchar(255)
 );
-
+select * from Taikhoan
 ------------------------------------Xác thực----------------------------------------------
 create table Phanquyen(
 	Id int identity(1,1) primary key,

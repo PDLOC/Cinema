@@ -218,7 +218,7 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 			      linkElement.setAttribute("href", hrefValue);
 			    }
 			  });
-linkElement.appendChild(buttonElement);
+			linkElement.appendChild(buttonElement);
 	
 			var divElement = document.createElement("div");
 			divElement.className = "cus-sty col-md-2";
@@ -326,14 +326,14 @@ linkElement.appendChild(buttonElement);
     	let itemsArray = [];
     
         let combo = 0;
-const tongGhe = document.getElementById('countSeat')
+		const tongGhe = document.getElementById('countSeat')
 
         var countSeat = [];
-		
+		var listGhe = /*[[${listGhe}]]*/'';
         // Lấy danh sách các ghế
         const seats = document.querySelectorAll('.seat');
         const totalSeats = document.getElementById('TotalSeat2');
-        totalSeats.textContent = `Số ghế ${seats.length}/${seats.length}`;        
+               
         // Số lượng ghế đã chọn
         let selectedSeats = [];
         let selectedVipSeats = [];
@@ -386,7 +386,7 @@ const tongGhe = document.getElementById('countSeat')
         		  selectedSeats.forEach(seat => {
         		    if (selectedSeats.indexOf(seat.getAttribute('data-name')) > 7) {
         		      const lastClickedSeat = seat.classList.contains('selected') ? seat : null;
-if (lastClickedSeat && !selectedSeats.includes(lastClickedSeat)) {
+					if (lastClickedSeat && !selectedSeats.includes(lastClickedSeat)) {
         		        lastClickedSeat.classList.remove('selected');
         		      }
         		    }
@@ -425,32 +425,13 @@ if (lastClickedSeat && !selectedSeats.includes(lastClickedSeat)) {
             document.getElementById("toTalPay").textContent = `Tổng Thanh Toán: ${formatNumber(totalPrice*(1-(giamgia/100)))} + ${formatNumber(combo)}`;
             document.getElementById("toTalPay2").textContent = `Thành Tiền: ${formatNumber(totalPrice*(1-(giamgia/100)) + combo)} VND`;
             totalPay = totalPrice*(1-(giamgia/100)) + combo;
-            document.getElementById("TotalSeat2").textContent = `Số ghế ${seats.length - selectedSeatsCount}/${seats.length}`;
-
+            document.getElementById("TotalSeat2").textContent = `Số ghế ${seats.length - selectedSeatsCount}/${listGhe.length}`;
         }
         
         
         function formatNumber(number) {
 				return number.toLocaleString('vi-VN').replace(/,/g, '.');
 		}
-function getCookieValue(cookieName) {
-			  var name = cookieName + "=";
-			  var decodedCookie = decodeURIComponent(document.cookie);
-			  var cookieArray = decodedCookie.split(";");
-
-			  for (var i = 0; i < cookieArray.length; i++) {
-			    var cookie = cookieArray[i];
-			    while (cookie.charAt(0) == " ") {
-			      cookie = cookie.substring(1);
-			    }
-			    if (cookie.indexOf(name) == 0) {
-			      return cookie.substring(name.length, cookie.length);
-			    }
-			  }
-			  return null;
-			}
-        
-       
 
         function selectSeat() {
         	  const isVip = this.classList.contains('vip');
@@ -512,7 +493,7 @@ function getCookieValue(cookieName) {
         	    } else {
         	      const index = selectedCoupleSeats.indexOf(this);
         	      if (index > -1) {
-selectedCoupleSeats.splice(index, 1);
+					selectedCoupleSeats.splice(index, 1);
         	      }
         	    }
         	    updateSelectedSeats();
@@ -580,13 +561,13 @@ selectedCoupleSeats.splice(index, 1);
     	 	        headers: {
     	 	          'Content-Type': 'application/json'
     	 	        },
-body: JSON.stringify({maghe: gheTrungKhop.maghe,
-    	 	        	tenghe: gheTrungKhop.tenghe,
-    	 	        	loaighe: gheTrungKhop.loaighe.maloai,
-    	 	        	room: gheTrungKhop.room.mapc,
-    	 	        	hang: gheTrungKhop.hang,
-    	 	        	cot: gheTrungKhop.cot,
-    	 	        	trangthai: true})
+					body: JSON.stringify({maghe: gheTrungKhop.maghe,
+					    	 	        	tenghe: gheTrungKhop.tenghe,
+					    	 	        	loaighe: gheTrungKhop.loaighe.maloai,
+					    	 	        	room: gheTrungKhop.room.mapc,
+					    	 	        	hang: gheTrungKhop.hang,
+					    	 	        	cot: gheTrungKhop.cot,
+					    	 	        	trangthai: true})
     	 	      })
     	 	      .then(response => {
     	 	        if (response.ok) {
@@ -596,7 +577,6 @@ body: JSON.stringify({maghe: gheTrungKhop.maghe,
     	 	        if (gheTrungKhop.trangthai === true) {
     	 	        	  // Change the color of the selected seat element
     	 	        	  var selectedSeatElement = document.querySelector('.selected[data-id="' + gheTrungKhop.maghe + '"]');
-    	 	        	  console.log(selectedSeatElement);
     	 	        	 	selectedSeatElement.style.color = 'white';
     	                    selectedSeatElement.style.backgroundColor = '#BB0000';
     	                    selectedSeatElement.removeEventListener('click', selectSeat);
@@ -647,12 +627,30 @@ body: JSON.stringify({maghe: gheTrungKhop.maghe,
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(bookingInfo)
-})
+			})
             .then(response => {
                 if (response.ok) {
                     console.log('Booking created successfully.');
 					console.log(bookingInfo);
                     // Xử lý khi đặt vé thành công
+					Swal.fire({
+			            icon: 'success',
+			            title: 'Đặt vé thành công',
+			            timer: 3000,
+			            timerProgressBar: true,
+			            toast: true,
+			            position: 'top-end',
+			            showConfirmButton: false,
+			            didOpen: (toast) => {
+			                toast.addEventListener('mouseenter', Swal.stopTimer);
+			                toast.addEventListener('mouseleave', Swal.resumeTimer);
+			            }
+			        }).then(() => {
+			            // Redirect to the home page
+			            window.location.href = '/home/index'; // Replace '/home' with the actual URL of your home page
+			        });
+                    
+                    
                 } else {
                     console.error('Error creating booking.');
                     // Xử lý khi có lỗi đặt vé
@@ -662,7 +660,6 @@ body: JSON.stringify({maghe: gheTrungKhop.maghe,
                 console.error('Error creating booking:', error);
                 // Xử lý khi có lỗi kết nối hoặc lỗi xử lý
             });
-            
         }
      
 
@@ -787,8 +784,8 @@ body: JSON.stringify({maghe: gheTrungKhop.maghe,
 			
         
         /* 2 */
-        document.addEventListener('DOMContentLoaded', function () {
-const decreaseQuantityButtons = document.querySelectorAll('.decrease-quantity');
+          document.addEventListener('DOMContentLoaded', function () {
+		  const decreaseQuantityButtons = document.querySelectorAll('.decrease-quantity');
  		  const increaseQuantityButtons = document.querySelectorAll('.increase-quantity');
  		  const quantityInputs = document.querySelectorAll('.quantity');
  		  let totalPrice = 0;
@@ -866,12 +863,12 @@ const decreaseQuantityButtons = document.querySelectorAll('.decrease-quantity');
         
          
         function formatCurrency(value) {
-		       	const formatter = new Intl.NumberFormat('vi-VN', {
+		    const formatter = new Intl.NumberFormat('vi-VN', {
 			       	style: 'currency',
 			        currency: 'VND',
 			        minimumFractionDigits: 0,
 		       	});
-return formatter.format(value);
+			return formatter.format(value);
        	}
         
         function toggleSeatStatus() {
@@ -906,20 +903,35 @@ return formatter.format(value);
 
         
      // Retrieve selected seat positions from local storage
-        window.addEventListener('load', function() {
-          var selectedSeats = JSON.parse(localStorage.getItem('selectedSeats')) || [];
-          var seatElements = document.getElementsByClassName('seat'); // Select all seat elements
-
-          Array.from(seatElements).forEach(seatElement => {
-            var seatId = seatElement.getAttribute('data-id');
-
-            if (selectedSeats.includes(seatId)) {
-              seatElement.style.color = 'white';
-              seatElement.style.backgroundColor = '#BB0000';
-              seatElement.removeEventListener('click', selectSeat);
-            }
-          });
-        });
+       window.addEventListener('load', function() {
+		  var seatElements = document.getElementsByClassName('seat'); // Lấy tất cả class có tên seat
+		  var ma_phong = document.getElementById("mapc").textContent;
+		  // GET tất cả ghế bằng API
+		  fetch('/rest/ghe') 
+		    .then(response => response.json()) //Chuyển đổi thành JSON
+		    .then(seats => {
+		    	var soldSeatsCount = 0; // Số ghế đã bán
+		      // Lặp trong JSON để lấy trạng thái của seat từ database
+		    	seats.forEach(seat => {
+		            if (seat.trangthai === true && seat.room.mapc === ma_phong) {
+		              var selectedSeatElement = document.querySelector('.seat[data-id="' + seat.maghe + '"]');
+		              if (selectedSeatElement) {
+		                selectedSeatElement.classList.add('sold');
+		                selectedSeatElement.style.color = 'white';
+		                selectedSeatElement.style.backgroundColor = '#BB0000';
+		                selectedSeatElement.removeEventListener('click', selectSeat);
+		              	soldSeatsCount++;
+		              }
+		            }
+		          });
+		          var remainingSeatsCount = seatElements.length - soldSeatsCount;
+		          var totalSeatsElement = document.getElementById('TotalSeat2');
+		          totalSeatsElement.textContent = `Số ghế ${remainingSeatsCount}/${seatElements.length}`;
+		    })
+		    .catch(error => {
+		      console.error('Lỗi khi lấy thông tin ghế:', error);
+		    });
+		});
     </script>
 
 	<script type="text/javascript">

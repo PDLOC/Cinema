@@ -7,17 +7,15 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+import javax.validation.constraints.Future;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -53,10 +51,13 @@ public class Taikhoan implements Serializable{
 	@Length(min = 10, message = "* Số điện thoại không được ngắn hơn 10")
 	@Length(max = 10, message = "* Số điện thoại không được dài hơn 10")
 	String sdt;
+	
 	@NotNull(message = "* Không được để trống ngày sinh")
+	@Past(message = "* Ngày sinh không hợp lệ")
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	Date ngaysinh;
+	
 	@NotBlank(message = "* Không được để trống mật khẩu")
 	String matkhau;
 	String diachi;

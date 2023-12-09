@@ -29,9 +29,9 @@ public class GheRestController {
 		return gheService.findById(maghe);
 	}
 	
-	@GetMapping("{Tenghe}")
-	public Ghe findByName(@PathVariable("Tenghe")String tenghe) {
-		return gheService.findByTenGhe(tenghe);
+	@GetMapping("{mapc}")
+	public List<Ghe> findByPhong(@PathVariable("mapc")String mapc){
+		return gheService.findByMaphong(mapc);
 	}
 	
 	@PutMapping("{Maghe}")

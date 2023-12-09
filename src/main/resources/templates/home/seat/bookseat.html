@@ -19,9 +19,10 @@
 						style="background-color: red; color: white; padding: 10px; border-radius: 10px; margin-bottom: 5px;"
 						class="d-flex">
 						<div>
+						<span id="mapc" style="display:none;" th:utext="${itemCt.room.Mapc}"></span>
 							<span>Universe Cinema |</span> <span
 								th:utext="${itemCt.room.Tenpc} + ' |'"></span> <span
-								id="TotalSeat2">Số ghế (76/76)</span><br>
+								id="TotalSeat2"></span><br>
 							<div style="display: inline-block;">
 								Giờ bắt đầu <span id="GioBatDau"
 									th:utext="${itemL.getFormattedGiobatdau}"></span>
