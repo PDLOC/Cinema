@@ -36,7 +36,7 @@ public class Lich implements Serializable {
 	Integer Stt;
 	@Temporal(TemporalType.DATE)
 	@JoinColumn(name = "Ngaychieu")
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	Date Ngaychieu;
 	@JoinColumn(name = "Giobatdau")	
 	Time Giobatdau;
@@ -49,7 +49,7 @@ public class Lich implements Serializable {
 
 	public String getFormattedNgaychieu() {
 	    if (Ngaychieu != null) {
-	        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+	        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 	        return formatter.format(Ngaychieu);
 	    }
 	    return null;

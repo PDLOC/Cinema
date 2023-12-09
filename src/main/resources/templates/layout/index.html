@@ -254,7 +254,7 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 	         month = "0" + month;
 	       }
 	
-	       return day + "/" + month + "/" + year;
+	       return day + "-" + month + "-" + year;
 	     }
 	     
 	  // Hàm để định dạng giá trị giờ bắt đầu thành "HH:mm"
@@ -333,7 +333,7 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
         // Lấy danh sách các ghế
         const seats = document.querySelectorAll('.seat');
         const totalSeats = document.getElementById('TotalSeat2');
-               
+        
         // Số lượng ghế đã chọn
         let selectedSeats = [];
         let selectedVipSeats = [];
@@ -341,6 +341,7 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
         let selectedCoupleSeats = [];
         let selectedSeatType = null;
         // Giá vé
+        const giaVe = document.getElementById('seat-price');
         let regularSeatPrice = 0;
         let vipSeatPrice = 0;
         let coupleSeatPrice = 0;
@@ -405,7 +406,17 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
             document.getElementById('total-price').textContent = `${formatNumber(totalPrice + combo)} VND`;
             document.getElementById('combo').textContent = `${formatNumber(combo)} VND`
             tongGhe.textContent = `${selectedSeatsCount}`;
-			
+            if(selectedVipSeatsCount >= 1 && selectedRegularSeatsCount === 0 && selectedCoupleSeatsCount === 0){
+            	giaVe.textContent = `${vipSeatPrice}`;
+            }
+            if(selectedVipSeatsCount === 0 && selectedRegularSeatsCount >= 1 && selectedCoupleSeatsCount === 0){
+            	giaVe.textContent = `${regularSeatPrice}`;
+            }
+            if(selectedVipSeatsCount === 0 && selectedRegularSeatsCount === 0 && selectedCoupleSeatsCount >= 1){
+            	giaVe.textContent = `${coupleSeatPrice}`;
+            }
+            
+            
             /* payment */
             const nameFlim = document.getElementById("nameFilm").textContent;
             const SuatChieu = document.getElementById("suatChieu").textContent;
@@ -422,6 +433,7 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
             document.getElementById('roomPay').textContent = `${RoomCinema}`;
             
             document.getElementById("toTalPayNoFormat").textContent = `${totalPrice*(1-(giamgia/100)) + combo}`;
+            document.getElementById("toTalPayNoFormat1").textContent = `${formatNumber(totalPrice*(1-(giamgia/100)) + combo)} VND`;
             document.getElementById("toTalPay").textContent = `Tổng Thanh Toán: ${formatNumber(totalPrice*(1-(giamgia/100)))} + ${formatNumber(combo)}`;
             document.getElementById("toTalPay2").textContent = `Thành Tiền: ${formatNumber(totalPrice*(1-(giamgia/100)) + combo)} VND`;
             totalPay = totalPrice*(1-(giamgia/100)) + combo;
@@ -535,15 +547,19 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
     	 	var room = document.getElementById('room').textContent;
     	 	var totalAmount = document.getElementById('toTalPayNoFormat').textContent;
     	 	var nameFood = document.getElementById('Food').textContent;
-    	 	//var foodAmount = document.getElementById('totalPriceFood').textContent;
     	 	var imageMovie = document.getElementById('imageMovie').alt;
     	 	var lichSTT = document.getElementById('lichSTT').textContent;
     	 	var iddiscount = document.getElementById('maKhuyenMai').textContent;
     	 	var discount = document.getElementById('giamGia').textContent;
-    	 	
     	 	var seatPositionElement = document.getElementById('selected-seats');
     	 	var seatPosition = seatPositionElement.textContent.split(',').map(position => position.trim());
     	 	var elementSeats = document.getElementById("seats");
+    	 	
+    	 	var totalPriceFood = document.getElementById('totalPriceFood').textContent;
+    	 	var seatPrice = document.getElementById('seat-price').textContent;
+    	 	var totalAmount1 = document.getElementById('toTalPayNoFormat1').textContent;
+    	 	var suatChieu = document.getElementById("suatChieu").textContent;
+            var ngayChieu = document.getElementById("ngayChieu").textContent;
     	 	var listGhe = /*[[${listGhe}]]*/ [];
     	 	var ghetrungkhop = listGhe.filter(item => seatPosition.includes(item.tenghe));
     	 	
@@ -647,7 +663,7 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 			            }
 			        }).then(() => {
 			            // Redirect to the home page
-			            window.location.href = '/home/booking/SendBill/'+username+'/'+movieName+'/'+timeMovie+'/'+dateMovie+'/'+seatPositionElement.textContent+'/'+room+'/'+totalAmount // Replace '/home' with the actual URL of your home page
+			            window.location.href = '/home/booking/SendBill/'+username+'/'+movieName+'/'+suatChieu+'/'+ngayChieu+'/'+seatPositionElement.textContent+'/'+totalSeat+'/'+seatPrice+'/'+room+'/'+totalPriceFood+'/'+discount+'/'+totalAmount1 // Replace '/home' with the actual URL of your home page
 			        });
                     
                     

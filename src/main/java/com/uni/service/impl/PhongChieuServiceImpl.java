@@ -54,4 +54,11 @@ public class PhongChieuServiceImpl implements PhongChieuService{
 		return pcDAO.findById(mapc).isPresent() ? pcDAO.findById(mapc).get() : null;
 	}
 
+
+	@Override
+	public List<Room> findAllDesc() {
+		// TODO Auto-generated method stub
+		return pcDAO.findAllVeByDescending();
+	}
+
 }

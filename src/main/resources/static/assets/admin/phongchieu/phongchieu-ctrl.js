@@ -7,7 +7,7 @@ app.controller("phongchieu-ctrl",function($scope,$http){
 		$http.get("/rest/phong").then(resp => {
 			$scope.items = resp.data;
 			$scope.items.forEach(item => {
-				console.log(item);
+				console.log(item)
 			})
 		});
 	}
@@ -42,12 +42,11 @@ app.controller("phongchieu-ctrl",function($scope,$http){
         //Thêm 
     $scope.create = function() {
 	  var item = angular.copy($scope.form);
-	
-	  // Check if the room already exists
+	  
 	  var roomExists = $scope.items.some(function(phong) {
 	    return phong.mapc === item.mapc;
 	  });
-	
+		console.log(roomExists)
 	  if (roomExists) {
 	    alert('Mã phòng đã tồn tại!'); // Display error message
 	    return;
@@ -93,7 +92,7 @@ app.controller("phongchieu-ctrl",function($scope,$http){
 	}
      $scope.pager = {
 		page: 0,
-		size: 5,
+		size: 6,
 		get items(){
 			var start = this.page * this.size;
 			return $scope.items.slice(start, start + this.size);

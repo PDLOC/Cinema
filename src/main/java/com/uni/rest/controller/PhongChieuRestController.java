@@ -24,7 +24,7 @@ public class PhongChieuRestController {
 	
 	@GetMapping
 	public List<Room> findAll(){
-		return phongChieuService.findAll();
+		return phongChieuService.findAllDesc();
 	}
 	
 	@PostMapping

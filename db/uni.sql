@@ -67,7 +67,6 @@ create table Trangthaiphim(
 	Trangthai nvarchar(255)
 );
 
-
 ------------------------------------Phòng Chiếu----------------------------------------------
 create table Phong(
 	Mapc varchar(10) primary key,

@@ -21,5 +21,7 @@ public interface PhongChieuService {
 
 	Room findById(String mapc);
 
+	List<Room> findAllDesc();
+
 	
 }
