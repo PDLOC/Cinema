@@ -105,39 +105,73 @@ public class TicketController {
 		return "redirect:"+urlpay;
 	}
 	
-	@RequestMapping("booking/SendBill/{username}/{nameMovie}/{timeMovie}/{dateMovie}")
+	@RequestMapping("booking/SendBill/{username}/{nameMovie}/{timeMovie}/{dateMovie}/{seatPositionElement.textContent}/{room}/{totalAmount}")
 	public String sendMail(@PathVariable("username") String username,
 	                       @PathVariable("nameMovie") String nameMovie,
 	                       @PathVariable("timeMovie") String timeMovie,
-	                       @PathVariable("dateMovie") String dateMovie) {
+	                       @PathVariable("dateMovie") String dateMovie,
+	                       @PathVariable("seatPositionElement.textContent") String ghe,
+	                       @PathVariable("room") String room,
+	                       @PathVariable("totalAmount") String thanhtien) {
 	    try {
 	        if (username != null) {
 	            Taikhoan acc = accountDao.findById(username).get();
-	            
+	    		String imageUrl = "https://res.cloudinary.com/denbzrony/image/upload/v1702100071/ipweqzcmyymygwqdwhxb.png";
 	            String subject = "Thông Tin Vé";
-	            String content = "<html>" +
-	                                "<head>" +
-	                                    "<style>" +
-	                                        "body {" +
-	                                            "font-family: Arial, sans-serif;" +
-	                                        "}" +
-	                                        ".info-row {" +
-	                                            "display: flex;" +
-	                                            "justify-content: space-between;" +
-	                                        "}" +
-	                                    "</style>" +
-	                                "</head>" +
-	                                "<body>" +
-	                                    "<h2 style='color: #333333;'>Thông Tin Vé</h2>" +
-	                                    "<div class='info-row'>" +
-	                                        "<strong>Tên Phim:</strong> " + nameMovie +
-	                                    "</div>" +
-	                                    "<br>" +
-	                                    "<p><strong>Giờ:</strong> " + timeMovie + "</p>" +
-	                                    "<br>" +
-	                                    "<p><strong>Ngày:</strong> " + dateMovie + "</p>" +
-	                                "</body>" +
-	                             "</html>";
+	            String content = "<!DOCTYPE html>"+
+	           " <html >"+
+
+	           " <head>"+
+	               
+"<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css\">" +
+	               " <title>Thông tin vé</title>"+
+	          "  </head>"+
+
+	          "  <body>"+
+	             "   <div class=\"container\">"+
+	              "      <h1 class=\"text-center mt-5\">Thông tin vé</h1>"+
+	                 "   <div class=\"row mt-5\">"+
+	                  "      <div class=\"col-md-4\">"+
+	                  "          <h4>Mã vé</h4>"+
+	                  "          <p>955220968</p>"+
+	                     "   </div>"+
+	                     "   <div class=\"col-md-4\">"+
+	                      "      <h4>Tên phim :</h4> <p>"+ nameMovie+"</p>"+
+	                      "  </div>"+
+	                      "  <div class=\"col-md-4\">"+
+	                       "     <h4>Rap</h4>"+
+	                        "    <p>Universe Cinema</p>"+
+	                      "  </div>"+
+	                   " </div>"+
+	                  "  <div class=\"row mt-5\">"+
+	                    "    <div class=\"col-md-4\">"+
+	                    "        <h4>Phòng chiếu</h4>"+
+	                     "       <p>"+room+"</p>"+
+	                    "    </div>"+
+	                     "   <div class=\"col-md-4\">"+
+	                      "      <h4>Suất chiếu</h4>"+
+	                       "     <p>"+dateMovie+"_" +timeMovie+ "</p>"+
+	                        "</div>"+
+	                        "<div class=\"col-md-4\">"+
+	                         "   <h4>Ghế</h4>"+
+	                          "  <p>"+ghe+"</p>"+
+	                        "</div>"+
+	                    "</div>"+
+	                    "<div class=\"row mt-5\">"+
+	                    
+	                      
+	                        "<div class=\"col-md-4\">"+
+	                         "   <h4>Tổng cộng</h4>"+
+	                          "  <p>"+thanhtien+"</p>"+
+	                        "</div>"+
+	                    "</div>"+
+	                  
+	                "</div>"+
+	                "<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js\"></script>"+
+	                "<img src='" + imageUrl + "' alt='Hình ảnh'>"+
+	                "</body>"+
+
+	            "</html>";
 	            
 	            mailer.send(acc.getEmail(), subject, content);
 	        }

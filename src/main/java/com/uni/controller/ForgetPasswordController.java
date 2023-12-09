@@ -32,6 +32,7 @@ public class ForgetPasswordController {
 	public String forgetpass(Model model,@RequestParam("matk") String username,@RequestParam("email") String email) {
 		String subject = "Send your Password!";
 		String randomPassword = RandomString.make(6);
+		String imageUrl = "https://res.cloudinary.com/denbzrony/image/upload/v1702100071/ipweqzcmyymygwqdwhxb.png";
 		String body = "<html>" +
                 "<head>" +
                 "<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css\">" +
@@ -53,6 +54,7 @@ public class ForgetPasswordController {
                 "<p>Vui lòng hoàn thành xác nhận trong vòng 30 phút.</p>"+
                 "<p><small>Đây là thư từ hệ thống, vui lòng không trả lời thư.</small></p>"+
                 "</div>" +
+                "<img src='" + imageUrl + "' alt='Hình ảnh'>"+
                 "</body>" +
                 "</html>";		
 		try {
