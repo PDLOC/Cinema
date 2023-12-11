@@ -59,6 +59,7 @@ app.controller("khuyenmai-ctrl", function($scope, $http) {
 		$http.post(`/rest/khuyenmai`, item).then(resp => {
 			$scope.items.push(resp.data);
 			$scope.reset();
+			$scope.initialize();
 			alert('Thêm mới thành công!');
 			console.log(resp.data);
 		}).catch(err => {

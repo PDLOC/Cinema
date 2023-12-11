@@ -62,6 +62,7 @@ app.controller("phim-ctrl",function($scope,$http){
 			resp.data.createDate = new Date(resp.data.createDate);
 			$scope.items.push(resp.data);
 			$scope.reset();
+			$scope.initialize();
 			alert('Thêm mới thành công!');
 			console.log(resp.data);
 		}).catch(err=>{

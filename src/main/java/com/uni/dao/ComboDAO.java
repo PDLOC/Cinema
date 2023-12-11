@@ -10,6 +10,7 @@ import com.uni.entity.Combo;
 
 public interface ComboDAO extends JpaRepository<Combo, Integer> {
 	
-	@Query(value ="SELECT * FROM  Combo ORDER BY macb DESC", nativeQuery = true)
+	@Query(value ="SELECT * FROM  Combo ORDER BY stt DESC", nativeQuery = true)
+	
 	List<Combo> findAllComboByDescending();
 }

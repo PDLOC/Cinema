@@ -9,6 +9,7 @@ import com.uni.entity.Khuyenmai;
 
 
 public interface KmDAO extends JpaRepository<Khuyenmai, String> {
-	@Query(value ="SELECT * FROM  Khuyenmai ORDER BY makm DESC", nativeQuery = true)
+//	@Query(value ="SELECT * FROM  Khuyenmai ORDER BY makm DESC", nativeQuery = true)
+	@Query(value ="SELECT * FROM Khuyenmai ORDER BY CAST(SUBSTRING(makm,3,LEN(makm)) AS INT) DESC", nativeQuery = true)
 	List<Khuyenmai> findAllKhuyenmaiByDescending();
 }
