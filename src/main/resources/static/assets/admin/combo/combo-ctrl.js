@@ -45,6 +45,16 @@ app.controller("combo-ctrl", function($scope, $http) {
 	//Thêm 
 	$scope.create = function() {
 		var item = angular.copy($scope.form);
+		// Kiểm tra mã trùng
+		var duplicateItem = $scope.items.find(function(existingItem) {
+			return existingItem.macb === item.macb;
+		});
+
+		if (duplicateItem) {
+			alert('Mã đã tồn tại. Vui lòng nhập mã khác!');
+			return;
+		}
+		
 		$http.post(`/rest/combo`, item).then(resp => {
 			resp.data.createDate = new Date(resp.data.createDate);
 			$scope.items.push(resp.data);
