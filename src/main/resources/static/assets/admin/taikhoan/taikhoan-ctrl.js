@@ -67,7 +67,18 @@ app.controller("taikhoan-ctrl",function($scope,$http){
     }
     
         //Thêm khách hàng
+    
     $scope.create = function(){
+		var item = angular.copy($scope.form);
+	  
+	  var taikhoanExists = $scope.items.find(function(taikhoan) {
+	    return taikhoan.matk === item.matk;
+	  });
+		console.log(taikhoanExists)
+	  if (taikhoanExists) {
+	    alert('Mã tài khoản đã tồn tại!'); // Display error message
+	    return;
+	  }
 		var item = angular.copy($scope.form);
 		$http.post(`/rest/customers`,item).then(resp=>{
 			$scope.items.push(resp.data);

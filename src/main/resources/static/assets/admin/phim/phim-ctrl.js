@@ -48,6 +48,16 @@ app.controller("phim-ctrl",function($scope,$http){
         //Thêm 
     $scope.create = function(){
 		var item = angular.copy($scope.form);
+	  
+	  var phimExists = $scope.items.find(function(phim) {
+	    return phim.maphim === item.maphim;
+	  });
+		console.log(phimExists)
+	  if (phimExists) {
+	    alert('Mã phim đã tồn tại!'); // Display error message
+	    return;
+	  }
+		var item = angular.copy($scope.form);
 		$http.post(`/rest/phim`,item).then(resp=>{
 			resp.data.createDate = new Date(resp.data.createDate);
 			$scope.items.push(resp.data);

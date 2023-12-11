@@ -43,7 +43,7 @@ app.controller("phongchieu-ctrl",function($scope,$http){
     $scope.create = function() {
 	  var item = angular.copy($scope.form);
 	  
-	  var roomExists = $scope.items.some(function(phong) {
+	  var roomExists = $scope.items.find(function(phong) {
 	    return phong.mapc === item.mapc;
 	  });
 		console.log(roomExists)
