@@ -52,7 +52,7 @@
 									</div>
 									<div class="showtime">
 										<button th:each="time:${inforM.listlich}"  type="button"
-											class="btn btn-outline-dark text-white me-2 mb-1" th:utext="${#strings.substring(time.Giobatdau, 0, 5)}"></button>
+											class="btn btn-outline-dark text-white me-2 mb-1" th:utext="${time.getFormattedNgaychieu}"></button>
 									</div>
 								</div>
 							</div>

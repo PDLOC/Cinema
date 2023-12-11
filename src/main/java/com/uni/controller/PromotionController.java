@@ -23,7 +23,7 @@ public class PromotionController {
 	
 	@RequestMapping("promotion")
 	public String promotion(Model model) {
-		List<Khuyenmai> listKM = kmService.findAll();
+		List<Khuyenmai> listKM = kmService.findAllExcept();
 		model.addAttribute("listkm",listKM);
 		
 		return "home/promotion/promotion";

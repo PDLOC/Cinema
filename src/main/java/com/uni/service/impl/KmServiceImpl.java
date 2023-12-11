@@ -46,5 +46,11 @@ public class KmServiceImpl implements KmService{
 		// TODO Auto-generated method stub
 		kmDAO.deleteById(makm);
 	}
+
+	@Override
+	public List<Khuyenmai> findAllExcept() {
+		// TODO Auto-generated method stub
+		return kmDAO.findAllExcept();
+	}
 	
 }

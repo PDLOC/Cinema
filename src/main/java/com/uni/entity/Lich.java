@@ -54,7 +54,7 @@ public class Lich implements Serializable {
 	    }
 	    return null;
 	}
-
+	
 	public String getFormattedGiobatdau() {
 	    if (Giobatdau != null) {
 	        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");

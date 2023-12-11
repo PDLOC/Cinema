@@ -21,6 +21,8 @@ public interface GheService {
 
 	Ghe findById(Integer maghe);
 
+	void delete(Integer maghe);
+
 
 
 }

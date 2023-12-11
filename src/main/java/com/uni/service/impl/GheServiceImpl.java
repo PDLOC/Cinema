@@ -50,4 +50,10 @@ public class GheServiceImpl implements GheService {
 		// TODO Auto-generated method stub
 		return gheDAO.findByTenGhe(tenghe);
 	}
+
+	@Override
+	public void delete(Integer maghe) {
+		// TODO Auto-generated method stub
+		gheDAO.deleteById(maghe);
+	}
 }

@@ -19,4 +19,6 @@ public interface KmService {
 
 	void delete(String makm);
 
+	List<Khuyenmai> findAllExcept();
+
 }

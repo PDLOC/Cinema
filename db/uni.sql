@@ -784,8 +784,6 @@ insert into Ghe(tenghe,loaigheid,phongchieuid,hang,cot,trangthai) values
 ('H3','C','C6',8,3,0),
 ('H4','C','C6',8,4,0)
 
-
-select * from Phong
 ------------------------------------Khóa-----------------------------------
 --Tài khoản--
 alter table Taikhoan add constraint df_Taikhoan_Hinh default (N'user.png') for Hinh

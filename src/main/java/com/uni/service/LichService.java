@@ -8,10 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.uni.entity.Lich;
 
-
-
-
-
 @Service
 public interface LichService {
 
@@ -29,13 +25,4 @@ public interface LichService {
 
 	List<Lich> findByMatct(String mact);
 
-
-
-
-
-
-
-
-	
-	
 }

@@ -6,6 +6,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.*;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -47,8 +48,8 @@ public class config {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
             byte[] hash = md.digest(message.getBytes("UTF-8"));
             StringBuilder sb = new StringBuilder(2 * hash.length);
-            for (byte b : hash) {
-                sb.append(String.format("%02x", b & 0xff));
+           for (byte b : hash) {
+               sb.append(String.format("%02x", b & 0xff));
             }
             digest = sb.toString();
         } catch (UnsupportedEncodingException ex) {
@@ -94,7 +95,7 @@ public class config {
             byte[] result = hmac512.doFinal(dataBytes);
             StringBuilder sb = new StringBuilder(2 * result.length);
             for (byte b : result) {
-                sb.append(String.format("%02x", b & 0xff));
+              sb.append(String.format("%02x", b & 0xff));
             }
             return sb.toString();
 

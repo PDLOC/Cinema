@@ -32,19 +32,22 @@
 				<table class="table text-center">
 					<thead>
 						<tr>
-							<th style="font-weight: bolder; font-size: 18px">Mã ghế</th>
+							<th style="font-weight: bolder; font-size: 18px">Tên phòng</th>
 							<th style="font-weight: bolder; font-size: 18px">Tên ghế</th>
 							<th style="font-weight: bolder; font-size: 18px">Hàng</th>
 							<th style="font-weight: bolder; font-size: 18px">Cột</th>
+							<th style="font-weight: bolder; font-size: 18px">Trạng thái</th>
 							<th style="font-weight: bolder; font-size: 18px">Action</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr ng-repeat="item in pager.items">
-							<td style="padding-top: 20px;" class="align-middle">{{item.mapc}}</td>
-							<td style="padding-top: 20px;" class="align-middle">{{item.tenpc}}</td>
+							<td style="padding-top: 20px;" class="align-middle">{{item.room.tenpc}}</td>
+							<td style="padding-top: 20px;" class="align-middle">{{item.tenghe}}</td>
+							<td style="padding-top: 20px;" class="align-middle">{{item.hang}}</td>
+							<td style="padding-top: 20px;" class="align-middle">{{item.cot}}</td>
 							<td style="padding-top: 20px;" class="align-middle">{{item.trangthai?
-								'Hoạt động' : 'Đóng cửa'}}</td>
+								'Đã đặt' : 'Chưa đặt'}}</td>
 							<td style="padding-top: 20px;" class="align-middle"><a
 								class='btn btn-warning' style="font-size: 14px"
 								data-bs-toggle="modal" data-bs-target="#staticBackdrop"
@@ -111,14 +114,15 @@
 									<div class="form-group col-sm-8 mb-5 mt-3">
 										<label>Trạng thái</label><br>
 										<div class="form-check">
-											<input class="form-check-input" type="radio" ng-model="form.trangthai" ng-value="true"
+											<input class="form-check-input" type="radio"
+												ng-model="form.trangthai" ng-value="true"
 												name="flexRadioDefault" id="flexRadioDefault1"> <label
 												class="form-check-label" for="flexRadioDefault1">
 												Hoạt động </label>
 										</div>
 										<div class="form-check">
-											<input class="form-check-input" type="radio" ng-model="form.trangthai"
-											ng-value="false"
+											<input class="form-check-input" type="radio"
+												ng-model="form.trangthai" ng-value="false"
 												name="flexRadioDefault" id="flexRadioDefault2" checked>
 											<label class="form-check-label" for="flexRadioDefault2">
 												Không hoạt động </label>

@@ -22,5 +22,6 @@ public interface LichDAO extends JpaRepository<Lich, Integer> {
 
 	@Query(value ="SELECT * FROM  lich ORDER BY stt DESC", nativeQuery = true)
 	List<Lich> findAllByLichDescending();
+	
 }
 	

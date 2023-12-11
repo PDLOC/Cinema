@@ -3,6 +3,7 @@ package com.uni.rest.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -37,6 +38,11 @@ public class GheRestController {
 	@PutMapping("{Maghe}")
 	public Ghe updateTrangthai(@RequestBody Ghe ghe,@PathVariable("Maghe")Integer id) {
 		return gheService.updateTrangthai(ghe);
+	}
+	
+	@DeleteMapping("{Maghe}")
+	public void delete(@PathVariable("Maghe")Integer maghe) {
+		gheService.delete(maghe);
 	}
 	
 }
