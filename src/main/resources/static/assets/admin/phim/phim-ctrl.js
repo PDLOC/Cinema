@@ -105,10 +105,10 @@ app.controller("phim-ctrl",function($scope,$http){
 			var index = $scope.items.findIndex(p=>p.maphim == item.maphim);
 			$scope.items.splice(index,1);
 			$scope.reset();
-			alert('Xoá sản phẩm thành công!');
+			alert('Xoá phim thành công!');
 			console.log(resp.data);
 		}).catch(err=>{
-			alert('Lỗi xoá sản phẩm!')
+			alert('Lỗi xoá phim!')
 			console.log("Error ",err);
 		})
 	}
