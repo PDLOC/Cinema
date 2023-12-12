@@ -1,16 +1,47 @@
 app.controller("ghe-ctrl", function($scope, $http) {
 	$scope.items = [];
 	$scope.form = {};
-
+	$scope.catesSeat = [];
+	$scope.rooms = [];
 	$scope.initialize = function() {
 		//load phim
 		$http.get("/rest/ghe").then(resp => {
 			$scope.items = resp.data;
 			$scope.items.forEach(item => {
-				console.log(item);
+				//console.log(item);
 			})
 		});
+		//load loại ghế
+		$http.get("/rest/loaighe").then(resp => {
+			$scope.catesSeat = resp.data;
+		});
+
+
+		$http.get("/rest/phong").then(resp => {
+			$scope.rooms = resp.data;
+			console.log($scope.rooms)
+		});
 	}
+
+	$scope.search = function(keyword) {
+		if (keyword == null) {
+			return;
+		}
+		$http.get("/rest/ghe").then(function(resp) {
+			var ghes = resp.data;
+			var matchingGhes = ghes.filter(function(ghe) {
+				var mapcMatch = ghe.room && ghe.room.mapc && ghe.room.mapc.toLowerCase().indexOf(keyword.toLowerCase()) !== -1;
+				var tenpcMatch = ghe.room && ghe.room.tenpc && ghe.room.tenpc.toLowerCase().indexOf(keyword.toLowerCase()) !== -1;
+				var maloaigheMatch = ghe.loaighe && ghe.loaighe.maloaighe && ghe.loaighe.maloaighe.toLowerCase().indexOf(keyword.toLowerCase()) !== -1;
+				var tenloaigheMatch = ghe.loaighe && ghe.loaighe.tenloaighe && ghe.loaighe.tenloaighe.toLowerCase().indexOf(keyword.toLowerCase()) !== -1;
+				return mapcMatch || tenpcMatch || maloaigheMatch || tenloaigheMatch;
+			});
+
+			$scope.items = matchingGhes;
+		}).catch(function(error) {
+			console.error("Error fetching data:", error);
+		});
+	};
 
 
 	//Xoá form
@@ -19,6 +50,7 @@ app.controller("ghe-ctrl", function($scope, $http) {
 
 		}
 	}
+
 
 	//Hiển thị lên form
 	$scope.edit = function(item) {
@@ -29,20 +61,10 @@ app.controller("ghe-ctrl", function($scope, $http) {
 	//Thêm 
 	$scope.create = function() {
 		var item = angular.copy($scope.form);
-
-		// Check if the room already exists
-		var gheExists = $scope.items.find(function(ghe) {
-			return ghe.tenghe === ghe.tenghe;
-		});
-
-		if (gheExists) {
-			alert('Ghế đã tồn tại!'); // Display error message
-			return;
-		}
-
 		$http.post(`/rest/ghe`, item).then(function(resp) {
 			$scope.items.push(resp.data);
 			$scope.reset();
+			$scope.initialize();
 			alert('Thêm mới thành công!');
 			console.log(resp.data);
 		}).catch(function(err) {
@@ -54,10 +76,11 @@ app.controller("ghe-ctrl", function($scope, $http) {
 	//Update 
 	$scope.update = function() {
 		var item = angular.copy($scope.form);
-		$http.put(`/rest/ghe/${item.maghe}`, item).then(resp => {
+		$http.put(`/rest/ghe/update/${item.maghe}`, item).then(resp => {
 			var index = $scope.items.findIndex(p => p.maghe == item.maghe);
 			$scope.items[index] = item;
 			alert('Cập nhật thành công!');
+			$scope.initialize();
 			console.log(resp.data);
 		}).catch(err => {
 			alert('Lỗi cập nhật !')

@@ -38,4 +38,9 @@ public class Room implements Serializable{
 	@JsonIgnore
 	@OneToMany(mappedBy = "room")
 	List<Ghe> ghes;
+	
+	public Room(String mapc) {
+		this.Mapc = mapc;
+	}
+	
 }

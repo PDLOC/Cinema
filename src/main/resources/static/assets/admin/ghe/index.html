@@ -23,8 +23,7 @@
 					<a class='btn btn-primary btn-small col-4  '
 						style="font-size: 15px; width: 170px;" data-bs-toggle="modal"
 						data-bs-target="#staticBackdrop"> <span
-						class="glyphicon glyphicon-edit col-4 text-center">Thêm
-							phòng</span>
+						class="glyphicon glyphicon-edit col-4 text-center">Thêm ghế</span>
 					</a>
 				</div>
 				<!--  -->
@@ -33,6 +32,7 @@
 					<thead>
 						<tr>
 							<th style="font-weight: bolder; font-size: 18px">Tên phòng</th>
+							<th style="font-weight: bolder; font-size: 18px">Loại ghế</th>
 							<th style="font-weight: bolder; font-size: 18px">Tên ghế</th>
 							<th style="font-weight: bolder; font-size: 18px">Hàng</th>
 							<th style="font-weight: bolder; font-size: 18px">Cột</th>
@@ -43,6 +43,7 @@
 					<tbody>
 						<tr ng-repeat="item in pager.items">
 							<td style="padding-top: 20px;" class="align-middle">{{item.room.tenpc}}</td>
+							<td style="padding-top: 20px;" class="align-middle">{{item.loaighe.tenloaighe}}</td>
 							<td style="padding-top: 20px;" class="align-middle">{{item.tenghe}}</td>
 							<td style="padding-top: 20px;" class="align-middle">{{item.hang}}</td>
 							<td style="padding-top: 20px;" class="align-middle">{{item.cot}}</td>
@@ -90,7 +91,7 @@
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
 	data-bs-keyboard="false" tabindex="-1"
 	aria-labelledby="staticBackdropLabel" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered">
+	<div class="modal-dialog modal-dialog-centered modal-xl">
 		<div class="modal-content">
 			<button type="button" class="btn-close ms-auto my-2 me-2"
 				data-bs-dismiss="modal" aria-label="Close"></button>
@@ -102,58 +103,76 @@
 							<div class="mx-auto">
 								<div class="row">
 									<div class="form-group col-sm-6">
-										<label>Mã phim</label> <input ng-model="form.mapc" type="text"
-											class="form-control" />
+										<label class="fw-bolder">Tên phòng</label> <select
+											ng-model="form.room.mapc" class="form-control">
+											<option ng-repeat="r in rooms" ng-value="r.mapc">{{r.tenpc}}</option>
+										</select>
 									</div>
 									<div class="form-group col-sm-6">
-										<label>Tên phim</label> <input ng-model="form.tenpc"
-											class="form-control" />
+										<label class="fw-bolder">Tên ghế</label> <input
+											ng-model="form.tenghe" class="form-control" />
 									</div>
 								</div>
 								<div class="row">
-									<div class="form-group col-sm-8 mb-5 mt-3">
-										<label>Trạng thái</label><br>
-										<div class="form-check">
-											<input class="form-check-input" type="radio"
-												ng-model="form.trangthai" ng-value="true"
-												name="flexRadioDefault" id="flexRadioDefault1"> <label
-												class="form-check-label" for="flexRadioDefault1">
-												Hoạt động </label>
-										</div>
-										<div class="form-check">
-											<input class="form-check-input" type="radio"
-												ng-model="form.trangthai" ng-value="false"
-												name="flexRadioDefault" id="flexRadioDefault2" checked>
-											<label class="form-check-label" for="flexRadioDefault2">
-												Không hoạt động </label>
-										</div>
+									<div class="form-group col-sm-6">
+										<label class="fw-bolder">Hàng</label> <input
+											ng-model="form.hang" type="text" class="form-control" />
+									</div>
+									<div class="form-group col-sm-6">
+										<label class="fw-bolder">Cột</label> <input
+											ng-model="form.cot" class="form-control" />
 									</div>
 								</div>
-								<div
-									class="d-grid gap-2 d-md-flex justify-content-md-center my-4 md-3">
-									<button style="width: 100px; background: #0a58ca;"
-										type="submit" class="btn text-white fw-bolder"
-										ng-click="create()">Insert</button>
-									<button style="width: 100px; background: #0a58ca;"
-										type="submit" class="btn text-white fw-bolder"
-										ng-click="update()">Update</button>
-									<button style="width: 100px; background: #0a58ca;"
-										type="submit" class="btn text-white fw-bolder"
-										ng-click="delete(form)">Delete</button>
-									<button style="width: 100px; background: #0a58ca;"
-										type="submit" class="btn text-white fw-bolder"
-										ng-click="reset()">Reset</button>
+								<div class="row">
+									<div class="form-group col-sm-6">
+										<label class="fw-bolder">Loại ghế</label> <select
+											ng-model="form.loaighe.maloai" class="form-control">
+											<option ng-repeat="cs in catesSeat" ng-value="cs.maloai">{{cs.tenloaighe}}</option>
+										</select>
+									</div>
+									<div class="form-group col-sm-6">
+										<label class="fw-bolder">Trạng thái</label><br>
+										<div class="row">
+											<div class="form-check col-sm-3 ms-3">
+												<input class="form-check-input" type="radio"
+													ng-model="form.trangthai" ng-value="true"
+													name="flexRadioDefault" id="flexRadioDefault1"> <label
+													class="form-check-label" for="flexRadioDefault1">
+													Đã đặt </label>
+											</div>
+											<div class="form-check col-sm-3 me-3">
+												<input class="form-check-input" type="radio"
+													ng-model="form.trangthai" ng-value="false"
+													name="flexRadioDefault" id="flexRadioDefault2" checked>
+												<label class="form-check-label" for="flexRadioDefault2">
+													Chưa đặt </label>
+											</div>
+										</div>
+
+									</div>
+									<div
+										class="d-grid gap-2 d-md-flex justify-content-md-center my-4 md-3">
+										<button style="width: 100px; background: #0a58ca;"
+											type="submit" class="btn text-white fw-bolder"
+											ng-click="create()">Insert</button>
+										<button style="width: 100px; background: #0a58ca;"
+											type="submit" class="btn text-white fw-bolder"
+											ng-click="update()">Update</button>
+										<button style="width: 100px; background: #0a58ca;"
+											type="submit" class="btn text-white fw-bolder"
+											ng-click="delete(form)">Delete</button>
+										<button style="width: 100px; background: #0a58ca;"
+											type="submit" class="btn text-white fw-bolder"
+											ng-click="reset()">Reset</button>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+				</form>
 			</div>
-			</form>
 		</div>
 	</div>
-</div>
-</div>
-</div>
 </div>
 <script>
 	const myModal = document.getElementById('myModal')

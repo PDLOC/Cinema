@@ -1,10 +1,7 @@
 package com.uni.entity;
 
 import java.io.Serializable;
-
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -14,15 +11,20 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@SuppressWarnings("serial")
 @Data
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter
 @Table(name = "LGhe")
-public class Loaighe {
+public class Loaighe implements Serializable{
 	@Id
 	String Maloai;
 	String Tenloaighe;
 	Integer Dongia;
+	
+	public Loaighe(String maloai) {
+		this.Maloai = maloai;
+	}
 }

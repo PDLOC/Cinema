@@ -1,5 +1,7 @@
 package com.uni.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,12 +17,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@SuppressWarnings("serial")
 @Data
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "Ghe")
-public class Ghe {
+public class Ghe implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer Maghe;
@@ -29,12 +32,10 @@ public class Ghe {
 	Integer Cot;
 	Boolean Trangthai;
 	
-	@JsonDeserialize(using = PhongchieuDeserializer.class)
 	@ManyToOne
 	@JoinColumn(name = "Phongchieuid")
 	Room room;
 	
-	@JsonDeserialize(using = LoaigheDeserializer.class)
 	@OneToOne
 	@JoinColumn(name = "Loaigheid")
 	Loaighe loaighe;

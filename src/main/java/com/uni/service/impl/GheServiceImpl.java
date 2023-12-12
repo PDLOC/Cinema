@@ -56,4 +56,17 @@ public class GheServiceImpl implements GheService {
 		// TODO Auto-generated method stub
 		gheDAO.deleteById(maghe);
 	}
+
+	@Override
+	public Ghe create(Ghe ghe) {
+		// TODO Auto-generated method stub
+		return gheDAO.save(ghe);
+	}
+
+	@Override
+	public Ghe update(Ghe ghe) {
+		// TODO Auto-generated method stub
+		return gheDAO.save(ghe);
+	}
+
 }

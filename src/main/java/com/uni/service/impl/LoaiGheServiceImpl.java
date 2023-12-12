@@ -20,4 +20,29 @@ public class LoaiGheServiceImpl implements LoaiGheService {
 		return Lghedao.findAll();
 	}
 
+	@Override
+	public Loaighe findById(String maloai) {
+		// TODO Auto-generated method stub
+		return Lghedao.findById(maloai).get();
+	}
+
+	@Override
+	public Loaighe update(Loaighe loaighe) {
+		// TODO Auto-generated method stub
+		return Lghedao.save(null);
+	}
+
+	@Override
+	public void delete(String maghe) {
+		// TODO Auto-generated method stub
+		Lghedao.deleteById(maghe);
+	}
+
+	@Override
+	public Loaighe save(Loaighe loaighe) {
+		// TODO Auto-generated method stub
+		return Lghedao.save(loaighe);
+	}
+
+
 }

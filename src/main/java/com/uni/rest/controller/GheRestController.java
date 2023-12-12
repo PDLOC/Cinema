@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +26,7 @@ public class GheRestController {
 		return gheService.findAll();
 	}
 	
+	
 	@GetMapping("{Maghe}")
 	public Ghe findById(@PathVariable("Maghe")Integer maghe) {
 		return gheService.findById(maghe);
@@ -33,6 +35,16 @@ public class GheRestController {
 	@GetMapping("{mapc}")
 	public List<Ghe> findByPhong(@PathVariable("mapc")String mapc){
 		return gheService.findByMaphong(mapc);
+	}
+	
+	@PostMapping
+	public Ghe create(@RequestBody Ghe ghe) {
+		return gheService.create(ghe);
+	}
+	
+	@PutMapping("/update/{Maghe}")
+	public Ghe update(@RequestBody Ghe ghe,@PathVariable("Maghe")Integer id) {
+		return gheService.update(ghe);
 	}
 	
 	@PutMapping("{Maghe}")

@@ -23,6 +23,8 @@ public interface GheService {
 
 	void delete(Integer maghe);
 
+	Ghe create(Ghe ghe);
 
+	Ghe update(Ghe ghe);
 
 }
