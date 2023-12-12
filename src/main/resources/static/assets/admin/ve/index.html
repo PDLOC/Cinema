@@ -9,19 +9,20 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="d-flex align-items-center ">
-    <h3 class="alert me-auto text-right  text-primary col-7">Danh sách Vé</h3>
-   
-							<input type="text" ng-model="keyword" class="form-control  border-0 "
-								placeholder="Search for..." aria-label="Search"
-								aria-describedby="basic-addon2">
-							<div class="input-group-append">
-								<button class="btn btn-primary"  ng-click="search(keyword)">
-									<i class="fas fa-search fa-sm"></i>
-								</button>
-							</div>
-					
+						<h3 class="alert me-auto text-right  text-primary col-7">Danh
+							sách Vé</h3>
 
-</div>
+						<input type="text" ng-model="keyword"
+							class="form-control  border-0 " placeholder="Search for..."
+							aria-label="Search" aria-describedby="basic-addon2">
+						<div class="input-group-append">
+							<button class="btn btn-primary" ng-click="search(keyword)">
+								<i class="fas fa-search fa-sm"></i>
+							</button>
+						</div>
+
+
+					</div>
 					<table class="table text-center">
 						<thead>
 							<tr>
@@ -44,14 +45,13 @@
 						<tbody>
 
 							<tr ng-repeat="item in pager.items">
-
 								<td style="padding-top: 20px;" class="align-middle">{{item.mave}}</td>
 								<td style="padding-top: 20px;" class="align-middle">{{item.tenphim}}</td>
 								<td style="padding-top: 20px;" class="align-middle">{{item.combo}}</td>
-								<td style="padding-top: 20px;" class="align-middle">{{item.ngaygiaodich}}</td>
+								<td style="padding-top: 20px;" class="align-middle">{{item.ngaygiaodich | date:'dd-MM-yyyy'}}</td>
 								<td style="padding-top: 20px;" class="align-middle">{{item.ghe}}</td>
 								<td style="padding-top: 20px;" class="align-middle">{{item.soluong}}</td>
-								<td style="padding-top: 20px;" class="align-middle">{{item.thanhtien}}</td>
+								<td style="padding-top: 20px;" class="align-middle">{{formatCurrency(item.thanhtien)}}</td>
 								<td style="padding-top: 20px;" class="align-middle">{{item.trangthai?'Thanh
 									toán':'Đang xử lý'}}</td>
 								<td><a class='btn btn-warning' style="font-size: 14px"
@@ -158,12 +158,12 @@
 								<div class="row">
 									<div class="form-group col-sm-6">
 										<label>Trạng thái</label> <input
-											ng-model="form.trangthai?'Thanh toán':'Đang xử lý'"
-											disabled type="text" class="form-control" />
+											ng-value="form.trangthai?'Thanh toán':'Đang xử lý'" disabled
+											type="text" class="form-control" />
 									</div>
 									<div class="form-group col-sm-6">
-										<label>Combo</label> <input ng-model="form.combo"
-											disabled type="text" class="form-control" />
+										<label>Combo</label> <input ng-model="form.combo" disabled
+											type="text" class="form-control" />
 									</div>
 								</div>
 							</div>

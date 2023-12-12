@@ -6,57 +6,63 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="d-flex align-items-center ">
-    <h3 class="alert me-auto text-right  text-primary col-7" style="margin-bottom:-30px">Danh sách Phim</h3>
-</div>
-<!--  -->
-	<div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4" style="padding-right:15px;padding-top:10px;padding-bottom:15px">
-    	<input type="text" ng-model="keyword" class="form-control border-0 col-4" 
-								placeholder="Search for..." aria-label="Search"
-								aria-describedby="basic-addon2">
-							<div class="input-group-append">
-								<button class="btn btn-primary"  ng-click="search(keyword)">
-									<i class="fas fa-search fa-sm"></i>
-								</button>
-							</div>
-    <a class='btn btn-primary btn-small col-4  ' style="font-size: 15px;width:170px;" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        <span class="glyphicon glyphicon-edit col-4 text-center">Thêm chi tiết</span>
-    </a>
-    </div>
-    <!--  -->
+					<h3 class="alert me-auto text-right  text-primary col-7"
+						style="margin-bottom: -30px">Danh sách Phim</h3>
+				</div>
+				<!--  -->
+				<div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4"
+					style="padding-right: 15px; padding-top: 10px; padding-bottom: 15px">
+					<input type="text" ng-model="keyword"
+						class="form-control border-0 col-4" placeholder="Search for..."
+						aria-label="Search" aria-describedby="basic-addon2">
+					<div class="input-group-append">
+						<button class="btn btn-primary" ng-click="search(keyword)">
+							<i class="fas fa-search fa-sm"></i>
+						</button>
+					</div>
+					<a class='btn btn-primary btn-small col-4  '
+						style="font-size: 15px; width: 170px;" data-bs-toggle="modal"
+						data-bs-target="#exampleModal"> <span
+						class="glyphicon glyphicon-edit col-4 text-center">Thêm chi
+							tiết</span>
+					</a>
+				</div>
+				<!--  -->
 				<table class="table text-center">
 					<thead>
 						<tr>
-						    <th style="font-weight: bolder; font-size: 18px">Hình ảnh</th>						
+							<th style="font-weight: bolder; font-size: 18px">Hình ảnh</th>
 							<th style="font-weight: bolder; font-size: 18px">Tên</th>
 							<th style="font-weight: bolder; font-size: 18px">Đạo diễn</th>
 							<th style="font-weight: bolder; font-size: 18px">Loại phim</th>
-							<th style="font-weight: bolder; font-size: 18px">Năm</th>							
-						    <th style="font-weight: bolder; font-size: 18px">Action</th>
+							<th style="font-weight: bolder; font-size: 18px">Năm</th>
+							<th style="font-weight: bolder; font-size: 18px">Action</th>
 						</tr>
 					</thead>
 					<tbody>
-						
-							<tr ng-repeat="item in pager.items">
-									<td style="width: 350px;"><img ng-src="/assets/Images/{{item.hinh}}" alt=""
-								width=30% /></td>
-								<td style="padding-top: 20px; " class="align-middle">{{item.tenphim}}</td>
-								<td style="padding-top: 20px; " class="align-middle">{{item.daodien}}</td>								
-								<td style="padding-top: 20px; " class="align-middle">{{item.loaiphim}}</td>
-								<td style="padding-top: 20px; " class="align-middle">{{item.khoichieu}}</td>							    
-								<td style="padding-top: 20px; " class="align-middle"><a class='btn btn-warning' style="font-size: 14px"
+
+						<tr ng-repeat="item in pager.items">
+							<td style="width: 350px;"><img
+								ng-src="/assets/Images/{{item.hinh}}" alt="" width=30% /></td>
+							<td style="padding-top: 20px;" class="align-middle">{{item.tenphim}}</td>
+							<td style="padding-top: 20px;" class="align-middle">{{item.daodien}}</td>
+							<td style="padding-top: 20px;" class="align-middle">{{item.loaiphim}}</td>
+							<td style="padding-top: 20px;" class="align-middle">{{item.khoichieu | date:'dd-MM-yyyy'}}</td>
+							<td style="padding-top: 20px;" class="align-middle"><a
+								class='btn btn-warning' style="font-size: 14px"
 								data-bs-toggle="modal" data-bs-target="#exampleModal"
 								ng-click="edit(item)"> <span
 									class="glyphicon glyphicon-edit"></span> Edit
-							       </a> <a  ng-click="delete(item)" 
-								style="font-size: 14px" class="btn btn-danger btn-xs"> <span
+							</a> <a ng-click="delete(item)" style="font-size: 14px"
+								class="btn btn-danger btn-xs"> <span
 									class="glyphicon glyphicon-remove"></span> Delete
 							</a></td>
-							</tr>
-						
+						</tr>
+
 					</tbody>
 				</table>
 				<hr />
-					<div class="d-grid gap-2 d-md-flex justify-content-md-center mt-4">
+				<div class="d-grid gap-2 d-md-flex justify-content-md-center mt-4">
 					<a class="btn  text-white "
 						style="width: 100px; background: #0a58ca;"
 						ng-click="pager.first()">First</a> <a class="btn  text-white"
@@ -81,37 +87,38 @@
 </a>
 
 <!-- Modal -->
-	<div class="modal fade" id="exampleModal" tabindex="-1"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered modal-xl">
-			<div class="modal-content">
-				<button type="button" class="btn-close ms-auto my-2 me-2"
-					data-bs-dismiss="modal" aria-label="Close"></button>
-				<div class="modal-body">
-					<form name="qryform" id="qryform" 
-					enctype="multipart/form-data" class="px-3" modelAttribute="item">
+<div class="modal fade" id="exampleModal" tabindex="-1"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-xl">
+		<div class="modal-content">
+			<button type="button" class="btn-close ms-auto my-2 me-2"
+				data-bs-dismiss="modal" aria-label="Close"></button>
+			<div class="modal-body">
+				<form name="qryform" id="qryform" enctype="multipart/form-data"
+					class="px-3" modelAttribute="item">
 					<div class="card-body">
 						<div class="row">
-							
+
 							<div class="col-sm-4  text-center">
 								<label for="hinh"> <img
-								ng-src="{{'/assets/Images/'+ form.hinh}}"  style="max-width: 100%"
-									height="350px" />
-								</label>
-                         <input type="file" class="form-control ms-3"  id="hinh" 
-    					    onchange="angular.element(this).scope().imageChanged(this.files)" style="display: none;">
+									ng-src="{{'/assets/Images/'+ form.hinh}}"
+									style="max-width: 100%" height="350px" />
+								</label> <input type="file" class="form-control ms-3" id="hinh"
+									onchange="angular.element(this).scope().imageChanged(this.files)"
+									style="display: none;">
 
 							</div>
-					<div class="col-sm-8">
-									<div class="row">
-								
+							<div class="col-sm-8">
+								<div class="row">
+
 
 									<div class="form-group col-sm-12">
-										<label>Tên phim</label> <!--<input ng-model="form.mact"
+										<label>Tên phim</label>
+										<!--<input ng-model="form.mact"
 											type="text" class="form-control" />-->
-											<select ng-model="form.mact" class="form-control">
-												<option ng-repeat="tt in items" ng-value="tt.mact">{{tt.film.tenphim}}</option>
-											</select>
+										<select ng-model="form.mact" class="form-control">
+											<option ng-repeat="tt in items" ng-value="tt.mact">{{tt.film.tenphim}}</option>
+										</select>
 									</div>
 									<!--<div class="form-group col-sm-6">
 										<label>Tên phim</label> <input ng-model="form.tenphim"
@@ -123,15 +130,15 @@
 										<label>Loại phim</label> <input ng-model="form.loaiphim"
 											class="form-control" />
 									</div>
-										<div class="form-group col-sm-6">
+									<div class="form-group col-sm-6">
 										<label>Khởi chiếu</label> <input ng-model="form.khoichieu"
 											type="text" class="form-control" />
 									</div>
 								</div>
 								<div class="row">
-							
+
 									<div class="form-group col-sm-6">
-										<label>Đạo diễn</label> <input ng-model="form.daodien" 
+										<label>Đạo diễn</label> <input ng-model="form.daodien"
 											class="form-control" />
 									</div>
 
@@ -140,49 +147,52 @@
 											class="form-control" />
 									</div>
 								</div>
-							<div class="row">
-							
+								<div class="row">
+
 									<div class="col-sm-12">
-									<div class="form-group col-sm-12">
-											<label >Link</label> <input ng-model="form.linkytb"
-												id="makm" class="form-control" />
-									</div>
-									<div class="form-group col-sm-12">
-											<label>Mô tả</label> <textarea ng-model="form.noidung"
-												id="mota" class="form-control" rows="10"></textarea>
+										<div class="form-group col-sm-12">
+											<label>Link</label> <input ng-model="form.linkytb" id="makm"
+												class="form-control" />
+										</div>
+										<div class="form-group col-sm-12">
+											<label>Mô tả</label>
+											<textarea ng-model="form.noidung" id="mota"
+												class="form-control" rows="10"></textarea>
+										</div>
 									</div>
 								</div>
+
+
+
+
+
+								<div
+									class="d-grid gap-2 d-md-flex justify-content-md-center my-4 md-3">
+									<button style="width: 100px; background: #0a58ca;"
+										type="submit" class="btn text-white fw-bolder"
+										ng-click="create()">Insert</button>
+									<button style="width: 100px; background: #0a58ca;"
+										type="submit" class="btn text-white fw-bolder"
+										ng-click="update()">Update</button>
+									<button style="width: 100px; background: #0a58ca;"
+										type="submit" class="btn text-white fw-bolder"
+										ng-click="delete(form)">Delete</button>
+									<button style="width: 100px; background: #0a58ca;"
+										type="submit" class="btn text-white fw-bolder"
+										ng-click="reset()">Reset</button>
 								</div>
-							
-							
-							
-											
-											
-								<div class="d-grid gap-2 d-md-flex justify-content-md-center my-4 md-3">
-						<button style="width: 100px; background: #0a58ca;" type="submit"
-							class="btn text-white fw-bolder"
-							ng-click="create()">Insert</button>
-						<button style="width: 100px; background: #0a58ca;" type="submit"
-							class="btn text-white fw-bolder"
-							ng-click="update()">Update</button>
-						<button style="width: 100px; background: #0a58ca;" type="submit"
-							class="btn text-white fw-bolder"
-							ng-click="delete(form)">Delete</button>
-						<button style="width: 100px; background: #0a58ca;" type="submit"
-							class="btn text-white fw-bolder" ng-click="reset()">Reset</button>
-					</div>
-					</div>		
-					</div>
-					</div>
-					</div>
-					</form>
+							</div>
 						</div>
 					</div>
-				</div>
 			</div>
+			</form>
 		</div>
 	</div>
-	<script>
+</div>
+</div>
+</div>
+</div>
+<script>
 	const myModal = document.getElementById('myModal')
 	const myInput = document.getElementById('myInput')
 	
@@ -190,31 +200,30 @@
 	  myInput.focus()
 	})
 	</script>
-	<!-- Scroll to Top Button-->
-	<a class="scroll-to-top rounded" href="#page-top"> <i
-		class="fas fa-angle-up"></i>
-	</a>
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top"> <i
+	class="fas fa-angle-up"></i>
+</a>
 
-	<!-- Logout Modal-->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">Select "Logout" below if you are ready
-					to end your current session.</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="login.html">Logout</a>
-				</div>
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+				<button class="close" type="button" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+			</div>
+			<div class="modal-body">Select "Logout" below if you are ready
+				to end your current session.</div>
+			<div class="modal-footer">
+				<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+				<a class="btn btn-primary" href="login.html">Logout</a>
 			</div>
 		</div>
 	</div>
+</div>
 
