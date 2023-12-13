@@ -23,7 +23,7 @@ public class KhuyenmaiRestController {
 	
 	@GetMapping()
 	public List<Khuyenmai> findAll() {
-		return kmService.findAll();
+		return kmService.findAllExcept();
 	}
 	
 	@GetMapping("{Makm}")

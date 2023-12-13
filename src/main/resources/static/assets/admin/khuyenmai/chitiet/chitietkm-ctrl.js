@@ -1,15 +1,21 @@
 app.controller("chitietkm-ctrl",function($scope,$http){
 	$scope.items = [];
 	$scope.form = {};
+    $scope.discount = [];
     
 	$scope.initialize = function(){
-		//load Khách hàng
+		//load chi tiết khuyến mãi
 		$http.get("/rest/chitietkm").then(resp => {
 			$scope.items = resp.data;
 			$scope.items.forEach(item => {
 				console.log(item);
 			})
 		});
+		
+		$http.get("/rest/khuyenmai").then(resp => {
+			$scope.discount = resp.data;
+		});
+		
 	}
 	
 	    //Xoá form

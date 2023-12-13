@@ -3,108 +3,108 @@ use universe_data
 ------------------------------------Tài khoản----------------------------------------------
 create table Taikhoan(
 	Matk varchar(255) primary key,
-	Hoten nvarchar(125),
-	Email varchar(225),
-	Sdt varchar(10),
-	Ngaysinh date,
-	Matkhau varchar(125),
-	Diachi nvarchar(max) null,
-	Hinh nvarchar(255) null,
+	Hoten nvarchar(125) NOT NULL,
+	Email varchar(225) NOT NULL,
+	Sdt varchar(10) NOT NULL,
+	Ngaysinh date NOT NULL,
+	Matkhau varchar(125) NOT NULL,
+	Diachi nvarchar(max) NULL,
+	Hinh nvarchar(255) NULL,
 );
 
 ------------------------------------Vai trò----------------------------------------------
 create table Vaitro(
 	Mavaitro varchar(10) primary key,
-	Tenvaitro nvarchar(255)
+	Tenvaitro nvarchar(255) NOT NULL
 );
-select * from Taikhoan
+
 ------------------------------------Xác thực----------------------------------------------
 create table Phanquyen(
 	Id int identity(1,1) primary key,
-	Matk varchar(255),
-	Mavaitro varchar(10)
+	Matk varchar(255) NOT NULL,
+	Mavaitro varchar(10) NOT NULL
 );
 
 
 ------------------------------------Phim----------------------------------------------
 create table Phim(
 	Maphim varchar(10) primary key,
-	Matrangthai int,
-	Tenphim nvarchar(255),
-	Thoiluong varchar(125),
-	Namsx int,
-	Hinh nvarchar(225)
+	Matrangthai int NOT NULL,
+	Tenphim nvarchar(255) NOT NULL,
+	Thoiluong varchar(125) NOT NULL,
+	Namsx int NOT NULL,
+	Hinh nvarchar(225) NOT NULL
 );
 
 ------------------------------------Chi tiết phim----------------------------------------------
 create table Chitietphim(
 	Mact varchar(10) primary key,
-	Maphim varchar(10),
-	Loaiphim nvarchar(255),
-	Mapc varchar(10),
-	Tenphim nvarchar(255),
-	Khoichieu date,
-	Daodien nvarchar(255),
-	Dienvien nvarchar(255),
-	Noidung nvarchar(max),
-	Linkytb varchar(max),
-	Hinh nvarchar(225),
+	Maphim varchar(10) NOT NULL,
+	Loaiphim nvarchar(255) NOT NULL,
+	Mapc varchar(10) NOT NULL,
+	Tenphim nvarchar(255) NOT NULL,
+	Khoichieu date NOT NULL,
+	Daodien nvarchar(255) NOT NULL,
+	Dienvien nvarchar(255) NOT NULL,
+	Noidung nvarchar(max) NOT NULL,
+	Linkytb varchar(max) NOT NULL,
+	Hinh nvarchar(225) NOT NULL
 );
 
 ------------------------------------Lịch chiếu----------------------------------------------
 create table Lich(
 	STT int identity(1,1) primary key,
-	Mact varchar(10),
-	Ngaychieu date,
-	Giobatdau time,
-	Gioketthuc time
+	Mact varchar(10) NOT NULL,
+	Ngaychieu date NOT NULL,
+	Giobatdau time NOT NULL,
+	Gioketthuc time NOT NULL
 );
 
 
 ------------------------------------Trạng thái phim----------------------------------------------
 create table Trangthaiphim(
 	Stt int identity(1,1) primary key,
-	Trangthai nvarchar(255)
+	Trangthai nvarchar(255) NOT NULL
 );
 
 ------------------------------------Phòng Chiếu----------------------------------------------
 create table Phong(
 	Mapc varchar(10) primary key,
-	Tenpc nvarchar(255),
-	Trangthai bit
+	Tenpc nvarchar(255) NOT NULL,
+	Trangthai bit NOT NULL
 );
 ------------------------------------Loại ghế----------------------------------------------
 create table LGhe(
 	Maloai varchar(5) primary key,
-	Tenloaighe nvarchar(125),
-	Dongia int
+	Tenloaighe nvarchar(125) NOT NULL,
+	Dongia int NOT NULL
 );
 
 ------------------------------------Ghế----------------------------------------------
 create table Ghe(
 	Maghe int identity(1,1) primary key,
-	Tenghe varchar(10),
-	Loaigheid varchar(5),
-	Phongchieuid varchar(10),
-	Hang int,
-	Cot int,
-	Trangthai bit
+	Tenghe varchar(10) NOT NULL,
+	Loaigheid varchar(5) NOT NULL,
+	Phongchieuid varchar(10) NOT NULL,
+	Hang int NOT NULL,
+	Cot int NOT NULL,
+	Trangthai bit NOT NULL
 );
 
 ------------------------------------Khuyến mãi----------------------------------------------
 create table Khuyenmai (
     Makm varchar(10) primary key,
-	Tenkm nvarchar(225),
-    Giamgia float,
-    NgayBatDau date,
-	NgayKetThuc date,
-	Hinh nvarchar(250)
+	Tenkm nvarchar(225) NOT NULL,
+    Giamgia float NOT NULL,
+    NgayBatDau date NOT NULL,
+	NgayKetThuc date NOT NULL,
+	Hinh nvarchar(250) NOT NULL
 );
 
 ------------------------------------Chi tiết khuyến mãi----------------------------------------------
 create table Chitietkm(
 	Id int identity(1,1) primary key,
-	Makm varchar(10),
+	Makm varchar(10) NOT NULL,
 	Mota NVARCHAR(MAX) NULL
 );
 
@@ -112,12 +112,12 @@ create table Chitietkm(
 ------------------------------------Combo----------------------------------------------
 create table Combo(
 	STT int identity(1,1) primary key,
-	Macb varchar(10),
-	Tencb nvarchar(125),
-	Mota nvarchar(225),
-	Soluong int,
-	Dongia float,
-	Hinh  varchar(225)
+	Macb varchar(10) NOT NULL,
+	Tencb nvarchar(125) NOT NULL,
+	Mota nvarchar(225) NOT NULL,
+	Soluong int NOT NULL,
+	Dongia float NOT NULL,
+	Hinh  varchar(225) NOT NULL
 );
 
 
@@ -126,8 +126,8 @@ create table Ve(
 	MaVe int identity(1,1) primary key,
 	Matk varchar(255),
 	Lichstt int,
-	Makm varchar(10) null,
-	Combo nvarchar(max) null,
+	Makm varchar(10) NULL,
+	Combo nvarchar(max) NULL,
 	Tenphim nvarchar(255),
 	Tenpc nvarchar(255),
 	Ngaychieu date,
@@ -794,6 +794,7 @@ alter table Phanquyen add constraint fk_pq_vt foreign key(Mavaitro) references V
 
 --Chi tiết phim--
 alter table Chitietphim add constraint fk_ctphim_p foreign key(Maphim) references Phim(Maphim)
+alter table Chitietphim add constraint fk_ctphim_mapc foreign key(Mapc) references Phong(Mapc)
 
 
 --Phim--
