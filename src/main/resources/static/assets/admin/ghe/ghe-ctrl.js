@@ -62,6 +62,10 @@ app.controller("ghe-ctrl", function($scope, $http) {
 	$scope.create = function() {
 		var item = angular.copy($scope.form);
 		$http.post(`/rest/ghe`, item).then(function(resp) {
+			if($scope.form.tenghe === ''){
+				alert('Thêm mới thất bại');
+				return;
+			}
 			$scope.items.push(resp.data);
 			$scope.reset();
 			$scope.initialize();
@@ -78,6 +82,10 @@ app.controller("ghe-ctrl", function($scope, $http) {
 		var item = angular.copy($scope.form);
 		$http.put(`/rest/ghe/update/${item.maghe}`, item).then(resp => {
 			var index = $scope.items.findIndex(p => p.maghe == item.maghe);
+			if($scope.form.tenghe === ''){
+				alert('Cập nhật thất bại');
+				return;
+			}
 			$scope.items[index] = item;
 			alert('Cập nhật thành công!');
 			$scope.initialize();

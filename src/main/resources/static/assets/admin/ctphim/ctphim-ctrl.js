@@ -64,6 +64,26 @@ app.controller("ctphim-ctrl",function($scope,$http){
         //Update 
     $scope.update = function(){
 		var item = angular.copy($scope.form);
+		if($scope.form.loaiphim === ''){
+				alert('Cập nhật thất bại');
+				return;
+			}
+		if($scope.form.daodien === ''){
+				alert('Cập nhật thất bại');
+				return;
+			}
+		if($scope.form.dienvien === ''){
+				alert('Cập nhật thất bại');
+				return;
+			}
+		if($scope.form.linkytb === ''){
+				alert('Cập nhật thất bại');
+				return;
+			}
+		if($scope.form.noidung === ''){
+				alert('Cập nhật thất bại');
+				return;
+			}				
 		$http.put(`/rest/ctphim/${item.maphim}`,item).then(resp=>{
 			var index = $scope.items.findIndex(p=>p.maphim == item.maphim);
 			$scope.items[index] = item;

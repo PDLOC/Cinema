@@ -48,6 +48,10 @@ app.controller("chitietkm-ctrl",function($scope,$http){
         //Update
     $scope.update = function(){
 		var item = angular.copy($scope.form);
+		if($scope.form.mota === ''){
+				alert('Cập nhật thất bại');
+				return;
+			}
 		$http.put(`/rest/chitietkm/${item.id}`,item).then(resp=>{
 			var index = $scope.items.findIndex(p=>p.id == item.id);
 			$scope.items[index] = item;

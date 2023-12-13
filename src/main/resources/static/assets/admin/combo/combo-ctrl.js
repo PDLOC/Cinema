@@ -71,6 +71,18 @@ app.controller("combo-ctrl", function($scope, $http) {
 	//Update 
 	$scope.update = function() {
 		var item = angular.copy($scope.form);
+		if($scope.form.macb === ''){
+				alert('Cập nhật thất bại');
+				return;
+			}
+		if($scope.form.tencb === ''){
+				alert('Cập nhật thất bại');
+				return;
+			}
+		if($scope.form.mota === ''){
+				alert('Cập nhật thất bại');
+				return;
+			}		
 		$http.put(`/rest/combo/${item.stt}`, item).then(resp => {
 			var index = $scope.items.findIndex(p => p.stt == item.stt);
 			$scope.items[index] = item;

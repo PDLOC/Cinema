@@ -71,6 +71,10 @@ app.controller("khuyenmai-ctrl", function($scope, $http) {
 	//Update
 	$scope.update = function() {
 		var item = angular.copy($scope.form);
+		if($scope.form.tenkm === ''){
+				alert('Cập nhật thất bại');
+				return;
+			}
 		$http.put(`/rest/khuyenmai/${item.makm}`, item).then(resp => {
 			var index = $scope.items.findIndex(p => p.id == item.makm);
 			$scope.items[index] = item;

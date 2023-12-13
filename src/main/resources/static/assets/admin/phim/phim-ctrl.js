@@ -74,6 +74,14 @@ app.controller("phim-ctrl",function($scope,$http){
         //Update 
     $scope.update = function(){
 		var item = angular.copy($scope.form);
+		if($scope.form.tenphim === ''){
+				alert('Cập nhật thất bại');
+				return;
+			}
+		if($scope.form.thoiluong === ''){
+				alert('Cập nhật thất bại');
+				return;
+			}	
 		$http.put(`/rest/phim/${item.maphim}`,item).then(resp=>{
 			var index = $scope.items.findIndex(p=>p.maphim == item.maphim);
 			$scope.items[index] = item;
