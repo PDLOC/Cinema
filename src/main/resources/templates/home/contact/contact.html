@@ -127,7 +127,7 @@
 		</div>
 		<div class="container fill">
 			<div class="forthis">
-				<form action="https://formcarry.com/s/S1peCWurw0C" method="POST"
+			<form th:action="@{/home/send}" method="POST"
 					name="contact-form" id="contact-form"
 					onsubmit="return validateForm();">
 					<div class="form-row two2">
@@ -147,7 +147,7 @@
 					<div class="form-row one1">
 						<div class="form-group col-lg-6 column">
 							<input type="text" class="form-control input" id="email"
-								name="email" placeholder=" "> <label for="email"
+								name="from" placeholder=" "> <label for="email"
 								class="">Email</label>
 							<div class="underline"></div>
 						</div>
@@ -168,12 +168,13 @@
 					</div>
 					<div class="form-row size">
 						<div class="form-group column">
-							<textarea type="text" class="form-control input" name="message"
+							<textarea type="text" class="form-control input" name="body"
 								id="message" rows="5" placeholder=" "></textarea>
 							<label for="message" class="">Lời Nhắn</label>
 							<div class="underline extra gap"></div>
 						</div>
 					</div>
+						<div class="text-center text-danger fw-bolder mt-5">[[${message}]]</div>
 					<div class="btn-sm">
 						<input type="submit" value="SEND MESSAGE" class="sm-button"
 							id="submit-btn"> 
@@ -227,84 +228,7 @@
 			}
 		</script>
 
-		<script type="text/javascript">
-			function validateForm() {
-				const firstname = document.getElementById("firstname");
-				const lastname = document.getElementById("lastname");
-				const email = document.getElementById("email");
-				const phone = document.getElementById("phone");
-				const subject = document.getElementById("subject");
-				const message = document.getElementById("message");
-				let alphabets = /^[A-Za-z]+$/;
-				if (firstname.value.trim().length === 0
-						&& lastname.value.trim().length === 0
-						&& email.value.trim().length === 0
-						&& phone.value.trim().length === 0
-						&& subject.value.trim().length === 0
-						&& message.value.trim().length === 0) {
-					swal("Oops...", "Điền tên đệm đi bồ .",
-							"error");
-					return false;
-				}
-				if (firstname.value.trim().length === 0) {
-					swal("Oops...", "Điền tên chính đi bồ .", "error");
-					return false;
-				}
-				if (!firstname.value.trim().match(alphabets)) {
-					swal("Oops...", "Tên bồ bị lỏ rồi",
-							"error");
-					return false;
-				}
-				if (lastname.value.trim().length > 0) {
-					if (!lastname.value.trim().match(alphabets)) {
-						swal("Oops...", "Tên bồ bị lỏ rồi",
-								"error");
-						return false;
-					}
-				}
-				if (email.value.trim().length === 0) {
-					swal("Oops...", "Điền địa chỉ đi bồ",
-							"error");
-					return false;
-				}
-				if (!email.value.trim().includes("@gmail.com")) {
-					swal("Oops...", "Bớt xài địa chỉ ma đi bồ",
-							"error");
-					return false;
-				}
-				if (phone.value.trim().length != 10
-						|| isNaN(phone.value.trim())) {
-					swal("Oops...", "Xin số điện thoại đi bồ",
-							"error");
-					return false;
-				}
-				if (subject.value.trim().length === 0) {
-					swal("Oops...", "Nhả số điện thoại ra bồ", "error");
-					return false;
-				}
-				if (message.value.trim().length === 0) {
-					swal("Oops...", "Nhập cái vấn đề vô ??", "error");
-					return false;
-				}
-				swal(
-						"Hoàn Tất!",
-						"Bên chúng tôi sẽ giải quyết vấn đề của bạn torng thời gian sớm nhất",
-						"success");
-				return true;
-			}
 
-			document.getElementById("submit-btn").addEventListener("click",
-					validateForm);
-
-			function clearFunc() {
-				document.getElementById("firstname").value = "";
-				document.getElementById("lastname").value = "";
-				document.getElementById("email").value = "";
-				document.getElementById("phone").value = "";
-				document.getElementById("subject").value = "";
-				document.getElementById("message").value = "";
-			}
-		</script>
 		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	</main>
 </body>
