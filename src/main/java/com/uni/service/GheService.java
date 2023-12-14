@@ -27,4 +27,6 @@ public interface GheService {
 
 	Ghe update(Ghe ghe);
 
+	Ghe findStatus(Integer maghe);
+
 }

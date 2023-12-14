@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
-import com.uni.controller.PaymentController;
 import com.uni.dao.TaiKhoanDAO;
 import com.uni.service.ChitietphimService;
 import com.uni.entity.Chitietphim;
@@ -26,6 +25,7 @@ import com.uni.entity.Ghe;
 import com.uni.entity.Khuyenmai;
 import com.uni.service.KmService;
 import com.uni.service.LoaiGheService;
+import com.uni.service.PaymentService;
 import com.uni.service.SessionService;
 import com.uni.service.impl.MailerServiceImpl;
 import com.uni.service.ComboService;
@@ -61,6 +61,9 @@ public class TicketController {
 
 	@Autowired
 	HttpSession session;
+	
+	@Autowired
+	PaymentService paymentService;
 
 	@RequestMapping("booking/ticket/{mapc}/{mact}/{gioBatDau}")
 	public String ticket(Model model, @PathVariable("mapc") String mapc, @PathVariable("mact") String mact,
@@ -96,7 +99,7 @@ public class TicketController {
 
 	@RequestMapping("booking/ticket/pay/{totalPay}")
 	public String payment(@PathVariable("totalPay") long totalpay) {
-		PaymentController pc = new PaymentController();
+		PaymentService pc = new PaymentService();
 		String urlpay = null;
 		try {
 			urlpay = pc.payment(totalpay);
@@ -106,7 +109,7 @@ public class TicketController {
 		return "redirect:" + urlpay;
 	}
 
-	@RequestMapping("booking/SendBill/{username}/{nameMovie}/{suatChieu}/{ngayChieu}/{seatPositionElement.textContent}/{totalSeat}/{seatPrice}/{room}/{totalPriceFood}/{discount}/{totalAmount1}")
+	@RequestMapping("booking/SendBill/{username}/{nameMovie}/{suatChieu}/{ngayChieu}/{seatPositionElement.textContent}/{totalSeat}/{seatPrice}/{room}/{totalPriceFood}/{discount}/{totalAmount1}/{ticketCode}")
 	public String sendMail(@PathVariable("username") String username, 
 			@PathVariable("nameMovie") String nameMovie,
 			@PathVariable("suatChieu") String timeMovie, 
@@ -117,7 +120,9 @@ public class TicketController {
 			@PathVariable("room") String room,
 			@PathVariable("totalPriceFood") String totalPriceFood,
 			@PathVariable("discount")String discount,
-			@PathVariable("totalAmount1") String thanhtien) {
+			@PathVariable("totalAmount1") String thanhtien,
+			@PathVariable("ticketCode")Integer mave) {
+		
 		try {
 			if (username != null) {
 				Taikhoan acc = accountDao.findById(username).get();
@@ -133,7 +138,7 @@ public class TicketController {
                          "</head>" +
                          "<body>" +
                              "<h2 style='color: #333333;'>Thông Tin Vé</h2>" +
-                             "<p><strong>Mã vé:</strong> " + nameMovie +"</p>"+
+                             "<p><strong>Mã vé:</strong> " + mave +"</p>"+
                              "<p><strong>Tên phim:</strong> " + nameMovie +"</p>"+
                              "<p><strong>Rạp:</strong> Universe Cinema "+" - "+ room +"</p>"+
                              "<p><strong>Ngày chiếu:</strong> " + dateMovie + " - "+timeMovie+"</p>" +

@@ -605,72 +605,114 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
     	 		// Store selected seat positions in local storage
     	 	   	var seatCodes = ghetrungkhop.map(item => item.maghe);
     	 	  	localStorage.setItem('selectedSeats', JSON.stringify(seatCodes));
-    	 	  });
+    	 	  
+    	 	  
+    	 	 const bookingInfo = {
+    	            	taikhoan: username,
+    	            	lich: lichSTT,
+    	            	giamgia: discount,
+    	            	ghe: seatPositionElement.textContent,
+    	            	soluong: totalSeat,
+    	            	tenphim: movieName,
+    	            	giobatdau: timeMovie,
+    	            	ngaychieu: dateMovie,
+    	            	tenpc: room,
+    	            	thanhtien: totalAmount,
+    	            	combo: nameFood,
+    	            	hinh: imageMovie,
+    	            	khuyenmai: iddiscount,
+    	            	trangthai: true
+    	            };
+    	            sessionStorage.setItem('bookingInformation', JSON.stringify(bookingInfo));
+    	            console.log(bookingInfo.ghe);
+    	            
+    	            fetch(`/rest/ghe/checkstatus/${seatCodes}`)
+    	            .then(resp =>{
+    	            	if(resp.ok){
+    	            		return resp.json();	
+    	            	}else{
+    	            		console.log("ERROR SEARCHING FOR SEAT STATUS");
+    	            	}
+    	            }).then(i =>{
+    	            	if(i.trangthai === true){
+    	            		Swal.fire({
+    	            	          icon: 'warning',
+    	            	          title: 'Ghế đã được đặt',
+    	            	          text: `Ghế ${gheTrungKhop.tenghe} đã có người đặt rồi. Vui lòng chọn ghế khác.`,
+    	            	          timer: 3000,
+    	            	          timerProgressBar: true,
+    	            	          toast: true,
+    	            	          position: 'top-end',
+    	            	          showConfirmButton: false,
+    	            	          didOpen: (toast) => {
+    	            	            toast.addEventListener('mouseenter', Swal.stopTimer);
+    	            	            toast.addEventListener('mouseleave', Swal.resumeTimer);
+    	            	          }
+    	            	        }).then(()=>{
+    	            	        	window.location.href = '/home/index' ;
+    	            	        });
+    	            		return;
+    	            	}else{
+    	            		// Gọi API đặt vé
+    	                    fetch('/rest/ve', {
+    	                        method: 'POST',
+    	                        headers: {
+    	                            'Content-Type': 'application/json'
+    	                        },
+    	                        body: JSON.stringify(bookingInfo)
+    	        			})
+    	                    .then(response => {
+    	                        if (response.ok) {
+    	                            console.log('Booking created successfully.');
+    	        					console.log(bookingInfo);
+    	        					return response.json();
+    	                        } else {
+    	                            console.error('Error creating booking.');
+    	                            // Xử lý khi có lỗi đặt vé
+    	                        }
+    	                    })
+    	                    .then(data => {
+    	        			    // Truy cập giá trị mã vé từ đối tượng JSON
+    	        			   const ticketCode = data.mave;
+    	        			    console.log('Ticket code:', ticketCode);
+    	        			   // Xử lý khi đặt vé thành công
+    	        			   Swal.fire({
+    	        		            icon: 'success',
+    	        		            title: 'Đặt vé thành công',
+    	        		            timer: 2000,
+    	        		            timerProgressBar: true,
+    	        		            toast: true,
+    	        		            position: 'top-end',
+    	        		            showConfirmButton: false,
+    	        		            didOpen: (toast) => {
+    	        		                toast.addEventListener('mouseenter', Swal.stopTimer);
+    	        		                toast.addEventListener('mouseleave', Swal.resumeTimer);
+    	        		            }
+    	        		        }).then(() => {
+    	        		            // Redirect to the home page
+    	        		            window.location.href = '/home/booking/SendBill/'+username+'/'+movieName+'/'+suatChieu+'/'+ngayChieu+'/'+seatPositionElement.textContent+'/'+totalSeat+'/'+seatPrice+'/'+room+'/'+totalPriceFood+'/'+discount+'/'+totalAmount1+'/'+ticketCode // Replace '/home' with the actual URL of your home page
+    	        		        });
+    	        			})
+    	                    .catch(error => {
+    	                        console.error('Error creating booking:', error);
+    	                        // Xử lý khi có lỗi kết nối hoặc lỗi xử lý
+    	                    });
+    	            		
+    	            	}
+    	            })
+    	            .catch(error => {
+    	                console.error('Error searching for seat status:', error);
+    	              });
+    	 	 });
     	 	} else {
     	 	  console.log('Không tìm thấy ghế nào trùng khớp với vị trí ghế', seatPosition);
     	 	}
     	 	
-            const bookingInfo = {
-            	taikhoan: username,
-            	lich: lichSTT,
-            	giamgia: discount,
-            	ghe: seatPositionElement.textContent,
-            	soluong: totalSeat,
-            	tenphim: movieName,
-            	giobatdau: timeMovie,
-            	ngaychieu: dateMovie,
-            	tenpc: room,
-            	thanhtien: totalAmount,
-            	combo: nameFood,
-            	hinh: imageMovie,
-            	khuyenmai: iddiscount,
-            	trangthai: true
-            };
-            sessionStorage.setItem('bookingInformation', JSON.stringify(bookingInfo));
             
-         // Gọi API đặt vé
-            fetch('/rest/ve', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(bookingInfo)
-			})
-            .then(response => {
-                if (response.ok) {
-                    console.log('Booking created successfully.');
-					console.log(bookingInfo);
-                    // Xử lý khi đặt vé thành công
-					Swal.fire({
-			            icon: 'success',
-			            title: 'Đặt vé thành công',
-			            timer: 3000,
-			            timerProgressBar: true,
-			            toast: true,
-			            position: 'top-end',
-			            showConfirmButton: false,
-			            didOpen: (toast) => {
-			                toast.addEventListener('mouseenter', Swal.stopTimer);
-			                toast.addEventListener('mouseleave', Swal.resumeTimer);
-			            }
-			        }).then(() => {
-			            // Redirect to the home page
-			            window.location.href = '/home/booking/SendBill/'+username+'/'+movieName+'/'+suatChieu+'/'+ngayChieu+'/'+seatPositionElement.textContent+'/'+totalSeat+'/'+seatPrice+'/'+room+'/'+totalPriceFood+'/'+discount+'/'+totalAmount1 // Replace '/home' with the actual URL of your home page
-			        });
-                    
-                    
-                } else {
-                    console.error('Error creating booking.');
-                    // Xử lý khi có lỗi đặt vé
-                }
-            })
-            .catch(error => {
-                console.error('Error creating booking:', error);
-                // Xử lý khi có lỗi kết nối hoặc lỗi xử lý
-            });
+            
+         
         }
      
-
         function getBookingInformation() {
             const bookingInfo = sessionStorage.getItem('bookingInformation');
             return bookingInfo ? JSON.parse(bookingInfo) : null;
@@ -941,7 +983,7 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 		    });
 		});
     </script>
-	
+
 	<!-- Pay -->
 	<script>
 		function getSelectedRadioValue() {
@@ -956,11 +998,11 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 			  if (check === "vnpay") {
 				window.location.href="/home/booking/ticket/pay/"+ totalPay
 			  }else if(check.trim() === ""){
-				  console.log("hello");
+				  this.saveBookingInformation();
 			  }
 		}
 	</script>
-	
+
 	<script type="text/javascript">
 		//phương thức lấy tên tk
 		function getCookieValue(cookieName) {
@@ -980,7 +1022,7 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 			  return null;
 			}
 	</script>
-	
+
 	<!-- bootsstrap JS -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"

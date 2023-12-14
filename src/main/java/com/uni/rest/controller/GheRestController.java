@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.uni.entity.Ghe;
@@ -26,6 +27,11 @@ public class GheRestController {
 		return gheService.findAll();
 	}
 	
+	@GetMapping("/checkstatus/{maghe}")
+	public Ghe checkStatus(@PathVariable("maghe")Integer maghe) {
+		
+		return gheService.findStatus(maghe);
+	}
 	
 	@GetMapping("{Maghe}")
 	public Ghe findById(@PathVariable("Maghe")Integer maghe) {

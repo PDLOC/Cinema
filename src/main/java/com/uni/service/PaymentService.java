@@ -1,9 +1,10 @@
-package com.uni.controller;
+package com.uni.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,14 +19,17 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
 
+import javax.servlet.http.HttpServletRequest;
 
-public class PaymentController {
+@Service
+public class PaymentService {
 	public String payment(long mount) throws Exception{
 		
 		String vnp_Version = "2.1.0";
@@ -96,5 +100,38 @@ public class PaymentController {
 		return paymentUrl;
 	}
 	
-	
+	public int orderReturn(HttpServletRequest request){
+        Map fields = new HashMap();
+        for (Enumeration params = request.getParameterNames(); params.hasMoreElements();) {
+            String fieldName = null;
+            String fieldValue = null;
+            try {
+                fieldName = URLEncoder.encode((String) params.nextElement(), StandardCharsets.US_ASCII.toString());
+                fieldValue = URLEncoder.encode(request.getParameter(fieldName), StandardCharsets.US_ASCII.toString());
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            if ((fieldValue != null) && (fieldValue.length() > 0)) {
+                fields.put(fieldName, fieldValue);
+            }
+        }
+
+        String vnp_SecureHash = request.getParameter("vnp_SecureHash");
+        if (fields.containsKey("vnp_SecureHashType")) {
+            fields.remove("vnp_SecureHashType");
+        }
+        if (fields.containsKey("vnp_SecureHash")) {
+            fields.remove("vnp_SecureHash");
+        }
+        String signValue = config.hashAllFields(fields);
+        if (signValue.equals(vnp_SecureHash)) {
+            if ("00".equals(request.getParameter("vnp_TransactionStatus"))) {
+                return 1;
+            } else {
+                return 0;
+            }
+        } else {
+            return -1;
+        }
+    }
 }

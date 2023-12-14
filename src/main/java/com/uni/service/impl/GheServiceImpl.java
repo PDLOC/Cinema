@@ -69,4 +69,10 @@ public class GheServiceImpl implements GheService {
 		return gheDAO.save(ghe);
 	}
 
+	@Override
+	public Ghe findStatus(Integer maghe) {
+		// TODO Auto-generated method stub
+		return gheDAO.findStatus(maghe);
+	}
+
 }
