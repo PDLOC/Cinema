@@ -47,7 +47,8 @@
 							<td style="padding-top: 20px;" class="align-middle">{{item.tenphim}}</td>
 							<td style="padding-top: 20px;" class="align-middle">{{item.daodien}}</td>
 							<td style="padding-top: 20px;" class="align-middle">{{item.loaiphim}}</td>
-							<td style="padding-top: 20px;" class="align-middle">{{item.khoichieu | date:'dd-MM-yyyy'}}</td>
+							<td style="padding-top: 20px;" class="align-middle">{{item.khoichieu
+								| date:'dd-MM-yyyy'}}</td>
 							<td style="padding-top: 20px;" class="align-middle"><a
 								class='btn btn-warning' style="font-size: 14px"
 								data-bs-toggle="modal" data-bs-target="#exampleModal"
@@ -98,32 +99,30 @@
 					class="px-3" modelAttribute="item">
 					<div class="card-body">
 						<div class="row">
-
-							<div class="col-sm-4  text-center">
-								<label for="hinh"> <img
-									ng-src="{{'/assets/Images/'+ form.hinh}}"
-									style="max-width: 100%" height="350px" />
-								</label> <input type="file" class="form-control ms-3" id="hinh"
-									onchange="angular.element(this).scope().imageChanged(this.files)"
-									style="display: none;">
-
-							</div>
-							<div class="col-sm-8">
+							<div class="col-sm-8 mx-auto">
 								<div class="row">
-
-
-									<div class="form-group col-sm-12">
-										<label>Tên phim</label>
-										<!--<input ng-model="form.mact"
-											type="text" class="form-control" />-->
-										<select ng-model="form.mact" class="form-control">
-											<option ng-repeat="tt in items" ng-value="tt.mact">{{tt.film.tenphim}}</option>
-										</select>
+								<div class="form-group col-sm-6">
+										<!-- <label>Tên phim</label> <input ng-model="form.tenphim"
+											class="form-control" /> -->
+										<label>Mã phim</label> <input ng-model="form.film.maphim"
+											type="text" class="form-control" />
 									</div>
-									<!--<div class="form-group col-sm-6">
-										<label>Tên phim</label> <input ng-model="form.tenphim"
-											class="form-control" />
-									</div>-->
+								<div class="form-group col-sm-6">
+									<label>Tên phim</label> <select ng-model="form.tenphim"
+										ng-change="updateMaPhim()" class="form-control">
+										<option ng-repeat="p in phim" ng-value="p.tenphim">{{p.tenphim}}</option>
+									</select>
+								</div>
+								</div>
+								<div class="row">
+									<div class="form-group col-sm-6">
+										<label>Mã chi tiết</label> <input ng-model="form.mact"
+											type="text" class="form-control" />
+									</div>
+									<div class="form-group col-sm-6">
+										<label>Mã phòng</label> <input ng-model="form.room.mapc"
+											type="text" class="form-control" />
+									</div>
 								</div>
 								<div class="row">
 									<div class="form-group col-sm-6">

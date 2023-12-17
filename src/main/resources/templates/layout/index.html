@@ -314,7 +314,8 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 	<script th:inline="javascript">
     	
 		let totalPay = null;
-	
+		
+		
     	let itemsArray = [];
     
         let combo = 0;
@@ -626,7 +627,8 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
     	            sessionStorage.setItem('bookingInformation', JSON.stringify(bookingInfo));
     	            console.log(bookingInfo.ghe);
     	            
-    	            fetch(`/rest/ghe/checkstatus/${seatCodes}`)
+    	            let flag = false;
+    	            fetch(`/rest/ghe/checkstatus/${gheTrungKhop.maghe}`)
     	            .then(resp =>{
     	            	if(resp.ok){
     	            		return resp.json();	
@@ -638,8 +640,8 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
     	            		Swal.fire({
     	            	          icon: 'warning',
     	            	          title: 'Ghế đã được đặt',
-    	            	          text: `Ghế ${gheTrungKhop.tenghe} đã có người đặt rồi. Vui lòng chọn ghế khác.`,
-    	            	          timer: 3000,
+    	            	          text: 'Ghế đã có người đặt rồi. Vui lòng chọn ghế khác.',
+    	            	          timer: 2000,
     	            	          timerProgressBar: true,
     	            	          toast: true,
     	            	          position: 'top-end',
@@ -697,7 +699,6 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
     	                        console.error('Error creating booking:', error);
     	                        // Xử lý khi có lỗi kết nối hoặc lỗi xử lý
     	                    });
-    	            		
     	            	}
     	            })
     	            .catch(error => {
@@ -707,11 +708,8 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
     	 	} else {
     	 	  console.log('Không tìm thấy ghế nào trùng khớp với vị trí ghế', seatPosition);
     	 	}
-    	 	
-            
-            
-         
         }
+     
      
         function getBookingInformation() {
             const bookingInfo = sessionStorage.getItem('bookingInformation');
@@ -871,7 +869,6 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 		       // Xóa phần tử tại vị trí đã tìm thấy
 		       const existingItem = itemsArray[existingItemIndex];
 		
-		       
 		       totalPrice -= existingItem.totalQuantity;
 		       itemsArray.splice(existingItemIndex, 1); // Xóa phần tử
 		       // Cập nhật thông tin cho phần tử mới
@@ -911,7 +908,6 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 		   }
  		});
         
-         
         function formatCurrency(value) {
 		    const formatter = new Intl.NumberFormat('vi-VN', {
 			       	style: 'currency',
@@ -997,6 +993,8 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 			  
 			  if (check === "vnpay") {
 				window.location.href="/home/booking/ticket/pay/"+ totalPay
+				var flag = /*[[${check}]] */'';
+					console.log(flag);
 			  }else if(check.trim() === ""){
 				  this.saveBookingInformation();
 			  }

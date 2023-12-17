@@ -169,8 +169,8 @@ insert into Taikhoan values
 
 insert into Vaitro values
 ('CUST',N'Khách hàng'),
-('STAFF',N'Nhân viên'),
 ('AD',N'Admin');
+
 
 insert into Phanquyen values
 ('admin','AD'),
@@ -180,11 +180,11 @@ insert into Phanquyen values
 ('hoangviet','AD'),
 ('theky','AD'),
 ('huyhoai','AD'),
-('long','STAFF'),
-('hoangvu','STAFF'),
-('ducminh','STAFF'),
-('minhman','STAFF'),
-('hoanganh','STAFF'),
+('long','AD'),
+('hoangvu','AD'),
+('ducminh','AD'),
+('minhman','AD'),
+('hoanganh','AD'),
 ('pteo123','CUST'),
 ('ngloi231','CUST'),
 ('ngta213','CUST'),
@@ -814,3 +814,8 @@ alter table Ve add constraint fk_ve_km foreign key(Makm) references KhuyenMai(Ma
 ---- Ghế------
 alter table Ghe add constraint fk_g_p foreign key(Phongchieuid) references Phong(Mapc)
 alter table Ghe add constraint fk_g_lghe foreign key(Loaigheid) references LGhe(Maloai)
+
+Select a.matk, a.hoten, a.email, a.hinh, sum(v.thanhtien) as totalPayment
+	From Taikhoan a inner join Ve v on v.matk = a.matk
+	Group by a.matk, a.hoten, a.email, a.hinh
+	Order by totalPayment DESC

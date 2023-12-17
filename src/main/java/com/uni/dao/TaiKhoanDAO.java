@@ -18,11 +18,9 @@ public interface TaiKhoanDAO extends JpaRepository<Taikhoan, String> {
 	@Query("Select a.taikhoan From Phanquyen a where a.vaitro.Mavaitro IN ('STAFF','AD')")
 	List<Taikhoan> findStaffandAd();
   
-	@Query(value="\r\n"
-			+ "				Select a.matk, a.Hoten, a.email, a.Hinh, \r\n"
-			+ "			sum(o.Thanhtien * o.Soluong) as totalPayment \r\n"
-			+ "			From Taikhoan a inner join Ve o on a.Matk = o.Matk 			 \r\n"
-			+ "			Group by a.Matk, a.Hoten, a.email, a.Hinh \r\n"
-			+ "			order by totalPayment desc",nativeQuery = true)
+	@Query(value="Select a.matk, a.hoten, a.email, a.hinh, sum(v.thanhtien) as totalPayment\r\n"
+			+ "	From Taikhoan a inner join Ve v on v.matk = a.matk\r\n"
+			+ "	Group by a.matk, a.hoten, a.email, a.hinh\r\n"
+			+ "	Order by totalPayment DESC",nativeQuery = true)
 	List<Object[]> top10Customer();
 }

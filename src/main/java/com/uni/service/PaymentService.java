@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.uni.config.config;
+import com.uni.entity.Payment;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -42,7 +44,6 @@ public class PaymentService {
         String vnp_IpAddr =	"127.0.0.1";
 
         String vnp_TmnCode = config.vnp_TmnCode;
-        
         Map<String, String> vnp_Params = new HashMap<>();
         vnp_Params.put("vnp_Version", vnp_Version);
         vnp_Params.put("vnp_Command", vnp_Command);
@@ -96,8 +97,8 @@ public class PaymentService {
         queryUrl += "&vnp_SecureHash=" + vnp_SecureHash;
         String paymentUrl = config.vnp_PayUrl + "?" + queryUrl;
         
-
 		return paymentUrl;
+		
 	}
 	
 	public int orderReturn(HttpServletRequest request){

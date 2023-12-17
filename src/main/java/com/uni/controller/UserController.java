@@ -67,7 +67,7 @@ public class UserController {
 		if (taikhoan.getMatkhau().equals(oldPassword)) {
 			if (newPassword.equals("")) {
 				model.addAttribute("message", "Mật khẩu mới không được để trống");
-			}
+			}else
 			if (newPassword.equals(retypePassword)) {
 				taikhoan.setMatkhau(newPassword);
 				taikhoanService.update(taikhoan);
@@ -80,7 +80,7 @@ public class UserController {
 		} else {
 			model.addAttribute("message", "Vui lòng nhập mật khẩu cũ !!!");
 		}
-		return "redirect:/home/profile/"+username;
+		return "forward:/home/profile/"+username;
 	}
 
 }

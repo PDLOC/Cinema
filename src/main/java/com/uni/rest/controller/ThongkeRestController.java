@@ -28,7 +28,7 @@ public class ThongkeRestController {
 		Map<String,Object> map = new HashMap<>();
 		map.put("todayVe", veService.getToDayVe());
 		map.put("totalVe", veService.totalVe());
-		map.put("totalPhim", phimService.getTotalPhim());
+		map.put("totalPhim", phimService.getTotalPhim1());
 		map.put("totalProduct", phimService.getTotalPhim());
 		map.put("todayIncome", veService.getTodayIncome());
 		map.put("totalIncome", veService.getTotalIncome());

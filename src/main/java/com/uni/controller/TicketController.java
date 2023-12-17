@@ -3,9 +3,11 @@ package com.uni.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,6 +29,7 @@ import com.uni.service.KmService;
 import com.uni.service.LoaiGheService;
 import com.uni.service.PaymentService;
 import com.uni.service.SessionService;
+import com.uni.service.VeService;
 import com.uni.service.impl.MailerServiceImpl;
 import com.uni.service.ComboService;
 import com.uni.service.GheService;
@@ -61,7 +64,10 @@ public class TicketController {
 
 	@Autowired
 	HttpSession session;
-	
+
+	@Autowired
+	VeService veService;
+
 	@Autowired
 	PaymentService paymentService;
 
@@ -98,59 +104,41 @@ public class TicketController {
 	}
 
 	@RequestMapping("booking/ticket/pay/{totalPay}")
-	public String payment(@PathVariable("totalPay") long totalpay) {
-		PaymentService pc = new PaymentService();
+	public String payment(@PathVariable("totalPay") long totalpay, HttpServletRequest request) {
 		String urlpay = null;
 		try {
-			urlpay = pc.payment(totalpay);
+			urlpay = paymentService.payment(totalpay);
 		} catch (Exception e) {
 			System.out.print(e);
 		}
+		System.out.println(urlpay);
+		
 		return "redirect:" + urlpay;
 	}
 
+	
 	@RequestMapping("booking/SendBill/{username}/{nameMovie}/{suatChieu}/{ngayChieu}/{seatPositionElement.textContent}/{totalSeat}/{seatPrice}/{room}/{totalPriceFood}/{discount}/{totalAmount1}/{ticketCode}")
-	public String sendMail(@PathVariable("username") String username, 
-			@PathVariable("nameMovie") String nameMovie,
-			@PathVariable("suatChieu") String timeMovie, 
-			@PathVariable("ngayChieu") String dateMovie,
-			@PathVariable("seatPositionElement.textContent") String ghe,
-			@PathVariable("totalSeat")String totalSeat ,
-			@PathVariable("seatPrice")String seatPrice,
-			@PathVariable("room") String room,
-			@PathVariable("totalPriceFood") String totalPriceFood,
-			@PathVariable("discount")String discount,
-			@PathVariable("totalAmount1") String thanhtien,
-			@PathVariable("ticketCode")Integer mave) {
-		
+	public String sendMail(@PathVariable("username") String username, @PathVariable("nameMovie") String nameMovie,
+			@PathVariable("suatChieu") String timeMovie, @PathVariable("ngayChieu") String dateMovie,
+			@PathVariable("seatPositionElement.textContent") String ghe, @PathVariable("totalSeat") String totalSeat,
+			@PathVariable("seatPrice") String seatPrice, @PathVariable("room") String room,
+			@PathVariable("totalPriceFood") String totalPriceFood, @PathVariable("discount") String discount,
+			@PathVariable("totalAmount1") String thanhtien, @PathVariable("ticketCode") Integer mave) {
+
 		try {
 			if (username != null) {
 				Taikhoan acc = accountDao.findById(username).get();
 				String imageUrl = "https://res.cloudinary.com/denbzrony/image/upload/v1702100071/ipweqzcmyymygwqdwhxb.png";
 				String subject = "Thông Tin Vé";
-				String content = "<html>" +
-                         "<head>" +
-                             "<style>" +
-                                 "body {" +
-                                     "font-family: Arial, sans-serif;" +
-                                 "}" +
-                             "</style>" +
-                         "</head>" +
-                         "<body>" +
-                             "<h2 style='color: #333333;'>Thông Tin Vé</h2>" +
-                             "<p><strong>Mã vé:</strong> " + mave +"</p>"+
-                             "<p><strong>Tên phim:</strong> " + nameMovie +"</p>"+
-                             "<p><strong>Rạp:</strong> Universe Cinema "+" - "+ room +"</p>"+
-                             "<p><strong>Ngày chiếu:</strong> " + dateMovie + " - "+timeMovie+"</p>" +
-                             "<p><strong>Ghế:</strong> " + ghe +"</p>"+
-                             "<p><strong>Giá:</strong> " + seatPrice + " x " + totalSeat +"</p>"+
-                             "<p><strong>Combo:</strong> " + totalPriceFood +"</p>"+
-                             "<p><strong>Khuyến mãi:</strong> " + discount +"%</p>"+
-                             "<hr>" +
-                             "<p><strong>Thành tiền:</strong> " + thanhtien +"</p>"+
-                             "<br>" +
-                         "</body>" +
-                      "</html>";
+				String content = "<html>" + "<head>" + "<style>" + "body {" + "font-family: Arial, sans-serif;" + "}"
+						+ "</style>" + "</head>" + "<body>" + "<h2 style='color: #333333;'>Thông Tin Vé</h2>"
+						+ "<p><strong>Mã vé:</strong> " + mave + "</p>" + "<p><strong>Tên phim:</strong> " + nameMovie
+						+ "</p>" + "<p><strong>Rạp:</strong> Universe Cinema " + " - " + room + "</p>"
+						+ "<p><strong>Ngày chiếu:</strong> " + dateMovie + " - " + timeMovie + "</p>"
+						+ "<p><strong>Ghế:</strong> " + ghe + "</p>" + "<p><strong>Giá:</strong> " + seatPrice + " x "
+						+ totalSeat + "</p>" + "<p><strong>Combo:</strong> " + totalPriceFood + "</p>"
+						+ "<p><strong>Khuyến mãi:</strong> " + discount + "%</p>" + "<hr>"
+						+ "<p><strong>Thành tiền:</strong> " + thanhtien + "</p>" + "<br>" + "</body>" + "</html>";
 				mailer.send(acc.getEmail(), subject, content);
 			}
 		} catch (Exception e) {

@@ -29,7 +29,7 @@ public class ContactController {
 			@RequestParam("body") String body) {
 		try{
 			// Tạo mail
-			String to = "alexred20151@gmail.com";
+			String to = "phamloc402@gmail.com";
 			MimeMessage mail =mailer.createMimeMessage();
 			// Sử dụng lớp trợ giúp
 			MimeMessageHelper helper = new MimeMessageHelper(mail);

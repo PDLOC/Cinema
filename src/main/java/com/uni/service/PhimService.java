@@ -25,6 +25,8 @@ public interface PhimService {
 
 	List<Object[]> top10phim();
 
+	Long getTotalPhim1();
+
 	Long getTotalPhim();
 
 }

@@ -60,10 +60,14 @@ public class PhimServiceImpl implements PhimService {
 		return pDao.top10phim();
 	}
 	
-
 	@Override
 	public Long getTotalPhim() {
 		return pDao.count();
+	}
+
+	@Override
+	public Long getTotalPhim1() {
+		return pDao.countPhimDangChieu();
 	}
 
 	

@@ -15,4 +15,10 @@ public interface AuthorityService {
 
 	Long getTotalCustomer();
 
+	Phanquyen create(Phanquyen phanquyen);
+
+	void delete(Integer id);
+
+	void deleteByUsername(String username);
+
 }

@@ -5,25 +5,28 @@
 		<!-- Sales Cards  -->
 		<div class="row">
 			<div class="col-md-12">
-				<div class="d-flex align-items-center ">
-    
-</div>
-	<h3 class="alert me-auto text-right  text-primary col-7" style="margin-bottom:-30px">Danh sách khách hàng</h3>
-	<!--  -->
-	<div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4" style="padding-right:15px;padding-top:10px;padding-bottom:15px">
-    	<input type="text" ng-model="keyword" class="form-control border-0 col-4" 
-								placeholder="Search for..." aria-label="Search"
-								aria-describedby="basic-addon2">
-							<div class="input-group-append">
-								<button class="btn btn-primary"  ng-click="search(keyword)">
-									<i class="fas fa-search fa-sm"></i>
-								</button>
-							</div>
-    <a class='btn btn-primary btn-small col-4  ' style="font-size: 15px;width:170px;" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        <span class="glyphicon glyphicon-edit col-4 text-center">Thêm khách hàng</span>
-    </a>
-    </div>
-    <!--  -->
+				<div class="d-flex align-items-center "></div>
+				<h3 class="alert me-auto text-right  text-primary col-7"
+					style="margin-bottom: -30px">Danh sách tài khoản</h3>
+				<!--  -->
+				<div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4"
+					style="padding-right: 15px; padding-top: 10px; padding-bottom: 15px">
+					<input type="text" ng-model="keyword"
+						class="form-control border-0 col-4" placeholder="Search for..."
+						aria-label="Search" aria-describedby="basic-addon2">
+					<div class="input-group-append">
+						<button class="btn btn-primary" ng-click="search(keyword)">
+							<i class="fas fa-search fa-sm"></i>
+						</button>
+					</div>
+					<a class='btn btn-primary btn-small col-4  '
+						style="font-size: 15px; width: 170px;" data-bs-toggle="modal"
+						data-bs-target="#exampleModal"> <span
+						class="glyphicon glyphicon-edit col-4 text-center">Thêm
+							tài khoản</span>
+					</a>
+				</div>
+				<!--  -->
 				<table class="table text-center">
 					<thead>
 						<tr>
@@ -40,8 +43,8 @@
 					</thead>
 					<tbody>
 						<tr ng-repeat="item in pager.items">
-							<td style="width: 150px;"><img ng-src="/assets/Images/{{item.hinh}}" alt=""
-								width=30% /></td>
+							<td style="width: 150px;"><img
+								ng-src="/assets/Images/{{item.hinh}}" alt="" width=30% /></td>
 							<td>{{item.matk}}</td>
 							<td>{{item.matkhau}}</td>
 							<td>{{item.hoten}}</td>
@@ -49,17 +52,14 @@
 							<td>{{item.sdt}}</td>
 							<td>{{item.ngaysinh | date:'dd-MM-yyyy'}}</td>
 							<td>{{item.diachi}}</td>
-							<td class="d-grid">
-							<a class='btn btn-warning' style="font-size: 14px"
-								data-bs-toggle="modal" data-bs-target="#exampleModal"
-								ng-click="edit(item)"> <span							
-									class="glyphicon glyphicon-edit">Edit</span> 
-							</a> 
-							<a  ng-click="delete(item)" 
-								style="font-size: 14px" class="btn btn-danger"> <span
-									class="glyphicon glyphicon-remove">Delete</span> 
-							</a>
-							</td>
+							<td class="d-grid"><a class='btn btn-warning'
+								style="font-size: 14px" data-bs-toggle="modal"
+								data-bs-target="#exampleModal" ng-click="edit(item)"> <span
+									class="glyphicon glyphicon-edit">Edit</span>
+							</a> <a ng-click="delete(item)" style="font-size: 14px"
+								class="btn btn-danger"> <span
+									class="glyphicon glyphicon-remove">Delete</span>
+							</a></td>
 						</tr>
 					</tbody>
 				</table>
@@ -88,105 +88,103 @@
 	class="fas fa-angle-up"></i>
 </a>
 
-	<!-- Modal -->
-	<div class="modal fade" id="exampleModal" tabindex="-1"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered modal-xl">
-			<div class="modal-content">
-				<button type="button" class="btn-close ms-auto my-2 me-2"
-					data-bs-dismiss="modal" aria-label="Close"></button>
-				<div class="modal-body">
-					<form name="qryform" id="qryform" 
-					enctype="multipart/form-data" class="px-3" modelAttribute="item">
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-xl">
+		<div class="modal-content">
+			<button type="button" class="btn-close ms-auto my-2 me-2"
+				data-bs-dismiss="modal" aria-label="Close"></button>
+			<div class="modal-body">
+				<form name="qryform" id="qryform" enctype="multipart/form-data"
+					class="px-3" modelAttribute="item">
 					<div class="card-body">
 						<div class="row">
-							
+
 							<div class="col-sm-4  text-center">
 								<label for="hinh"> <img
-								ng-src="/assets/Images/{{form.hinh}}" style="max-width: 100%"
+									ng-src="/assets/Images/{{form.hinh}}" style="max-width: 100%"
 									height="300px" />
-								</label>
-                         <input type="file" class="form-control ms-3"  id="hinh" 
-    					    onchange="angular.element(this).scope().imageChanged(this.files)" style="display: none;">
+								</label> <input type="file" class="form-control ms-3" id="hinh"
+									onchange="angular.element(this).scope().imageChanged(this.files)"
+									style="display: none;">
 
 							</div>
-								<div class="col-sm-8">
-									<div class="row">
-										<div class="form-group col-sm-6">
-											<label class="fw-bolder">Tài khoản</label> <input ng-model="form.matk"
-												class="form-control" />
-										</div>
-										<div class="form-group col-sm-6">
-											<label class="fw-bolder">Mật khẩu</label> <input ng-model="form.matkhau"
-												class="form-control" />
-										</div>
+							<div class="col-sm-8">
+								<div class="row">
+									<div class="form-group col-sm-6">
+										<label class="fw-bolder">Tài khoản</label> <input
+											ng-model="form.matk" class="form-control" />
 									</div>
-									<div class="row">
-										<div class="form-group col-sm-6">
-											<label class="fw-bolder">Họ tên</label> <input ng-model="form.hoten"
-												type="text" class="form-control" />
-										</div>
-										<div class="form-group col-sm-6">
-											<label class="fw-bolder">Số điện thoại</label> <input ng-model="form.sdt"
-												class="form-control" />
-										</div>
+									<div class="form-group col-sm-6">
+										<label class="fw-bolder">Mật khẩu</label> <input
+											ng-model="form.matkhau" class="form-control" />
 									</div>
-									<div class="row">
-										<div class="form-group col-sm-6">
-											<label class="fw-bolder">Ngày sinh</label> <input ng-model="form.ngaysinh"
-												class="form-control" />
-										</div>
+								</div>
+								<div class="row">
+									<div class="form-group col-sm-6">
+										<label class="fw-bolder">Họ tên</label> <input
+											ng-model="form.hoten" type="text" class="form-control" />
+									</div>
+									<div class="form-group col-sm-6">
+										<label class="fw-bolder">Số điện thoại</label> <input
+											ng-model="form.sdt" class="form-control" />
+									</div>
+								</div>
+								<div class="row">
+									<div class="form-group col-sm-6">
+										<label class="fw-bolder">Ngày sinh</label> <input
+											ng-model="form.ngaysinh" class="form-control" />
+									</div>
 
-										<div class="form-group col-sm-6">
-											<label class="fw-bolder">Email</label> <input ng-model="form.email" type="text"
-												class="form-control" />
-										</div>
+									<div class="form-group col-sm-6">
+										<label class="fw-bolder">Email</label> <input
+											ng-model="form.email" type="text" class="form-control" />
 									</div>
-									<div class="row">
-										<div class="form-group col-sm-6">
-											<label class="fw-bolder">Địa chỉ</label> <input ng-model="form.diachi"
-												type="text" class="form-control" />
-										</div>
-										<div class="form-group col-sm-6">
-											<label class="fw-bolder">Vai trò</label>
-											<div class="form-control">
-												<div class="form-check ps-0">
-													<label ng-repeat="r in roles" class="form-check-label me-2"
-														for="inlineFormCheck"> <input
-														ng-model="selectedRole" ng-value="r"
-														class="form-check-input1" type="checkbox"
-														id="inlineFormCheck" ng-checked="selection.indexOf(r)>-1"
-														ng-click="toggleRole(r)"> {{r.tenvaitro}}
-													</label>
-												</div>
+								</div>
+								<div class="row">
+									<div class="form-group col-sm-6">
+										<label class="fw-bolder">Địa chỉ</label> <input
+											ng-model="form.diachi" type="text" class="form-control" />
+									</div>
+									<div class="form-group col-sm-6">
+										<label class="fw-bolder">Vai trò</label>
+										<div class="form-control">
+											<div class="form-check ps-0">
+												<label ng-repeat="r in roles" class="form-check-label me-2"
+													for="inlineFormCheck"> <input
+													ng-model="selectedRole" ng-value="r"
+													class="form-check-input1" type="checkbox"
+													id="inlineFormCheck" ng-checked="selection.indexOf(r)>-1"
+													ng-click="toggleRole(r)"> {{r.tenvaitro}}
+												</label>
 											</div>
 										</div>
 									</div>
 								</div>
-									</div>
+							</div>
 						</div>
 					</div>
-								<div class="d-grid gap-2 d-md-flex justify-content-md-center my-4 md-3">
-						<button style="width: 100px; background: #0a58ca;" type="submit"
-							class="btn text-white fw-bolder"
-							ng-click="create()">Insert</button>
-						<button style="width: 100px; background: #0a58ca;" type="submit"
-							class="btn text-white fw-bolder"
-							ng-click="update()">Update</button>
-						<button style="width: 100px; background: #0a58ca;" type="submit"
-							class="btn text-white fw-bolder"
-							ng-click="delete(form)">Delete</button>
-						<button style="width: 100px; background: #0a58ca;" type="submit"
-							class="btn text-white fw-bolder" ng-click="reset()">Reset</button>
-					</div>
-					</form>
-						</div>
-					</div>
-				</div>
 			</div>
+			<div
+				class="d-grid gap-2 d-md-flex justify-content-md-center my-4 md-3">
+				<button style="width: 100px; background: #0a58ca;" type="submit"
+					class="btn text-white fw-bolder" ng-click="create()">Insert</button>
+				<button style="width: 100px; background: #0a58ca;" type="submit"
+					class="btn text-white fw-bolder" ng-click="update()">Update</button>
+				<button style="width: 100px; background: #0a58ca;" type="submit"
+					class="btn text-white fw-bolder" ng-click="delete(form)">Delete</button>
+				<button style="width: 100px; background: #0a58ca;" type="submit"
+					class="btn text-white fw-bolder" ng-click="reset()">Reset</button>
+			</div>
+			</form>
 		</div>
 	</div>
-	<script>
+</div>
+</div>
+</div>
+</div>
+<script>
 	const myModal = document.getElementById('myModal')
 	const myInput = document.getElementById('myInput')
 	
@@ -194,30 +192,29 @@
 	  myInput.focus()
 	})
 	</script>
-	<!-- Scroll to Top Button-->
-	<a class="scroll-to-top rounded" href="#page-top"> <i
-		class="fas fa-angle-up"></i>
-	</a>
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top"> <i
+	class="fas fa-angle-up"></i>
+</a>
 
-	<!-- Logout Modal-->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">Select "Logout" below if you are ready
-					to end your current session.</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="login.html">Logout</a>
-				</div>
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+				<button class="close" type="button" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+			</div>
+			<div class="modal-body">Select "Logout" below if you are ready
+				to end your current session.</div>
+			<div class="modal-footer">
+				<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+				<a class="btn btn-primary" href="login.html">Logout</a>
 			</div>
 		</div>
 	</div>
+</div>

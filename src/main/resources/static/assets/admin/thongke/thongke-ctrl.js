@@ -151,6 +151,7 @@ app.controller("thongke-ctrl", function($scope, $http, $location,$filter) {
 		
 			$http.get("/rest/thongke/fifthRow").then(resp=>{
 			$scope.fifRowContent = resp.data.topCustomer;
+			console.log(resp.data)
 			angular.element(document).ready(function () {
                 dTable = $('#tableTopCustomer')
                 dTable.DataTable({

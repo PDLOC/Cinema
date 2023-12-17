@@ -33,5 +33,26 @@ public class AuthorityServiceImpl implements AuthorityService{
 	public Long getTotalCustomer() {
 		return authorityDAO.findAll().stream().filter(e->e.getVaitro().getTenvaitro().equals("Khách hàng")).count();
 	}
+
+
+	@Override
+	public Phanquyen create(Phanquyen phanquyen) {
+		// TODO Auto-generated method stub
+		return authorityDAO.save(phanquyen);
+	}
+
+
+	@Override
+	public void delete(Integer id) {
+		// TODO Auto-generated method stub
+		authorityDAO.deleteById(id);
+	}
+
+
+	@Override
+	public void deleteByUsername(String username) {
+		// TODO Auto-generated method stub
+		authorityDAO.deleteByUserName(username);
+	}
 	
 }

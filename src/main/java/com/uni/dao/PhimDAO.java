@@ -25,4 +25,8 @@ public interface PhimDAO extends JpaRepository<Phim, String> {
 			+ "			GROUP BY  ve.Tenphim\r\n"
 			+ "			Order by mostSold desc",nativeQuery = true)
 	List<Object[]> top10phim();
+
+	
+	@Query(value = "SELECT COUNT(Maphim) FROM Phim WHERE Matrangthai = 1", nativeQuery = true)
+	Long countPhimDangChieu();
 }
